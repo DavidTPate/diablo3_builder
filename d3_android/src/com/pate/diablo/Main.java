@@ -2,9 +2,7 @@ package com.pate.diablo;
 
 import android.os.Bundle;
 
-import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.app.ActionBar.OnNavigationListener;
 
 public class Main extends SherlockActivity {
 
