@@ -1,10 +1,10 @@
 package com.pate.diablo;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -48,18 +48,27 @@ public class Main extends SherlockListActivity {
             }
         });
 
-        Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
-        File file = new File("Json.json");
-        String fakeJson = "";
-        try {
-            fakeJson = new Scanner(file).useDelimiter("\\Z").next();
-        } catch (FileNotFoundException e) {
+		Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation()
+				.create();
 
-            e.printStackTrace();
-        }
+		BufferedReader reader = new BufferedReader(new InputStreamReader(
+				getResources().openRawResource(R.raw.classes)));
 
-        DataModel dm = gson.fromJson(fakeJson, DataModel.class);
-        List<Class> classes = dm.getClasses();
+		String fakeJson = "";
+		String line;
+		try {
+			line = reader.readLine();
+			while (line != null) {
+				fakeJson = fakeJson + line;
+				line = reader.readLine();
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		DataModel dm = gson.fromJson(fakeJson, DataModel.class);
+		List<Class> classes = dm.getClasses();
 
         items.add(new SectionItem("Mouse Skills"));
         items.add(new EntryItem("Left Click Skill", "Attack"));
