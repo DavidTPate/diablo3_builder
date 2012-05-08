@@ -44,13 +44,16 @@ public class EntryAdapter extends ArrayAdapter<Item> {
 			}else{
 				EntryItem ei = (EntryItem)i;
 				v = vi.inflate(R.layout.list_item_entry, null);
-				final TextView title = (TextView)v.findViewById(R.id.list_item_entry_title);
-				final TextView subtitle = (TextView)v.findViewById(R.id.list_item_entry_summary);
 				
-				if (title != null) 
-					title.setText(ei.title);
-				if(subtitle != null)
-					subtitle.setText(ei.subtitle);
+				
+//				final TextView skillTitle = (TextView) v.findViewById(R.id.list_skill_title);
+//				final TextView skillTitle = (TextView) v.findViewById(R.id.list_item_section_text);
+//				final TextView subtitle = (TextView)v.findViewById(R.id.list_item_entry_summary);
+//				
+//				if (skillTitle != null) 
+//					skillTitle.setText(ei.title);
+//				if(subtitle != null)
+//					subtitle.setText(ei.subtitle);
 			}
 		}
 		return v;
