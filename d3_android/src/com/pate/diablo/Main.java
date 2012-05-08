@@ -38,7 +38,11 @@ public class Main extends SherlockListActivity {
         adapter = ArrayAdapter.createFromResource(this, R.array.classes, android.R.layout.simple_dropdown_item_1line);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+        actionBar.setDisplayShowCustomEnabled(true);
+        actionBar.setDisplayShowTitleEnabled(false);
+        
+        actionBar.setCustomView(R.layout.actionbar_custom_view);
+        /*actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
         actionBar.setListNavigationCallbacks(adapter, new OnNavigationListener() {
             @Override
             public boolean onNavigationItemSelected(int position, long itemId) {
@@ -47,7 +51,7 @@ public class Main extends SherlockListActivity {
                 return true;
             }
         });
-
+*/
 		Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation()
 				.create();
 
