@@ -50,7 +50,7 @@ public class Class {
 
 	@SerializedName(Vars.SCREENSHOTS)
 	@Expose
-	private List<String> screenshots;
+	private String[] screenshots;
 
 	@SerializedName(Vars.SHORT_DESCRIPTION)
 	@Expose
@@ -110,7 +110,7 @@ public class Class {
 		return screenshotCount;
 	}
 
-	public List<String> getScreenshots() {
+	public String[] getScreenshots() {
 		return screenshots;
 	}
 

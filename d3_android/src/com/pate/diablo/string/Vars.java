@@ -3,6 +3,7 @@ package com.pate.diablo.string;
 public class Vars {
 	public static final String ACTIVE_SKILLS = "active-skills";
 	public static final String CLASSES = "classes";
+	public static final String CLASS_ATTRIBUTES = "class-attributes";
 	public static final String COOLDOWN = "cooldown";
 	public static final String COOLDOWN_UNITS = "cooldown-units";
 	public static final String COOLDOWN_DESCRIPTION = "cooldown-description";
@@ -26,6 +27,7 @@ public class Vars {
 	public static final String SCREENSHOTS = "screenshots";
 	public static final String SCREENSHOTS_COUNT = "screenshots-count";
 	public static final String SHORT_DESCRIPTION = "short-description";
+	public static final String SKILL_TYPES = "skill-types";
 	public static final String TIER_1 = "tier-1";
 	public static final String TIER_2 = "tier-2";
 	public static final String TIER_3 = "tier-3";

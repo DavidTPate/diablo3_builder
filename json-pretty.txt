@@ -5144,5 +5144,50 @@
 		"wizard-vs-skeleton-king-index-thumb",
 		"wizard-vs-skeleton-king2-index-thumb",
 		"wizard-vs-skeleton-summoner-index-thumb"]
+	}],
+	"class-attributes": [{
+		"name": "Barbarian",
+		"skill-types": ["Primary",
+		"Secondary",
+		"Defensive",
+		"Might",
+		"Tactics",
+		"Rage"]
+	},
+	{
+		"name": "Demon Hunter",
+		"skill-types": ["Primary",
+		"Secondary",
+		"Defensive",
+		"Hunting",
+		"Devices",
+		"Archery"]
+	},
+	{
+		"name": "Monk",
+		"skill-types": ["Primary",
+		"Secondary",
+		"Defensive",
+		"Techniques",
+		"Focus",
+		"Mantras"]
+	},
+	{
+		"name": "Witch Doctor",
+		"skill-types": ["Primary",
+		"Secondary",
+		"Defensive",
+		"Terror",
+		"Decay",
+		"Voodoo"]
+	},
+	{
+		"name": "Wizard",
+		"skill-types": ["Primary",
+		"Secondary",
+		"Defensive",
+		"Force",
+		"Conjuration",
+		"Mastery"]
 	}]
 }
