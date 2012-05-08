@@ -1,5 +1,7 @@
 package com.pate.diablo.model;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
@@ -23,7 +25,7 @@ public class Skill {
 	@SerializedName(Vars.COST)
 	@Expose
 	private int cost;
-
+	
 	@SerializedName(Vars.COST_DESCRIPTION)
 	@Expose
 	private String costDescription;
@@ -64,7 +66,43 @@ public class Skill {
 	@Expose
 	private List<Rune> runes;
 
+	@SerializedName(Vars.TYPE)
+	@Expose
+	private String type;
+
 	private UUID uuid = UUID.randomUUID();
+
+	public boolean containsRuneByUUID(UUID uuid)
+	{		
+		Iterator<Rune> itr = getRunes().iterator();
+		while (itr.hasNext())
+		{
+			Rune rune = itr.next();
+			
+			if (rune.getUuid().equals(uuid))
+			{
+				return true;
+			}
+		}
+		
+		return false;
+	}
+
+	public boolean containsRunesByRequiredLevel(int requiredLevel)
+	{		
+		Iterator<Rune> itr = getRunes().iterator();
+		while (itr.hasNext())
+		{
+			Rune rune = itr.next();
+			
+			if (rune.getRequiredLevel() <= requiredLevel)
+			{
+				return true;
+			}
+		}
+		
+		return false;
+	}
 
 	public int getCooldown() {
 		return cooldown;
@@ -118,10 +156,48 @@ public class Skill {
 		return requiredLevel;
 	}
 
+	public Rune getRuneByUUID(UUID uuid)
+	{		
+		Iterator<Rune> itr = getRunes().iterator();
+		while (itr.hasNext())
+		{
+			Rune rune = itr.next();
+			
+			if (rune.getUuid().equals(uuid))
+			{
+				return rune;
+			}
+		}
+		
+		return null;
+	}
+	
 	public List<Rune> getRunes() {
 		return runes;
 	}
-
+	
+	public List<Rune> getRunesByRequiredLevel(int requiredLevel)
+	{
+		ArrayList<Rune> tempRunes = new ArrayList<Rune>();
+		
+		Iterator<Rune> itr = getRunes().iterator();
+		while (itr.hasNext())
+		{
+			Rune rune = itr.next();
+			
+			if (rune.getRequiredLevel() <= requiredLevel)
+			{
+				tempRunes.add(rune);
+			}
+		}
+		
+		return tempRunes;
+	}
+	
+	public String getType() {
+		return type;
+	}
+	
 	public UUID getUuid() {
 		return uuid;
 	}

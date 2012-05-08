@@ -6,7 +6,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.pate.diablo.string.Vars;
 
-public class ClassAttributes {
+public class ClassAttribute {
 	@SerializedName(Vars.NAME)
 	@Expose
 	private String name;
