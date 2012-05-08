@@ -93,6 +93,11 @@ public class Main extends SherlockListActivity {
         items.add(new SectionItem("Rage"));
         items.add(new EntryItem("Skill 4", "Skill 4"));
         items.add(new EntryItem("Skill 4 Rune", "Skill 4 Rune"));
+        
+        items.add(new SectionItem("Passive Skills"));
+        items.add(new EntryItem("Passive 1", "Passive 1"));
+        items.add(new EntryItem("Passive 2", "Passive 2"));
+        items.add(new EntryItem("Passive 3", "Passive 3"));
 
         EntryAdapter adapter = new EntryAdapter(this, items);
 
