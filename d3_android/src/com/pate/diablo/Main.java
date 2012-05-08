@@ -70,19 +70,27 @@ public class Main extends SherlockListActivity {
 		DataModel dm = gson.fromJson(fakeJson, DataModel.class);
 		List<Class> classes = dm.getClasses();
 
-        items.add(new SectionItem("Mouse Skills"));
+        items.add(new SectionItem("Primary"));
         items.add(new EntryItem("Left Click Skill", "Attack"));
         items.add(new EntryItem("Left Click Rune", "Some Rune"));
+        
+        items.add(new SectionItem("Secondary"));
         items.add(new EntryItem("Right Click", "Fireball"));
         items.add(new EntryItem("Right Click Rune", "Another rune"));
 
-        items.add(new SectionItem("Action Bar Skills"));
+        items.add(new SectionItem("Defensive"));
         items.add(new EntryItem("Skill 1", "Skill 1"));
         items.add(new EntryItem("Skill 1 Rune", "Skill 1 Rune"));
+        
+        items.add(new SectionItem("Might"));
         items.add(new EntryItem("Skill 2", "Skill 2"));
         items.add(new EntryItem("Skill 2 Rune", "Skill 2 Rune"));
+        
+        items.add(new SectionItem("Tactics"));
         items.add(new EntryItem("Skill 3", "Skill 3"));
         items.add(new EntryItem("Skill 3 Rune", "Skill 3 Rune"));
+        
+        items.add(new SectionItem("Rage"));
         items.add(new EntryItem("Skill 4", "Skill 4"));
         items.add(new EntryItem("Skill 4 Rune", "Skill 4 Rune"));
 
