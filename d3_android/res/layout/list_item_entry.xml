@@ -22,11 +22,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/list_skill_icon"
+        android:layout_toLeftOf="@+id/list_skill_required_level"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="10dp"
-        android:ellipsize="marquee"
         android:fadingEdge="horizontal"
-        android:singleLine="true"
         android:text="Cleave"
         android:textAppearance="?android:attr/textAppearanceSmall" />
     
@@ -67,7 +66,7 @@
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
-        android:id="@+id/list_skill_required_level"
+        android:id="@id/list_skill_required_level"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
