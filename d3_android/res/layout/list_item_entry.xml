@@ -82,7 +82,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/list_skill_cooldown"
+        android:layout_below="@+id/list_skill_icon"
         android:ellipsize="marquee"
         android:fadingEdge="horizontal"
         android:paddingLeft="5dp"

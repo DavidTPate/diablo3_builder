@@ -103,13 +103,18 @@ public class Skill {
 		
 		return false;
 	}
-
+	
 	public int getCooldown() {
 		return cooldown;
 	}
-
+	
 	public String getCooldownDescription() {
 		return cooldownDescription;
+	}
+	
+	public String getCooldownText()
+	{
+		return (cooldown == 0 ? "" : String.valueOf(cooldown) + " ") + (cooldownUnits == null || cooldownUnits.equals("") ? "" : cooldownUnits + " ") + (cooldownDescription == null || cooldownDescription.equals("") ? "" : cooldownDescription);
 	}
 
 	public String getCooldownUnits() {
@@ -122,6 +127,11 @@ public class Skill {
 
 	public String getCostDescription() {
 		return costDescription;
+	}
+
+	public String getCostText()
+	{
+		return (cost == 0 ? "" : String.valueOf(cost) + " ") + (costUnits == null || costUnits.equals("") ? "" : costUnits + " ") + (costDescription == null || costDescription.equals("") ? "" : costDescription);
 	}
 
 	public String getCostUnits() {
@@ -138,6 +148,11 @@ public class Skill {
 
 	public String getGenerateDescription() {
 		return generateDescription;
+	}
+
+	public String getGenerateText()
+	{
+		return (generate == 0 ? "" : String.valueOf(generate) + " ") + (generateUnits == null || generateUnits.equals("") ? "" : generateUnits + " ") + (generateDescription == null || generateDescription.equals("") ? "" : generateDescription);
 	}
 
 	public String getGenerateUnits() {
