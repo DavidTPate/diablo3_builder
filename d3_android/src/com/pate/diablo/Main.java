@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -151,7 +152,9 @@ public class Main extends SherlockListActivity {
         if (!items.get(position).isSection()) {
 
             EntryItem item = (EntryItem) items.get(position);
-
+            
+            Intent intent = new Intent(v.getContext(), SelectSkill.class);
+            startActivity(intent);
             //Toast.makeText(this, "You clicked " + item.title, Toast.LENGTH_SHORT).show();
 
         }
