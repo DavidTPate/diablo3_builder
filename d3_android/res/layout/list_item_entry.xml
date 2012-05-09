@@ -10,7 +10,7 @@
     <ImageView
         android:id="@+id/list_skill_icon"
         android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:contentDescription="Skill icon"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
@@ -92,5 +92,49 @@
         android:text="Swing your weapon in a wide arc to deal 120% weapon damage to all enemies caught in the swing"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
+    <RelativeLayout 
+        android:id="@+id/list_rune_section"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/list_skill_description">
+
+        <View
+            android:layout_height="1dp"
+            android:layout_width="fill_parent"
+            android:background="#000000" />
+            
+        <TextView 
+            android:id="@+id/list_rune"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:paddingLeft="5dp"
+            android:text="Rune" />
+        
+        <ImageView 
+            android:id="@+id/list_rune_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/barbarian_cleave"
+            android:layout_alignParentLeft="true"
+            android:paddingLeft="5dp"
+            android:layout_below="@id/list_rune" />
+        
+        <TextView 
+            android:id="@+id/list_rune_unlocked_at"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/list_rune_icon" />
+        
+        
+        <TextView
+            android:id="@+id/list_rune_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/list_rune_unlocked_at"
+            android:layout_alignLeft="@id/list_rune_unlocked_at"
+            android:text="Instead of Knockback, each hit has a 35% chance to Stun the target for 1.5 seconds." />
+        
+    </RelativeLayout>
     
 </RelativeLayout>
