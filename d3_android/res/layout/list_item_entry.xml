@@ -122,6 +122,7 @@
             android:layout_height="wrap_content"
             android:layout_alignLeft="@id/list_rune_unlocked_at"
             android:layout_below="@id/list_rune_unlocked_at"
+            android:paddingLeft="5dp"
             android:text="Instead of Knockback, each hit has a 35% chance to Stun the target for 1.5 seconds." />
     </RelativeLayout>
 
