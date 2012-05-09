@@ -35,10 +35,10 @@
 			"required-level": 1,
 			"icon": "barbarian_bash",
 			"type": "Primary",
-			"description": " Brutally smash an enemy for 150% weapon damage with a 20% chance to Knockback. ",
 			"generate": 6,
 			"generate-units": "Fury",
 			"generate-description": "per attack",
+			"description": " Brutally smash an enemy for 150% weapon damage with a 20% chance to Knockback.",
 			"runes": [{
 				"required-level": 6,
 				"name": "Clobber",
@@ -75,10 +75,10 @@
 			"required-level": 2,
 			"icon": "barbarian_hammeroftheancients",
 			"type": "Secondary",
-			"description": " Call forth a massive hammer to smash enemies directly in front of you for 200% weapon damage. Hammer of the Ancients has a 5% increased Critical Hit Chance. ",
 			"generate": 20,
 			"generate-units": "Fury",
 			"generate-description": "",
+			"description": " Call forth a massive hammer to smash enemies directly in front of you for 200% weapon damage. Hammer of the Ancients has a 5% increased Critical Hit Chance.",
 			"runes": [{
 				"required-level": 7,
 				"name": "Rolling Thunder",
@@ -115,10 +115,10 @@
 			"required-level": 3,
 			"icon": "barbarian_cleave",
 			"type": "Primary",
-			"description": " Swing your weapon in a wide arc to deal 120% weapon damage to all enemies caught in the swing. ",
 			"generate": 5,
 			"generate-units": "Fury",
 			"generate-description": "per attack",
+			"description": " Swing your weapon in a wide arc to deal 120% weapon damage to all enemies caught in the swing.",
 			"runes": [{
 				"required-level": 9,
 				"name": "Rupture",
@@ -155,10 +155,13 @@
 			"required-level": 4,
 			"icon": "barbarian_groundstomp",
 			"type": "Defensive",
-			"description": " Smash the ground, stunning all enemies within 12 yards for 4 seconds. ",
 			"generate": 15,
 			"generate-units": "Fury",
-			"generate-description": "ooldown: 12 seconds",
+			"generate-description": "",
+			"cooldown": 12,
+			"cooldown-units": "seconds",
+			"cooldown-description": "",
+			"description": " Smash the ground, stunning all enemies within 12 yards for 4 seconds.",
 			"runes": [{
 				"required-level": 12,
 				"name": "Deafening Crash",
@@ -195,10 +198,10 @@
 			"required-level": 5,
 			"icon": "barbarian_rend",
 			"type": "Secondary",
-			"description": " A sweeping strike causes all nearby enemies to Bleed for 210% weapon damage as Physical over 3 seconds. ",
 			"generate": 20,
 			"generate-units": "Fury",
 			"generate-description": "",
+			"description": " A sweeping strike causes all nearby enemies to Bleed for 210% weapon damage as Physical over 3 seconds.",
 			"runes": [{
 				"required-level": 11,
 				"name": "Ravage",
@@ -235,10 +238,13 @@
 			"required-level": 8,
 			"icon": "barbarian_leap",
 			"type": "Defensive",
-			"description": " Leap into the air, dealing 85% weapon damage to all enemies within 8 yards of your destination and slowing their movement speed by 60% for 3 seconds. ",
 			"generate": 15,
 			"generate-units": "Fury",
-			"generate-description": "ooldown: 10 seconds",
+			"generate-description": "",
+			"cooldown": 10,
+			"cooldown-units": "seconds",
+			"cooldown-description": "",
+			"description": " Leap into the air, dealing 85% weapon damage to all enemies within 8 yards of your destination and slowing their movement speed by 60% for 3 seconds.",
 			"runes": [{
 				"required-level": 14,
 				"name": "Iron Impact",
@@ -275,10 +281,13 @@
 			"required-level": 9,
 			"icon": "barbarian_ancientspear",
 			"type": "Might",
-			"description": " Throw a spear to pull an enemy back to you, briefly slowing the target's movement by 60% and dealing 185% weapon damage. ",
 			"generate": 15,
 			"generate-units": "Fury",
-			"generate-description": "ooldown: 10 seconds",
+			"generate-description": "",
+			"cooldown": 10,
+			"cooldown-units": "seconds",
+			"cooldown-description": "",
+			"description": " Throw a spear to pull an enemy back to you, briefly slowing the target's movement by 60% and dealing 185% weapon damage.",
 			"runes": [{
 				"required-level": 15,
 				"name": "Grappling Hooks",
@@ -315,10 +324,10 @@
 			"required-level": 11,
 			"icon": "barbarian_frenzy",
 			"type": "Primary",
-			"description": " Swing for 110% weapon damage. Frenzy attack speed increases by 15% with each swing. This effect can stack up to 5 times for a total bonus of 75% attack speed. ",
 			"generate": 3,
 			"generate-units": "Fury",
 			"generate-description": "per attack",
+			"description": " Swing for 110% weapon damage. Frenzy attack speed increases by 15% with each swing. This effect can stack up to 5 times for a total bonus of 75% attack speed.",
 			"runes": [{
 				"required-level": 17,
 				"name": "Sidearm",
@@ -355,10 +364,10 @@
 			"required-level": 12,
 			"icon": "barbarian_seismicslam",
 			"type": "Secondary",
-			"description": " Slam the ground and cause a wave of destruction that deals 155% weapon damage and Knockback to targets in a 45 yard arc. ",
 			"generate": 30,
 			"generate-units": "Fury",
 			"generate-description": "",
+			"description": " Slam the ground and cause a wave of destruction that deals 155% weapon damage and Knockback to targets in a 45 yard arc.",
 			"runes": [{
 				"required-level": 18,
 				"name": "Stagger",
@@ -395,7 +404,7 @@
 			"required-level": 13,
 			"icon": "barbarian_revenge",
 			"type": "Might",
-			"description": " Revenge has a 15% chance to become active each time you are hit. Inflict 220% weapon damage to all nearby enemies. You heal 5.0% of your maximum Life for each enemy hit. ",
+			"description": " Revenge has a 15% chance to become active each time you are hit. Inflict 220% weapon damage to all nearby enemies. You heal 5.0% of your maximum Life for each enemy hit.",
 			"runes": [{
 				"required-level": 19,
 				"name": "Vengeance Is Mine",
@@ -432,10 +441,10 @@
 			"required-level": 14,
 			"icon": "barbarian_weaponthrow",
 			"type": "Tactics",
-			"description": " Hurl a throwing weapon at an enemy for 120% weapon damage and Slow the movement of the enemy by 60% for 2 seconds. ",
 			"generate": 10,
 			"generate-units": "Fury",
 			"generate-description": "",
+			"description": " Hurl a throwing weapon at an enemy for 120% weapon damage and Slow the movement of the enemy by 60% for 2 seconds.",
 			"runes": [{
 				"required-level": 21,
 				"name": "Mighty Throw",
@@ -472,10 +481,10 @@
 			"required-level": 16,
 			"icon": "barbarian_sprint",
 			"type": "Defensive",
-			"description": " Increase movement speed by 40% for 3 seconds. ",
 			"generate": 20,
 			"generate-units": "Fury",
 			"generate-description": "",
+			"description": " Increase movement speed by 40% for 3 seconds.",
 			"runes": [{
 				"required-level": 23,
 				"name": "Rush",
@@ -512,10 +521,13 @@
 			"required-level": 17,
 			"icon": "barbarian_threateningshout",
 			"type": "Tactics",
-			"description": " Shout with great ferocity, reducing damage done by enemies within 25 yards by 20% for 15 seconds. ",
 			"generate": 15,
 			"generate-units": "Fury",
-			"generate-description": "ooldown: 15 seconds",
+			"generate-description": "",
+			"cooldown": 15,
+			"cooldown-units": "seconds",
+			"cooldown-description": "",
+			"description": " Shout with great ferocity, reducing damage done by enemies within 25 yards by 20% for 15 seconds.",
 			"runes": [{
 				"required-level": 23,
 				"name": "Intimidate",
@@ -552,10 +564,13 @@
 			"required-level": 19,
 			"icon": "barbarian_earthquake",
 			"type": "Rage",
-			"description": " Shake the ground violently, dealing 2000% weapon damage as Fire over 8 seconds to all enemies within 18 yards. ",
 			"generate": 50,
 			"generate-units": "Fury",
-			"generate-description": "ooldown: 120 seconds",
+			"generate-description": "",
+			"cooldown": 120,
+			"cooldown-units": "seconds",
+			"cooldown-description": "",
+			"description": " Shake the ground violently, dealing 2000% weapon damage as Fire over 8 seconds to all enemies within 18 yards.",
 			"runes": [{
 				"required-level": 24,
 				"name": "Giant's Stride",
@@ -592,10 +607,10 @@
 			"required-level": 20,
 			"icon": "barbarian_whirlwind",
 			"type": "Secondary",
-			"description": " Deliver multiple attacks to everything in your path for 110% weapon damage. ",
 			"generate": 16,
 			"generate-units": "Fury",
 			"generate-description": "",
+			"description": " Deliver multiple attacks to everything in your path for 110% weapon damage.",
 			"runes": [{
 				"required-level": 24,
 				"name": "Dust Devils",
@@ -632,10 +647,13 @@
 			"required-level": 21,
 			"icon": "barbarian_furiouscharge",
 			"type": "Might",
-			"description": " Rush forward knocking back enemies and inflicting 195% weapon damage to enemies along the path of the charge. ",
 			"generate": 15,
 			"generate-units": "Fury",
-			"generate-description": "ooldown: 10 seconds",
+			"generate-description": "",
+			"cooldown": 10,
+			"cooldown-units": "seconds",
+			"cooldown-description": "",
+			"description": " Rush forward knocking back enemies and inflicting 195% weapon damage to enemies along the path of the charge.",
 			"runes": [{
 				"required-level": 27,
 				"name": "Battering Ram",
@@ -672,10 +690,10 @@
 			"required-level": 22,
 			"icon": "barbarian_battlerage",
 			"type": "Tactics",
-			"description": " Enter a rage which increases damage by 15% and Critical Hit Chance by 3% for 30 seconds. ",
 			"generate": 20,
 			"generate-units": "Fury",
 			"generate-description": "",
+			"description": " Enter a rage which increases damage by 15% and Critical Hit Chance by 3% for 30 seconds.",
 			"runes": [{
 				"required-level": 26,
 				"name": "Marauder's Rage",
@@ -712,10 +730,10 @@
 			"required-level": 22,
 			"icon": "barbarian_ignorepain",
 			"type": "Defensive",
-			"description": " Reduces all damage taken by 65% for 5 seconds. ",
 			"cooldown": 30,
 			"cooldown-units": "seconds",
 			"cooldown-description": "",
+			"description": " Reduces all damage taken by 65% for 5 seconds.",
 			"runes": [{
 				"required-level": 26,
 				"name": "Bravado",
@@ -752,10 +770,13 @@
 			"required-level": 25,
 			"icon": "barbarian_calloftheancients",
 			"type": "Rage",
-			"description": " Summon the ancient Barbarians Talic, Korlic, and Madawc to fight alongside you for 15 seconds. Each deals 60% weapon damage per swing in addition to bonus abilities. Talic wields a sword and shield and uses the Whirlwind skill. Korlic wields a massive polearm and uses the Cleave skill. Madawc dual-wields axes and uses the Weapon Throw skill. ",
 			"generate": 50,
 			"generate-units": "Fury",
-			"generate-description": "ooldown: 120 seconds",
+			"generate-description": "",
+			"cooldown": 120,
+			"cooldown-units": "seconds",
+			"cooldown-description": "",
+			"description": " Summon the ancient Barbarians Talic, Korlic, and Madawc to fight alongside you for 15 seconds. Each deals 60% weapon damage per swing in addition to bonus abilities. Talic wields a sword and shield and uses the Whirlwind skill. Korlic wields a massive polearm and uses the Cleave skill. Madawc dual-wields axes and uses the Weapon Throw skill.",
 			"runes": [{
 				"required-level": 31,
 				"name": "The Council Rises",
@@ -792,10 +813,10 @@
 			"required-level": 26,
 			"icon": "barbarian_overpower",
 			"type": "Might",
-			"description": " Deal 165% weapon damage to all targets within 9 yards. Landing a Critical Hit has a chance to lower the cooldown by 1 second. ",
 			"cooldown": 15,
 			"cooldown-units": "seconds",
 			"cooldown-description": "",
+			"description": " Deal 165% weapon damage to all targets within 9 yards. Landing a Critical Hit has a chance to lower the cooldown by 1 second.",
 			"runes": [{
 				"required-level": 29,
 				"name": "Storm of Steel",
@@ -832,10 +853,13 @@
 			"required-level": 28,
 			"icon": "barbarian_warcry",
 			"type": "Tactics",
-			"description": " Unleash a rallying cry to increase Armor for you and all allies within 50 yards by 20% for 60 seconds. ",
 			"generate": 30,
 			"generate-units": "Fury",
-			"generate-description": "ooldown: 30 seconds",
+			"generate-description": "",
+			"cooldown": 30,
+			"cooldown-units": "seconds",
+			"cooldown-description": "",
+			"description": " Unleash a rallying cry to increase Armor for you and all allies within 50 yards by 20% for 60 seconds.",
 			"runes": [{
 				"required-level": 32,
 				"name": "Hardened Wrath",
@@ -872,10 +896,13 @@
 			"required-level": 30,
 			"icon": "barbarian_wrathoftheberserker",
 			"type": "Rage",
-			"description": " Enter a berserker rage which raises several attributes for 15 seconds. Critical Hit Chance: 10%Attack Speed: 25%Dodge Chance: 20%Movement Speed: 20% ",
 			"generate": 50,
 			"generate-units": "Fury",
-			"generate-description": "Cooldown: 120 seconds",
+			"generate-description": "",
+			"cooldown": 120,
+			"cooldown-units": "seconds",
+			"cooldown-description": "",
+			"description": " Enter a berserker rage which raises several attributes for 15 seconds. Critical Hit Chance: 10%Attack Speed: 25%Dodge Chance: 20%Movement Speed: 20%",
 			"runes": [{
 				"required-level": 36,
 				"name": "Arreat's Wail",
@@ -911,97 +938,97 @@
 			"name": "Pound of Flesh",
 			"required-level": 10,
 			"icon": "barbarian_passive_poundofflesh",
-			"description": " Increases the chance of finding a health globe by 25% and you gain 100% additional Life from health globes. "
+			"description": " Increases the chance of finding a health globe by 25% and you gain 100% additional Life from health globes."
 		},
 		{
 			"name": "Ruthless",
 			"required-level": 10,
 			"icon": "barbarian_passive_ruthless",
-			"description": " Critical Hit Chance increased by 5%. Critical Hit Damage increased by 50%. Many skills and runes rely on Critical Hits to trigger their effects. "
+			"description": " Critical Hit Chance increased by 5%. Critical Hit Damage increased by 50%. Many skills and runes rely on Critical Hits to trigger their effects."
 		},
 		{
 			"name": "Nerves Of Steel",
 			"required-level": 13,
 			"icon": "barbarian_passive_nervesofsteel",
-			"description": " Your Armor is increased by 100% of your Vitality. "
+			"description": " Your Armor is increased by 100% of your Vitality."
 		},
 		{
 			"name": "Weapons Master",
 			"required-level": 16,
 			"icon": "barbarian_passive_weaponsmaster",
-			"description": " Gain a bonus based on the weapon type of your main hand weapon:Swords\/Daggers: 15% increased damageMaces\/Axes: 10% Critical Hit ChancePolearms\/Spears: 10% attack speedMighty Weapons: 3 Fury per hit "
+			"description": " Gain a bonus based on the weapon type of your main hand weapon:Swords\/Daggers: 15% increased damageMaces\/Axes: 10% Critical Hit ChancePolearms\/Spears: 10% attack speedMighty Weapons: 3 Fury per hit"
 		},
 		{
 			"name": "Berserker Rage",
 			"required-level": 20,
 			"icon": "barbarian_passive_berserkerrage",
-			"description": " You inflict an additional 25% damage while at maximum Fury. "
+			"description": " You inflict an additional 25% damage while at maximum Fury."
 		},
 		{
 			"name": "Inspiring Presence",
 			"required-level": 20,
 			"icon": "barbarian_passive_inspiringpresence",
-			"description": " The duration of your shouts is doubled. After using a shout you regenerate 1% of your maximum Life per second for 60 seconds. Your shouts are: Battle Rage Threatening Shout War Cry "
+			"description": " The duration of your shouts is doubled. After using a shout you regenerate 1% of your maximum Life per second for 60 seconds. Your shouts are: Battle Rage Threatening Shout War Cry"
 		},
 		{
 			"name": "Bloodthirst",
 			"required-level": 24,
 			"icon": "barbarian_passive_bloodthirst",
-			"description": " Gain 3% of all damage done as Life. "
+			"description": " Gain 3% of all damage done as Life."
 		},
 		{
 			"name": "Animosity",
 			"required-level": 27,
 			"icon": "barbarian_passive_animosity",
-			"description": " Increases Fury generation by 10% and maximum Fury is increased by 20. Fury is used to fuel your most powerful attacks. "
+			"description": " Increases Fury generation by 10% and maximum Fury is increased by 20. Fury is used to fuel your most powerful attacks."
 		},
 		{
 			"name": "Superstition",
 			"required-level": 30,
 			"icon": "barbarian_passive_superstition",
-			"description": " Reduces all non-Physical damage by 20%. Whenever you take damage from a ranged or elemental attack, you have a chance to gain 3 Fury. "
+			"description": " Reduces all non-Physical damage by 20%. Whenever you take damage from a ranged or elemental attack, you have a chance to gain 3 Fury."
 		},
 		{
 			"name": "Tough as Nails",
 			"required-level": 30,
 			"icon": "barbarian_passive_toughasnails",
-			"description": " Increases Armor by 25%.Thorns damage dealt increased by 50%. "
+			"description": " Increases Armor by 25%.Thorns damage dealt increased by 50%."
 		},
 		{
 			"name": "No Escape",
 			"required-level": 35,
 			"icon": "barbarian_passive_noescape",
-			"description": " Increases the damage of Ancient Spear and Weapon Throw by 10%. In addition, a Critical Hit with Ancient Spear resets the cooldown while Critical Hits with Weapon Throw have a chance to return 14 Fury. "
+			"description": " Increases the damage of Ancient Spear and Weapon Throw by 10%. In addition, a Critical Hit with Ancient Spear resets the cooldown while Critical Hits with Weapon Throw have a chance to return 14 Fury."
 		},
 		{
 			"name": "Relentless",
 			"required-level": 40,
 			"icon": "barbarian_passive_relentless",
-			"description": " While below 20% Life, all skills cost no Fury and all damage taken is reduced by 50%. "
+			"description": " While below 20% Life, all skills cost no Fury and all damage taken is reduced by 50%."
 		},
 		{
 			"name": "Brawler",
 			"required-level": 45,
 			"icon": "barbarian_passive_brawler",
-			"description": " As long as there are 3 enemies within 8 yards, all of your damage is increased by 30%. "
+			"description": " As long as there are 3 enemies within 8 yards, all of your damage is increased by 30%."
 		},
 		{
 			"name": "Juggernaut",
 			"required-level": 50,
 			"icon": "barbarian_passive_juggernaut",
-			"description": " The duration of control impairing effects on you are reduced by 20%. In addition, whenever a Stun, Fear, Immobilize or Charm is cast on you, you have a chance to recover 15% of your maximum Life. "
+			"description": " The duration of control impairing effects on you are reduced by 20%. In addition, whenever a Stun, Fear, Immobilize or Charm is cast on you, you have a chance to recover 15% of your maximum Life."
 		},
 		{
 			"name": "Unforgiving",
 			"required-level": 55,
 			"icon": "barbarian_passive_unforgiving",
-			"description": " You no longer degenerate Fury. Instead, you gain 1 Fury every 2 seconds. "
+			"description": " You no longer degenerate Fury. Instead, you gain 1 Fury every 2 seconds."
 		},
 		{
 			"name": "Boon of Bul-Kathos",
 			"required-level": 60,
 			"icon": "barbarian_passive_boonofbulkathos",
-			"description": " The cooldown on your Earthquake, Call of the Ancients, and Wrath of the Berserker skills is reduced by 30 seconds. "
+			"description": " The cooldown on your Earthquake, Call of the Ancients, and Wrath of the Berserker skills is reduced by 30 seconds."
 		}],
 		"screenshots-count": 12,
 		"screenshots": ["barb-002-index-thumb",
@@ -1053,10 +1080,10 @@
 			"required-level": 1,
 			"icon": "demonhunter_hungeringarrow",
 			"type": "Primary",
-			"description": " Fire a magically imbued arrow that seeks out targets for 115% weapon damage and has a 35% chance to pierce through targets. ",
 			"generate": 3,
 			"generate-units": "Hatred",
 			"generate-description": "",
+			"description": " Fire a magically imbued arrow that seeks out targets for 115% weapon damage and has a 35% chance to pierce through targets.",
 			"runes": [{
 				"required-level": 6,
 				"name": "Puncturing Arrow",
@@ -1093,10 +1120,10 @@
 			"required-level": 2,
 			"icon": "demonhunter_impale",
 			"type": "Secondary",
-			"description": " Impale a target for 250% weapon damage. ",
 			"generate": 25,
 			"generate-units": "Hatred",
 			"generate-description": "",
+			"description": " Impale a target for 250% weapon damage.",
 			"runes": [{
 				"required-level": 7,
 				"name": "Impact",
@@ -1133,10 +1160,10 @@
 			"required-level": 3,
 			"icon": "demonhunter_entanglingshot",
 			"type": "Primary",
-			"description": " Imbue an arrow with shadow energy that deals 75% weapon damage and entangles up to 2 enemies, slowing their movement by 60% for 2 seconds. ",
 			"generate": 3,
 			"generate-units": "Hatred",
 			"generate-description": "",
+			"description": " Imbue an arrow with shadow energy that deals 75% weapon damage and entangles up to 2 enemies, slowing their movement by 60% for 2 seconds.",
 			"runes": [{
 				"required-level": 9,
 				"name": "Chain Gang",
@@ -1173,10 +1200,10 @@
 			"required-level": 4,
 			"icon": "demonhunter_caltrops",
 			"type": "Defensive",
-			"description": " Lay a trap of caltrops on the ground that activates when an enemy approaches. Once sprung, the caltrops Slow the movement of enemies within 12 yards by 60%. This trap lasts 6 seconds. ",
 			"generate": 6,
 			"generate-units": "Discipline",
 			"generate-description": "",
+			"description": " Lay a trap of caltrops on the ground that activates when an enemy approaches. Once sprung, the caltrops Slow the movement of enemies within 12 yards by 60%. This trap lasts 6 seconds.",
 			"runes": [{
 				"required-level": 12,
 				"name": "Hooked Spines",
@@ -1213,10 +1240,10 @@
 			"required-level": 5,
 			"icon": "demonhunter_rapidfire",
 			"type": "Secondary",
-			"description": " Rapidly fire for 228% weapon damage as Physical. ",
 			"generate": 20,
 			"generate-units": "Hatred",
-			"generate-description": "initially, and an additional 10 Hatred while channeling",
+			"generate-description": "",
+			"description": " Rapidly fire for 228% weapon damage as Physical.",
 			"runes": [{
 				"required-level": 11,
 				"name": "Withering Fire",
@@ -1253,10 +1280,10 @@
 			"required-level": 8,
 			"icon": "demonhunter_smokescreen",
 			"type": "Defensive",
-			"description": " Vanish behind a wall of smoke, becoming momentarily invisible for 2 seconds. ",
 			"generate": 14,
 			"generate-units": "Discipline",
 			"generate-description": "",
+			"description": " Vanish behind a wall of smoke, becoming momentarily invisible for 2 seconds.",
 			"runes": [{
 				"required-level": 14,
 				"name": "Displacement",
@@ -1293,10 +1320,10 @@
 			"required-level": 9,
 			"icon": "demonhunter_vault",
 			"type": "Hunting",
-			"description": " Tumble acrobatically 35 yards. ",
 			"generate": 8,
 			"generate-units": "Discipline",
 			"generate-description": "",
+			"description": " Tumble acrobatically 35 yards.",
 			"runes": [{
 				"required-level": 16,
 				"name": "Action Shot",
@@ -1333,10 +1360,10 @@
 			"required-level": 11,
 			"icon": "demonhunter_bolashot",
 			"type": "Primary",
-			"description": " Shoot out an explosive bola that wraps itself around its target. After 1 second, the bola explodes dealing 130% weapon damage as Fire to the target and an additional 110% weapon damage as Fire to all other targets within 7 yards. ",
 			"generate": 3,
 			"generate-units": "Hatred",
 			"generate-description": "",
+			"description": " Shoot out an explosive bola that wraps itself around its target. After 1 second, the bola explodes dealing 130% weapon damage as Fire to the target and an additional 110% weapon damage as Fire to all other targets within 7 yards.",
 			"runes": [{
 				"required-level": 14,
 				"name": "Volatile Explosives",
@@ -1373,10 +1400,10 @@
 			"required-level": 12,
 			"icon": "demonhunter_chakram",
 			"type": "Secondary",
-			"description": " Fire a swirling Chakram that does 150% weapon damage as Physical to enemies along its path. ",
 			"generate": 10,
 			"generate-units": "Hatred",
 			"generate-description": "",
+			"description": " Fire a swirling Chakram that does 150% weapon damage as Physical to enemies along its path.",
 			"runes": [{
 				"required-level": 18,
 				"name": "Twin Chakrams",
@@ -1413,10 +1440,10 @@
 			"required-level": 13,
 			"icon": "demonhunter_preparation",
 			"type": "Hunting",
-			"description": " Instantly restore all Discipline. ",
 			"cooldown": 45,
 			"cooldown-units": "seconds",
 			"cooldown-description": "",
+			"description": " Instantly restore all Discipline.",
 			"runes": [{
 				"required-level": 19,
 				"name": "Invigoration",
@@ -1453,10 +1480,10 @@
 			"required-level": 14,
 			"icon": "demonhunter_evasivefire",
 			"type": "Devices",
-			"description": " Shoot for 125% weapon damage. If an enemy is in front of you at close range, you will also backflip away 15 yards. ",
 			"generate": 4,
-			"generate-units": "Hatred",
-			"generate-description": "ost: 4 Discipline if you backflip",
+			"generate-units": "",
+			"generate-description": "",
+			"description": " Shoot for 125% weapon damage. If an enemy is in front of you at close range, you will also backflip away 15 yards.",
 			"runes": [{
 				"required-level": 21,
 				"name": "Shrapnel",
@@ -1493,10 +1520,10 @@
 			"required-level": 15,
 			"icon": "demonhunter_grenades",
 			"type": "Primary",
-			"description": " Throw out three grenades that explode for 95% weapon damage as Fire each. ",
 			"generate": 3,
 			"generate-units": "Hatred",
 			"generate-description": "",
+			"description": " Throw out three grenades that explode for 95% weapon damage as Fire each.",
 			"runes": [{
 				"required-level": 22,
 				"name": "Tinkerer",
@@ -1533,10 +1560,10 @@
 			"required-level": 16,
 			"icon": "demonhunter_shadowpower",
 			"type": "Defensive",
-			"description": " Draw in the power of the shadows, gaining 20% of all damage done as Life for 3 seconds. ",
 			"generate": 14,
 			"generate-units": "Discipline",
 			"generate-description": "",
+			"description": " Draw in the power of the shadows, gaining 20% of all damage done as Life for 3 seconds.",
 			"runes": [{
 				"required-level": 21,
 				"name": "Night Bane",
@@ -1573,10 +1600,10 @@
 			"required-level": 17,
 			"icon": "demonhunter_companion",
 			"type": "Hunting",
-			"description": " Summon a raven companion. Your raven companion will periodically peck at enemies for 30% of your weapon damage as Physical. ",
 			"generate": 10,
 			"generate-units": "Discipline",
 			"generate-description": "",
+			"description": " Summon a raven companion. Your raven companion will periodically peck at enemies for 30% of your weapon damage as Physical.",
 			"runes": [{
 				"required-level": 22,
 				"name": "Spider Companion",
@@ -1613,10 +1640,13 @@
 			"required-level": 17,
 			"icon": "demonhunter_fanofknives",
 			"type": "Devices",
-			"description": " Throw knives out in a spiral around you, doing 320% weapon damage to all enemies within 10 yards of you. Your knives will also Slow the movement of enemies by 60% for 2 seconds. ",
 			"generate": 20,
 			"generate-units": "Hatred",
-			"generate-description": "ooldown: 10 seconds",
+			"generate-description": "",
+			"cooldown": 10,
+			"cooldown-units": "seconds",
+			"cooldown-description": "",
+			"description": " Throw knives out in a spiral around you, doing 320% weapon damage to all enemies within 10 yards of you. Your knives will also Slow the movement of enemies by 60% for 2 seconds.",
 			"runes": [{
 				"required-level": 23,
 				"name": "Crippling Razors",
@@ -1653,10 +1683,10 @@
 			"required-level": 17,
 			"icon": "demonhunter_spiketrap",
 			"type": "Devices",
-			"description": " Lay a trap that arms after 1.2 seconds and triggers when an enemy approaches. The trap does 275% weapon damage to all enemies within 8 yards. You can have a maximum of 3 Spike Traps active at one time. ",
 			"generate": 30,
 			"generate-units": "Hatred",
 			"generate-description": "",
+			"description": " Lay a trap that arms after 1.2 seconds and triggers when an enemy approaches. The trap does 275% weapon damage to all enemies within 8 yards. You can have a maximum of 3 Spike Traps active at one time.",
 			"runes": [{
 				"required-level": 27,
 				"name": "Bandolier",
@@ -1693,10 +1723,10 @@
 			"required-level": 19,
 			"icon": "demonhunter_strafe",
 			"type": "Archery",
-			"description": " Shoot at random nearby enemies for 120% weapon damage while moving at 65% of normal movement speed. ",
 			"generate": 15,
 			"generate-units": "Hatred",
 			"generate-description": "",
+			"description": " Shoot at random nearby enemies for 120% weapon damage while moving at 65% of normal movement speed.",
 			"runes": [{
 				"required-level": 24,
 				"name": "Equilibrium",
@@ -1733,10 +1763,10 @@
 			"required-level": 20,
 			"icon": "demonhunter_elementalarrow",
 			"type": "Secondary",
-			"description": " Shoot a fire arrow that deals 155% weapon damage as Fire to all targets it passes through. ",
 			"generate": 10,
 			"generate-units": "Hatred",
 			"generate-description": "",
+			"description": " Shoot a fire arrow that deals 155% weapon damage as Fire to all targets it passes through.",
 			"runes": [{
 				"required-level": 24,
 				"name": "Ball Lightning",
@@ -1773,10 +1803,10 @@
 			"required-level": 21,
 			"icon": "demonhunter_markedfordeath",
 			"type": "Hunting",
-			"description": " Marks an enemy. The marked enemy will take 12% additional damage for the next 30 seconds. ",
 			"generate": 3,
 			"generate-units": "Discipline",
 			"generate-description": "",
+			"description": " Marks an enemy. The marked enemy will take 12% additional damage for the next 30 seconds.",
 			"runes": [{
 				"required-level": 27,
 				"name": "Contagion",
@@ -1813,10 +1843,10 @@
 			"required-level": 22,
 			"icon": "demonhunter_multishot",
 			"type": "Archery",
-			"description": " Fire a massive volley of arrows dealing 165% weapon damage to all enemies in the area. ",
 			"generate": 40,
 			"generate-units": "Hatred",
 			"generate-description": "",
+			"description": " Fire a massive volley of arrows dealing 165% weapon damage to all enemies in the area.",
 			"runes": [{
 				"required-level": 26,
 				"name": "Fire at Will",
@@ -1853,10 +1883,10 @@
 			"required-level": 25,
 			"icon": "demonhunter_sentry",
 			"type": "Devices",
-			"description": " Drop a turret on the ground. The turret begins firing at nearby enemies for 20% weapon damage. Lasts 30 seconds. ",
 			"generate": 10,
 			"generate-units": "Discipline",
 			"generate-description": "",
+			"description": " Drop a turret on the ground. The turret begins firing at nearby enemies for 20% weapon damage. Lasts 30 seconds.",
 			"runes": [{
 				"required-level": 28,
 				"name": "Spitfire Turret",
@@ -1893,10 +1923,10 @@
 			"required-level": 27,
 			"icon": "demonhunter_clusterarrow",
 			"type": "Archery",
-			"description": " Fire a cluster arrow that explodes for 200% weapon damage as Fire into a series of additional miniature bombs that explode for 100% weapon damage as Fire each. ",
 			"generate": 50,
 			"generate-units": "Hatred",
 			"generate-description": "",
+			"description": " Fire a cluster arrow that explodes for 200% weapon damage as Fire into a series of additional miniature bombs that explode for 100% weapon damage as Fire each.",
 			"runes": [{
 				"required-level": 33,
 				"name": "Dazzling Arrow",
@@ -1933,10 +1963,10 @@
 			"required-level": 30,
 			"icon": "demonhunter_rainofvengeance",
 			"type": "Archery",
-			"description": " Fire a massive volley of arrows around you. Arrows fall from the sky dealing 75% weapon damage for 5 seconds to all enemies in the area. ",
 			"cooldown": 30,
 			"cooldown-units": "seconds",
 			"cooldown-description": "",
+			"description": " Fire a massive volley of arrows around you. Arrows fall from the sky dealing 75% weapon damage for 5 seconds to all enemies in the area.",
 			"runes": [{
 				"required-level": 35,
 				"name": "Dark Cloud",
@@ -1972,91 +2002,91 @@
 			"name": "Tactical Advantage",
 			"required-level": 10,
 			"icon": "demonhunter_passive_tacticaladvantage",
-			"description": " Whenever you use Vault, Smoke Screen, or backflip with Evasive Fire you gain 60% movement speed for 2 seconds. "
+			"description": " Whenever you use Vault, Smoke Screen, or backflip with Evasive Fire you gain 60% movement speed for 2 seconds."
 		},
 		{
 			"name": "Thrill of the Hunt",
 			"required-level": 10,
 			"icon": "demonhunter_passive_thrillofthehunt",
-			"description": " Every 10 seconds, your next bow attack will immobilize your target for 3 seconds. "
+			"description": " Every 10 seconds, your next bow attack will immobilize your target for 3 seconds."
 		},
 		{
 			"name": "Vengeance",
 			"required-level": 13,
 			"icon": "demonhunter_passive_vengeance",
-			"description": " Your maximum Hatred is increased by 25. In addition, gain 20 Hatred and 2 Discipline whenever you are healed by a health globe. "
+			"description": " Your maximum Hatred is increased by 25. In addition, gain 20 Hatred and 2 Discipline whenever you are healed by a health globe."
 		},
 		{
 			"name": "Steady Aim",
 			"required-level": 16,
 			"icon": "demonhunter_passive_steadyaim",
-			"description": " As long as there are no enemies within 10 yards, all damage is increased by 20%. "
+			"description": " As long as there are no enemies within 10 yards, all damage is increased by 20%."
 		},
 		{
 			"name": "Cull the Weak",
 			"required-level": 20,
 			"icon": "demonhunter_passive_culltheweak",
-			"description": " Damage against slowed enemies increased by 15%. "
+			"description": " Damage against slowed enemies increased by 15%."
 		},
 		{
 			"name": "Night Stalker",
 			"required-level": 20,
 			"icon": "demonhunter_passive_nightstalker",
-			"description": " Critical Hits have a chance to restore 1 Discipline. Discipline is used to fuel many of your tactical and defensive skills. "
+			"description": " Critical Hits have a chance to restore 1 Discipline. Discipline is used to fuel many of your tactical and defensive skills."
 		},
 		{
 			"name": "Brooding",
 			"required-level": 25,
 			"icon": "demonhunter_passive_brooding",
-			"description": " As long as you have not taken damage in the last 3 seconds you gain 1% of your maximum Life per second. "
+			"description": " As long as you have not taken damage in the last 3 seconds you gain 1% of your maximum Life per second."
 		},
 		{
 			"name": "Hot Pursuit",
 			"required-level": 27,
 			"icon": "demonhunter_passive_hotpursuit",
-			"description": " Whenever you are at full Hatred, movement speed is increased by 15%. "
+			"description": " Whenever you are at full Hatred, movement speed is increased by 15%."
 		},
 		{
 			"name": "Archery",
 			"required-level": 30,
 			"icon": "demonhunter_passive_archery",
-			"description": " Gain a bonus based on the weapon type of your main hand weapon:Bow: 15% increased damageCrossbows: 50% Critical Hit DamageHand Crossbows: 10% Critical Hit Chance "
+			"description": " Gain a bonus based on the weapon type of your main hand weapon:Bow: 15% increased damageCrossbows: 50% Critical Hit DamageHand Crossbows: 10% Critical Hit Chance"
 		},
 		{
 			"name": "Numbing Traps",
 			"required-level": 30,
 			"icon": "demonhunter_passive_numbingtraps",
-			"description": " Enemies hit by Fan of Knives, Spike Trap, and Caltrops have their damage reduced by 25% for 3 seconds. "
+			"description": " Enemies hit by Fan of Knives, Spike Trap, and Caltrops have their damage reduced by 25% for 3 seconds."
 		},
 		{
 			"name": "Perfectionist",
 			"required-level": 35,
 			"icon": "demonhunter_passive_perfectionist",
-			"description": " Reduces the Discipline cost of all skills by 10%. Discipline is used to fuel many of your tactical and defensive skills. "
+			"description": " Reduces the Discipline cost of all skills by 10%. Discipline is used to fuel many of your tactical and defensive skills."
 		},
 		{
 			"name": "Custom Engineering",
 			"required-level": 40,
 			"icon": "demonhunter_passive_customengineering",
-			"description": " The duration of your Caltrops, Marked for Death, Spike Trap, and Sentry is increased by 100%. "
+			"description": " The duration of your Caltrops, Marked for Death, Spike Trap, and Sentry is increased by 100%."
 		},
 		{
 			"name": "Grenadier",
 			"required-level": 45,
 			"icon": "demonhunter_passive_grenadier",
-			"description": " Increases Hatred generated from Grenades by 2 and reduces the Hatred cost of Cluster Arrow by 10. Upon death, you drop a giant grenade that explodes for 450% weapon damage as Fire. "
+			"description": " Increases Hatred generated from Grenades by 2 and reduces the Hatred cost of Cluster Arrow by 10. Upon death, you drop a giant grenade that explodes for 450% weapon damage as Fire."
 		},
 		{
 			"name": "Sharpshooter",
 			"required-level": 50,
 			"icon": "demonhunter_passive_sharpshooter",
-			"description": " Gain 3% Critical Hit Chance every second. This bonus is reset 1 second after you successfully critically hit. "
+			"description": " Gain 3% Critical Hit Chance every second. This bonus is reset 1 second after you successfully critically hit."
 		},
 		{
 			"name": "Ballistics",
 			"required-level": 55,
 			"icon": "demonhunter_passive_ballistics",
-			"description": " Damage from rockets increased by 50%. Rockets are fired from certain skill rune effects. "
+			"description": " Damage from rockets increased by 50%. Rockets are fired from certain skill rune effects."
 		}],
 		"screenshots-count": 12,
 		"screenshots": ["dh-at-the-gates-index-thumb",
@@ -2108,10 +2138,10 @@
 			"required-level": 1,
 			"icon": "monk_fistsofthunder",
 			"type": "Primary",
-			"description": " Unleash a series of extremely fast punches that deal 110% weapon damage as Lightning. Every third hit deals damage to all enemies in front of you and knocks them back a short distance. Generates Spirit faster than other Spirit-generating skills due to the high attack speed. ",
 			"generate": 6,
 			"generate-units": "Spirit",
 			"generate-description": "per attack",
+			"description": " Unleash a series of extremely fast punches that deal 110% weapon damage as Lightning. Every third hit deals damage to all enemies in front of you and knocks them back a short distance. Generates Spirit faster than other Spirit-generating skills due to the high attack speed.",
 			"runes": [{
 				"required-level": 6,
 				"name": "Thunderclap",
@@ -2148,10 +2178,10 @@
 			"required-level": 2,
 			"icon": "monk_lashingtailkick",
 			"type": "Secondary",
-			"description": " Unleash a deadly roundhouse kick that knocks enemies back and deals 200% weapon damage. ",
 			"generate": 30,
 			"generate-units": "Spirit",
 			"generate-description": "",
+			"description": " Unleash a deadly roundhouse kick that knocks enemies back and deals 200% weapon damage.",
 			"runes": [{
 				"required-level": 7,
 				"name": "Vulture Claw Kick",
@@ -2188,10 +2218,10 @@
 			"required-level": 3,
 			"icon": "monk_deadlyreach",
 			"type": "Primary",
-			"description": " Project lines of pure force over a short distance for 110% weapon damage. Every third hit extends 25 yards. ",
 			"generate": 6,
 			"generate-units": "Spirit",
 			"generate-description": "per attack",
+			"description": " Project lines of pure force over a short distance for 110% weapon damage. Every third hit extends 25 yards.",
 			"runes": [{
 				"required-level": 9,
 				"name": "Piercing Trident",
@@ -2228,10 +2258,13 @@
 			"required-level": 4,
 			"icon": "monk_blindingflash",
 			"type": "Defensive",
-			"description": " Create a flash of light that blinds all enemies within 20 yards for 3 seconds. Elite enemies recover faster, but suffer a 30% chance to miss with attacks. ",
 			"generate": 10,
 			"generate-units": "Spirit",
-			"generate-description": "ooldown: 15 seconds",
+			"generate-description": "",
+			"cooldown": 15,
+			"cooldown-units": "seconds",
+			"cooldown-description": "",
+			"description": " Create a flash of light that blinds all enemies within 20 yards for 3 seconds. Elite enemies recover faster, but suffer a 30% chance to miss with attacks.",
 			"runes": [{
 				"required-level": 12,
 				"name": "Self Reflection",
@@ -2268,10 +2301,10 @@
 			"required-level": 5,
 			"icon": "monk_tempestrush",
 			"type": "Secondary",
-			"description": " Charge directly through your enemies, knocking them back and hobbling them, slowing their movement by 60% for 2 seconds. Also deals 50% weapon damage while running. ",
 			"generate": 15,
 			"generate-units": "Spirit",
-			"generate-description": "plus an additional 10 Spirit while channeling",
+			"generate-description": "",
+			"description": " Charge directly through your enemies, knocking them back and hobbling them, slowing their movement by 60% for 2 seconds. Also deals 50% weapon damage while running.",
 			"runes": [{
 				"required-level": 11,
 				"name": "Northern Breeze",
@@ -2308,10 +2341,13 @@
 			"required-level": 8,
 			"icon": "monk_breathofheaven",
 			"type": "Defensive",
-			"description": " A blast of divine energy heals you and all allies within 12 yards for 6202 - 7442 Life. ",
 			"generate": 25,
 			"generate-units": "Spirit",
-			"generate-description": "ooldown: 15 seconds",
+			"generate-description": "",
+			"cooldown": 15,
+			"cooldown-units": "seconds",
+			"cooldown-description": "",
+			"description": " A blast of divine energy heals you and all allies within 12 yards for 6202 - 7442 Life.",
 			"runes": [{
 				"required-level": 14,
 				"name": "Circle of Scorn",
@@ -2348,10 +2384,10 @@
 			"required-level": 9,
 			"icon": "monk_dashingstrike",
 			"type": "Techniques",
-			"description": " Quickly dash at the targeted enemy or location, striking for 100% weapon damage and rooting the target for 1 second. ",
 			"generate": 25,
 			"generate-units": "Spirit",
 			"generate-description": "",
+			"description": " Quickly dash at the targeted enemy or location, striking for 100% weapon damage and rooting the target for 1 second.",
 			"runes": [{
 				"required-level": 15,
 				"name": "Way of the Falling Star",
@@ -2388,10 +2424,10 @@
 			"required-level": 11,
 			"icon": "monk_cripplingwave",
 			"type": "Primary",
-			"description": " Unleash a series of large sweeping attacks that cause 110% weapon damage to all enemies in front of you. Every third hit damages all enemies around you and dazes them, slowing their movement speed by 30% and attack speed by 20% for 3 seconds. ",
 			"generate": 6,
 			"generate-units": "Spirit",
 			"generate-description": "per attack",
+			"description": " Unleash a series of large sweeping attacks that cause 110% weapon damage to all enemies in front of you. Every third hit damages all enemies around you and dazes them, slowing their movement speed by 30% and attack speed by 20% for 3 seconds.",
 			"runes": [{
 				"required-level": 17,
 				"name": "Mangle",
@@ -2428,10 +2464,10 @@
 			"required-level": 12,
 			"icon": "monk_waveoflight",
 			"type": "Secondary",
-			"description": " Focuses a wave of light that crushes enemies for 215% weapon damage as Holy, followed by an additional 45% weapon damage as Holy to all enemies in a line. ",
 			"generate": 75,
 			"generate-units": "Spirit",
 			"generate-description": "",
+			"description": " Focuses a wave of light that crushes enemies for 215% weapon damage as Holy, followed by an additional 45% weapon damage as Holy to all enemies in a line.",
 			"runes": [{
 				"required-level": 18,
 				"name": "Wall of Light",
@@ -2468,10 +2504,10 @@
 			"required-level": 13,
 			"icon": "monk_explodingpalm",
 			"type": "Techniques",
-			"description": " Cause a target to Bleed for 220% weapon damage as Physical over 3 seconds. If the target dies while bleeding, it explodes and deals 30% of the target's maximum Life as Physical damage to all nearby enemies. ",
 			"generate": 40,
 			"generate-units": "Spirit",
 			"generate-description": "",
+			"description": " Cause a target to Bleed for 220% weapon damage as Physical over 3 seconds. If the target dies while bleeding, it explodes and deals 30% of the target's maximum Life as Physical damage to all nearby enemies.",
 			"runes": [{
 				"required-level": 18,
 				"name": "The Flesh is Weak",
@@ -2508,10 +2544,10 @@
 			"required-level": 14,
 			"icon": "monk_cyclonestrike",
 			"type": "Focus",
-			"description": " Pull all enemies within 24 yards towards you, followed by a furious blast of energy that deals 100% weapon damage as Holy. ",
 			"generate": 50,
 			"generate-units": "Spirit",
 			"generate-description": "",
+			"description": " Pull all enemies within 24 yards towards you, followed by a furious blast of energy that deals 100% weapon damage as Holy.",
 			"runes": [{
 				"required-level": 21,
 				"name": "Eye of the Storm",
@@ -2548,10 +2584,10 @@
 			"required-level": 15,
 			"icon": "monk_wayofthehundredfists",
 			"type": "Primary",
-			"description": " Unleash a rapid series of punches that strikes enemies for 140% weapon damage. ",
 			"generate": 6,
 			"generate-units": "Spirit",
 			"generate-description": "per attack",
+			"description": " Unleash a rapid series of punches that strikes enemies for 140% weapon damage.",
 			"runes": [{
 				"required-level": 24,
 				"name": "Hands of Lightning",
@@ -2588,10 +2624,13 @@
 			"required-level": 16,
 			"icon": "monk_serenity",
 			"type": "Defensive",
-			"description": " You are enveloped in a protective shield that absorbs all incoming damage for 3 seconds and grants immunity to all control impairing effects. ",
 			"generate": 10,
 			"generate-units": "Spirit",
-			"generate-description": "ooldown: 20 seconds",
+			"generate-description": "",
+			"cooldown": 20,
+			"cooldown-units": "seconds",
+			"cooldown-description": "",
+			"description": " You are enveloped in a protective shield that absorbs all incoming damage for 3 seconds and grants immunity to all control impairing effects.",
 			"runes": [{
 				"required-level": 23,
 				"name": "Peaceful Repose",
@@ -2628,10 +2667,13 @@
 			"required-level": 17,
 			"icon": "monk_sevensidedstrike",
 			"type": "Focus",
-			"description": " Dash rapidly between nearby enemies, dealing 777% weapon damage over 7 hits. ",
 			"generate": 50,
 			"generate-units": "Spirit",
-			"generate-description": "ooldown: 30 seconds",
+			"generate-description": "",
+			"cooldown": 30,
+			"cooldown-units": "seconds",
+			"cooldown-description": "",
+			"description": " Dash rapidly between nearby enemies, dealing 777% weapon damage over 7 hits.",
 			"runes": [{
 				"required-level": 23,
 				"name": "Sudden Assault",
@@ -2668,10 +2710,10 @@
 			"required-level": 19,
 			"icon": "monk_mantraofevasion",
 			"type": "Mantras",
-			"description": " Recite a Mantra that grants you and your allies within 40 yards a 15% chance to dodge attacks for 3 minutes. For 3 seconds after activation, a second effect grants an additional 15% chance to dodge attacks. This is a Mantra. You can only have one Mantra active at a time. ",
 			"generate": 50,
 			"generate-units": "Spirit",
 			"generate-description": "",
+			"description": " Recite a Mantra that grants you and your allies within 40 yards a 15% chance to dodge attacks for 3 minutes. For 3 seconds after activation, a second effect grants an additional 15% chance to dodge attacks. This is a Mantra. You can only have one Mantra active at a time.",
 			"runes": [{
 				"required-level": 24,
 				"name": "Hard Target",
@@ -2708,10 +2750,10 @@
 			"required-level": 21,
 			"icon": "monk_mantraofretribution",
 			"type": "Mantras",
-			"description": " Recite a Mantra that causes you and your allies within 40 yards to reflect melee damage back at enemies, dealing Holy damage equal to 40% of the damage sustained. The effect lasts for 3 minutes. For 3 seconds after activation, the effect on you increases to 80% of the damage sustained. This is a Mantra. You can only have one Mantra active at a time. ",
 			"generate": 50,
 			"generate-units": "Spirit",
 			"generate-description": "",
+			"description": " Recite a Mantra that causes you and your allies within 40 yards to reflect melee damage back at enemies, dealing Holy damage equal to 40% of the damage sustained. The effect lasts for 3 minutes. For 3 seconds after activation, the effect on you increases to 80% of the damage sustained. This is a Mantra. You can only have one Mantra active at a time.",
 			"runes": [{
 				"required-level": 28,
 				"name": "Retaliation",
@@ -2748,10 +2790,10 @@
 			"required-level": 21,
 			"icon": "monk_sweepingwind",
 			"type": "Techniques",
-			"description": " Surround yourself in a vortex that continuously deals 15% weapon damage to all enemies within 10 yards. The vortex lasts 6 seconds and is refreshed each time you strike an enemy with a melee attack. Landing a Critical Hit has a chance to increase the vortex effect up to 2 times for a total of 45% weapon damage to nearby enemies. ",
 			"generate": 75,
 			"generate-units": "Spirit",
 			"generate-description": "",
+			"description": " Surround yourself in a vortex that continuously deals 15% weapon damage to all enemies within 10 yards. The vortex lasts 6 seconds and is refreshed each time you strike an enemy with a melee attack. Landing a Critical Hit has a chance to increase the vortex effect up to 2 times for a total of 45% weapon damage to nearby enemies.",
 			"runes": [{
 				"required-level": 27,
 				"name": "Master of Wind",
@@ -2788,10 +2830,13 @@
 			"required-level": 22,
 			"icon": "monk_innersanctuary",
 			"type": "Defensive",
-			"description": " Create a runic circle of protection on the ground for 5 seconds that cannot be passed by enemies. ",
 			"generate": 30,
 			"generate-units": "Spirit",
-			"generate-description": "ooldown: 20 seconds",
+			"generate-description": "",
+			"cooldown": 20,
+			"cooldown-units": "seconds",
+			"cooldown-description": "",
+			"description": " Create a runic circle of protection on the ground for 5 seconds that cannot be passed by enemies.",
 			"runes": [{
 				"required-level": 26,
 				"name": "Safe Haven",
@@ -2828,10 +2873,10 @@
 			"required-level": 22,
 			"icon": "monk_mystically",
 			"type": "Focus",
-			"description": " Summon a mystic ally to fight alongside you until it is destroyed. The ally deals 40% of your weapon damage as Physical per swing. ",
 			"generate": 25,
 			"generate-units": "Spirit",
 			"generate-description": "",
+			"description": " Summon a mystic ally to fight alongside you until it is destroyed. The ally deals 40% of your weapon damage as Physical per swing.",
 			"runes": [{
 				"required-level": 27,
 				"name": "Water Ally",
@@ -2868,10 +2913,10 @@
 			"required-level": 26,
 			"icon": "monk_mantraofhealing",
 			"type": "Mantras",
-			"description": " Recite a Mantra that causes you and your allies within 40 yards to gain increased Life regeneration by 310 Life per second. The Mantra lasts 3 minutes. For 3 seconds after activation, the effect is increased to 1240.4 Life per second. This is a Mantra. You can only have one Mantra active at a time. ",
 			"generate": 50,
 			"generate-units": "Spirit",
 			"generate-description": "",
+			"description": " Recite a Mantra that causes you and your allies within 40 yards to gain increased Life regeneration by 310 Life per second. The Mantra lasts 3 minutes. For 3 seconds after activation, the effect is increased to 1240.4 Life per second. This is a Mantra. You can only have one Mantra active at a time.",
 			"runes": [{
 				"required-level": 31,
 				"name": "Sustenance",
@@ -2908,10 +2953,10 @@
 			"required-level": 30,
 			"icon": "monk_mantraofconviction",
 			"type": "Mantras",
-			"description": " Recite a Mantra that causes all enemies within 20 yards of you to take 12% additional damage. The Mantra lasts 3 minutes. For 3 seconds after activation, the effect is increased to 24% additional damage. This is a Mantra. You can only have one Mantra active at a time. ",
 			"generate": 50,
 			"generate-units": "Spirit",
 			"generate-description": "",
+			"description": " Recite a Mantra that causes all enemies within 20 yards of you to take 12% additional damage. The Mantra lasts 3 minutes. For 3 seconds after activation, the effect is increased to 24% additional damage. This is a Mantra. You can only have one Mantra active at a time.",
 			"runes": [{
 				"required-level": 35,
 				"name": "Overawe",
@@ -2947,85 +2992,85 @@
 			"name": "Fleet Footed",
 			"required-level": 10,
 			"icon": "monk_passive_fleetfooted",
-			"description": " Increases movement speed by 10%. "
+			"description": " Increases movement speed by 10%."
 		},
 		{
 			"name": "Resolve",
 			"required-level": 10,
 			"icon": "monk_passive_resolve",
-			"description": " Damage you deal reduces enemy damage by 25% for 2.5 seconds. "
+			"description": " Damage you deal reduces enemy damage by 25% for 2.5 seconds."
 		},
 		{
 			"name": "Exalted Soul",
 			"required-level": 13,
 			"icon": "monk_passive_exaltedsoul",
-			"description": " Increases maximum Spirit by 100. Spirit fuels your defensive and offensive abilities. "
+			"description": " Increases maximum Spirit by 100. Spirit fuels your defensive and offensive abilities."
 		},
 		{
 			"name": "Transcendence",
 			"required-level": 16,
 			"icon": "monk_passive_transcendence",
-			"description": " Every point of Spirit spent heals you for 62.0 Life. "
+			"description": " Every point of Spirit spent heals you for 62.0 Life."
 		},
 		{
 			"name": "Chant of Resonance",
 			"required-level": 20,
 			"icon": "monk_passive_chantofresonance",
-			"description": " Duration of all Mantras increased by 7 minutes. While one of your Mantras is active you gain 2 Spirit every second. "
+			"description": " Duration of all Mantras increased by 7 minutes. While one of your Mantras is active you gain 2 Spirit every second."
 		},
 		{
 			"name": "Seize the Initiative",
 			"required-level": 20,
 			"icon": "monk_passive_seizetheinitiative",
-			"description": " Your Armor is increased by 100% of your Dexterity. "
+			"description": " Your Armor is increased by 100% of your Dexterity."
 		},
 		{
 			"name": "The Guardian's Path",
 			"required-level": 24,
 			"icon": "monk_passive_theguardianspath",
-			"description": " While dual-wielding, you gain a 15% chance to dodge incoming attacks. While using a two-handed weapon, all Spirit generation is increased by 25%. "
+			"description": " While dual-wielding, you gain a 15% chance to dodge incoming attacks. While using a two-handed weapon, all Spirit generation is increased by 25%."
 		},
 		{
 			"name": "Sixth Sense",
 			"required-level": 27,
 			"icon": "monk_passive_sixthsense",
-			"description": " Your dodge chance is increased by an amount equal to 30% of your Critical Hit Chance. "
+			"description": " Your dodge chance is increased by an amount equal to 30% of your Critical Hit Chance."
 		},
 		{
 			"name": "Pacifism",
 			"required-level": 30,
 			"icon": "monk_passive_pacifism",
-			"description": " While you are under a Stun, Fear or Charm effect, all damage taken is reduced by 75%. "
+			"description": " While you are under a Stun, Fear or Charm effect, all damage taken is reduced by 75%."
 		},
 		{
 			"name": "Beacon of Ytar",
 			"required-level": 35,
 			"icon": "monk_passive_beaconofytar",
-			"description": " Reduces all cooldowns by 15%. "
+			"description": " Reduces all cooldowns by 15%."
 		},
 		{
 			"name": "Guiding Light",
 			"required-level": 40,
 			"icon": "monk_passive_guidinglight",
-			"description": " Whenever you use a direct heal skill on another player you and the other player deal 16% more damage for 15 seconds. "
+			"description": " Whenever you use a direct heal skill on another player you and the other player deal 16% more damage for 15 seconds."
 		},
 		{
 			"name": "One With Everything",
 			"required-level": 45,
 			"icon": "monk_passive_onewitheverything",
-			"description": " Your resistance to all elements is equal to your highest elemental resistance. "
+			"description": " Your resistance to all elements is equal to your highest elemental resistance."
 		},
 		{
 			"name": "Combination Strike",
 			"required-level": 50,
 			"icon": "monk_passive_combinationstrike",
-			"description": " Each different Spirit Generator ability you use increases your damage by 8% for 3 seconds. "
+			"description": " Each different Spirit Generator ability you use increases your damage by 8% for 3 seconds."
 		},
 		{
 			"name": "Near Death Experience",
 			"required-level": 58,
 			"icon": "monk_passive_neardeathexperience",
-			"description": " When receiving fatal damage, you are instead restored to 35% of maximum Life and 35% Spirit. This effect cannot occur more than once every 90 seconds. "
+			"description": " When receiving fatal damage, you are instead restored to 35% of maximum Life and 35% Spirit. This effect cannot occur more than once every 90 seconds."
 		}],
 		"screenshots-count": 12,
 		"screenshots": ["monk-at-the-door-index-thumb",
@@ -3077,10 +3122,10 @@
 			"required-level": 1,
 			"icon": "witchdoctor_poisondart",
 			"type": "Primary",
-			"description": " Shoot a deadly Poison Dart that deals 100% weapon damage as Poison and an additional 40% weapon damage as Poison over 2 seconds. ",
 			"generate": 10,
 			"generate-units": "Mana",
 			"generate-description": "",
+			"description": " Shoot a deadly Poison Dart that deals 100% weapon damage as Poison and an additional 40% weapon damage as Poison over 2 seconds.",
 			"runes": [{
 				"required-level": 6,
 				"name": "Splinters",
@@ -3117,10 +3162,13 @@
 			"required-level": 2,
 			"icon": "witchdoctor_graspofthedead",
 			"type": "Secondary",
-			"description": " Ghoulish hands reach out from the ground, slowing enemy movement by 60% and dealing 20% weapon damage as Physical for 8 seconds. ",
 			"generate": 122,
 			"generate-units": "Mana",
-			"generate-description": "ooldown: 8 seconds",
+			"generate-description": "",
+			"cooldown": 8,
+			"cooldown-units": "seconds",
+			"cooldown-description": "",
+			"description": " Ghoulish hands reach out from the ground, slowing enemy movement by 60% and dealing 20% weapon damage as Physical for 8 seconds.",
 			"runes": [{
 				"required-level": 7,
 				"name": "Unbreakable Grasp",
@@ -3157,10 +3205,10 @@
 			"required-level": 3,
 			"icon": "witchdoctor_corpsespider",
 			"type": "Primary",
-			"description": " Throw a jar with 4 spiders that attack nearby enemies for 16% weapon damage as Physical before dying. ",
 			"generate": 5,
 			"generate-units": "Mana",
 			"generate-description": "",
+			"description": " Throw a jar with 4 spiders that attack nearby enemies for 16% weapon damage as Physical before dying.",
 			"runes": [{
 				"required-level": 9,
 				"name": "Leaping Spiders",
@@ -3197,10 +3245,13 @@
 			"required-level": 4,
 			"icon": "witchdoctor_summonzombiedog",
 			"type": "Defensive",
-			"description": " Summon 3 Zombie Dogs from the depths to fight by your side. Each dog deals 9% of your weapon damage as Physical per hit. ",
 			"generate": 49,
 			"generate-units": "Mana",
-			"generate-description": "ooldown: 60 seconds",
+			"generate-description": "",
+			"cooldown": 60,
+			"cooldown-units": "seconds",
+			"cooldown-description": "",
+			"description": " Summon 3 Zombie Dogs from the depths to fight by your side. Each dog deals 9% of your weapon damage as Physical per hit.",
 			"runes": [{
 				"required-level": 12,
 				"name": "Rabid Dogs",
@@ -3237,10 +3288,10 @@
 			"required-level": 5,
 			"icon": "witchdoctor_firebats",
 			"type": "Secondary",
-			"description": " Call forth a swarm of fiery bats to burn enemies in front of you for 150% weapon damage as Fire. ",
 			"generate": 122,
 			"generate-units": "Mana",
 			"generate-description": "",
+			"description": " Call forth a swarm of fiery bats to burn enemies in front of you for 150% weapon damage as Fire.",
 			"runes": [{
 				"required-level": 11,
 				"name": "Dire Bats",
@@ -3277,10 +3328,13 @@
 			"required-level": 8,
 			"icon": "witchdoctor_horrify",
 			"type": "Defensive",
-			"description": " Don a spectral mask that horrifies all enemies within 12 yards, causing them to run in Fear for 4 seconds. ",
 			"generate": 37,
 			"generate-units": "Mana",
-			"generate-description": "ooldown: 20 seconds",
+			"generate-description": "",
+			"cooldown": 20,
+			"cooldown-units": "seconds",
+			"cooldown-description": "",
+			"description": " Don a spectral mask that horrifies all enemies within 12 yards, causing them to run in Fear for 4 seconds.",
 			"runes": [{
 				"required-level": 14,
 				"name": "Phobia",
@@ -3317,10 +3371,13 @@
 			"required-level": 9,
 			"icon": "witchdoctor_soulharvest",
 			"type": "Terror",
-			"description": " Feed on the life force of up to 5 enemies within 16 yards. Gain 130 Intelligence for each affected enemy. This effect lasts 30 seconds. ",
 			"generate": 59,
 			"generate-units": "Mana",
-			"generate-description": "ooldown: 15 seconds",
+			"generate-description": "",
+			"cooldown": 15,
+			"cooldown-units": "seconds",
+			"cooldown-description": "",
+			"description": " Feed on the life force of up to 5 enemies within 16 yards. Gain 130 Intelligence for each affected enemy. This effect lasts 30 seconds.",
 			"runes": [{
 				"required-level": 15,
 				"name": "Swallow Your Soul",
@@ -3357,10 +3414,10 @@
 			"required-level": 11,
 			"icon": "witchdoctor_plagueoftoads",
 			"type": "Primary",
-			"description": " Release a handful of toads that deal 130% weapon damage as Poison to enemies they come in contact with. ",
 			"generate": 34,
 			"generate-units": "Mana",
 			"generate-description": "",
+			"description": " Release a handful of toads that deal 130% weapon damage as Poison to enemies they come in contact with.",
 			"runes": [{
 				"required-level": 17,
 				"name": "Explosive Toads",
@@ -3397,10 +3454,10 @@
 			"required-level": 12,
 			"icon": "witchdoctor_haunt",
 			"type": "Secondary",
-			"description": " Haunt an enemy with a spirit, dealing 575% weapon damage as Arcane over 12 seconds. If the target dies, the spirit will haunt another nearby enemy. ",
 			"generate": 98,
 			"generate-units": "Mana",
 			"generate-description": "",
+			"description": " Haunt an enemy with a spirit, dealing 575% weapon damage as Arcane over 12 seconds. If the target dies, the spirit will haunt another nearby enemy.",
 			"runes": [{
 				"required-level": 18,
 				"name": "Consuming Spirit",
@@ -3437,7 +3494,7 @@
 			"required-level": 13,
 			"icon": "witchdoctor_sacrifice",
 			"type": "Terror",
-			"description": " Banish your Zombie Dogs and cause them to explode, each dealing 275% of your weapon damage as Physical to all enemies within 12 yards. ",
+			"description": " Banish your Zombie Dogs and cause them to explode, each dealing 275% of your weapon damage as Physical to all enemies within 12 yards.",
 			"runes": [{
 				"required-level": 18,
 				"name": "Black Blood",
@@ -3474,10 +3531,10 @@
 			"required-level": 14,
 			"icon": "witchdoctor_zombiecharger",
 			"type": "Decay",
-			"description": " Call forth a reckless, suicidal zombie that deals 205% weapon damage as Poison to all enemies in its path before decomposing. ",
 			"generate": 140,
 			"generate-units": "Mana",
 			"generate-description": "",
+			"description": " Call forth a reckless, suicidal zombie that deals 205% weapon damage as Poison to all enemies in its path before decomposing.",
 			"runes": [{
 				"required-level": 21,
 				"name": "Leperous Zombie",
@@ -3514,10 +3571,13 @@
 			"required-level": 16,
 			"icon": "witchdoctor_spiritwalk",
 			"type": "Defensive",
-			"description": " Leave your physical body and enter the spirit realm for 2 seconds. While in the spirit realm, your movement is unhindered. Your link to the spirit realm will end if your physical body sustains 50% of your maximum Life in damage. ",
 			"generate": 49,
 			"generate-units": "Mana",
-			"generate-description": "ooldown: 15 seconds",
+			"generate-description": "",
+			"cooldown": 15,
+			"cooldown-units": "seconds",
+			"cooldown-description": "",
+			"description": " Leave your physical body and enter the spirit realm for 2 seconds. While in the spirit realm, your movement is unhindered. Your link to the spirit realm will end if your physical body sustains 50% of your maximum Life in damage.",
 			"runes": [{
 				"required-level": 23,
 				"name": "Jaunt",
@@ -3554,10 +3614,10 @@
 			"required-level": 17,
 			"icon": "witchdoctor_spiritbarrage",
 			"type": "Decay",
-			"description": " Bombard a target with a spirit blast that deals 190% weapon damage as Physical. ",
 			"generate": 108,
 			"generate-units": "Mana",
 			"generate-description": "",
+			"description": " Bombard a target with a spirit blast that deals 190% weapon damage as Physical.",
 			"runes": [{
 				"required-level": 23,
 				"name": "The Spirit Is Willing",
@@ -3594,10 +3654,13 @@
 			"required-level": 19,
 			"icon": "witchdoctor_gargantuan",
 			"type": "Voodoo",
-			"description": " Summon a Gargantuan zombie to fight for you. The Gargantuan attacks for 25% of your weapon damage as Physical. ",
 			"generate": 147,
 			"generate-units": "Mana",
-			"generate-description": "ooldown: 60 seconds",
+			"generate-description": "",
+			"cooldown": 60,
+			"cooldown-units": "seconds",
+			"cooldown-description": "",
+			"description": " Summon a Gargantuan zombie to fight for you. The Gargantuan attacks for 25% of your weapon damage as Physical.",
 			"runes": [{
 				"required-level": 22,
 				"name": "Humongoid",
@@ -3634,10 +3697,10 @@
 			"required-level": 21,
 			"icon": "witchdoctor_firebomb",
 			"type": "Primary",
-			"description": " Lob an explosive skull that deals 85% weapon damage as Fire to all enemies within 8 yards. ",
 			"generate": 10,
 			"generate-units": "Mana",
 			"generate-description": "",
+			"description": " Lob an explosive skull that deals 85% weapon damage as Fire to all enemies within 8 yards.",
 			"runes": [{
 				"required-level": 28,
 				"name": "Flash Fire",
@@ -3674,10 +3737,10 @@
 			"required-level": 21,
 			"icon": "witchdoctor_locust_swarm",
 			"type": "Secondary",
-			"description": " Unleash a plague of locusts that swarms an enemy, dealing 360% weapon damage as Poison over 8 seconds. The locusts will jump to additional nearby enemies. ",
 			"generate": 196,
 			"generate-units": "Mana",
 			"generate-description": "",
+			"description": " Unleash a plague of locusts that swarms an enemy, dealing 360% weapon damage as Poison over 8 seconds. The locusts will jump to additional nearby enemies.",
 			"runes": [{
 				"required-level": 27,
 				"name": "Pestilence",
@@ -3714,10 +3777,10 @@
 			"required-level": 22,
 			"icon": "witchdoctor_acidcloud",
 			"type": "Decay",
-			"description": " Cause acid to rain down, dealing an initial 100% weapon damage as Poison, followed by 75% weapon damage as Poison over 3 seconds to enemies who remain in the area. ",
 			"generate": 172,
 			"generate-units": "Mana",
 			"generate-description": "",
+			"description": " Cause acid to rain down, dealing an initial 100% weapon damage as Poison, followed by 75% weapon damage as Poison over 3 seconds to enemies who remain in the area.",
 			"runes": [{
 				"required-level": 26,
 				"name": "Acid Rain",
@@ -3754,10 +3817,13 @@
 			"required-level": 22,
 			"icon": "witchdoctor_hex",
 			"type": "Defensive",
-			"description": " Summon a Fetish Shaman for 12 seconds that will hex enemies into chickens. Hexed enemies are unable to perform offensive actions and take 10% additional damage. ",
 			"generate": 49,
 			"generate-units": "Mana",
-			"generate-description": "ooldown: 15 seconds",
+			"generate-description": "",
+			"cooldown": 15,
+			"cooldown-units": "seconds",
+			"cooldown-description": "",
+			"description": " Summon a Fetish Shaman for 12 seconds that will hex enemies into chickens. Hexed enemies are unable to perform offensive actions and take 10% additional damage.",
 			"runes": [{
 				"required-level": 26,
 				"name": "Hedge Magic",
@@ -3794,10 +3860,13 @@
 			"required-level": 22,
 			"icon": "witchdoctor_massconfusion",
 			"type": "Terror",
-			"description": " Incite paranoia in enemies, confusing them and causing some to fight for you for 12 seconds. ",
 			"generate": 74,
 			"generate-units": "Mana",
-			"generate-description": "ooldown: 60 seconds",
+			"generate-description": "",
+			"cooldown": 60,
+			"cooldown-units": "seconds",
+			"cooldown-description": "",
+			"description": " Incite paranoia in enemies, confusing them and causing some to fight for you for 12 seconds.",
 			"runes": [{
 				"required-level": 26,
 				"name": "Unstable Realm",
@@ -3834,10 +3903,10 @@
 			"required-level": 25,
 			"icon": "witchdoctor_bigbadvoodoo",
 			"type": "Voodoo",
-			"description": " Conjure a Fetish that begins a ritual dance that increases the attack speed and movement speed of all nearby allies by 20% for 20 seconds. ",
 			"cooldown": 120,
 			"cooldown-units": "seconds",
 			"cooldown-description": "",
+			"description": " Conjure a Fetish that begins a ritual dance that increases the attack speed and movement speed of all nearby allies by 20% for 20 seconds.",
 			"runes": [{
 				"required-level": 31,
 				"name": "Jungle Drums",
@@ -3874,10 +3943,13 @@
 			"required-level": 28,
 			"icon": "witchdoctor_wallofzombies",
 			"type": "Decay",
-			"description": " Raise a line of zombies from the ground that attacks nearby enemies for 80% weapon damage as Physical for 5 seconds. ",
 			"generate": 103,
 			"generate-units": "Mana",
-			"generate-description": "ooldown: 25 seconds",
+			"generate-description": "",
+			"cooldown": 25,
+			"cooldown-units": "seconds",
+			"cooldown-description": "",
+			"description": " Raise a line of zombies from the ground that attacks nearby enemies for 80% weapon damage as Physical for 5 seconds.",
 			"runes": [{
 				"required-level": 32,
 				"name": "Barricade",
@@ -3914,10 +3986,10 @@
 			"required-level": 30,
 			"icon": "witchdoctor_fetisharmy",
 			"type": "Voodoo",
-			"description": " Summon an army of dagger-wielding Fetishes to fight by your side for 20 seconds. The Fetishes attack for 20% of your weapon damage as Physical. ",
 			"cooldown": 120,
 			"cooldown-units": "seconds",
 			"cooldown-description": "",
+			"description": " Summon an army of dagger-wielding Fetishes to fight by your side for 20 seconds. The Fetishes attack for 20% of your weapon damage as Physical.",
 			"runes": [{
 				"required-level": 34,
 				"name": "Fetish Ambush",
@@ -3953,91 +4025,91 @@
 			"name": "Circle of Life",
 			"required-level": 10,
 			"icon": "witchdoctor_passive_circleoflife",
-			"description": " Whenever an enemy dies within 12 yards, there is a 5% chance that a Zombie Dog will automatically emerge. The range of this effect is increased by items that increase your gold pickup radius. "
+			"description": " Whenever an enemy dies within 12 yards, there is a 5% chance that a Zombie Dog will automatically emerge. The range of this effect is increased by items that increase your gold pickup radius."
 		},
 		{
 			"name": "Jungle Fortitude",
 			"required-level": 10,
 			"icon": "witchdoctor_passive_junglefortitude",
-			"description": " Reduces all damage taken by you and your pets by 20%. "
+			"description": " Reduces all damage taken by you and your pets by 20%."
 		},
 		{
 			"name": "Spiritual Attunement",
 			"required-level": 13,
 			"icon": "witchdoctor_passive_spiritualattunement",
-			"description": " Maximum Mana is increased by 20%. Regenerate 1% of your maximum Mana per second. Mana is the fuel you use to cast offensive and defensive skills. "
+			"description": " Maximum Mana is increased by 20%. Regenerate 1% of your maximum Mana per second. Mana is the fuel you use to cast offensive and defensive skills."
 		},
 		{
 			"name": "Gruesome Feast",
 			"required-level": 16,
 			"icon": "witchdoctor_passive_gruesomefeast",
-			"description": " Whenever you are healed by a health globe, you gain 10% of your maximum Mana and 10% Intelligence for 10 seconds. The Intelligence bonus can stack up to 5 times. "
+			"description": " Whenever you are healed by a health globe, you gain 10% of your maximum Mana and 10% Intelligence for 10 seconds. The Intelligence bonus can stack up to 5 times."
 		},
 		{
 			"name": "Bad Medicine",
 			"required-level": 20,
 			"icon": "witchdoctor_passive_badmedicine",
-			"description": " Whenever you deal Poison damage to an enemy, their damage is reduced by 20% for 3 seconds. "
+			"description": " Whenever you deal Poison damage to an enemy, their damage is reduced by 20% for 3 seconds."
 		},
 		{
 			"name": "Blood Ritual",
 			"required-level": 20,
 			"icon": "witchdoctor_passive_bloodritual",
-			"description": " 15% of Mana costs are paid with Life. In addition, you regenerate 1% of your maximum Life per second. "
+			"description": " 15% of Mana costs are paid with Life. In addition, you regenerate 1% of your maximum Life per second."
 		},
 		{
 			"name": "Zombie Handler",
 			"required-level": 24,
 			"icon": "witchdoctor_passive_zombiehandler",
-			"description": " You can have 4 Zombie Dogs summoned at one time. The health of your Zombie Dogs and Gargantuan is increased by 20%. "
+			"description": " You can have 4 Zombie Dogs summoned at one time. The health of your Zombie Dogs and Gargantuan is increased by 20%."
 		},
 		{
 			"name": "Pierce the Veil",
 			"required-level": 27,
 			"icon": "witchdoctor_passive_piercetheveil",
-			"description": " All of your damage is increased by 20%, but your Mana costs are increased by 30%. "
+			"description": " All of your damage is increased by 20%, but your Mana costs are increased by 30%."
 		},
 		{
 			"name": "Fetish Sycophants",
 			"required-level": 30,
 			"icon": "witchdoctor_passive_fetishsycophants",
-			"description": " Whenever you cast a physical realm spell, you have a 3% chance to summon a dagger-wielding Fetish to fight by your side for 60 seconds. Physical realm spells are: Poison Dart Plague of Toads Zombie Charger Corpse Spiders Firebats Firebomb Locust Swarm Acid Cloud Wall of Zombies "
+			"description": " Whenever you cast a physical realm spell, you have a 3% chance to summon a dagger-wielding Fetish to fight by your side for 60 seconds. Physical realm spells are: Poison Dart Plague of Toads Zombie Charger Corpse Spiders Firebats Firebomb Locust Swarm Acid Cloud Wall of Zombies"
 		},
 		{
 			"name": "Spirit Vessel",
 			"required-level": 30,
 			"icon": "witchdoctor_passive_spiritvessel",
-			"description": " Reduces the cooldown of your Horrify, Spirit Walk, and Soul Harvest spells by 2 seconds. In addition, the next time you receive fatal damage, you automatically enter the spirit realm for 3 seconds and heal to 10% of your maximum Life. This effect cannot occur more than once every 90 seconds. "
+			"description": " Reduces the cooldown of your Horrify, Spirit Walk, and Soul Harvest spells by 2 seconds. In addition, the next time you receive fatal damage, you automatically enter the spirit realm for 3 seconds and heal to 10% of your maximum Life. This effect cannot occur more than once every 90 seconds."
 		},
 		{
 			"name": "Rush of Essence",
 			"required-level": 36,
 			"icon": "witchdoctor_passive_rushofessence",
-			"description": " Spirit spells return 30% of their Mana cost over 10 seconds. Spirit spells are: Haunt Horrify Mass Confusion Soul Harvest Spirit Barrage Spirit Walk "
+			"description": " Spirit spells return 30% of their Mana cost over 10 seconds. Spirit spells are: Haunt Horrify Mass Confusion Soul Harvest Spirit Barrage Spirit Walk"
 		},
 		{
 			"name": "Vision Quest",
 			"required-level": 40,
 			"icon": "witchdoctor_passive_visionquest",
-			"description": " Any time you have 4 or more skills on cooldown, your Mana regeneration is increased by 300%. "
+			"description": " Any time you have 4 or more skills on cooldown, your Mana regeneration is increased by 300%."
 		},
 		{
 			"name": "Fierce Loyalty",
 			"required-level": 45,
 			"icon": "witchdoctor_passive_fierceloyalty",
-			"description": " All your pets get 100% of the benefit of your Thorns and Life regeneration items. "
+			"description": " All your pets get 100% of the benefit of your Thorns and Life regeneration items."
 		},
 		{
 			"name": "Grave Injustice",
 			"required-level": 50,
 			"icon": "witchdoctor_passive_graveinjustice",
-			"description": " Whenever an enemy dies within 8 yards, regain 1% of your maximum Life and Mana and the cooldown on all of your abilities is reduced by 1 second. This range is extended by items that increase your gold pickup radius. "
+			"description": " Whenever an enemy dies within 8 yards, regain 1% of your maximum Life and Mana and the cooldown on all of your abilities is reduced by 1 second. This range is extended by items that increase your gold pickup radius."
 		},
 		{
 			"name": "Tribal Rites",
 			"required-level": 55,
 			"icon": "witchdoctor_passive_tribalrites",
-			"description": " The cooldowns of your Fetish Army, Big Bad Voodoo, and Hex abilities are reduced by 25%. "
+			"description": " The cooldowns of your Fetish Army, Big Bad Voodoo, and Hex abilities are reduced by 25%."
 		}],
 		"screenshots-count": 12,
 		"screenshots": ["wd-casting-index-thumb",
@@ -4091,8 +4163,8 @@
 			"required-level": 1,
 			"icon": "wizard_magicmissile",
 			"type": "Primary",
-			"description": " Launch a missile of magic energy, causing 110% weapon damage as Arcane. ",
 			"signature-spell": true,
+			"description": " Launch a missile of magic energy, causing 110% weapon damage as Arcane.",
 			"runes": [{
 				"required-level": 6,
 				"name": "Charged Blast",
@@ -4129,7 +4201,7 @@
 			"required-level": 2,
 			"icon": "wizard_rayoffrost",
 			"type": "Secondary",
-			"description": " Cost: 20 Arcane Power Project a beam of frozen ice that blasts 215% weapon damage as Cold to the first enemy it hits, slowing the target's movement by 30% for 3 seconds. ",
+			"description": " Cost: 20 Arcane Power Project a beam of frozen ice that blasts 215% weapon damage as Cold to the first enemy it hits, slowing the target's movement by 30% for 3 seconds.",
 			"runes": [{
 				"required-level": 7,
 				"name": "Numb",
@@ -4166,8 +4238,8 @@
 			"required-level": 3,
 			"icon": "wizard_shockpulse",
 			"type": "Primary",
-			"description": " Release a medium range pulse of 3 unpredictable charges of electricity that deal 105% weapon damage as Lightning. ",
 			"signature-spell": true,
+			"description": " Release a medium range pulse of 3 unpredictable charges of electricity that deal 105% weapon damage as Lightning.",
 			"runes": [{
 				"required-level": 9,
 				"name": "Explosive Bolts",
@@ -4204,10 +4276,10 @@
 			"required-level": 4,
 			"icon": "wizard_frostnova",
 			"type": "Defensive",
-			"description": " Blast nearby enemies with an explosion of ice and freeze them for 3 seconds. ",
 			"cooldown": 12,
 			"cooldown-units": "seconds",
 			"cooldown-description": "",
+			"description": " Blast nearby enemies with an explosion of ice and freeze them for 3 seconds.",
 			"runes": [{
 				"required-level": 12,
 				"name": "Shatter",
@@ -4244,7 +4316,7 @@
 			"required-level": 5,
 			"icon": "wizard_arcaneorb",
 			"type": "Secondary",
-			"description": " Cost: 35 Arcane Power Hurl an orb of pure energy that explodes when it hits, dealing 175% weapon damage as Arcane to all enemies within 10 yards. ",
+			"description": " Cost: 35 Arcane Power Hurl an orb of pure energy that explodes when it hits, dealing 175% weapon damage as Arcane to all enemies within 10 yards.",
 			"runes": [{
 				"required-level": 11,
 				"name": "Obliteration",
@@ -4281,10 +4353,10 @@
 			"required-level": 8,
 			"icon": "wizard_diamondskin",
 			"type": "Defensive",
-			"description": " Transform your skin to diamond for 6 seconds, absorbing up to 10853 damage from incoming attacks. ",
 			"cooldown": 15,
 			"cooldown-units": "seconds",
 			"cooldown-description": "",
+			"description": " Transform your skin to diamond for 6 seconds, absorbing up to 10853 damage from incoming attacks.",
 			"runes": [{
 				"required-level": 14,
 				"name": "Crystal Shell",
@@ -4321,10 +4393,10 @@
 			"required-level": 9,
 			"icon": "wizard_waveofforce",
 			"type": "Force",
-			"description": " Discharge a wave of pure energy that repels projectiles and knocks back nearby enemies. This also slows the movement of enemies by 60% and deals 200% weapon damage as Physical. ",
 			"cooldown": 15,
 			"cooldown-units": "seconds",
 			"cooldown-description": "",
+			"description": " Discharge a wave of pure energy that repels projectiles and knocks back nearby enemies. This also slows the movement of enemies by 60% and deals 200% weapon damage as Physical.",
 			"runes": [{
 				"required-level": 15,
 				"name": "Impactful Wave",
@@ -4361,8 +4433,8 @@
 			"required-level": 11,
 			"icon": "wizard_spectralblade",
 			"type": "Primary",
-			"description": " Summon a spectral blade that strikes all enemies in your path for 135% weapon damage. ",
 			"signature-spell": true,
+			"description": " Summon a spectral blade that strikes all enemies in your path for 135% weapon damage.",
 			"runes": [{
 				"required-level": 19,
 				"name": "Deep Cuts",
@@ -4399,7 +4471,7 @@
 			"required-level": 12,
 			"icon": "wizard_arcanetorrent",
 			"type": "Secondary",
-			"description": " Cost: 20 Arcane Power Hurl a barrage of arcane projectiles that deal 175% weapon damage as Arcane to all enemies near the impact location. ",
+			"description": " Cost: 20 Arcane Power Hurl a barrage of arcane projectiles that deal 175% weapon damage as Arcane to all enemies near the impact location.",
 			"runes": [{
 				"required-level": 18,
 				"name": "Disruption",
@@ -4436,7 +4508,7 @@
 			"required-level": 13,
 			"icon": "wizard_energytwister",
 			"type": "Force",
-			"description": " Cost: 35 Arcane Power Unleash a twister of pure energy that deals 360% weapon damage as Arcane over 6 seconds to everything in its path. ",
+			"description": " Cost: 35 Arcane Power Unleash a twister of pure energy that deals 360% weapon damage as Arcane over 6 seconds to everything in its path.",
 			"runes": [{
 				"required-level": 19,
 				"name": "Mistral Breeze",
@@ -4473,7 +4545,7 @@
 			"required-level": 14,
 			"icon": "wizard_icearmor",
 			"type": "Conjuration",
-			"description": " Cost: 25 Arcane Power Surround yourself in a barrier of ice. Melee attackers are either Chilled or Frozen for 2 seconds. Lasts 120 seconds. This is an Armor spell. Only one Armor spell can be active at a time. ",
+			"description": " Cost: 25 Arcane Power Surround yourself in a barrier of ice. Melee attackers are either Chilled or Frozen for 2 seconds. Lasts 120 seconds. This is an Armor spell. Only one Armor spell can be active at a time.",
 			"runes": [{
 				"required-level": 21,
 				"name": "Chilling Aura",
@@ -4510,8 +4582,8 @@
 			"required-level": 15,
 			"icon": "wizard_electrocute",
 			"type": "Primary",
-			"description": " Lightning arcs from your fingertips, dealing 80% weapon damage as Lightning. The lightning can jump, hitting up to 2 additional enemies. ",
 			"signature-spell": true,
+			"description": " Lightning arcs from your fingertips, dealing 80% weapon damage as Lightning. The lightning can jump, hitting up to 2 additional enemies.",
 			"runes": [{
 				"required-level": 22,
 				"name": "Chain Lightning",
@@ -4548,10 +4620,10 @@
 			"required-level": 16,
 			"icon": "wizard_slowtime",
 			"type": "Defensive",
-			"description": " Invoke a bubble of warped time and space for 8 seconds, reducing enemy attack speed by 20% and movement speed by 30%. This bubble also slows the movement of enemy projectiles by 90%. ",
 			"cooldown": 20,
 			"cooldown-units": "seconds",
 			"cooldown-description": "",
+			"description": " Invoke a bubble of warped time and space for 8 seconds, reducing enemy attack speed by 20% and movement speed by 30%. This bubble also slows the movement of enemy projectiles by 90%.",
 			"runes": [{
 				"required-level": 23,
 				"name": "Miasma",
@@ -4588,7 +4660,7 @@
 			"required-level": 17,
 			"icon": "wizard_stormarmor",
 			"type": "Conjuration",
-			"description": " Cost: 25 Arcane Power Bathe yourself in electrical energy, shocking ranged and melee attackers for 70% weapon damage as Lightning. Lasts 120 seconds. This is an Armor spell. Only one Armor spell can be active at a time. ",
+			"description": " Cost: 25 Arcane Power Bathe yourself in electrical energy, shocking ranged and melee attackers for 70% weapon damage as Lightning. Lasts 120 seconds. This is an Armor spell. Only one Armor spell can be active at a time.",
 			"runes": [{
 				"required-level": 23,
 				"name": "Reactive Armor",
@@ -4625,10 +4697,10 @@
 			"required-level": 19,
 			"icon": "wizard_explosiveblast",
 			"type": "Mastery",
-			"description": " Gather an infusion of energy around you that explodes after 1.5 seconds, causing 225% weapon damage as Physical to all enemies within 12 yards. ",
 			"cooldown": 6,
 			"cooldown-units": "seconds",
 			"cooldown-description": "",
+			"description": " Gather an infusion of energy around you that explodes after 1.5 seconds, causing 225% weapon damage as Physical to all enemies within 12 yards.",
 			"runes": [{
 				"required-level": 24,
 				"name": "Unleashed",
@@ -4665,7 +4737,7 @@
 			"required-level": 20,
 			"icon": "wizard_magicweapon",
 			"type": "Conjuration",
-			"description": " Cost: 25 Arcane Power Imbue your weapon with magical energy, granting it 10% increased damage. Lasts 5 minutes. ",
+			"description": " Cost: 25 Arcane Power Imbue your weapon with magical energy, granting it 10% increased damage. Lasts 5 minutes.",
 			"runes": [{
 				"required-level": 27,
 				"name": "Electrify",
@@ -4702,7 +4774,7 @@
 			"required-level": 21,
 			"icon": "wizard_disintegrate",
 			"type": "Secondary",
-			"description": " Cost: 20 Arcane Power Thrust a beam of pure energy forward, dealing 155% weapon damage as Arcane and disintegrating enemies it kills. ",
+			"description": " Cost: 20 Arcane Power Thrust a beam of pure energy forward, dealing 155% weapon damage as Arcane and disintegrating enemies it kills.",
 			"runes": [{
 				"required-level": 26,
 				"name": "Convergence",
@@ -4739,7 +4811,7 @@
 			"required-level": 21,
 			"icon": "wizard_hydra",
 			"type": "Force",
-			"description": " Cost: 15 Arcane Power Summon a multi-headed Hydra for 15 seconds that attacks enemies with bolts of fire dealing 28% weapon damage as Fire. You may only have one Hydra active at a time. ",
+			"description": " Cost: 15 Arcane Power Summon a multi-headed Hydra for 15 seconds that attacks enemies with bolts of fire dealing 28% weapon damage as Fire. You may only have one Hydra active at a time.",
 			"runes": [{
 				"required-level": 26,
 				"name": "Arcane Hydra",
@@ -4776,7 +4848,7 @@
 			"required-level": 22,
 			"icon": "wizard_familiar",
 			"type": "Conjuration",
-			"description": " Cost: 20 Arcane Power Summon a companion that will attack your targets for 20% weapon damage as Arcane. This companion cannot be targeted or damaged by enemies and lasts for 5 minutes. ",
+			"description": " Cost: 20 Arcane Power Summon a companion that will attack your targets for 20% weapon damage as Arcane. This companion cannot be targeted or damaged by enemies and lasts for 5 minutes.",
 			"runes": [{
 				"required-level": 30,
 				"name": "Sparkflint",
@@ -4813,10 +4885,10 @@
 			"required-level": 22,
 			"icon": "wizard_teleport",
 			"type": "Defensive",
-			"description": " Teleport through the ether to the selected location up to 35 yards away. ",
 			"cooldown": 16,
 			"cooldown-units": "seconds",
 			"cooldown-description": "",
+			"description": " Teleport through the ether to the selected location up to 35 yards away.",
 			"runes": [{
 				"required-level": 26,
 				"name": "Safe Passage",
@@ -4853,7 +4925,7 @@
 			"required-level": 25,
 			"icon": "wizard_meteor",
 			"type": "Force",
-			"description": " Cost: 60 Arcane Power Summon an immense Meteor that plummets from the sky, causing 200% weapon damage as Fire to all enemies it crashes into. The ground it hits is scorched with molten fire that deals 60% weapon damage as Fire over 3 seconds. ",
+			"description": " Cost: 60 Arcane Power Summon an immense Meteor that plummets from the sky, causing 200% weapon damage as Fire to all enemies it crashes into. The ground it hits is scorched with molten fire that deals 60% weapon damage as Fire over 3 seconds.",
 			"runes": [{
 				"required-level": 29,
 				"name": "Molten Impact",
@@ -4890,10 +4962,10 @@
 			"required-level": 25,
 			"icon": "wizard_mirrorimage",
 			"type": "Mastery",
-			"description": " Summon 2 illusionary duplicates of yourself that last for 7 seconds and have 25% of your Life. The images may cast some of the same spells as you, but those spells deal no damage. ",
 			"cooldown": 15,
 			"cooldown-units": "seconds",
 			"cooldown-description": "",
+			"description": " Summon 2 illusionary duplicates of yourself that last for 7 seconds and have 25% of your Life. The images may cast some of the same spells as you, but those spells deal no damage.",
 			"runes": [{
 				"required-level": 31,
 				"name": "Simulacrum",
@@ -4930,7 +5002,7 @@
 			"required-level": 27,
 			"icon": "wizard_blizzard",
 			"type": "Force",
-			"description": " Cost: 45 Arcane Power Call down shards of ice to pelt an area, dealing 210% weapon damage as Cold to all enemies in the area over 6 seconds. Multiple casts in the same area do not stack. ",
+			"description": " Cost: 45 Arcane Power Call down shards of ice to pelt an area, dealing 210% weapon damage as Cold to all enemies in the area over 6 seconds. Multiple casts in the same area do not stack.",
 			"runes": [{
 				"required-level": 35,
 				"name": "Grasping Chill",
@@ -4967,7 +5039,7 @@
 			"required-level": 28,
 			"icon": "wizard_energyarmor",
 			"type": "Conjuration",
-			"description": " Cost: 25 Arcane Power Focus your energies, increasing your Armor by 65% but decreasing your maximum Arcane Power by 20. Lasts 120 seconds. This is an Armor spell. Only one Armor spell can be active at a time. ",
+			"description": " Cost: 25 Arcane Power Focus your energies, increasing your Armor by 65% but decreasing your maximum Arcane Power by 20. Lasts 120 seconds. This is an Armor spell. Only one Armor spell can be active at a time.",
 			"runes": [{
 				"required-level": 32,
 				"name": "Absorption",
@@ -5004,10 +5076,10 @@
 			"required-level": 30,
 			"icon": "wizard_archon",
 			"type": "Mastery",
-			"description": " Transform into a being of pure Arcane energy for 15 seconds. While in Archon form, your normal abilities are replaced by powerful Archon abilities, and your Armor and resistances are increased by 40%. Every enemy killed while in Archon form adds 1 second to the duration of Archon. ",
 			"cooldown": 120,
 			"cooldown-units": "seconds",
 			"cooldown-description": "",
+			"description": " Transform into a being of pure Arcane energy for 15 seconds. While in Archon form, your normal abilities are replaced by powerful Archon abilities, and your Armor and resistances are increased by 40%. Every enemy killed while in Archon form adds 1 second to the duration of Archon.",
 			"runes": [{
 				"required-level": 36,
 				"name": "Arcane Destruction",
@@ -5043,93 +5115,91 @@
 			"name": "Blur",
 			"required-level": 10,
 			"icon": "wizard_passive_blur",
-			"description": " Decreases melee damage taken by 20%. "
+			"description": " Decreases melee damage taken by 20%."
 		},
 		{
 			"name": "Power Hungry",
 			"required-level": 10,
 			"icon": "wizard_passive_powerhungry",
-			"description": " Gain 30 Arcane Power whenever you are healed by a health globe. "
+			"description": " Gain 30 Arcane Power whenever you are healed by a health globe."
 		},
 		{
 			"name": "Evocation",
 			"required-level": 13,
 			"icon": "wizard_passive_evocation",
-			"description": " Reduces all cooldowns by 15%. "
+			"description": " Reduces all cooldowns by 15%."
 		},
 		{
 			"name": "Glass Cannon",
 			"required-level": 16,
 			"icon": "wizard_passive_glasscannon",
-			"description": " Increases all damage done by 15%, but decreases Armor and resistances by 10%. "
+			"description": " Increases all damage done by 15%, but decreases Armor and resistances by 10%."
 		},
 		{
 			"name": "Prodigy",
 			"required-level": 20,
 			"icon": "wizard_passive_prodigy",
-			"description": " ",
 			"signature-spell": true
 		},
 		{
 			"name": "Astral Presence",
 			"required-level": 24,
 			"icon": "wizard_passive_astralpresence",
-			"description": " Increases your maximum Arcane Power by 20 and Arcane Power regeneration by 2 per second. "
+			"description": " Increases your maximum Arcane Power by 20 and Arcane Power regeneration by 2 per second."
 		},
 		{
 			"name": "Illusionist",
 			"required-level": 27,
 			"icon": "wizard_passive_illusionist",
-			"description": " Whenever you suffer more than 15% of your Life in a single hit, the cooldowns on Mirror Image and Teleport are automatically reset. "
+			"description": " Whenever you suffer more than 15% of your Life in a single hit, the cooldowns on Mirror Image and Teleport are automatically reset."
 		},
 		{
 			"name": "Cold Blooded",
 			"required-level": 30,
 			"icon": "wizard_passive_coldblooded",
-			"description": " Cold damage dealt to chilled and frozen targets is increased by 20%. "
+			"description": " Cold damage dealt to chilled and frozen targets is increased by 20%."
 		},
 		{
 			"name": "Conflagration",
 			"required-level": 34,
 			"icon": "wizard_passive_conflagration",
-			"description": " Fire damage dealt to enemies applies a burning effect, increasing all damage done to them by 10% for 3 seconds. "
+			"description": " Fire damage dealt to enemies applies a burning effect, increasing all damage done to them by 10% for 3 seconds."
 		},
 		{
 			"name": "Paralysis",
 			"required-level": 37,
 			"icon": "wizard_passive_paralysis",
-			"description": " Lightning damage dealt to enemies has up to a 5% chance to Stun the target for 3 seconds. "
+			"description": " Lightning damage dealt to enemies has up to a 5% chance to Stun the target for 3 seconds."
 		},
 		{
 			"name": "Galvanizing Ward",
 			"required-level": 40,
 			"icon": "wizard_passive_galvanizingward",
-			"description": " Increases the duration of your Armor spells by 120 seconds. As long as an Armor spell is active, you gain 310 Life per second. The following skills are improved: Energy Armor Ice Armor Storm Armor "
+			"description": " Increases the duration of your Armor spells by 120 seconds. As long as an Armor spell is active, you gain 310 Life per second. The following skills are improved: Energy Armor Ice Armor Storm Armor"
 		},
 		{
 			"name": "Temporal Flux",
 			"required-level": 45,
 			"icon": "wizard_passive_temporalflux",
-			"description": " Whenever you deal Arcane damage, enemies are slowed by 30% for 2 seconds. "
+			"description": " Whenever you deal Arcane damage, enemies are slowed by 30% for 2 seconds."
 		},
 		{
 			"name": "Critical Mass",
 			"required-level": 50,
 			"icon": "wizard_passive_criticalmass",
-			"description": " Critical Hits have a chance to reduce the cooldown of your spells by 1 second. "
+			"description": " Critical Hits have a chance to reduce the cooldown of your spells by 1 second."
 		},
 		{
 			"name": "Arcane Dynamo",
 			"required-level": 55,
 			"icon": "wizard_passive_arcanedynamo",
-			"description": " ",
 			"signature-spell": true
 		},
 		{
 			"name": "Unstable Anomaly",
 			"required-level": 60,
 			"icon": "wizard_passive_unstableanomaly",
-			"description": " When reduced below 20% Life, release a shockwave that knocks all enemies back. This effect cannot occur more than once every 60 seconds. "
+			"description": " When reduced below 20% Life, release a shockwave that knocks all enemies back. This effect cannot occur more than once every 60 seconds."
 		}],
 		"screenshots-count": 12,
 		"screenshots": ["wizard-about-to-descend-index-thumb",
