@@ -5,5 +5,8 @@
     <string name="app_name">Diablo 3 Character Planner</string>
     <string name="class_text">Class</string>
     <string name="lvl">Lvl</string>
-
+    <string name="Cooldown">Cooldown:</string>
+    <string name="Generate">Generate:</string>
+    <string name="Cost">Cost:</string>
+	<string name="Required_level">Required Level:</string>
 </resources>

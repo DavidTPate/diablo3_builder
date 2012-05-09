@@ -61,11 +61,57 @@ public class EntryAdapter extends ArrayAdapter<Item> {
 				//@formatter:off
 				skillIcon         .setImageResource(img);
 				skillName         .setText(s.getName());
-				skillCost         .setText("Cost: " + s.getCost());
-				skillGenerates    .setText("Generate: " + s.getGenerateDescription());
-				skillCooldown     .setText("Cooldown: " + s.getCooldownDescription());
-				skillRequiredLevel.setText("Required Level: " + s.getRequiredLevel());
-				skillDescription  .setText(s.getDescription());
+				
+				if (s.getCostText() == null || s.getCostText().equals(""))
+				{
+					skillCost.setVisibility(View.GONE);
+				}
+				else
+				{
+					skillCost.setText(v.getContext().getString(R.string.Cost) + " " + s.getCostText());
+					skillCost.setVisibility(View.VISIBLE);
+				}
+				
+				if (s.getGenerateText() == null || s.getGenerateText().equals(""))
+				{
+					skillGenerates.setVisibility(View.GONE);
+				}
+				else
+				{
+					skillGenerates.setText(v.getContext().getString(R.string.Generate) + " " + s.getGenerateText());
+					skillGenerates.setVisibility(View.VISIBLE);
+				}
+				
+				if (s.getCooldownText() == null || s.getCooldownText().equals(""))
+				{
+					skillCooldown.setVisibility(View.GONE);
+				}
+				else
+				{
+					skillCooldown.setText(v.getContext().getString(R.string.Cooldown) + " " + s.getCooldownText());
+					skillCooldown.setVisibility(View.VISIBLE);
+				}
+				
+				if (s.getRequiredLevel() == 0)
+				{
+					skillRequiredLevel.setVisibility(View.GONE);
+				}
+				else
+				{
+					skillRequiredLevel.setText(v.getContext().getString(R.string.Required_level) + " " + String.valueOf(s.getRequiredLevel()));
+					skillRequiredLevel.setVisibility(View.VISIBLE);
+				}
+				
+				if (s.getDescription() == null || s.getDescription().equals(""))
+				{
+					skillDescription.setVisibility(View.GONE);
+				}
+				else
+				{
+					skillDescription.setText(s.getDescription());
+					skillDescription.setVisibility(View.VISIBLE);
+				}	
+				
 				//@formatter:on
 				
 			}
