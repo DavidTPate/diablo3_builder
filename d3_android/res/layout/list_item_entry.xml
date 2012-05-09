@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/list_skill_icon"
         android:layout_alignParentTop="true"
-        android:paddingLeft="10dp"
+        android:layout_marginLeft="10dp"
         android:ellipsize="marquee"
         android:fadingEdge="horizontal"
         android:singleLine="true"

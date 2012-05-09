@@ -7,9 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.pate.diablo.R;
+import com.pate.diablo.model.Skill;
 
 public class EntryAdapter extends ArrayAdapter<Item> {
 
@@ -42,18 +44,30 @@ public class EntryAdapter extends ArrayAdapter<Item> {
 				final TextView sectionView = (TextView) v.findViewById(R.id.list_item_section_text);
 				sectionView.setText(si.getTitle());
 			}else{
-				EntryItem ei = (EntryItem)i;
+			    Skill s = ((EntryItem) i).getSkill();
 				v = vi.inflate(R.layout.list_item_entry, null);
 				
+				final ImageView skillIcon = (ImageView) v.findViewById(R.id.list_skill_icon);
+				final TextView skillName = (TextView) v.findViewById(R.id.list_skill_title);
+				final TextView skillCost = (TextView) v.findViewById(R.id.list_skill_cost_text);
+				final TextView skillGenerates = (TextView) v.findViewById(R.id.list_skill_generates);
+				final TextView skillCooldown = (TextView) v.findViewById(R.id.list_skill_cooldown);
+				final TextView skillRequiredLevel = (TextView) v.findViewById(R.id.list_skill_required_level);
+				final TextView skillDescription = (TextView) v.findViewById(R.id.list_skill_description);
 				
-//				final TextView skillTitle = (TextView) v.findViewById(R.id.list_skill_title);
-//				final TextView skillTitle = (TextView) v.findViewById(R.id.list_item_section_text);
-//				final TextView subtitle = (TextView)v.findViewById(R.id.list_item_entry_summary);
-//				
-//				if (skillTitle != null) 
-//					skillTitle.setText(ei.title);
-//				if(subtitle != null)
-//					subtitle.setText(ei.subtitle);
+				// Is this a terrible hack?! I think so...
+				int img = context.getResources().getIdentifier("drawable/" + s.getIcon(), null, context.getPackageName());
+
+				//@formatter:off
+				skillIcon         .setImageResource(img);
+				skillName         .setText(s.getName());
+				skillCost         .setText("Cost: " + s.getCost());
+				skillGenerates    .setText("Generate: " + s.getGenerateDescription());
+				skillCooldown     .setText("Cooldown: " + s.getCooldownDescription());
+				skillRequiredLevel.setText("Required Level: " + s.getRequiredLevel());
+				skillDescription  .setText(s.getDescription());
+				//@formatter:on
+				
 			}
 		}
 		return v;

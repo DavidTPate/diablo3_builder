@@ -9,18 +9,23 @@ import java.util.List;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.ActionBar.OnNavigationListener;
 import com.actionbarsherlock.app.SherlockListActivity;
+import com.actionbarsherlock.internal.widget.IcsAdapterView;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.pate.diablo.model.Class;
 import com.pate.diablo.model.DataModel;
+import com.pate.diablo.model.Skill;
 import com.pate.diablo.sectionlist.EntryAdapter;
 import com.pate.diablo.sectionlist.EntryItem;
 import com.pate.diablo.sectionlist.Item;
@@ -42,16 +47,43 @@ public class Main extends SherlockListActivity {
         actionBar.setDisplayShowTitleEnabled(false);
         
         actionBar.setCustomView(R.layout.actionbar_custom_view);
-        /*actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
-        actionBar.setListNavigationCallbacks(adapter, new OnNavigationListener() {
+        
+        final Spinner selectedClass = (Spinner) findViewById(R.id.spinner_class);
+        final Spinner requiredLevel = (Spinner) findViewById(R.id.spinner_level);
+        
+        selectedClass.setOnItemSelectedListener(new OnItemSelectedListener() {
+
             @Override
-            public boolean onNavigationItemSelected(int position, long itemId) {
-                Log.e("item position", String.valueOf(position));
-                Log.i("ITEM", adapter.getItem(position).toString());
-                return true;
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                // TODO Auto-generated method stub
+                Toast.makeText(view.getContext(),selectedClass.getSelectedItem().toString(),Toast.LENGTH_SHORT).show();
+                
             }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // TODO Auto-generated method stub
+                
+            }
+
         });
-*/
+        requiredLevel.setOnItemSelectedListener(new OnItemSelectedListener() {
+            
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                // TODO Auto-generated method stub
+                Toast.makeText(view.getContext(),requiredLevel.getSelectedItem().toString(),Toast.LENGTH_SHORT).show();
+                
+            }
+            
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // TODO Auto-generated method stub
+                
+            }
+            
+        });
+        Log.i("SelectedClass", selectedClass.getSelectedItem().toString());
 		Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation()
 				.create();
 
@@ -75,7 +107,12 @@ public class Main extends SherlockListActivity {
 		List<Class> classes = dm.getClasses();
 
         items.add(new SectionItem("Primary"));
-        items.add(new EntryItem("Left Click Skill", "Attack"));
+        
+        for (Skill s : dm.getClassByName(selectedClass.getSelectedItem().toString()).getActiveSkills())
+        {
+            items.add(new EntryItem(s));
+        }
+        /*items.add(new EntryItem("Left Click Skill", "Attack"));
         items.add(new EntryItem("Left Click Rune", "Some Rune"));
         
         items.add(new SectionItem("Secondary"));
@@ -101,7 +138,7 @@ public class Main extends SherlockListActivity {
         items.add(new SectionItem("Passive Skills"));
         items.add(new EntryItem("Passive 1", "Passive 1"));
         items.add(new EntryItem("Passive 2", "Passive 2"));
-        items.add(new EntryItem("Passive 3", "Passive 3"));
+        items.add(new EntryItem("Passive 3", "Passive 3"));*/
 
         EntryAdapter adapter = new EntryAdapter(this, items);
 
@@ -115,7 +152,7 @@ public class Main extends SherlockListActivity {
 
             EntryItem item = (EntryItem) items.get(position);
 
-            Toast.makeText(this, "You clicked " + item.title, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "You clicked " + item.title, Toast.LENGTH_SHORT).show();
 
         }
 

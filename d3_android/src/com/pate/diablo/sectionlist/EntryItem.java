@@ -1,18 +1,26 @@
 package com.pate.diablo.sectionlist;
 
+import com.pate.diablo.model.Skill;
 
-public class EntryItem implements Item{
 
-	public final String title;
-	public final String subtitle;
+public class EntryItem implements Item 
+{
 
-	public EntryItem(String title, String subtitle) {
-		this.title = title;
-		this.subtitle = subtitle;
+    private final Skill skill;
+
+	public EntryItem(Skill skill) 
+	{
+		this.skill = skill;
+	}
+	
+	public Skill getSkill() 
+	{
+	    return skill;
 	}
 	
 	@Override
-	public boolean isSection() {
+	public boolean isSection() 
+	{
 		return false;
 	}
 
