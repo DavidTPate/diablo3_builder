@@ -110,7 +110,7 @@ public class Main extends SherlockListActivity {
         
         for (Skill s : dm.getClassByName(selectedClass.getSelectedItem().toString()).getActiveSkills())
         {
-            items.add(new EntryItem(s));
+            items.add(new EntryItem(s, s.getRunes().get(0)));
         }
         /*items.add(new EntryItem("Left Click Skill", "Attack"));
         items.add(new EntryItem("Left Click Rune", "Some Rune"));

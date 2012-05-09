@@ -4,16 +4,16 @@
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
     android:minHeight="?android:attr/listPreferredItemHeight"
-    android:paddingRight="?android:attr/scrollbarSize"
-    android:padding="10dp" >
+    android:padding="10dp"
+    android:paddingRight="?android:attr/scrollbarSize" >
 
     <ImageView
         android:id="@+id/list_skill_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="Skill icon"
-        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:contentDescription="Skill icon"
         android:paddingLeft="9dp"
         android:src="@android:drawable/ic_menu_preferences" />
 
@@ -21,20 +21,20 @@
         android:id="@+id/list_skill_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/list_skill_icon"
-        android:layout_toLeftOf="@+id/list_skill_required_level"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="10dp"
+        android:layout_toLeftOf="@+id/list_skill_required_level"
+        android:layout_toRightOf="@id/list_skill_icon"
         android:fadingEdge="horizontal"
         android:text="Cleave"
         android:textAppearance="?android:attr/textAppearanceSmall" />
-    
+
     <TextView
         android:id="@+id/list_skill_cost_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/list_skill_title"
         android:layout_alignLeft="@id/list_skill_title"
+        android:layout_below="@id/list_skill_title"
         android:ellipsize="marquee"
         android:fadingEdge="horizontal"
         android:singleLine="true"
@@ -45,8 +45,8 @@
         android:id="@+id/list_skill_generates"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/list_skill_cost_text"
         android:layout_alignLeft="@id/list_skill_cost_text"
+        android:layout_below="@id/list_skill_cost_text"
         android:ellipsize="marquee"
         android:fadingEdge="horizontal"
         android:singleLine="true"
@@ -57,8 +57,8 @@
         android:id="@+id/list_skill_cooldown"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/list_skill_generates"
         android:layout_alignLeft="@id/list_skill_generates"
+        android:layout_below="@id/list_skill_generates"
         android:ellipsize="marquee"
         android:fadingEdge="horizontal"
         android:singleLine="true"
@@ -69,72 +69,60 @@
         android:id="@id/list_skill_required_level"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
         android:ellipsize="marquee"
         android:fadingEdge="horizontal"
         android:singleLine="true"
         android:text="Required Level: 3"
         android:textAppearance="?android:attr/textAppearanceSmall" />
-  
+
     <TextView
         android:id="@+id/list_skill_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/list_skill_cooldown"
-        android:paddingTop="20dp"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
         android:ellipsize="marquee"
         android:fadingEdge="horizontal"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingTop="20dp"
         android:singleLine="false"
         android:text="Swing your weapon in a wide arc to deal 120% weapon damage to all enemies caught in the swing"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
-    <RelativeLayout 
+    <RelativeLayout
         android:id="@+id/list_rune_section"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/list_skill_description">
+        android:layout_below="@id/list_skill_description"
+        android:layout_marginTop="10dp" >
 
-        <View
-            android:layout_height="1dp"
-            android:layout_width="fill_parent"
-            android:background="#000000" />
-            
-        <TextView 
-            android:id="@+id/list_rune"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:paddingLeft="5dp"
-            android:text="Rune" />
-        
-        <ImageView 
+        <ImageView
             android:id="@+id/list_rune_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/barbarian_cleave"
             android:layout_alignParentLeft="true"
             android:paddingLeft="5dp"
-            android:layout_below="@id/list_rune" />
-        
-        <TextView 
+            android:src="@drawable/rune_a" />
+
+        <TextView
             android:id="@+id/list_rune_unlocked_at"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/list_rune_icon" />
-        
-        
+            android:layout_toRightOf="@id/list_rune_icon"
+            android:paddingBottom="5dp"
+            android:paddingLeft="5dp"
+            android:text="Unlocked at level 6" />
+
         <TextView
             android:id="@+id/list_rune_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/list_rune_unlocked_at"
             android:layout_alignLeft="@id/list_rune_unlocked_at"
+            android:layout_below="@id/list_rune_unlocked_at"
             android:text="Instead of Knockback, each hit has a 35% chance to Stun the target for 1.5 seconds." />
-        
     </RelativeLayout>
-    
+
 </RelativeLayout>
