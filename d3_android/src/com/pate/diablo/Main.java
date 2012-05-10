@@ -35,6 +35,8 @@ import com.pate.diablo.sectionlist.EmptyItem.SkillType;
 public class Main extends SherlockListActivity {
     SpinnerAdapter  adapter;
     ArrayList<Item> items = new ArrayList<Item>();
+    Spinner selectedClass;
+    Spinner requiredLevel;
 
     /** Called when the activity is first created. */
     @Override
@@ -49,8 +51,8 @@ public class Main extends SherlockListActivity {
         
         actionBar.setCustomView(R.layout.actionbar_custom_view);
         
-        final Spinner selectedClass = (Spinner) findViewById(R.id.spinner_class);
-        final Spinner requiredLevel = (Spinner) findViewById(R.id.spinner_level);
+        selectedClass = (Spinner) findViewById(R.id.spinner_class);
+        requiredLevel = (Spinner) findViewById(R.id.spinner_level);
         
         selectedClass.setOnItemSelectedListener(new OnItemSelectedListener() {
 
@@ -137,9 +139,17 @@ public class Main extends SherlockListActivity {
 
             Item item = items.get(position);
             
-            if (item instanceof EntrySkill || item instanceof EmptyItem)
+            if (item instanceof EmptyItem)
             {
+                EmptyItem e = (EmptyItem) item;
                 Intent intent = new Intent(v.getContext(), SelectSkill.class);
+                
+                Bundle b = new Bundle();
+                b.putString("SkillType", e.getSkillType().toString());                
+                b.putString("SelectedClass", selectedClass.getSelectedItem().toString());
+                b.putInt("RequiredLevel", Integer.parseInt(requiredLevel.getSelectedItem().toString()));
+                intent.putExtras(b);
+                
                 startActivity(intent);
             }
             //Toast.makeText(this, "You clicked " + item.title, Toast.LENGTH_SHORT).show();
