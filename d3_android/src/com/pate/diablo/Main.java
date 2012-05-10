@@ -55,7 +55,8 @@ public class Main extends SherlockListActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 // TODO Auto-generated method stub
-                Toast.makeText(view.getContext(),selectedClass.getSelectedItem().toString(),Toast.LENGTH_SHORT).show();
+                if (view != null)
+                    Toast.makeText(view.getContext(),selectedClass.getSelectedItem().toString(),Toast.LENGTH_SHORT).show();
                 
             }
 
@@ -71,7 +72,8 @@ public class Main extends SherlockListActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 // TODO Auto-generated method stub
-                Toast.makeText(view.getContext(),requiredLevel.getSelectedItem().toString(),Toast.LENGTH_SHORT).show();
+                if (view != null)
+                    Toast.makeText(view.getContext(),requiredLevel.getSelectedItem().toString(),Toast.LENGTH_SHORT).show();
                 
             }
             
