@@ -18,10 +18,4 @@ public class EntrySkill implements Item
 	    return skill;
 	}
 	
-	@Override
-	public boolean isSection() 
-	{
-		return false;
-	}
-
 }

@@ -19,10 +19,4 @@ public class EntryRune implements Item
 	    return rune;
 	}
 	
-	@Override
-	public boolean isSection() 
-	{
-		return false;
-	}
-
 }

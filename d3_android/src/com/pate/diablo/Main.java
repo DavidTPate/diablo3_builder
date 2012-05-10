@@ -135,26 +135,23 @@ public class Main extends SherlockListActivity {
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
 
-        if (!items.get(position).isSection()) {
+        Item item = items.get(position);
 
-            Item item = items.get(position);
-            
-            if (item instanceof EmptyItem)
-            {
-                EmptyItem e = (EmptyItem) item;
-                Intent intent = new Intent(v.getContext(), SelectSkill.class);
-                
-                Bundle b = new Bundle();
-                b.putString("SkillType", e.getSkillType().toString());                
-                b.putString("SelectedClass", selectedClass.getSelectedItem().toString());
-                b.putInt("RequiredLevel", Integer.parseInt(requiredLevel.getSelectedItem().toString()));
-                intent.putExtras(b);
-                
-                startActivity(intent);
-            }
-            //Toast.makeText(this, "You clicked " + item.title, Toast.LENGTH_SHORT).show();
+        if (item instanceof EmptyItem)
+        {
+            EmptyItem e = (EmptyItem) item;
+            Intent intent = new Intent(v.getContext(), SelectSkill.class);
 
+            Bundle b = new Bundle();
+            b.putString("SkillType", e.getSkillType().toString());                
+            b.putString("SelectedClass", selectedClass.getSelectedItem().toString());
+            b.putInt("RequiredLevel", Integer.parseInt(requiredLevel.getSelectedItem().toString()));
+            intent.putExtras(b);
+
+            startActivity(intent);
         }
+        //Toast.makeText(this, "You clicked " + item.title, Toast.LENGTH_SHORT).show();
+
 
         super.onListItemClick(l, v, position, id);
     }

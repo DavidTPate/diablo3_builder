@@ -14,11 +14,6 @@ public class EmptyItem implements Item
         this.skillType = skillType;
     }
 
-    @Override
-    public boolean isSection() {
-        return false;
-    }
-
     public String getTitle() {
         return title;
     }
