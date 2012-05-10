@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -21,14 +20,13 @@ import android.widget.Toast;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockListActivity;
-import com.actionbarsherlock.internal.widget.IcsAdapterView;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.pate.diablo.model.Class;
 import com.pate.diablo.model.DataModel;
 import com.pate.diablo.model.Skill;
-import com.pate.diablo.sectionlist.EntryAdapter;
-import com.pate.diablo.sectionlist.EntryItem;
+import com.pate.diablo.sectionlist.EntrySkill;
+import com.pate.diablo.sectionlist.EntrySkillAdapter;
 import com.pate.diablo.sectionlist.Item;
 import com.pate.diablo.sectionlist.SectionItem;
 
@@ -111,7 +109,7 @@ public class Main extends SherlockListActivity {
         
         for (Skill s : dm.getClassByName(selectedClass.getSelectedItem().toString()).getActiveSkills())
         {
-            items.add(new EntryItem(s, s.getRunes().get(0)));
+            items.add(new EntrySkill(s));
         }
         /*items.add(new EntryItem("Left Click Skill", "Attack"));
         items.add(new EntryItem("Left Click Rune", "Some Rune"));
@@ -141,7 +139,7 @@ public class Main extends SherlockListActivity {
         items.add(new EntryItem("Passive 2", "Passive 2"));
         items.add(new EntryItem("Passive 3", "Passive 3"));*/
 
-        EntryAdapter adapter = new EntryAdapter(this, items);
+        EntrySkillAdapter adapter = new EntrySkillAdapter(this, items);
 
         setListAdapter(adapter);
     }
@@ -151,7 +149,7 @@ public class Main extends SherlockListActivity {
 
         if (!items.get(position).isSection()) {
 
-            EntryItem item = (EntryItem) items.get(position);
+            EntrySkill item = (EntrySkill) items.get(position);
             
             Intent intent = new Intent(v.getContext(), SelectSkill.class);
             startActivity(intent);

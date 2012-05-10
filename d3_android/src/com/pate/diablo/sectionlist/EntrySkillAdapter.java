@@ -16,14 +16,14 @@ import com.pate.diablo.R;
 import com.pate.diablo.model.Rune;
 import com.pate.diablo.model.Skill;
 
-public class EntryAdapter extends ArrayAdapter<Item>
+public class EntrySkillAdapter extends ArrayAdapter<Item>
 {
 
     private Context         context;
     private ArrayList<Item> items;
     private LayoutInflater  vi;
 
-    public EntryAdapter(Context context, ArrayList<Item> items) {
+    public EntrySkillAdapter(Context context, ArrayList<Item> items) {
         super(context, 0, items);
         this.context = context;
         this.items = items;
@@ -50,9 +50,8 @@ public class EntryAdapter extends ArrayAdapter<Item>
             }
             else 
             {
-                Skill s = ((EntryItem) i).getSkill();
-                Rune r = ((EntryItem) i).getRune();
-                v = vi.inflate(R.layout.list_item_entry, null);
+                Skill s = ((EntrySkill) i).getSkill();
+                v = vi.inflate(R.layout.list_item_skill, null);
 
                 final ImageView skillIcon = (ImageView) v.findViewById(R.id.list_skill_icon);
                 final TextView skillName = (TextView) v.findViewById(R.id.list_skill_title);
@@ -61,28 +60,9 @@ public class EntryAdapter extends ArrayAdapter<Item>
                 final TextView skillCooldown = (TextView) v.findViewById(R.id.list_skill_cooldown);
                 final TextView skillRequiredLevel = (TextView) v.findViewById(R.id.list_skill_required_level);
                 final TextView skillDescription = (TextView) v.findViewById(R.id.list_skill_description);
-
-                final RelativeLayout runeLayout = (RelativeLayout) v.findViewById(R.id.list_rune_section);
-                final ImageView runeIcon = (ImageView) v.findViewById(R.id.list_rune_icon);
-                final TextView runeUnlockedAt = (TextView) v.findViewById(R.id.list_rune_unlocked_at);
-                final TextView runeDescription = (TextView) v.findViewById(R.id.list_rune_description);
                 
                 // Is this a terrible hack?! I think so...
                 int skillImage = context.getResources().getIdentifier("drawable/" + s.getIcon(), null, context.getPackageName());
-                int runeImage = context.getResources().getIdentifier("drawable/" + r.getIcon().replaceAll("-", "_"), null, context.getPackageName());
-
-                // Hide the run section if a rune isn't selected
-                if (r == null)
-                {
-                    runeLayout.setVisibility(View.GONE);
-                }
-                else
-                {
-                    runeIcon.setBackgroundResource(runeImage);
-                    runeUnlockedAt.setText((v.getContext().getString(R.string.Unlocked_at_level) + " " + r.getRequiredLevel()));
-                    runeDescription.setText(r.getDescription());
-                }
-                
                 
                 //@formatter:off
 				skillIcon         .setImageResource(skillImage);
@@ -137,9 +117,7 @@ public class EntryAdapter extends ArrayAdapter<Item>
 					skillDescription.setText(s.getDescription());
 					skillDescription.setVisibility(View.VISIBLE);
 				}	
-				
 				//@formatter:on
-
             }
         }
         return v;
