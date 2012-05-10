@@ -25,10 +25,12 @@ import com.google.gson.GsonBuilder;
 import com.pate.diablo.model.Class;
 import com.pate.diablo.model.DataModel;
 import com.pate.diablo.model.Skill;
+import com.pate.diablo.sectionlist.EmptyItem;
 import com.pate.diablo.sectionlist.EntrySkill;
 import com.pate.diablo.sectionlist.EntrySkillAdapter;
 import com.pate.diablo.sectionlist.Item;
 import com.pate.diablo.sectionlist.SectionItem;
+import com.pate.diablo.sectionlist.EmptyItem.SkillType;
 
 public class Main extends SherlockListActivity {
     SpinnerAdapter  adapter;
@@ -105,41 +107,23 @@ public class Main extends SherlockListActivity {
 		}
 
 		DataModel dm = gson.fromJson(fakeJson, DataModel.class);
-		List<Class> classes = dm.getClasses();
 
-        items.add(new SectionItem("Primary"));
+        items.add(new SectionItem("Left Click - Primary"));
+        items.add(new EmptyItem("Choose Skill", 1, SkillType.Primary));
         
-        for (Skill s : dm.getClassByName(selectedClass.getSelectedItem().toString()).getActiveSkills())
-        {
-            items.add(new EntrySkill(s));
-        }
-        /*items.add(new EntryItem("Left Click Skill", "Attack"));
-        items.add(new EntryItem("Left Click Rune", "Some Rune"));
+        items.add(new SectionItem("Right Click - Secondary"));
+        items.add(new EmptyItem("Choose Skill", 2, SkillType.Secondary));
         
-        items.add(new SectionItem("Secondary"));
-        items.add(new EntryItem("Right Click", "Fireball"));
-        items.add(new EntryItem("Right Click Rune", "Another rune"));
-
-        items.add(new SectionItem("Defensive"));
-        items.add(new EntryItem("Skill 1", "Skill 1"));
-        items.add(new EntryItem("Skill 1 Rune", "Skill 1 Rune"));
-        
-        items.add(new SectionItem("Might"));
-        items.add(new EntryItem("Skill 2", "Skill 2"));
-        items.add(new EntryItem("Skill 2 Rune", "Skill 2 Rune"));
-        
-        items.add(new SectionItem("Tactics"));
-        items.add(new EntryItem("Skill 3", "Skill 3"));
-        items.add(new EntryItem("Skill 3 Rune", "Skill 3 Rune"));
-        
-        items.add(new SectionItem("Rage"));
-        items.add(new EntryItem("Skill 4", "Skill 4"));
-        items.add(new EntryItem("Skill 4 Rune", "Skill 4 Rune"));
+        items.add(new SectionItem("Action Bar Skills"));
+        items.add(new EmptyItem("Choose Skill", 4 , SkillType.Defensive));
+        items.add(new EmptyItem("Choose Skill", 9 , SkillType.Might));
+        items.add(new EmptyItem("Choose Skill", 14, SkillType.Tactics));
+        items.add(new EmptyItem("Choose Skill", 19, SkillType.Rage));
         
         items.add(new SectionItem("Passive Skills"));
-        items.add(new EntryItem("Passive 1", "Passive 1"));
-        items.add(new EntryItem("Passive 2", "Passive 2"));
-        items.add(new EntryItem("Passive 3", "Passive 3"));*/
+        items.add(new EmptyItem("Choose Skill", 10, SkillType.Passive));
+        items.add(new EmptyItem("Choose Skill", 20, SkillType.Passive));
+        items.add(new EmptyItem("Choose Skill", 30, SkillType.Passive));
 
         EntrySkillAdapter adapter = new EntrySkillAdapter(this, items);
 
@@ -151,10 +135,13 @@ public class Main extends SherlockListActivity {
 
         if (!items.get(position).isSection()) {
 
-            EntrySkill item = (EntrySkill) items.get(position);
+            Item item = items.get(position);
             
-            Intent intent = new Intent(v.getContext(), SelectSkill.class);
-            startActivity(intent);
+            if (item instanceof EntrySkill || item instanceof EmptyItem)
+            {
+                Intent intent = new Intent(v.getContext(), SelectSkill.class);
+                startActivity(intent);
+            }
             //Toast.makeText(this, "You clicked " + item.title, Toast.LENGTH_SHORT).show();
 
         }
