@@ -21,7 +21,7 @@ public class SelectSkill extends SherlockFragmentActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.select_skill);
 
-        mAdapter = new SkillFragmentAdapter(getSupportFragmentManager());
+        mAdapter = new SkillFragmentAdapter(getSupportFragmentManager(), SelectSkill.this);
         
         mPager = (ViewPager) findViewById(R.id.pager);
         mPager.setAdapter(mAdapter);
