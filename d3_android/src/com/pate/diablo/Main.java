@@ -23,6 +23,7 @@ import com.actionbarsherlock.app.SherlockListActivity;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.pate.diablo.model.Class;
+import com.pate.diablo.model.D3Application;
 import com.pate.diablo.model.DataModel;
 import com.pate.diablo.model.Skill;
 import com.pate.diablo.sectionlist.EmptyItem;
@@ -108,7 +109,7 @@ public class Main extends SherlockListActivity {
 			e.printStackTrace();
 		}
 
-		DataModel dm = gson.fromJson(fakeJson, DataModel.class);
+		D3Application.setDataModel(gson.fromJson(fakeJson, DataModel.class));
 
         items.add(new SectionItem("Left Click - Primary"));
         items.add(new EmptyItem("Choose Skill", 1, SkillType.Primary));

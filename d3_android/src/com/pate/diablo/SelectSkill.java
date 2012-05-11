@@ -26,7 +26,7 @@ public class SelectSkill extends SherlockFragmentActivity
         mPager = (ViewPager) findViewById(R.id.pager);
         mPager.setAdapter(mAdapter);
         
-        TitlePageIndicator indicator = (TitlePageIndicator)findViewById(R.id.indicator);
+        TitlePageIndicator indicator = (TitlePageIndicator)findViewById(R.id.select_skill_indicator);
         indicator.setViewPager(mPager);
         indicator.setFooterIndicatorStyle(IndicatorStyle.Triangle);
         mIndicator = indicator;
