@@ -5,29 +5,31 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.pate.diablo.sectionlist.EmptyItem.SkillType;
+import com.pate.diablo.model.D3Application;
 import com.viewpagerindicator.TitleProvider;
 
 class SkillFragmentAdapter extends FragmentPagerAdapter implements TitleProvider {
-	protected static final String[] CONTENT = new String[] { "Primary", "Secondary", "Defensive", "Might", "Tactics", "Rage" };
+	private String[] skillTypes;
 	private Context context;
-	private int mCount = CONTENT.length;
-	private SkillType skillType;
+	private int mCount = 0;
+	private String skillType;
 	private String selectedClass;
 	private int requiredLevel;
 
-	public SkillFragmentAdapter(FragmentManager fm, Context context, SkillType skillType, String selectedClass, int requiredLevel) {
+	public SkillFragmentAdapter(FragmentManager fm, Context context, String skillType, String selectedClass, int requiredLevel) {
 	    super(fm);
 	    this.context = context;
 	    this.skillType = skillType;
 	    this.selectedClass = selectedClass;
 	    this.requiredLevel = requiredLevel;
+	    skillTypes = D3Application.dataModel.getClassAttributesByName(selectedClass).getSkillTypes();
+	    mCount = skillTypes.length;
 	}
 
 	@Override
 	public Fragment getItem(int position) {
-	    
-		return SkillListFragment.newInstance(CONTENT[position % CONTENT.length], context, SkillType.valueOf(CONTENT[position % CONTENT.length]), selectedClass, requiredLevel);
+	    String s = skillTypes[position % skillTypes.length];
+		return SkillListFragment.newInstance(s, context, s, selectedClass, requiredLevel);
 	}
 
 	@Override
@@ -44,6 +46,6 @@ class SkillFragmentAdapter extends FragmentPagerAdapter implements TitleProvider
 
     @Override
     public String getTitle(int position) {
-        return SkillFragmentAdapter.CONTENT[position % CONTENT.length];
+        return skillTypes[position % skillTypes.length];
     }
 }

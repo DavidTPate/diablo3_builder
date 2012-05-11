@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.List;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,16 +21,12 @@ import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockListActivity;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.pate.diablo.model.Class;
 import com.pate.diablo.model.D3Application;
 import com.pate.diablo.model.DataModel;
-import com.pate.diablo.model.Skill;
 import com.pate.diablo.sectionlist.EmptyItem;
-import com.pate.diablo.sectionlist.EntrySkill;
 import com.pate.diablo.sectionlist.EntrySkillAdapter;
 import com.pate.diablo.sectionlist.Item;
 import com.pate.diablo.sectionlist.SectionItem;
-import com.pate.diablo.sectionlist.EmptyItem.SkillType;
 
 public class Main extends SherlockListActivity {
     SpinnerAdapter  adapter;
@@ -61,7 +56,10 @@ public class Main extends SherlockListActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 // TODO Auto-generated method stub
                 if (view != null)
+                {
                     Toast.makeText(view.getContext(),selectedClass.getSelectedItem().toString(),Toast.LENGTH_SHORT).show();
+                    setListAdapter(getSkillListAdapter());                    
+                }
                 
             }
 
@@ -111,28 +109,34 @@ public class Main extends SherlockListActivity {
 
 		D3Application.setDataModel(gson.fromJson(fakeJson, DataModel.class));
 
-        items.add(new SectionItem("Left Click - Primary"));
-        items.add(new EmptyItem("Choose Skill", 1, SkillType.Primary));
-        
-        items.add(new SectionItem("Right Click - Secondary"));
-        items.add(new EmptyItem("Choose Skill", 2, SkillType.Secondary));
-        
-        items.add(new SectionItem("Action Bar Skills"));
-        items.add(new EmptyItem("Choose Skill", 4 , SkillType.Defensive));
-        items.add(new EmptyItem("Choose Skill", 9 , SkillType.Might));
-        items.add(new EmptyItem("Choose Skill", 14, SkillType.Tactics));
-        items.add(new EmptyItem("Choose Skill", 19, SkillType.Rage));
-        
-        items.add(new SectionItem("Passive Skills"));
-        items.add(new EmptyItem("Choose Skill", 10, SkillType.Passive));
-        items.add(new EmptyItem("Choose Skill", 20, SkillType.Passive));
-        items.add(new EmptyItem("Choose Skill", 30, SkillType.Passive));
-
-        EntrySkillAdapter adapter = new EntrySkillAdapter(this, items);
-
-        setListAdapter(adapter);
+        setListAdapter(getSkillListAdapter());
     }
 
+    private EntrySkillAdapter getSkillListAdapter()
+    {
+        items = new ArrayList<Item>();
+        String[] skillTypes = D3Application.dataModel.getClassAttributesByName(selectedClass.getSelectedItem().toString()).getSkillTypes();
+        
+        items.add(new SectionItem("Left Click - Primary"));
+        items.add(new EmptyItem("Choose Skill", 1, skillTypes[0]));
+        
+        items.add(new SectionItem("Right Click - Secondary"));
+        items.add(new EmptyItem("Choose Skill", 2, skillTypes[1]));
+        
+        items.add(new SectionItem("Action Bar Skills"));
+        items.add(new EmptyItem("Choose Skill", 4 , skillTypes[2]));
+        items.add(new EmptyItem("Choose Skill", 9 , skillTypes[3]));
+        items.add(new EmptyItem("Choose Skill", 14, skillTypes[4]));
+        items.add(new EmptyItem("Choose Skill", 19, skillTypes[5]));
+        
+        items.add(new SectionItem("Passive Skills"));
+        items.add(new EmptyItem("Choose Skill", 10, "Passive"));
+        items.add(new EmptyItem("Choose Skill", 20, "Passive"));
+        items.add(new EmptyItem("Choose Skill", 30, "Passive"));
+        
+        return new EntrySkillAdapter(this, items);
+    }
+    
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
 

@@ -1,13 +1,10 @@
 package com.pate.diablo;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.pate.diablo.sectionlist.EmptyItem.SkillType;
 import com.viewpagerindicator.PageIndicator;
 import com.viewpagerindicator.TitlePageIndicator;
 import com.viewpagerindicator.TitlePageIndicator.IndicatorStyle;
@@ -26,12 +23,12 @@ public class SelectSkill extends SherlockFragmentActivity
         
         Bundle b = getIntent().getExtras();
         
-        SkillType skillType = null;
+        String skillType = null;
         String selectedClass = null;
         int requiredLevel = 0;
         if (b.containsKey("SkillType"))
         {
-            skillType = SkillType.valueOf(b.getString("SkillType"));
+            skillType = b.getString("SkillType");
         }
         
         if (b.containsKey("SelectedClass"))

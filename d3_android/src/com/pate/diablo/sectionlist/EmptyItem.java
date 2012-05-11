@@ -11,11 +11,9 @@ public class EmptyItem implements Item
 {
     private final String title;
     private final int level;
-    private final SkillType skillType;
+    private final String skillType;
     
-    public enum SkillType { Primary, Secondary, Defensive, Might, Tactics, Rage, Passive };
-
-    public EmptyItem(String title, int level, SkillType skillType) {
+    public EmptyItem(String title, int level, String skillType) {
         this.title = title;
         this.level = level;
         this.skillType = skillType;
@@ -29,7 +27,7 @@ public class EmptyItem implements Item
         return level;
     }
 
-    public SkillType getSkillType() {
+    public String getSkillType() {
         return skillType;
     }
 
@@ -47,7 +45,7 @@ public class EmptyItem implements Item
         
         // Is this a terrible hack?! I think so...
         emptyItemTitle.setText(e.getTitle());
-        emptySkillType.setText(e.getSkillType().toString());
+        emptySkillType.setText(e.getSkillType());
         
         return v;
     }

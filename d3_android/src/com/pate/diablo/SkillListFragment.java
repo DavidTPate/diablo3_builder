@@ -9,7 +9,6 @@ import android.util.Log;
 
 import com.pate.diablo.model.D3Application;
 import com.pate.diablo.model.Skill;
-import com.pate.diablo.sectionlist.EmptyItem.SkillType;
 import com.pate.diablo.sectionlist.EntrySkill;
 import com.pate.diablo.sectionlist.EntrySkillAdapter;
 import com.pate.diablo.sectionlist.Item;
@@ -17,14 +16,14 @@ import com.pate.diablo.sectionlist.Item;
 public class SkillListFragment extends ListFragment
 {
     static Context context;
-    static SkillType skillType;
+    static String skillType;
     static String selectedClass;
     static int requiredLevel;
     
     ArrayList<Item> items = new ArrayList<Item>();
     private static final String KEY_CONTENT = "TestFragment:Content";
 
-    public static SkillListFragment newInstance(String content, Context c, SkillType skillType, String selectedClass, int requiredLevel) {
+    public static SkillListFragment newInstance(String content, Context c, String skillType, String selectedClass, int requiredLevel) {
         SkillListFragment fragment = new SkillListFragment();
 
         SkillListFragment.context = c;
