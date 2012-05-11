@@ -43,6 +43,7 @@ public class SkillListFragment extends ListFragment
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        setRetainInstance(true);
         for (Skill s : D3Application.dataModel.getClassByName(selectedClass).getSkillsByType(this.skillType))
         {
             if (s.getRequiredLevel() <= requiredLevel)
