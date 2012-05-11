@@ -50,6 +50,8 @@ public class SelectSkill extends SherlockFragmentActivity
         indicator.setViewPager(mPager);
         indicator.setFooterIndicatorStyle(IndicatorStyle.Triangle);
         mIndicator = indicator;
+        
+        mPager.setCurrentItem(mAdapter.getItemPosition(skillType));
     }
 
 }

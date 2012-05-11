@@ -43,31 +43,31 @@
 				"required-level": 6,
 				"name": "Clobber",
 				"description": "Instead of Knockback, each hit has a 35% chance to Stun the target for 1.5 seconds.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 13,
 				"name": "Onslaught",
 				"description": "Add 2 reverberations that cause 22% weapon damage per strike. Removes the chance for Knockback.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 26,
 				"name": "Punish",
 				"description": "Increases the damage of your skills by 6% for 5 seconds after using Bash. This effect stacks up to 3 times.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 44,
 				"name": "Instigation",
 				"description": "Generate 6 additional Fury per attack.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 52,
 				"name": "Pulverize",
 				"description": "Cause a shockwave that inflicts 38% weapon damage to enemies in a 26 yard line behind the targeted enemy.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			}]
 		},
 		{
@@ -83,31 +83,31 @@
 				"required-level": 7,
 				"name": "Rolling Thunder",
 				"description": "Create a shockwave that deals 155% weapon damage to all enemies within 22 yards in front of you.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 15,
 				"name": "Smash",
 				"description": "Strike a smaller area for 270% weapon damage.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 27,
 				"name": "The Devil's Anvil",
 				"description": "Create a tremor at the point of impact for 2 seconds that slows the movement speed of enemies by 60%.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 39,
 				"name": "Thunderstrike",
 				"description": "Whenever you kill an enemy with Hammer of the Ancients every other enemy within 10 yards is stunned for 3 seconds.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 53,
 				"name": "Birthright",
 				"description": "Critical Hits have a 10% chance to cause enemies to drop treasure or health globes.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			}]
 		},
 		{
@@ -123,31 +123,31 @@
 				"required-level": 9,
 				"name": "Rupture",
 				"description": "Enemies slain by Cleave explode, causing 85% weapon damage to all other enemies within 8 yards.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 18,
 				"name": "Reaping Swing",
 				"description": "Generate 3 additional Fury per enemy hit.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 30,
 				"name": "Scattering Blast",
 				"description": "On Critical Hits, knock enemies back 9 yards and inflict 60% weapon damage to enemies where they land.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 47,
 				"name": "Broad Sweep",
 				"description": "Increase damage to 156% weapon damage.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 55,
 				"name": "Gathering Storm",
 				"description": "Enemies cleaved have their movement speed reduced by 80% for 1 second.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			}]
 		},
 		{
@@ -166,31 +166,31 @@
 				"required-level": 12,
 				"name": "Deafening Crash",
 				"description": "Enemies in the area have their movement speed slowed by 60% for 3 seconds after they recover from being stunned.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 18,
 				"name": "Wrenching Smash",
 				"description": "Increase the area of effect to 24 yards. Enemies are pulled closer before the strike lands.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 28,
 				"name": "Trembling Stomp",
 				"description": "Enemies in the area also take 76% weapon damage.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 40,
 				"name": "Foot of the Mountain",
 				"description": "Increase Fury gained to 30.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 54,
 				"name": "Avalanche",
 				"description": "Enemies are knocked back 12 yards and inflict 55% weapon damage to enemies in the landing area.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			}]
 		},
 		{
@@ -206,31 +206,31 @@
 				"required-level": 11,
 				"name": "Ravage",
 				"description": "Increase the range of Rend to hit all enemies within 17 yards.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 19,
 				"name": "Blood Lust",
 				"description": "Gain 9% of the damage done by Rend as Life.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 33,
 				"name": "Lacerate",
 				"description": "Increase damage to 271% weapon damage as Physical over 3 seconds.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 45,
 				"name": "Mutilate",
 				"description": "Increase bleeding duration to 5 seconds.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 56,
 				"name": "Bloodbath",
 				"description": "Enemies killed while bleeding cause all enemies within 10 yards to begin bleeding for 60% weapon damage as Physical over 3 seconds.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			}]
 		},
 		{
@@ -249,31 +249,31 @@
 				"required-level": 14,
 				"name": "Iron Impact",
 				"description": "Gain 300% additional Armor for 4 seconds after landing.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 21,
 				"name": "Launch",
 				"description": "Jump into the air with such great force that enemies within 8 yards of the origin of the jump are also slowed by 60% for 3 seconds.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 32,
 				"name": "Toppling Impact",
 				"description": "Send enemies hurtling away from where you land.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 44,
 				"name": "Call of Arreat",
 				"description": "Shockwaves burst forth from the ground increasing the radius of effect to 16 yards and pulling affected enemies towards you.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 60,
 				"name": "Death from Above",
 				"description": "Land with such force that enemies have a 100% chance to be stunned for 3 seconds.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			}]
 		},
 		{
@@ -292,31 +292,31 @@
 				"required-level": 15,
 				"name": "Grappling Hooks",
 				"description": "Throw 3 spears. Each spear will pull back the enemy that it hits.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 23,
 				"name": "Skirmish",
 				"description": "Increases Fury gained to 30.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 32,
 				"name": "Dread Spear",
 				"description": "Gain Life equal to 60% of the damage inflicted.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 39,
 				"name": "Harpoon",
 				"description": "Pierce through multiple enemies in a straight line and drag them all back.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 49,
 				"name": "Rage Flip",
 				"description": "Enemies hit with Ancient Spear are pulled in the opposite direction and damage is increased to 213% weapon damage.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			}]
 		},
 		{
@@ -332,31 +332,31 @@
 				"required-level": 17,
 				"name": "Sidearm",
 				"description": "Each strike has a 25% chance to throw a piercing axe at a nearby enemy that deals 110% weapon damage to all enemies in its path.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 22,
 				"name": "Triumph",
 				"description": "Killing an enemy with Frenzy heals you for 8% of your maximum Life over 6 seconds.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 34,
 				"name": "Vanguard",
 				"description": "While under the effects of Frenzy, you gain 15% increased movement speed.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 51,
 				"name": "Smite",
 				"description": "Add a 20% chance to call down a bolt of lightning from above, stunning your target for 1.5 seconds.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 59,
 				"name": "Maniac",
 				"description": "Each Frenzy effect also increases your damage by 4%.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			}]
 		},
 		{
@@ -372,31 +372,31 @@
 				"required-level": 18,
 				"name": "Stagger",
 				"description": "Add a 70% chance of stunning enemies for 1.5 seconds.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 25,
 				"name": "Shattered Ground",
 				"description": "Increase damage to 202% weapon damage and increases Knockback distance by 100%.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 35,
 				"name": "Rumble",
 				"description": "The ground continues to shudder after the intitial strike, damaging enemies in the area for 30% weapon damage.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 48,
 				"name": "Strength from Earth",
 				"description": "Reduce Fury cost to 15 Fury.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 57,
 				"name": "Cracking Rift",
 				"description": "Focus the seismic shockwaves along a narrow path to inflict 255% weapon damage to targets along a 42 yard path.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			}]
 		},
 		{
@@ -409,31 +409,31 @@
 				"required-level": 19,
 				"name": "Vengeance Is Mine",
 				"description": "Gain 5 Fury and heal for 8.0% of your maximum Life for each enemy hit.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 25,
 				"name": "Best Served Cold",
 				"description": "After using Revenge, your Critical Hit Chance is increased by 10% for 12 seconds.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 36,
 				"name": "Retribution",
 				"description": "Increase damage to 286% weapon damage.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 41,
 				"name": "Grudge",
 				"description": "Knocks enemies back 24 yards whenever Revenge is used.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 52,
 				"name": "Provocation",
 				"description": "Increases the chance Revenge will become active to 30% each time you are hit by an attack.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			}]
 		},
 		{
@@ -449,31 +449,31 @@
 				"required-level": 21,
 				"name": "Mighty Throw",
 				"description": "Increase thrown weapon damage to 156% weapon damage.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 25,
 				"name": "Ricochet",
 				"description": "Cause the weapon to ricochet and hit up to 3 targets within 20 yards of each other.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 33,
 				"name": "Throwing Hammer",
 				"description": "Hurl a hammer with a 75% chance to Stun the target for 2 seconds.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 42,
 				"name": "Stupefy",
 				"description": "Aim for the head, gaining a 20% chance of causing your target to be Confused and attack other enemies for 6 seconds.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 54,
 				"name": "Dread Bomb",
 				"description": "Expend all remaining Fury to throw a corpse which inflicts an additional 3% weapon damage for each point of Fury expended to all enemies within 12 yards of the target.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			}]
 		},
 		{
@@ -489,31 +489,31 @@
 				"required-level": 23,
 				"name": "Rush",
 				"description": "Increases Dodge Chance by 12% while sprinting.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 29,
 				"name": "Run Like the Wind",
 				"description": "Tornadoes rage in your wake, each one inflicting 60% weapon damage.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 38,
 				"name": "Marathon",
 				"description": "Increases the movement speed bonus to 50% for 5 seconds.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 46,
 				"name": "Gangway",
 				"description": "Slams through enemies, knocking them back and inflicting 25% weapon damage.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 53,
 				"name": "Forced March",
 				"description": "Increase the movement speed of allies within 50 yards by 20% for 3 seconds.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			}]
 		},
 		{
@@ -532,31 +532,31 @@
 				"required-level": 23,
 				"name": "Intimidate",
 				"description": "Affected enemies also have their movement speed reduced by 30%.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 28,
 				"name": "Falter",
 				"description": "Affected enemies also have their attack speed reduced by 15% for 5 seconds.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 37,
 				"name": "Grim Harvest",
 				"description": "Enemies are badly shaken and have a 15% chance to drop additional treasure.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 43,
 				"name": "Demoralize",
 				"description": "Affected enemies are also taunted to attack you for 3 seconds.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 57,
 				"name": "Terrify",
 				"description": "Enemies are severely demoralized. Each enemy has a 35% chance to flee for 2.5 seconds.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			}]
 		},
 		{
@@ -575,31 +575,31 @@
 				"required-level": 24,
 				"name": "Giant's Stride",
 				"description": "Secondary tremors follow your movement and inflict 65% weapon damage as Fire.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 29,
 				"name": "Chilling Earth",
 				"description": "Creates an icy patch, causing Earthquake's damage to turn Cold and Slow the movement of enemies by 80%.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 39,
 				"name": "The Mountain's Call",
 				"description": "Removes the Fury cost and reduces the cooldown to 105 seconds.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 50,
 				"name": "Aftershocks",
 				"description": "Secondary tremors knock enemies back and inflict 65% weapon damage as Fire.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 56,
 				"name": "Path of Fire",
 				"description": "Project secondary tremors up to 12 yards ahead of you that inflict 65% weapon damage as Fire.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			}]
 		},
 		{
@@ -615,31 +615,31 @@
 				"required-level": 24,
 				"name": "Dust Devils",
 				"description": "Generate harsh tornadoes that inflict 40% weapon damage to enemies in their path.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 29,
 				"name": "Hurricane",
 				"description": "Allows you to move at your movement speed while using Whirlwind.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 37,
 				"name": "Blood Funnel",
 				"description": "Critical Hits restore 1.0% of your maximum Life.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 44,
 				"name": "Wind Shear",
 				"description": "Gain 1 Fury for every enemy struck.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 59,
 				"name": "Volcanic Eruption",
 				"description": "Turns Whirlwind into a torrent of magma that inflicts 143% weapon damage as Fire.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			}]
 		},
 		{
@@ -658,31 +658,31 @@
 				"required-level": 27,
 				"name": "Battering Ram",
 				"description": "Increase damage at the destination to 283% weapon damage.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 33,
 				"name": "Merciless Assault",
 				"description": "Cooldown is reduced by 2 seconds for every target hit. This effect can reduce the cooldown by up to 10 seconds.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 38,
 				"name": "Stamina",
 				"description": "Generate 8 additional Fury for each target hit while charging.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 47,
 				"name": "Bull Rush",
 				"description": "Any targets who are critically hit by Furious Charge will be stunned for 2.5 seconds.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 56,
 				"name": "Dreadnought",
 				"description": "Regain 8% of your maximum Life for each target hit by Furious Charge.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			}]
 		},
 		{
@@ -698,31 +698,31 @@
 				"required-level": 26,
 				"name": "Marauder's Rage",
 				"description": "Increase damage bonus to 30%.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 31,
 				"name": "Ferocity",
 				"description": "While under the effects of Battle Rage, Critical Hits have a chance to increase the duration of Battle Rage by 2 seconds.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 38,
 				"name": "Swords to Ploughshares",
 				"description": "While under the effects of Battle Rage, Critical Hits have up to a 5% chance to cause enemies to drop additional health globes.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 46,
 				"name": "Into the Fray",
 				"description": "While under the effects of Battle Rage, Critical Hits have a chance to generate 15 additional Fury.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 54,
 				"name": "Bloodshed",
 				"description": "While under the effects of Battle Rage, Critical Hits have a chance to cause an explosion of blood dealing 20% of the damage done to all other nearby enemies.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			}]
 		},
 		{
@@ -738,31 +738,31 @@
 				"required-level": 26,
 				"name": "Bravado",
 				"description": "When activated, Knockback all enemies within 12 yards and deal 50% weapon damage to them.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 31,
 				"name": "Iron Hide",
 				"description": "Increases duration to 7 seconds.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 36,
 				"name": "Ignorance is Bliss",
 				"description": "While Ignore Pain is active, gain 20% of all damage dealt as Life.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 43,
 				"name": "Mob Rule",
 				"description": "Extend the effect to nearby allies, reducing damage taken by 65% for 5 seconds.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 58,
 				"name": "Contempt for Weakness",
 				"description": "Reflects 50% of ignored damage back at the enemy.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			}]
 		},
 		{
@@ -781,31 +781,31 @@
 				"required-level": 31,
 				"name": "The Council Rises",
 				"description": "The Ancients inflict 66% weapon damage with each attack and have 100% additional Armor.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 37,
 				"name": "Duty to the Clan",
 				"description": "Increase duration to 20 seconds.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 45,
 				"name": "Korlic's Might",
 				"description": "Korlic gains the skill Furious Charge which deals 200% of your weapon damage to all enemies in a line.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 51,
 				"name": "Madawc's Madness",
 				"description": "Madawc gains the skill Seismic Slam which deals 180% of your weapon damage to enemies in an arc.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 58,
 				"name": "Talic's Anger",
 				"description": "Talic gains the skill Leap which deals 250% of your weapon damage to enemies in the area of the leap.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			}]
 		},
 		{
@@ -821,31 +821,31 @@
 				"required-level": 29,
 				"name": "Storm of Steel",
 				"description": "Throw up to 3 axes at nearby enemies which inflict 50% weapon damage each.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 34,
 				"name": "Killing Spree",
 				"description": "Your Critical Hit Chance is increased by 10% for 6 seconds.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 42,
 				"name": "Crushing Advance",
 				"description": "Reflect 30% of incoming melee damage for 4 seconds after Overpower is activated.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 48,
 				"name": "Momentum",
 				"description": "Generate 12 Fury for each enemy hit by Overpower.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 59,
 				"name": "Revel",
 				"description": "Heal 8% of your maximum Life for every enemy hit.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			}]
 		},
 		{
@@ -864,31 +864,31 @@
 				"required-level": 32,
 				"name": "Hardened Wrath",
 				"description": "Increases the Armor bonus to 40%.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 35,
 				"name": "Charge!",
 				"description": "Increases Fury gained to 60.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 41,
 				"name": "Invigorate",
 				"description": "Increases maximum Life by 10% and regenerates 310 Life per second while affected by War Cry.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 49,
 				"name": "Veteran's Warning",
 				"description": "War Cry also grants a 15% bonus to Dodge Chance.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 60,
 				"name": "Impunity",
 				"description": "All of your resistances are increased by 50% while affected by War Cry.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			}]
 		},
 		{
@@ -907,31 +907,31 @@
 				"required-level": 36,
 				"name": "Arreat's Wail",
 				"description": "Activating Wrath of the Berserker knocks back all enemies within 12 yards and deals 430% weapon damage to them.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 40,
 				"name": "Insanity",
 				"description": "While active your damage is also increased by 100%.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 46,
 				"name": "Slaughter",
 				"description": "While Wrath of the Berserker is active, Critical Hits have a chance to cause an eruption of blood dealing 155% weapon damage to enemies within 15 yards.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 52,
 				"name": "Striding Giant",
 				"description": "Increases bonus to Dodge Chance to 60%.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 60,
 				"name": "Thrive on Chaos",
 				"description": "Every 25 Fury gained while Wrath of the Berserker is active adds 1 second to the duration of the effect.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			}]
 		}],
 		"passive-skills": [{
@@ -1088,31 +1088,31 @@
 				"required-level": 6,
 				"name": "Puncturing Arrow",
 				"description": "Increase the chance for the arrow to pierce to 50%.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 17,
 				"name": "Cinder Arrow",
 				"description": "Light the arrow on fire, dealing 35% additional weapon damage as Fire over 3 seconds.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 26,
 				"name": "Shatter Shot",
 				"description": "If the arrow successfully pierces the first target, the arrow splits into 3 arrows.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 42,
 				"name": "Devouring Arrow",
 				"description": "Each consecutive pierce increases the damage of the arrow by 70%.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 52,
 				"name": "Spray of Teeth",
 				"description": "Successful Critical Hits cause a burst of bone to explode from the target, dealing 50% weapon damage to enemies in that area.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			}]
 		},
 		{
@@ -1128,31 +1128,31 @@
 				"required-level": 7,
 				"name": "Impact",
 				"description": "Impale has a 65% chance to knock the target back and Stun it for 1.5 seconds.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 15,
 				"name": "Chemical Burn",
 				"description": "Your target will also Bleed for 125% weapon damage as Physical over 2 seconds.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 28,
 				"name": "Overpenetration",
 				"description": "The knife will pierce through all enemies in a straight line.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 53,
 				"name": "Awareness",
 				"description": "After the initial throw, release multiple blades centered on you, dealing 75% weapon damage to all enemies within 10 yards.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 58,
 				"name": "Grievous Wounds",
 				"description": "Critical Hits cause 100% additional damage.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			}]
 		},
 		{
@@ -1168,31 +1168,31 @@
 				"required-level": 9,
 				"name": "Chain Gang",
 				"description": "Hit up to 4 targets.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 18,
 				"name": "Shock Collar",
 				"description": "Strike targets with electrified chains that do an additional 18% weapon damage per second as Lightning for 2 seconds.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 34,
 				"name": "Heavy Burden",
 				"description": "Increase the movement slow duration to 4 seconds.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 47,
 				"name": "Justice is Served",
 				"description": "Increase the Hatred generated to 6 per shot.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 54,
 				"name": "Bounty Hunter",
 				"description": "Gain 6% of the damage dealt as Life.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			}]
 		},
 		{
@@ -1208,31 +1208,31 @@
 				"required-level": 12,
 				"name": "Hooked Spines",
 				"description": "Increase the slowing amount to 80%.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 18,
 				"name": "Torturous Ground",
 				"description": "When the trap is sprung, all enemies in the area are immobilized for 2 seconds.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 28,
 				"name": "Jagged Spikes",
 				"description": "Enemies in the area also take 45% weapon damage.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 41,
 				"name": "Carved Stakes",
 				"description": "Reduces the cost of Caltrops to 4 Discipline.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 54,
 				"name": "Bait the Trap",
 				"description": "Become empowered while standing in the area of effect, gaining an additional 10% Critical Hit Chance with all attacks.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			}]
 		},
 		{
@@ -1248,31 +1248,31 @@
 				"required-level": 11,
 				"name": "Withering Fire",
 				"description": "Reduces the initial Hatred cost to 5, and ignites your arrows, causing them to deal Fire damage.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 19,
 				"name": "Web Shot",
 				"description": "Slows the movement of affected targets by 80% for 1 second.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 32,
 				"name": "Fire Support",
 				"description": "While channeling Rapid Fire, launch 3 homing rockets every second. Each rocket deals 35% weapon damage as Physical to nearby targets.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 45,
 				"name": "High Velocity",
 				"description": "Fire poison arrows that have a 40% chance to pierce through enemies.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 56,
 				"name": "Bombardment",
 				"description": "Rapidly fire grenades that explode for 276% weapon damage as Fire to all enemies within a 4 yard radius.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			}]
 		},
 		{
@@ -1288,31 +1288,31 @@
 				"required-level": 14,
 				"name": "Displacement",
 				"description": "Gain 35% movement speed when activated.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 23,
 				"name": "Lingering Fog",
 				"description": "Increase the duration of the effect to 3 seconds.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 33,
 				"name": "Breathe Deep",
 				"description": "While invisible you gain 6 Hatred per second.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 44,
 				"name": "Special Recipe",
 				"description": "Reduce the cost to 12 Discipline.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 59,
 				"name": "Choking Gas",
 				"description": "Leave behind a cloud of gas that deals 70% weapon damage per second as Physical to enemies in the area for 5 seconds.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			}]
 		},
 		{
@@ -1328,31 +1328,31 @@
 				"required-level": 16,
 				"name": "Action Shot",
 				"description": "As you travel, shoot arrows for 75% weapon damage at nearby targets.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 23,
 				"name": "Rattling Roll",
 				"description": "All enemies within 8 yards of your destination are knocked back and stunned for 1.5 seconds.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 33,
 				"name": "Tumble",
 				"description": "After using Vault, your next Vault within 6 seconds has its Discipline cost reduced by 50%.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 38,
 				"name": "Acrobatics",
 				"description": "Removes the Discipline cost but adds a 15 second cooldown.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 49,
 				"name": "Trail of Cinders",
 				"description": "Ignite with fire dealing 100% weapon damage as Fire to everything along your path.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			}]
 		},
 		{
@@ -1368,31 +1368,31 @@
 				"required-level": 14,
 				"name": "Volatile Explosives",
 				"description": "Increase the explosion radius to 14 yards.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 24,
 				"name": "Thunder Ball",
 				"description": "When the bola explodes, it deals 130% weapon damage as Lightning and has a 35% chance to Stun the primary target for 1.5 seconds.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 37,
 				"name": "Acid Strike",
 				"description": "Shoot 3 bolas that each deal 130% weapon damage as Poison. The bolas no longer explode for area damage to nearby targets.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 51,
 				"name": "Bitter Pill",
 				"description": "When the bola explodes, you have a 15% chance to gain 2 Discipline.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 57,
 				"name": "Imminent Doom",
 				"description": "Augment the bola to deal 182% weapon damage as Arcane to the target and 154% weapon damage as Arcane to all other targets within 7 yards, but increases the explosion delay to 2 seconds.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			}]
 		},
 		{
@@ -1408,31 +1408,31 @@
 				"required-level": 18,
 				"name": "Twin Chakrams",
 				"description": "A second Chakram mirrors the first. Each Chakram deals 101% weapon damage as Physical.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 26,
 				"name": "Serpentine",
 				"description": "The Chakram follows a slow curve, dealing 203% weapon damage as Poison to enemies along the path.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 34,
 				"name": "Razor Disk",
 				"description": "The Chakram spirals out from the targeted location dealing 165% weapon damage as Arcane to enemies along the path.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 48,
 				"name": "Boomerang",
 				"description": "The Chakram path turns into a loop, dealing 188% weapon damage as Lightning to enemies along the path.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 57,
 				"name": "Shuriken Cloud",
 				"description": "Surround yourself with spinning Chakrams for 120 seconds, dealing 30% weapon damage per second as Physical to nearby enemies.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			}]
 		},
 		{
@@ -1448,31 +1448,31 @@
 				"required-level": 19,
 				"name": "Invigoration",
 				"description": "Increase maximum Discipline by 10 for 5 seconds when using Preparation.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 25,
 				"name": "Punishment",
 				"description": "Restore all Hatred for 25 Discipline. Preparation has no cooldown.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 35,
 				"name": "Battle Scars",
 				"description": "Gain 60% Life after using Preparation.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 44,
 				"name": "Focused Mind",
 				"description": "Gain 45 Discipline over 15 seconds instead of restoring it immediately.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 52,
 				"name": "Backup Plan",
 				"description": "There is a 30% chance that Preparation's cooldown will not be triggered.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			}]
 		},
 		{
@@ -1481,38 +1481,38 @@
 			"icon": "demonhunter_evasivefire",
 			"type": "Devices",
 			"generate": 4,
-			"generate-units": "",
+			"generate-units": "Discipline",
 			"generate-description": "",
 			"description": " Shoot for 125% weapon damage. If an enemy is in front of you at close range, you will also backflip away 15 yards.",
 			"runes": [{
 				"required-level": 21,
 				"name": "Shrapnel",
 				"description": "Shoot exploding bolts that also deal 30% weapon damage as Fire to all enemies within 6 yards of the primary target.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 26,
 				"name": "Parting Gift",
 				"description": "Whenever a backflip is triggered, leave a poison bomb behind that explodes for 45% weapon damage as Poison in a 12 yard radius after 1.2 seconds. Turns Evasive Fire into Poison damage.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 34,
 				"name": "Covering Fire",
 				"description": "Shoot a spread of bolts that hit up to 3 targets for 125% weapon damage each.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 42,
 				"name": "Displace",
 				"description": "Increase the distance of the backflip to 30 yards.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 53,
 				"name": "Surge",
 				"description": "Reduces the cost of the backflip to 2 Discipline. Turns Evasive Fire into Lightning damage.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			}]
 		},
 		{
@@ -1528,31 +1528,31 @@
 				"required-level": 22,
 				"name": "Tinkerer",
 				"description": "Increases Hatred generation to 6 Hatred.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 32,
 				"name": "Cluster Grenades",
 				"description": "Throw cluster grenades that deal 112% weapon damage as Fire over an 8 yard radius.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 40,
 				"name": "Fire Bomb",
 				"description": "Throw a single grenade that deals 123% weapon damage as Fire.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 48,
 				"name": "Stun Grenades",
 				"description": "Hurl grenades that have a 25% chance to Stun enemies for 2 seconds.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 60,
 				"name": "Gas Grenades",
 				"description": "Throw gas grenades that explode for 95% weapon damage as Poison and leave a cloud that deals an additional 25% weapon damage per second as Poison for 3 seconds to enemies who stand in the area.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			}]
 		},
 		{
@@ -1568,31 +1568,31 @@
 				"required-level": 21,
 				"name": "Night Bane",
 				"description": "Gain an additional 4 Hatred per second while Shadow Power is active.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 29,
 				"name": "Blood Moon",
 				"description": "Increases damage done as Life to 30%.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 37,
 				"name": "Well of Darkness",
 				"description": "Decreases the Discipline cost to 12.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 51,
 				"name": "Gloom",
 				"description": "Reduce incoming damage by 65% while Shadow Power is active.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 58,
 				"name": "Shadow Glide",
 				"description": "Gain 40% bonus to movement speed while Shadow Power is active.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			}]
 		},
 		{
@@ -1608,31 +1608,31 @@
 				"required-level": 22,
 				"name": "Spider Companion",
 				"description": "Summon a spider instead of a raven. The spider's attacks also Slow the movement of enemies by 60% for 2 seconds.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 29,
 				"name": "Bat Companion",
 				"description": "Summon a bat instead of a raven. The bat grants you 3 Hatred per second.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 41,
 				"name": "Boar Companion",
 				"description": "Summon a boar instead of a raven. The boar's attacks hit all enemies in an area.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 46,
 				"name": "Ferret Companion",
 				"description": "Summon ferrets instead of a raven. The ferrets collect gold for you and increase gold found on monsters by 10%.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 59,
 				"name": "Wolf Companion",
 				"description": "Summon a wolf for 25 seconds instead of a raven. The wolf attacks for 60% of your weapon damage as Physical.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			}]
 		},
 		{
@@ -1651,31 +1651,31 @@
 				"required-level": 23,
 				"name": "Crippling Razors",
 				"description": "Increase the amount enemies are slowed to 80% for 2 seconds.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 32,
 				"name": "Retaliate",
 				"description": "Surround yourself with whirling blades that deal 464% weapon damage to all enemies if you are struck in the next 10 seconds.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 38,
 				"name": "Hail of Knives",
 				"description": "Increase the radius to damage all enemies within 20 yards.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 44,
 				"name": "Fan of Daggers",
 				"description": "Imbue your knives with a 65% chance to Stun enemies for 2 seconds.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 59,
 				"name": "Assassin's Knives",
 				"description": "Throw long-range knives that deal 70% weapon damage to 5 additional targets.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			}]
 		},
 		{
@@ -1691,31 +1691,31 @@
 				"required-level": 27,
 				"name": "Bandolier",
 				"description": "Increase the maximum number of traps that can be out simultaneously to 6.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 30,
 				"name": "Sticky Trap",
 				"description": "Plant a bomb on an enemy rather than on the ground. If the target dies within 30 seconds, the bomb explodes dealing 404% weapon damage to all enemies within 8 yards.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 39,
 				"name": "Long Fuse",
 				"description": "Increases the arming time to 2 seconds but increases damage to 371% weapon damage.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 46,
 				"name": "Lightning Rod",
 				"description": "When the trap is triggered it releases a pulse of lightning that will bounce to up to 3 enemies for 275% weapon damage as Lightning.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 55,
 				"name": "Scatter",
 				"description": "Simultaneously place all 3 traps.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			}]
 		},
 		{
@@ -1731,31 +1731,31 @@
 				"required-level": 24,
 				"name": "Equilibrium",
 				"description": "Increases your attack speed by 20% when using Strafe.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 29,
 				"name": "Drifting Shadow",
 				"description": "Movement speed increased to 100% of normal running speed while strafing.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 37,
 				"name": "Stinging Steel",
 				"description": "Throw out knives rather than arrows that do an extra 100% damage on successful Critical Hits.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 50,
 				"name": "Rocket Storm",
 				"description": "In addition to regular firing, fire off homing rockets for 60% weapon damage as Fire.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 56,
 				"name": "Demolition",
 				"description": "Throw out bouncy grenades that explode for 144% weapon damage to targets within 9 yards.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			}]
 		},
 		{
@@ -1771,31 +1771,31 @@
 				"required-level": 24,
 				"name": "Ball Lightning",
 				"description": "Fire a slow-moving arrow that electrocutes enemies along its path for 155% weapon damage as Lightning.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 29,
 				"name": "Frost Arrow",
 				"description": "Fire a frost arrow that splits into multiple arrows after hitting its target, dealing 170% weapon damage as Cold. Affected enemies have their movement speed slowed by 60% for 1 second.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 36,
 				"name": "Screaming Skull",
 				"description": "Grants a 40% chance to shoot a skull that will Fear affected enemies for 1.5 seconds.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 43,
 				"name": "Lightning Bolts",
 				"description": "Fire electrified bolts that Stun enemies for 1.5 seconds on a Critical Hit.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 59,
 				"name": "Nether Tentacles",
 				"description": "Shadow tentacles deal 155% weapon damage to enemies along its path and return 3% of damage dealt as Life for you.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			}]
 		},
 		{
@@ -1811,31 +1811,31 @@
 				"required-level": 27,
 				"name": "Contagion",
 				"description": "When the target is killed, the ability spreads to 2 other nearby targets. This effect can chain repeatedly.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 31,
 				"name": "Valley of Death",
 				"description": "Mark an area on the ground 12 yards wide for 15 seconds. Enemies in the area take 12% additional damage.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 39,
 				"name": "Grim Reaper",
 				"description": "An additional 12% of damage done to the target is also divided among all enemies within 20 yards.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 48,
 				"name": "Mortal Enemy",
 				"description": "Attacks you make against the marked target generate 3 Hatred.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 60,
 				"name": "Death Toll",
 				"description": "Heal attackers for 1% of the damage done to the marked target.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			}]
 		},
 		{
@@ -1851,31 +1851,31 @@
 				"required-level": 26,
 				"name": "Fire at Will",
 				"description": "Cost reduced to 20 Hatred. Deals 165% weapon damage as Lightning.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 31,
 				"name": "Burst Fire",
 				"description": "Every time you fire, generate a shock pulse that damages nearby enemies for 65% weapon damage as Arcane.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 39,
 				"name": "Suppression Fire",
 				"description": "Every enemy hit grants 1 Discipline.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 46,
 				"name": "Full Broadside",
 				"description": "Increase the damage of Multishot to 214% weapon damage.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 55,
 				"name": "Arsenal",
 				"description": "Every use also fires 3 rockets at nearby enemies that deal 60% weapon damage as Fire each.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			}]
 		},
 		{
@@ -1891,31 +1891,31 @@
 				"required-level": 28,
 				"name": "Spitfire Turret",
 				"description": "The turret will also fire homing rockets aimed at random nearby targets for 8% weapon damage as Fire.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 36,
 				"name": "Vigilant Watcher",
 				"description": "Increases duration of the turret to 40 seconds.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 45,
 				"name": "Chain of Torment",
 				"description": "Create a tether between you and the Sentry that does 40% weapon damage every second to every enemy it touches.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 52,
 				"name": "Aid Station",
 				"description": "Heals nearby allies for 1.0% of their maximum Life per second.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 60,
 				"name": "Guardian Turret",
 				"description": "The turret also creates a shield that reduces damage taken by allies by 15%.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			}]
 		},
 		{
@@ -1931,31 +1931,31 @@
 				"required-level": 33,
 				"name": "Dazzling Arrow",
 				"description": "Enemies hit by grenades have a 55% chance to be stunned for 2 seconds.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 36,
 				"name": "Shooting Stars",
 				"description": "Instead of releasing grenades, shoots up to 3 rockets at nearby enemies dealing 175% weapon damage as Physical each.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 41,
 				"name": "Maelstrom",
 				"description": "Instead of releasing grenades, the cluster releases shadow energy that deals 145% weapon damage as Physical to nearby enemies. You will gain 4% of the damage done as Life.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 49,
 				"name": "Cluster Bombs",
 				"description": "Launch the cluster through the air, dropping bombs in a straight line that each explode for 230% weapon damage as Fire.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 58,
 				"name": "Loaded for Bear",
 				"description": "Increases the damage of the explosion at the impact location to 290% weapon damage as Fire.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			}]
 		},
 		{
@@ -1971,31 +1971,31 @@
 				"required-level": 35,
 				"name": "Dark Cloud",
 				"description": "Launch a massive volley of guided arrows that rain down on enemies for 34% weapon damage for 12 seconds.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 40,
 				"name": "Beastly Bombs",
 				"description": "Summon 20 Shadow Beasts to drop bombs on enemies, dealing 125% weapon damage each.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 47,
 				"name": "Stampede",
 				"description": "Summon a wave of 10 Shadow Beasts to tear across the ground, knocking back enemies and dealing 75% weapon damage each.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 54,
 				"name": "Anathema",
 				"description": "Summon a Shadow Beast that drops grenades from the sky for 10 seconds dealing 115% weapon damage.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 60,
 				"name": "Flying Strike",
 				"description": "A group of 8 Shadow Beasts plummet from the sky at a targeted location dealing 60% weapon damage each and stunning enemies for 2 seconds.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			}]
 		}],
 		"passive-skills": [{
@@ -2146,31 +2146,31 @@
 				"required-level": 6,
 				"name": "Thunderclap",
 				"description": "Teleport to the target and release an electric shockwave with every punch that hits all enemies within 6 yards of your primary target for 35% weapon damage as Lightning.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 14,
 				"name": "Lightning Flash",
 				"description": "Increases your chance to Dodge by 16% for 2 seconds.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 30,
 				"name": "Static Charge",
 				"description": "Your primary target is charged with static electricity for 5 seconds and takes 37% weapon damage as Lightning when you attack other enemies with Fists of Thunder.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 42,
 				"name": "Quickening",
 				"description": "Critical Hits generate an additional 15 Spirit.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 52,
 				"name": "Bounding Light",
 				"description": "Every third punch releases chain lightning instead of knocking enemies back. Each lightning strike inflicts 73% weapon damage as Lightning.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			}]
 		},
 		{
@@ -2186,31 +2186,31 @@
 				"required-level": 7,
 				"name": "Vulture Claw Kick",
 				"description": "Release a torrent of fire that burns nearby enemies for 220% weapon damage as Fire and causes Knockback.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 15,
 				"name": "Sweeping Armada",
 				"description": "Increases Knockback distance by 150% and slows the movement speed of struck enemies by 60% for 2 seconds.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 28,
 				"name": "Spinning Flame Kick",
 				"description": "Hurl a column of fire that burns through enemies, causing 240% weapon damage as Fire to each enemy it strikes.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 38,
 				"name": "Scorpion Sting",
 				"description": "Enemies have a 50% chance to be stunned for 1.5 seconds instead of being knocked back.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 52,
 				"name": "Hand of Ytar",
 				"description": "Attack enemies at long range, slowing the movement speed of affected targets by 80% for 2 seconds.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			}]
 		},
 		{
@@ -2226,31 +2226,31 @@
 				"required-level": 9,
 				"name": "Piercing Trident",
 				"description": "Increases the area of effect of the second and third strikes.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 18,
 				"name": "Keen Eye",
 				"description": "The third strike increases your Armor by 50% for 4 seconds.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 34,
 				"name": "Scattered Blows",
 				"description": "The third strike is replaced with an attack that will hit up to 6 nearby enemies within 15 yards for 170% weapon damage as Lightning.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 47,
 				"name": "Strike from Beyond",
 				"description": "Critical Hits generate an additional 10 Spirit.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 54,
 				"name": "Foresight",
 				"description": "The third strike increases the damage of all attacks by 18% for 30 seconds.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			}]
 		},
 		{
@@ -2269,31 +2269,31 @@
 				"required-level": 12,
 				"name": "Self Reflection",
 				"description": "Increases the duration enemies are blinded to 4 seconds.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 19,
 				"name": "Blinded and Confused",
 				"description": "Blinded enemies have a 25% chance to attack each other.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 28,
 				"name": "Blinding Echo",
 				"description": "6 seconds after using Blinding Flash, a second flash of light will blind enemies within 20 yards for 0.5 seconds.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 41,
 				"name": "Searing Light",
 				"description": "Increases the chance elite enemies will miss attacks to 60%.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 55,
 				"name": "Faith in the Light",
 				"description": "For 3 seconds after using Blinding Flash, all of your attacks are empowered to deal 30% additional weapon damage as Holy.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			}]
 		},
 		{
@@ -2309,31 +2309,31 @@
 				"required-level": 11,
 				"name": "Northern Breeze",
 				"description": "Reduces the channeling cost of Tempest Rush to 8 Spirit.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 20,
 				"name": "Tailwind",
 				"description": "Increases the movement speed of Tempest Rush by 25%.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 33,
 				"name": "Flurry",
 				"description": "Increases the potency of the hobbling effect, slowing enemy movement by 80%.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 45,
 				"name": "Slipstream",
 				"description": "Reduces damage taken while running by 25%.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 56,
 				"name": "Bluster",
 				"description": "Enemies knocked back have their damage reduced by 20% for the duration of the effect.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			}]
 		},
 		{
@@ -2352,31 +2352,31 @@
 				"required-level": 14,
 				"name": "Circle of Scorn",
 				"description": "Breath of Heaven also sears enemies for 80% weapon damage as Holy.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 21,
 				"name": "Circle of Life",
 				"description": "Increases the healing power of Breath of Heaven to 8063 - 9675 Life.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 32,
 				"name": "Blazing Wrath",
 				"description": "Breath of Heaven increases the damage of your attacks by 15% for 45 seconds.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 44,
 				"name": "Infused with Light",
 				"description": "Gain 6 additional Spirit from Spirit generating attacks for 5 seconds after using Breath of Heaven.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 59,
 				"name": "Penitent Flame",
 				"description": "Enemies exposed to Breath of Heaven run away in Fear for 1.5 seconds.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			}]
 		},
 		{
@@ -2392,31 +2392,31 @@
 				"required-level": 15,
 				"name": "Way of the Falling Star",
 				"description": "After striking an enemy, your movement speed is increased 25% for 3 seconds.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 23,
 				"name": "Flying Side Kick",
 				"description": "Perform a flying kick that has a 60% chance to Stun your target for 1.5 seconds.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 32,
 				"name": "Quicksilver",
 				"description": "Reduces the cost of Dashing Strike to 10 Spirit.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 39,
 				"name": "Soaring Skull",
 				"description": "Launch yourself through the air and slow all enemies along your path by 60% for 2 seconds.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 49,
 				"name": "Blinding Speed",
 				"description": "Receive a 20% increased chance to Dodge for 3 seconds.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			}]
 		},
 		{
@@ -2432,31 +2432,31 @@
 				"required-level": 17,
 				"name": "Mangle",
 				"description": "Increase damage to 143% weapon damage.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 26,
 				"name": "Concussion",
 				"description": "Enemies hit by Crippling Wave inflict 20% less damage for 3 seconds.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 36,
 				"name": "Rising Tide",
 				"description": "Critical Hits generate an additional 5 Spirit.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 51,
 				"name": "Tsunami",
 				"description": "The range of Crippling Wave's third strike is increased to 17 yards and the effect of the movement speed reduction is increased to 60%.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 57,
 				"name": "Breaking Wave",
 				"description": "Enemies hit by Crippling Wave take 10% additional damage from all attacks for 3 seconds.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			}]
 		},
 		{
@@ -2472,31 +2472,31 @@
 				"required-level": 18,
 				"name": "Wall of Light",
 				"description": "Increases damage of the initial strike to 312% weapon damage as Holy.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 25,
 				"name": "Explosive Light",
 				"description": "Release bursts of energy that deal 285% weapon damage as Holy to nearby enemies.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 35,
 				"name": "Empowered Wave",
 				"description": "Reduces the cost of Wave of Light to 40 Spirit.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 49,
 				"name": "Blinding Light",
 				"description": "Critical Hits Stun enemies for 3 seconds.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 57,
 				"name": "Pillar of the Ancients",
 				"description": "Summon an ancient pillar that deals 210% weapon damage followed by an additional 210% weapon damage after 2 seconds.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			}]
 		},
 		{
@@ -2512,31 +2512,31 @@
 				"required-level": 18,
 				"name": "The Flesh is Weak",
 				"description": "Also causes the target to take 12% additional damage for 3 seconds.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 25,
 				"name": "Strong Spirit",
 				"description": "If the target explodes after bleeding, gain 5 Spirit for each enemy caught in the blast.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 36,
 				"name": "Creeping Demise",
 				"description": "Also reduces your target's movement speed by 80%.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 44,
 				"name": "Impending Doom",
 				"description": "Increases the duration of the Bleed effect to deal 220% weapon damage as Physical over 6 seconds.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 51,
 				"name": "Essence Burn",
 				"description": "Instead of bleeding, the target will burn for 250% weapon damage as Fire over 3 seconds. If the target dies while burning, it explodes causing all nearby enemies to burn for 60% weapon damage as Fire over 3 seconds. This effect can happen multiple times.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			}]
 		},
 		{
@@ -2552,31 +2552,31 @@
 				"required-level": 21,
 				"name": "Eye of the Storm",
 				"description": "Reduces the Spirit cost of Cyclone Strike to 30 Spirit.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 25,
 				"name": "Implosion",
 				"description": "Increases the distance enemies will be pulled towards you to 34 yards.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 34,
 				"name": "Sunburst",
 				"description": "Changes the blast into an explosion of fire that has a 35% chance to Fear enemies for 1.5 seconds.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 41,
 				"name": "Wall of Wind",
 				"description": "After using Cyclone Strike, gain a 20% chance to dodge attacks for 3 seconds.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 55,
 				"name": "Soothing Breeze",
 				"description": "Cyclone Strike heals you and all allies within 24 yards for 1240 Life.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			}]
 		},
 		{
@@ -2592,31 +2592,31 @@
 				"required-level": 24,
 				"name": "Hands of Lightning",
 				"description": "Increases the number of hits in the second strike from 7 to 10.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 32,
 				"name": "Blazing Fists",
 				"description": "Critical Hits increase your attack speed and movement speed by 5% for 5 seconds. This effect can stack up to 3 times.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 40,
 				"name": "Fists of Fury",
 				"description": "Affected targets will take an additional 10% weapon damage per second as Holy for 5 seconds. Also adds a short dash to the first strike.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 48,
 				"name": "Spirited Salvo",
 				"description": "Every activation of the skill has a 15% chance to generate 15 additional Spirit.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 60,
 				"name": "Windforce Flurry",
 				"description": "The third strike generates a wave of wind that deals 250% weapon damage as Physical to enemies directly ahead of you.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			}]
 		},
 		{
@@ -2635,31 +2635,31 @@
 				"required-level": 23,
 				"name": "Peaceful Repose",
 				"description": "When activated, Serenity heals you for 6202 - 7752 Life.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 29,
 				"name": "Reap What Is Sown",
 				"description": "When Serenity ends, the shield explodes, dealing 30% of the damage absorbed by Serenity as Holy damage to enemies within 20 yards. The damage to each enemy cannot exceed 100% of your maximum Life.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 39,
 				"name": "Tranquility",
 				"description": "Extends the protective shield to allies within 45 yards for 2 seconds, and makes them immune to control impairing effects like Slow and Frozen.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 47,
 				"name": "Ascension",
 				"description": "Increases the duration of Serenity to 4 seconds.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 54,
 				"name": "Instant Karma",
 				"description": "While Serenity is active, 50% of all projectiles and melee attacks are reflected back at the attacker.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			}]
 		},
 		{
@@ -2678,31 +2678,31 @@
 				"required-level": 23,
 				"name": "Sudden Assault",
 				"description": "Teleport to the target, increasing damage done to 1007% weapon damage over 7 strikes.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 29,
 				"name": "Several-Sided Strike",
 				"description": "Increases the number of strikes to 9.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 37,
 				"name": "Pandemonium",
 				"description": "Enemies hit by Seven-Sided Strike have a 25% chance to be stunned for 7 seconds by each hit.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 43,
 				"name": "Sustained Attack",
 				"description": "Reduces the cooldown of Seven-Sided Strike by 7 seconds.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 60,
 				"name": "Fulminating Onslaught",
 				"description": "Each strike explodes, dealing 111% weapon damage as Holy in a 7 yard radius around the target.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			}]
 		},
 		{
@@ -2718,31 +2718,31 @@
 				"required-level": 24,
 				"name": "Hard Target",
 				"description": "Mantra of Evasion also increases Armor by 20%.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 33,
 				"name": "Divine Protection",
 				"description": "Each target can be protected at most once every 90 seconds by this effect.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 40,
 				"name": "Wind through the Reeds",
 				"description": "Mantra of Evasion also increases movement speed by 5%.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 50,
 				"name": "Perseverance",
 				"description": "Mantra of Evasion also reduces the duration of all control impairing effects like Slow or Frozen by 20%.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 58,
 				"name": "Backlash",
 				"description": "Successfully dodging an attack has a chance to create a burst of flame dealing 35% weapon damage as Fire to all nearby enemies.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			}]
 		},
 		{
@@ -2758,31 +2758,31 @@
 				"required-level": 28,
 				"name": "Retaliation",
 				"description": "Increases the amount of damage reflected by the Mantra to 60%. The Mantra will now reflect ranged damage as well as melee damage.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 36,
 				"name": "Transgression",
 				"description": "Increases attack speed for you and your allies by 8%.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 41,
 				"name": "Indignation",
 				"description": "When taking damage from the Mantra of Retribution, enemies have a 10% chance to be stunned for 2 seconds.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 56,
 				"name": "Against All Odds",
 				"description": "When reflecting damage done to you, Mantra of Retribution has a chance to restore 3 Spirit.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 59,
 				"name": "Collateral Damage",
 				"description": "An attacker that is damaged by Mantra of Retribution has a 30% chance to suffer a feedback blast, dealing 45% weapon damage as Holy to itself and nearby enemies.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			}]
 		},
 		{
@@ -2798,31 +2798,31 @@
 				"required-level": 27,
 				"name": "Master of Wind",
 				"description": "Increases the duration of the vortex to 10 seconds.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 33,
 				"name": "Blade Storm",
 				"description": "Intensify the vortex, increasing the damage per stack to 20% weapon damage. This increases the damage with 3 stacks to 60% weapon damage.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 38,
 				"name": "Fire Storm",
 				"description": "Increases the radius of the vortex to 14 yards and changes the damage dealt to Fire.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 46,
 				"name": "Inner Storm",
 				"description": "As long as your vortex is at the maximum stack count, you gain 3 Spirit per second.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 56,
 				"name": "Cyclone",
 				"description": "While your vortex is at the maximum stack count, Critical Hits have a chance to spawn a lightning tornado that periodically electrocutes nearby enemies for 20% weapon damage as Lightning. Each spawned lightning tornado lasts 3 seconds.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			}]
 		},
 		{
@@ -2841,31 +2841,31 @@
 				"required-level": 26,
 				"name": "Safe Haven",
 				"description": "You and your allies standing in the area of effect of Inner Sanctuary regenerate 1550 Life per second.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 31,
 				"name": "Sanctified Ground",
 				"description": "When Inner Sanctuary expires, it becomes sanctified ground for 6 seconds, slowing the movement of all enemies that move through it by 60%.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 37,
 				"name": "Consecration",
 				"description": "Increases the duration of Inner Sanctuary to 7 seconds.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 43,
 				"name": "Circle of Protection",
 				"description": "You and your allies standing in the area of effect of Inner Sanctuary take 35% less damage.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 58,
 				"name": "Forbidden Palace",
 				"description": "You and your allies standing in the area of effect of Inner Sanctuary deal 10% additional damage.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			}]
 		},
 		{
@@ -2881,31 +2881,31 @@
 				"required-level": 27,
 				"name": "Water Ally",
 				"description": "Imbue the ally with the essence of water. The ally gains the ability to perform a wave attack that deals 120% of your weapon damage as Physical and slows the movement of affected targets by 30% for 2 seconds.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 31,
 				"name": "Fire Ally",
 				"description": "Imbue the ally with the essence of fire. The ally gains the ability to unleash a flaming kick for 80% weapon damage as Fire plus an additional 40% of your weapon damage per second as Fire for 2 seconds to all enemies in a straight line.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 39,
 				"name": "Air Ally",
 				"description": "Imbue the ally with the essence of air. Every attack made by the ally has a 2% chance to generate 100 Spirit for you. In addition, the ally is surrounded in a torrent of wind that deals 10% of your weapon damage per second as Physical to all nearby enemies.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 46,
 				"name": "Eternal Ally",
 				"description": "Imbue the ally with the essence of life. When the ally dies, it has a 50% chance to be reborn after 5 seconds. In addition, the physical damage of the ally's basic attack is increased to 44% of your weapon damage per swing.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 53,
 				"name": "Earth Ally",
 				"description": "Imbue the ally with the essence of earth. Maximum Life for you and the ally is increased by 10%. The ally also gains the ability to create a wave of earth, dealing 60% of your weapon damage as Physical to a single enemy and forcing that enemy to attack the ally for 3 seconds.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			}]
 		},
 		{
@@ -2921,31 +2921,31 @@
 				"required-level": 31,
 				"name": "Sustenance",
 				"description": "Increases the Life regeneration granted by Mantra of Healing to 620 Life per second.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 38,
 				"name": "Circular Breathing",
 				"description": "Mantra of Healing also regenerates 3 Spirit per second.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 42,
 				"name": "Boon of Protection",
 				"description": "Mantra of Healing shrouds you and your allies with a mystical shield for 2 seconds that absorbs up to 15% of each target's maximum Life in damage.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 48,
 				"name": "Heavenly Body",
 				"description": "Mantra of Healing also increases Vitality by 10%.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 53,
 				"name": "Time of Need",
 				"description": "Mantra of Healing also increases resistances to all damage types by 20%.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			}]
 		},
 		{
@@ -2961,31 +2961,31 @@
 				"required-level": 35,
 				"name": "Overawe",
 				"description": "Increases the strength of Mantra of Conviction so that enemies take 24% additional damage and 48% for the first 3 seconds.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 44,
 				"name": "Intimidation",
 				"description": "Enemies affected by Mantra of Conviction deal 10% less damage.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 47,
 				"name": "Dishearten",
 				"description": "Slows the movement of enemies within 20 yards by 30%.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 55,
 				"name": "Reclamation",
 				"description": "You and your allies have a 30% chance to be healed for 279 - 341 Life when using melee attacks on an enemy under the effects of Mantra of Conviction.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 60,
 				"name": "Submission",
 				"description": "Enemies affected by Mantra of Conviction take 12% weapon damage per second as Holy.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			}]
 		}],
 		"passive-skills": [{
@@ -3130,31 +3130,31 @@
 				"required-level": 6,
 				"name": "Splinters",
 				"description": "Shoot 3 Poison Darts that deal 60% weapon damage as Poison each.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 13,
 				"name": "Numbing Dart",
 				"description": "Toxins in the Poison Dart reduce the target's movement speed by 60% for 2 seconds.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 25,
 				"name": "Spined Dart",
 				"description": "Gain 24 Mana every time a Poison Dart hits an enemy.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 43,
 				"name": "Flaming Dart",
 				"description": "Ignite the dart so that it deals 160% weapon damage as Fire at once.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 52,
 				"name": "Snake to the Face",
 				"description": "Transform your Poison Dart into a snake that has a 30% chance to Stun the enemy for 1.5 seconds.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			}]
 		},
 		{
@@ -3173,31 +3173,31 @@
 				"required-level": 7,
 				"name": "Unbreakable Grasp",
 				"description": "Increases the Slow amount to 80%.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 15,
 				"name": "Groping Eels",
 				"description": "Increases the damage done to 26% weapon damage as Physical.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 25,
 				"name": "Death Is Life",
 				"description": "Enemies who die while in the area of Grasp of the Dead have a 5% chance to produce a health globe.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 28,
 				"name": "Desperate Grasp",
 				"description": "Reduces the cooldown of Grasp of the Dead to 6 seconds.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 53,
 				"name": "Rain of Corpses",
 				"description": "Corpses fall from the sky, dealing 80% weapon damage as Physical over 8 seconds to nearby enemies.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			}]
 		},
 		{
@@ -3213,31 +3213,31 @@
 				"required-level": 9,
 				"name": "Leaping Spiders",
 				"description": "Summon jumping spiders that leap up to 25 yards to reach their target and attack for 19% weapon damage as Physical.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 18,
 				"name": "Spider Queen",
 				"description": "You may only have one spider queen summoned at a time.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 33,
 				"name": "Widowmakers",
 				"description": "Summon widowmaker spiders that return 3 Mana to you per hit.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 45,
 				"name": "Medusa Spiders",
 				"description": "Summon paralyzing spiders that have a 25% chance to Slow enemies' movement by 60% with every attack.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 55,
 				"name": "Blazing Spiders",
 				"description": "Summon fire spiders that deal 21% weapon damage as Fire.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			}]
 		},
 		{
@@ -3256,31 +3256,31 @@
 				"required-level": 12,
 				"name": "Rabid Dogs",
 				"description": "Your Zombie Dogs gain an infectious bite that deals 9% of your weapon damage as Poison over 3 seconds.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 19,
 				"name": "Final Gift",
 				"description": "Your Zombie Dogs have a 15% chance to leave behind a health globe when they die.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 28,
 				"name": "Life Link",
 				"description": "Your Zombie Dogs absorb 10% of all damage done to you.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 40,
 				"name": "Burning Dogs",
 				"description": "Your Zombie Dogs burst into flames, burning nearby enemies for 2% of your weapon damage as Fire.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 54,
 				"name": "Leeching Beasts",
 				"description": "Your Zombie Dogs gain 50% of damage they deal as Life, half of which heals you.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			}]
 		},
 		{
@@ -3296,31 +3296,31 @@
 				"required-level": 11,
 				"name": "Dire Bats",
 				"description": "Summon fewer but larger bats that travel up to 40 yards and hit for 220% weapon damage as Fire.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 19,
 				"name": "Vampire Bats",
 				"description": "Gain 2.5% of damage done by the bats as Life.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 29,
 				"name": "Plague Bats",
 				"description": "Diseased bats fly towards the enemy and infect them. Damage is slow at first, but can increase over time to a maximum of 225% weapon damage as Poison.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 45,
 				"name": "Hungry Bats",
 				"description": "Rapidly summon bats that seek out nearby enemies for 280% weapon damage as Fire.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 56,
 				"name": "Cloud of Bats",
 				"description": "Call forth a swirl of bats that damage nearby enemies for 195% weapon damage as Fire. The damage of the bats increases by 10% every second, up to a maximum of 50%.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			}]
 		},
 		{
@@ -3339,31 +3339,31 @@
 				"required-level": 14,
 				"name": "Phobia",
 				"description": "Increases the duration horrified enemies run in Fear to 6 seconds.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 21,
 				"name": "Stalker",
 				"description": "Increases movement speed by 20% for 4 seconds after casting Horrify.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 34,
 				"name": "Face of Death",
 				"description": "Increases the radius of Horrify to 24 yards.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 44,
 				"name": "Frightening Aspect",
 				"description": "Gain 100% additional Armor for 8 seconds after casting Horrify.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 56,
 				"name": "Ruthless Terror",
 				"description": "Gain 27 Mana for every horrified enemy.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			}]
 		},
 		{
@@ -3382,31 +3382,31 @@
 				"required-level": 15,
 				"name": "Swallow Your Soul",
 				"description": "Gain 39 Mana for every enemy harvested.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 21,
 				"name": "Siphon",
 				"description": "Gain 2171 Life for every enemy harvested.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 32,
 				"name": "Languish",
 				"description": "Reduces the movement speed of harvested enemies by 60% for 3 seconds.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 39,
 				"name": "Soul to Waste",
 				"description": "Increase the duration of Soul Harvest's effect to 60 seconds.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 49,
 				"name": "Vengeful Spirit",
 				"description": "Harvested enemies also take 70% weapon damage as Physical.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			}]
 		},
 		{
@@ -3422,31 +3422,31 @@
 				"required-level": 17,
 				"name": "Explosive Toads",
 				"description": "Mutate to fire bullfrogs that explode for 169% weapon damage as Fire.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 24,
 				"name": "Toad of Hugeness",
 				"description": "Summon a giant toad that swallows enemies whole for up to 5 seconds, digesting for 20% of your weapon damage per second as Physical. Adds a 5 second cooldown to Plague of Toads.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 35,
 				"name": "Rain of Toads",
 				"description": "Cause toads to rain from the sky that deal 130% weapon damage as Poison to enemies in the area over 2 seconds.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 51,
 				"name": "Addling Toads",
 				"description": "Mutate to yellow frogs that deal 130% weapon damage as Poison and have a 15% chance to Confuse affected enemies for 4 seconds.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 54,
 				"name": "Toad Affinity",
 				"description": "Removes the Mana cost of Plague of Toads.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			}]
 		},
 		{
@@ -3462,31 +3462,31 @@
 				"required-level": 18,
 				"name": "Consuming Spirit",
 				"description": "The spirit returns 155 Life per second.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 23,
 				"name": "Resentful Spirit",
 				"description": "Summon a vengeful spirit that does 0% weapon damage as Arcane over 0 seconds.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 35,
 				"name": "Lingering Spirit",
 				"description": "If there are no targets left, the spirit will linger for up to 10 seconds looking for new enemies.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 48,
 				"name": "Grasping Spirit",
 				"description": "Slow the movement of haunted targets by 30%.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 57,
 				"name": "Draining Spirit",
 				"description": "The spirit returns 10.2 Mana per second.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			}]
 		},
 		{
@@ -3499,31 +3499,31 @@
 				"required-level": 18,
 				"name": "Black Blood",
 				"description": "Ichor erupts from the corpses of the Zombie Dogs and Slows enemies by 60% for 8 seconds.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 24,
 				"name": "Next of Kin",
 				"description": "Each Zombie Dog you sacrifice has a 35% chance to resurrect as a new Zombie Dog.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 36,
 				"name": "Pride",
 				"description": "Regain 294 Mana for each Zombie Dog you sacrifice.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 41,
 				"name": "For the Master",
 				"description": "Gain 6202 Life for each Zombie Dog you sacrifice.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 51,
 				"name": "Provoke the Pack",
 				"description": "Each sacrificed Zombie Dog increases your damage by 5% for 30 seconds.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			}]
 		},
 		{
@@ -3539,31 +3539,31 @@
 				"required-level": 21,
 				"name": "Leperous Zombie",
 				"description": "The Zombie Charger leaves behind a cloud of noxious vapors that deals 25% weapon damage as Poison to enemies caught in it.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 27,
 				"name": "Undeath",
 				"description": "If the Zombie Charger kills any enemies, it will reanimate and charge nearby enemies for 205% weapon damage as Poison. This effect can repeat up to 2 times.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 33,
 				"name": "Wave of Zombies",
 				"description": "Summon 3 Zombie Chargers that each deal 72% weapon damage as Poison.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 42,
 				"name": "Explosive Beast",
 				"description": "Summon an explosive Zombie Dog that streaks toward your target before exploding, dealing 236% weapon damage as Fire to all enemies within 9 yards.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 54,
 				"name": "Zombie Bears",
 				"description": "Summon zombie bears that stampede towards your target. Each bear deals 236% weapon damage as Poison to enemies in the area.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			}]
 		},
 		{
@@ -3582,31 +3582,31 @@
 				"required-level": 23,
 				"name": "Jaunt",
 				"description": "Increases the duration of Spirit Walk to 3 seconds.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 29,
 				"name": "Honored Guest",
 				"description": "Gain 15% of your maximum Mana every second while Spirit Walk is active.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 38,
 				"name": "Umbral Shock",
 				"description": "When Spirit Walk ends, your physical body erupts for 85% weapon damage as Fire to all enemies within 10 yards.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 47,
 				"name": "Severance",
 				"description": "Damage enemies you walk through in spirit form for 100% weapon damage as Physical.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 53,
 				"name": "Healing Journey",
 				"description": "Gain 7% of your maximum Life every second while Spirit Walk.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			}]
 		},
 		{
@@ -3622,31 +3622,31 @@
 				"required-level": 23,
 				"name": "The Spirit Is Willing",
 				"description": "Gain 44 Mana every time Spirit Barrage hits.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 32,
 				"name": "Well of Souls",
 				"description": "An additional 3 spirits seek out other targets and deal 30% weapon damage as Physical.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 37,
 				"name": "Phantasm",
 				"description": "Summon a spectre for 5 seconds that deals 45% weapon damage as Physical to all enemies within 10 yards.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 44,
 				"name": "Phlebotomize",
 				"description": "Regain 3% of damage dealt with Spirit Barrage as Life.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 59,
 				"name": "Manitou",
 				"description": "Summon a spectre for 20 seconds that hovers over you, unleashing spirit bolts at nearby enemies for 28% weapon damage as Physical.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			}]
 		},
 		{
@@ -3665,31 +3665,31 @@
 				"required-level": 22,
 				"name": "Humongoid",
 				"description": "The Gargantuan gains the Cleave ability, allowing its attacks to hit multiple targets for 32% of your weapon damage as Physical.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 29,
 				"name": "Restless Giant",
 				"description": "20% movement speed 35% attack speed 200% Physical damageThis effect cannot occur more than once every 120 seconds. Elite enemies include champions, rares, bosses, and other players.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 39,
 				"name": "Wrathful Protector",
 				"description": "Summon a more powerful Gargantuan that only lasts for 15 seconds. The Gargantuan's fists burn with fire, dealing 55% of your weapon damage as Fire and knocking enemies back.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 48,
 				"name": "Big Stinker",
 				"description": "The Gargantuan is surrounded by a poison cloud that deals 15% weapon damage as Poison per second to nearby enemies.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 56,
 				"name": "Bruiser",
 				"description": "The Gargantuan gains the ability to periodically slam enemies, dealing 100% of your weapon damage as Physical and stunning them for 3 seconds.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			}]
 		},
 		{
@@ -3705,31 +3705,31 @@
 				"required-level": 28,
 				"name": "Flash Fire",
 				"description": "Rather than exploding for area damage, each Firebomb can bounce to up to 6 additional targets. Damage is reduced by 15% per bounce.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 31,
 				"name": "Roll the Bones",
 				"description": "Allows the skull to bounce up to 2 times.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 38,
 				"name": "Fire Pit",
 				"description": "The explosion creates a pool of fire that deals 8% weapon damage per second as Fire for 3 seconds.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 47,
 				"name": "Pyrogeist",
 				"description": "Create a column of flame that spews fire at the closest enemy for 140% weapon damage as Fire over 3 seconds.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 60,
 				"name": "Ghost Bomb",
 				"description": "In addition to the base explosion, the skull creates a larger blast that deals an additional 20% weapon damage as Fire to all enemies within 28 yards.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			}]
 		},
 		{
@@ -3745,31 +3745,31 @@
 				"required-level": 27,
 				"name": "Pestilence",
 				"description": "Locust Swarm has a 100% chance to jump to two additional targets instead of one.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 33,
 				"name": "Devouring Swarm",
 				"description": "Gain 37 Mana for every enemy affected by the swarm.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 37,
 				"name": "Cloud of Insects",
 				"description": "Increases the duration of the swarm to 10 seconds.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 42,
 				"name": "Diseased Swarm",
 				"description": "Enemies killed by Locust Swarm leave behind a cloud of locusts that deal 25% weapon damage as Poison. This cloud of locusts lingers for 3 seconds.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 59,
 				"name": "Searing Locusts",
 				"description": "Engulf the target with burning locusts that deal 468% weapon damage as Fire over 8 seconds.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			}]
 		},
 		{
@@ -3785,31 +3785,31 @@
 				"required-level": 26,
 				"name": "Acid Rain",
 				"description": "Increases the initial area of effect of Acid Cloud to 24 yards.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 30,
 				"name": "Lob Blob Bomb",
 				"description": "The acid on the ground forms into a slime that irradiates nearby enemies for 25% weapon damage as Poison. The slime dissipates after 5 seconds.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 39,
 				"name": "Slow Burn",
 				"description": "Increases the duration of the acid pools left behind to 6 seconds.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 46,
 				"name": "Kiss of Death",
 				"description": "Spit a cloud of acid that inflicts 110% weapon damage as Poison, followed by 82% weapon damage as Poison to enemies who remain in the area.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 55,
 				"name": "Corpse Bomb",
 				"description": "Raise a corpse from the ground that explodes for 200% weapon damage as Poison to enemies in the area.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			}]
 		},
 		{
@@ -3828,31 +3828,31 @@
 				"required-level": 26,
 				"name": "Hedge Magic",
 				"description": "The Fetish Shaman will periodically heal allies for 1861 Life.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 31,
 				"name": "Jinx",
 				"description": "Hexed targets take 20% additional damage.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 36,
 				"name": "Angry Chicken",
 				"description": "Transform into an angry chicken for up to 5 seconds that can explode for 215% weapon damage as Physical to all enemies within 12 yards.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 43,
 				"name": "Painful Transformation",
 				"description": "Hex causes the target to Bleed for 12% weapon damage as Physical.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 58,
 				"name": "Unstable Form",
 				"description": "Hexed targets explode when killed, dealing 135% weapon damage as Poison to all enemies within 8 yards.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			}]
 		},
 		{
@@ -3871,31 +3871,31 @@
 				"required-level": 26,
 				"name": "Unstable Realm",
 				"description": "Reduces the cooldown of Mass Confusion to 45 seconds.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 34,
 				"name": "Devolution",
 				"description": "Enemies killed while Confused have a 50% chance of spawning a Zombie Dog.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 43,
 				"name": "Mass Hysteria",
 				"description": "Up to 6 enemies who aren't Confused are Stunned for 3 seconds.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 46,
 				"name": "Paranoia",
 				"description": "All enemies in the area of Mass Confusion take 20% additional damage for 12 seconds.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 54,
 				"name": "Mass Hallucination",
 				"description": "Amid the confusion, a giant spirit rampages through enemies, dealing 22% weapon damage per second as Physical to enemies it passes through.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			}]
 		},
 		{
@@ -3911,31 +3911,31 @@
 				"required-level": 31,
 				"name": "Jungle Drums",
 				"description": "Increases the duration of the ritual to 30 seconds.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 37,
 				"name": "Rain Dance",
 				"description": "The ritual restores 122 Mana per second while standing in the ritual area.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 44,
 				"name": "Slam Dance",
 				"description": "The Fetish increases the damage of all nearby allies by 30%.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 50,
 				"name": "Ghost Trance",
 				"description": "The ritual heals all nearby allies for 5% of their maximum Life per second.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 58,
 				"name": "Boogie Man",
 				"description": "Enemies who die in the ritual area have a 50% chance to resurrect as a Zombie Dog.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			}]
 		},
 		{
@@ -3954,31 +3954,31 @@
 				"required-level": 32,
 				"name": "Barricade",
 				"description": "Increases the width of the Wall of Zombies. The zombies will attack for 80% weapon damage as Physical.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 35,
 				"name": "Unrelenting Grip",
 				"description": "Your Wall of Zombies will Slow the movement of enemies by 60% for 5 seconds.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 41,
 				"name": "Creepers",
 				"description": "Up to 3 zombies will emerge from the ground and attack nearby enemies for 25% of your weapon damage as Physical per attack.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 49,
 				"name": "Pile On",
 				"description": "Summon a tower of zombies that falls over, dealing 765% weapon damage as Physical to any enemies it hits and knocks them back.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 60,
 				"name": "Dead Rush",
 				"description": "Zombies crawl out of the ground and run in all directions, dealing 445% weapon damage as Physical to nearby enemies.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			}]
 		},
 		{
@@ -3994,31 +3994,31 @@
 				"required-level": 34,
 				"name": "Fetish Ambush",
 				"description": "Each Fetish deals 250% weapon damage as Physical to any nearby enemy as it is summoned.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 40,
 				"name": "Devoted Following",
 				"description": "Decreases the cooldown of Fetish Army to 90 seconds.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 46,
 				"name": "Legion of Daggers",
 				"description": "Increases number of dagger-wielding Fetishes summoned by 3.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 52,
 				"name": "Tiki Torchers",
 				"description": "Summon an additional 2 Fetish casters who breathe fire in a cone in front of them that deals 15% of your weapon damage as Fire.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 60,
 				"name": "Head Hunters",
 				"description": "Summon an additional 2 Hunter Fetishes that shoot blowdarts at enemies, dealing 20% of your weapon damage as Poison.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			}]
 		}],
 		"passive-skills": [{
@@ -4169,31 +4169,31 @@
 				"required-level": 6,
 				"name": "Charged Blast",
 				"description": "Increases the damage of Magic Missile to 143% weapon damage as Arcane.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 13,
 				"name": "Split",
 				"description": "Fire 3 missiles that each deal 50% weapon damage as Arcane.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 31,
 				"name": "Penetrating Blast",
 				"description": "Missiles have a 70% chance to pierce through their target and hit additional enemies.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 42,
 				"name": "Attunement",
 				"description": "Whenever Magic Missile hits a target you gain 4 Arcane Power.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 52,
 				"name": "Seeker",
 				"description": "Missiles track the nearest enemy and their damage is increased to 121% weapon damage as Arcane.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			}]
 		},
 		{
@@ -4206,31 +4206,31 @@
 				"required-level": 7,
 				"name": "Numb",
 				"description": "Increase the amount the target's movement is slowed to 60% for 3 seconds.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 15,
 				"name": "Snow Blast",
 				"description": "Using continuously on a single target increases damage over 1.5 seconds to inflict a maximum of 280% weapon damage as Cold.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 28,
 				"name": "Cold Blood",
 				"description": "Reduce casting cost to 0 Arcane Power.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 38,
 				"name": "Sleet Storm",
 				"description": "Create a swirling storm around you, dealing 215% weapon damage as Cold to all enemies caught within it.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 53,
 				"name": "Black Ice",
 				"description": "Enemies killed with Ray of Frost leave behind a patch of ice that deals 193% weapon damage as Cold to enemies moving through it over 3 seconds.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			}]
 		},
 		{
@@ -4244,31 +4244,31 @@
 				"required-level": 9,
 				"name": "Explosive Bolts",
 				"description": "Slain enemies explode, dealing 70% weapon damage as Lightning to every enemy within 10 yards.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 18,
 				"name": "Fire Bolts",
 				"description": "Cast bolts of fire that each deal 137% weapon damage as Fire.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 33,
 				"name": "Piercing Orb",
 				"description": "Merge the bolts in a a single giant orb that oscillates forward dealing 105% weapon damage as Lightning to everything it hits.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 47,
 				"name": "Lightning Affinity",
 				"description": "Every target hit by a pulse restores 2 Arcane Power.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 54,
 				"name": "Living Lightning",
 				"description": "Conjure a being of lightning that drifts forward, electrocuting nearby enemies for 37% weapon damage as Lightning.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			}]
 		},
 		{
@@ -4284,31 +4284,31 @@
 				"required-level": 12,
 				"name": "Shatter",
 				"description": "A frozen enemy that is killed has a 50% chance of releasing another Frost Nova.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 18,
 				"name": "Cold Snap",
 				"description": "Reduce cooldown of Frost Nova to 9 seconds.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 28,
 				"name": "Frozen Mist",
 				"description": "Frost Nova no longer freezes enemies, but instead leaves behind a mist of frost that deals 160% weapon damage as Cold over 8 seconds.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 41,
 				"name": "Deep Freeze",
 				"description": "If Frost Nova hits at least 5 targets, you gain a 15% bonus to Critical Hit Chance for 12 seconds.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 51,
 				"name": "Bone Chill",
 				"description": "Enemies take 15% more damage while frozen or chilled by Frost Nova.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			}]
 		},
 		{
@@ -4321,31 +4321,31 @@
 				"required-level": 11,
 				"name": "Obliteration",
 				"description": "Increase the damage of the explosion to deal 228% weapon damage as Arcane.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 20,
 				"name": "Arcane Orbit",
 				"description": "Create 4 Arcane Orbs that orbit you, exploding for 70% weapon damage as Arcane when enemies get close.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 32,
 				"name": "Arcane Nova",
 				"description": "Modify the orb to deal 175% weapon damage as Arcane to all enemies within 20 yards.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 45,
 				"name": "Tap the Source",
 				"description": "Reduce casting cost to 20 Arcane Power.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 55,
 				"name": "Celestial Orb",
 				"description": "The orb will pierce through targets, damaging any enemy it passes through.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			}]
 		},
 		{
@@ -4361,31 +4361,31 @@
 				"required-level": 14,
 				"name": "Crystal Shell",
 				"description": "Increases the maximum amount of damage absorbed to 21707 damage.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 20,
 				"name": "Prism",
 				"description": "Reduces Arcane Power cost of all spells by 7 while Diamond Skin is active.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 32,
 				"name": "Mirror Skin",
 				"description": "Reflects 50% of damage absorbed back at the attacker.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 44,
 				"name": "Enduring Skin",
 				"description": "Increases the duration of Diamond Skin to 8 seconds.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 56,
 				"name": "Diamond Shards",
 				"description": "When Diamond Skin wears off, diamond shards explode in all directions dealing 155% weapon damage as Physical to nearby enemies.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			}]
 		},
 		{
@@ -4401,31 +4401,31 @@
 				"required-level": 15,
 				"name": "Impactful Wave",
 				"description": "Increases the distance enemies are knocked back and Stuns all affected enemies for 2 seconds.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 22,
 				"name": "Force Affinity",
 				"description": "Reduce casting cost to 15 Arcane Power and the cooldown is reduced to 12 seconds.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 32,
 				"name": "Forceful Wave",
 				"description": "Increases damage to 260% weapon damage as Physical, but reduces Knockback.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 39,
 				"name": "Teleporting Wave",
 				"description": "Enemies caught in the Wave of Force have a 100% chance to be randomly teleported.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 49,
 				"name": "Exploding Wave",
 				"description": "Enemies hit have a 40% chance to cause a smaller Wave of Force that deals 100% weapon damage as Physical and knocks back enemies caught in its wake.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			}]
 		},
 		{
@@ -4439,31 +4439,31 @@
 				"required-level": 19,
 				"name": "Deep Cuts",
 				"description": "Enemies hit by the blade will Bleed for an additional 35% weapon damage over 3 seconds.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 24,
 				"name": "Impactful Blades",
 				"description": "Hits have a 5% chance to cause Knockback and Slow the movement of enemies by 60% for 1 second.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 35,
 				"name": "Siphoning Blade",
 				"description": "Every enemy hit grants 1 Arcane Power.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 51,
 				"name": "Healing Blades",
 				"description": "Whenever the blades do critical damage, you are healed for 8% of the damage done.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 57,
 				"name": "Thrown Blade",
 				"description": "Extends the reach of Spectral Blade to 20 yards.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			}]
 		},
 		{
@@ -4476,31 +4476,31 @@
 				"required-level": 18,
 				"name": "Disruption",
 				"description": "Targets hit by Arcane Torrent become disrupted for 6 seconds, causing them to take 15% additional damage from any attacks that deal Arcane damage.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 25,
 				"name": "Death Blossom",
 				"description": "Unleash a torrent of power beyond your control. You no longer direct where the projectiles go, but their damage is increased to 670% weapon damage as Arcane.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 34,
 				"name": "Arcane Mines",
 				"description": "Instead of firing projectiles, lay Arcane mines that arm after 2 seconds. These mines explode when an enemy approaches, dealing 150% weapon damage as Arcane. Enemies caught in the explosion have their movement and attack speeds reduced by 30% for 3 seconds.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 49,
 				"name": "Power Stone",
 				"description": "Every missile hit has a 2% chance to leave behind a Power Stone that grants Arcane Power when picked up.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 57,
 				"name": "Cascade",
 				"description": "Enemies killed by Arcane Torrent have a 100% chance to fire a new missile at a nearby enemy dealing 175% weapon damage as Arcane.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			}]
 		},
 		{
@@ -4513,31 +4513,31 @@
 				"required-level": 19,
 				"name": "Mistral Breeze",
 				"description": "Reduces casting cost of Energy Twister to 20 Arcane Power.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 24,
 				"name": "Gale Force",
 				"description": "Increases the damage of Energy Twister to 468% weapon damage as Arcane.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 36,
 				"name": "Raging Storm",
 				"description": "When two Energy Twisters collide, they merge into a tornado with increased area of effect that causes 360% weapon damage as Arcane over 6 seconds.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 41,
 				"name": "Wicked Wind",
 				"description": "Twisters no longer travel but spin in place, dealing 252% weapon damage as Arcane over 6 seconds to everything caught in them.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 52,
 				"name": "Storm Chaser",
 				"description": "The following skills are Signature spells: Magic Missile Shock Pulse Spectral Blade Electrocute",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			}]
 		},
 		{
@@ -4550,31 +4550,31 @@
 				"required-level": 21,
 				"name": "Chilling Aura",
 				"description": "Lower the temperature of the air around you. Nearby enemies are chilled, slowing their movement speed by 30%.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 31,
 				"name": "Crystallize",
 				"description": "Whenever you are struck by a melee attack, your Armor is increased by 15% for 30 seconds. This effect can stack up to 3 times.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 42,
 				"name": "Jagged Ice",
 				"description": "Melee attackers also take 100% weapon damage as Cold.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 49,
 				"name": "Ice Reflect",
 				"description": "Melee attacks have a 25% chance to create a Frost Nova centered on the attacker, dealing 75% weapon damage as Cold.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 53,
 				"name": "Frozen Storm",
 				"description": "A whirling storm of ice builds around you that deals 30% weapon damage as Cold over 3 seconds after casting Ice Armor.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			}]
 		},
 		{
@@ -4588,31 +4588,31 @@
 				"required-level": 22,
 				"name": "Chain Lightning",
 				"description": "Increases the maximum number of enemies that can be electrocuted to 6.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 29,
 				"name": "Forked Lightning",
 				"description": "Critical Hits release 4 charged bolts in random directions, dealing 46% weapon damage as Lightning to any targets hit.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 36,
 				"name": "Lightning Blast",
 				"description": "Create streaks of lightning that pierce through targets, hitting all enemies for 80% weapon damage as Lightning.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 44,
 				"name": "Surge of Power",
 				"description": "Gain 1 Arcane Power for every enemy hit by Electrocute.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 59,
 				"name": "Arc Lightning",
 				"description": "Blast a cone of lightning that causes 80% weapon damage as Lightning to all affected targets.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			}]
 		},
 		{
@@ -4628,31 +4628,31 @@
 				"required-level": 23,
 				"name": "Miasma",
 				"description": "Slow Time effects cling to enemies for 3 seconds after they have left the bubble.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 29,
 				"name": "Time Warp",
 				"description": "Enemies caught in the bubble of warped time take 20% more damage.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 39,
 				"name": "Time Shell",
 				"description": "Reduces the area Slow Time affects to 10 yards, but increases the potency of the movement speed reduction to 80%.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 47,
 				"name": "Perpetuity",
 				"description": "Reduces the cooldown of Slow Time to 16 seconds.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 53,
 				"name": "Stretch Time",
 				"description": "Time is sped up for any allies standing in the area, increasing their attack speed by 10%.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			}]
 		},
 		{
@@ -4665,31 +4665,31 @@
 				"required-level": 23,
 				"name": "Reactive Armor",
 				"description": "Whenever you are hit, you have a chance to be enveloped with a lightning shield for 6 seconds that shocks nearby enemies for 50% weapon damage as Lightning.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 33,
 				"name": "Power of the Storm",
 				"description": "Reduce the Arcane Power cost of all skills by 3 while Storm Armor is active.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 37,
 				"name": "Strike Back",
 				"description": "Increase the damage of the shock to 91% weapon damage as Lightning.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 43,
 				"name": "Scramble",
 				"description": "Increases your movement speed by 25% for 3 seconds whenever you are hit by melee or ranged attacks.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 58,
 				"name": "Shocking Aspect",
 				"description": "Critical Hits have a chance to electrocute a nearby enemy for 35% weapon damage as Lightning.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			}]
 		},
 		{
@@ -4705,31 +4705,31 @@
 				"required-level": 24,
 				"name": "Unleashed",
 				"description": "Reduces the casting cost of Explosive Blast to 10 Arcane Power.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 29,
 				"name": "Time Bomb",
 				"description": "Explosive Blast detonates from the point it was originally cast after 2.5 seconds for 292% weapon damage as Physical.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 39,
 				"name": "Short Fuse",
 				"description": "Immediately release the energy of Explosive Blast for 225% weapon damage as Physical.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 50,
 				"name": "Obliterate",
 				"description": "Increases the explosion radius to 18 yards for 225% weapon damage as Physical.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 56,
 				"name": "Chain Reaction",
 				"description": "A chain of 3 consecutive explosions cascade off you, each causing 97% weapon damage as Physical.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			}]
 		},
 		{
@@ -4742,31 +4742,31 @@
 				"required-level": 27,
 				"name": "Electrify",
 				"description": "Attacks have a chance to cause lightning to arc to 3 nearby enemies, dealing 10% weapon damage as Lightning.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 35,
 				"name": "Force Weapon",
 				"description": "Increases the damage bonus of Magic Weapon to 15% damage, and gives up to a 2% chance to Knockback any enemies hit.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 38,
 				"name": "Conduit",
 				"description": "Attacks have a chance to restore 1 Arcane Power.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 46,
 				"name": "Venom",
 				"description": "Attacks poison enemies, dealing 15% weapon damage as Poison over 3 seconds.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 55,
 				"name": "Blood Magic",
 				"description": "Attacks recover 1.5% of damage caused as Life.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			}]
 		},
 		{
@@ -4779,31 +4779,31 @@
 				"required-level": 26,
 				"name": "Convergence",
 				"description": "Increase the width of the beam allowing it to hit more enemies.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 30,
 				"name": "Chaos Nexus",
 				"description": "When casting the beam you become charged with energy that spits out at nearby enemies doing 40% weapon damage as Arcane.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 39,
 				"name": "Volatility",
 				"description": "Enemies killed by the beam have a 35% chance to explode causing 395% weapon damage as Arcane to all enemies within 8 yards.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 48,
 				"name": "Entropy",
 				"description": "The beam fractures into a short-ranged cone that deals 178% weapon damage as Arcane.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 59,
 				"name": "Intensify",
 				"description": "Damage increases slowly over time to inflict a maximum of 202% weapon damage as Arcane.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			}]
 		},
 		{
@@ -4816,31 +4816,31 @@
 				"required-level": 26,
 				"name": "Arcane Hydra",
 				"description": "Summon an Arcane Hydra that spits Arcane Orbs, which explode on impact, causing 28% weapon damage as Arcane to enemies near the explosion.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 33,
 				"name": "Lightning Hydra",
 				"description": "Summon a Lightning Hydra that electrocutes enemies for 34% weapon damage as Lightning.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 38,
 				"name": "Venom Hydra",
 				"description": "Summon a poison breathing Hydra that leaves a pool of acid that causes 18% weapon damage per second as Poison to enemies who remain in the pool.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 46,
 				"name": "Frost Hydra",
 				"description": "Summon a Frost Hydra that breathes a short range cone of frost, causing 31% weapon damage as Cold to all enemies in the cone.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 56,
 				"name": "Mammoth Hydra",
 				"description": "Summon a Mammoth Hydra that breathes a river of flame at nearby enemies, dealing 22% weapon damage per second as Fire to enemies caught on the burning ground.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			}]
 		},
 		{
@@ -4853,31 +4853,31 @@
 				"required-level": 30,
 				"name": "Sparkflint",
 				"description": "Summon a fiery Familiar that increases the damage of all attacks by 12% while Familiar is active.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 40,
 				"name": "Dartling",
 				"description": "Summon a lightning Familiar whose projectiles have a 100% chance to pierce through enemies.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 44,
 				"name": "Ancient Guardian",
 				"description": "Summon a protective Familiar. When you are below 35% Life the Familiar will fully absorb damage from 1 attack every 6 seconds.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 50,
 				"name": "Arcanot",
 				"description": "While the Familiar is active, you regenerate 2 Arcane Power per second.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 57,
 				"name": "Cannoneer",
 				"description": "The Familiar's projectiles explode on impact, dealing 20% weapon damage as Arcane to all enemies within 6 yards.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			}]
 		},
 		{
@@ -4893,31 +4893,31 @@
 				"required-level": 26,
 				"name": "Safe Passage",
 				"description": "For 4 seconds after you Teleport, you will take 30% less damage.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 31,
 				"name": "Wormhole",
 				"description": "After casting Teleport, there is a 1 second delay before the cooldown begins, allowing you to Teleport again.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 37,
 				"name": "Reversal",
 				"description": "Casting Teleport again within 8 seconds will instantly return you to your original location.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 43,
 				"name": "Fracture",
 				"description": "Summon 2 decoys for 8 seconds after teleporting.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 59,
 				"name": "Calamity",
 				"description": "Casts a low power Wave of Force upon arrival, dealing 75% weapon damage as Physical to all nearby enemies.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			}]
 		},
 		{
@@ -4930,31 +4930,31 @@
 				"required-level": 29,
 				"name": "Molten Impact",
 				"description": "Increases the damage of the Meteor impact to 260% weapon damage as Fire and the molten fire to 78% weapon damage as Fire over 3 seconds.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			},
 			{
 				"required-level": 34,
 				"name": "Star Pact",
 				"description": "Reduces the casting cost of Meteor to 35 Arcane Power.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 43,
 				"name": "Meteor Shower",
 				"description": "Unleash a volley of 7 smaller Meteors that each strike for 80% weapon damage as Fire.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 48,
 				"name": "Comet",
 				"description": "Transforms the Meteor to ice that deals 240% weapon damage as Cold. The impact site is covered in a freezing mist that deals 72% weapon damage as Cold and Slows enemy movement by 60% over 3 seconds.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 58,
 				"name": "Liquefy",
 				"description": "If the initial impact of the Meteor causes a Critical Hit, the molten fire duration is increased to 8 seconds.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			}]
 		},
 		{
@@ -4970,31 +4970,31 @@
 				"required-level": 31,
 				"name": "Simulacrum",
 				"description": "Increase the Life of your Mirror Images to 100% of your own.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 37,
 				"name": "Duplicates",
 				"description": "Summon 5 Mirror Images that have 25% of your Life each.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 45,
 				"name": "Mocking Demise",
 				"description": "When a Mirror Image is destroyed, it explodes, doing 45% weapon damage as Physical and has a 50% chance to Stun for 2 seconds.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 51,
 				"name": "Extension of Will",
 				"description": "The duration of your Mirror Images is increased to 10 seconds and their Life is increased to 29% of your Life.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 58,
 				"name": "Mirror Mimics",
 				"description": "Spells cast by your Mirror Images will do 10% of the damage of your own spells.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			}]
 		},
 		{
@@ -5007,31 +5007,31 @@
 				"required-level": 35,
 				"name": "Grasping Chill",
 				"description": "After the Blizzard ends, the ground is covered in a low lying mist for 3 seconds that Slows the movement speed of enemies by 60%.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 42,
 				"name": "Frozen Solid",
 				"description": "Enemies caught in the Blizzard have a 20% chance to be Frozen for 3 seconds.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 47,
 				"name": "Snowbound",
 				"description": "Reduces the casting cost of Blizzard to 20 Arcane Power.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 54,
 				"name": "Stark Winter",
 				"description": "Increases the size of Blizzard to cover 22 yards, dealing 210% weapon damage as Cold over 6 seconds.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 60,
 				"name": "Unrelenting Storm",
 				"description": "Increases the duration of Blizzard to deal 280% weapon damage as Cold over 8 seconds.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			}]
 		},
 		{
@@ -5044,31 +5044,31 @@
 				"required-level": 32,
 				"name": "Absorption",
 				"description": "You have a chance to gain 4 Arcane Power whenever you are hit by a ranged or melee attack.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 41,
 				"name": "Pinpoint Barrier",
 				"description": "Increases your chance to critically hit by 5% while Energy Armor is active.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 48,
 				"name": "Energy Tap",
 				"description": "Rather than decreasing your maximum Arcane Power, Energy Armor increases it by 20 while it is active.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 54,
 				"name": "Force Armor",
 				"description": "While Energy Armor is active, incoming attacks that would deal more than 35% of your maximum Life are reduced to deal 35% of your maximum Life instead.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 60,
 				"name": "Prismatic Armor",
 				"description": "Increases all of your resistances by 40% while Energy Armor is active.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			}]
 		},
 		{
@@ -5084,31 +5084,31 @@
 				"required-level": 36,
 				"name": "Arcane Destruction",
 				"description": "An explosion erupts around you when you transform, causing 450% weapon damage as Arcane to all enemies within 15 yards.",
-				"icon": "rune-e"
+				"icon": "rune_e"
 			},
 			{
 				"required-level": 40,
 				"name": "Teleport",
 				"description": "Archon form can now cast Teleport with a cooldown of 10 seconds.",
-				"icon": "rune-c"
+				"icon": "rune_c"
 			},
 			{
 				"required-level": 46,
 				"name": "Pure Power",
 				"description": "Decreases the cooldown of Archon to 100 seconds.",
-				"icon": "rune-d"
+				"icon": "rune_d"
 			},
 			{
 				"required-level": 52,
 				"name": "Slow Time",
 				"description": "Archon form can cast Slow Time that lasts for 8 seconds.",
-				"icon": "rune-b"
+				"icon": "rune_b"
 			},
 			{
 				"required-level": 60,
 				"name": "Improved Archon",
 				"description": "Increases the damage of all Archon abilities by 25%.",
-				"icon": "rune-a"
+				"icon": "rune_a"
 			}]
 		}],
 		"passive-skills": [{
@@ -5259,5 +5259,123 @@
 		"Force",
 		"Conjuration",
 		"Mastery"]
-	}]
+	}],
+	"skill-attributes": {
+		"rune-separator": "!",
+		"passive-separator": "!",
+		"missing-value": ".",
+		"follower-separator": "!",
+		"skill-mapping": ["a",
+		"Z",
+		"b",
+		"Y",
+		"c",
+		"X",
+		"d",
+		"W",
+		"e",
+		"V",
+		"f",
+		"U",
+		"g",
+		"T",
+		"h",
+		"S",
+		"i",
+		"R",
+		"j",
+		"Q",
+		"k",
+		"P",
+		"l",
+		"O",
+		"m",
+		"N",
+		"n",
+		"M",
+		"o",
+		"L",
+		"p",
+		"K",
+		"q",
+		"J",
+		"r",
+		"I",
+		"s",
+		"H",
+		"t",
+		"G",
+		"u",
+		"F",
+		"v",
+		"E",
+		"w",
+		"D",
+		"x",
+		"C",
+		"y",
+		"B",
+		"z",
+		"A"],
+		"follower-mapping": [{
+			"required-level": 5
+		},
+		{
+			"required-level": 10
+		},
+		{
+			"required-level": 15
+		},
+		{
+			"required-level": 20
+		}],
+		"skill-levels": [{
+			"key": "Left Click",
+			"required-level": 1
+		},
+		{
+			"key": "Right Click",
+			"required-level": 2
+		},
+		{
+			"key": "1",
+			"required-level": 4
+		},
+		{
+			"key": "2",
+			"required-level": 9
+		},
+		{
+			"key": "3",
+			"required-level": 14
+		},
+		{
+			"key": "4",
+			"required-level": 19
+		},
+		{
+			"key": "",
+			"required-level": 10
+		},
+		{
+			"key": "",
+			"required-level": 20
+		},
+		{
+			"key": "",
+			"required-level": 30
+		}],
+		"follower-levels": [{
+			"required-level": 5
+		},
+		{
+			"required-level": 10
+		},
+		{
+			"required-level": 15
+		},
+		{
+			"required-level": 20
+		}]
+	}
 }

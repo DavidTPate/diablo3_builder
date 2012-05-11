@@ -31,6 +31,19 @@ class SkillFragmentAdapter extends FragmentPagerAdapter implements TitleProvider
 	    String s = skillTypes[position % skillTypes.length];
 		return SkillListFragment.newInstance(s, context, s, selectedClass, requiredLevel);
 	}
+	
+	@Override
+	public int getItemPosition(Object skillType)
+	{
+		for (int x = 0; x <= skillTypes.length - 1; x++)
+		{
+			if (skillTypes[x].equals((String)skillType))
+			{
+				return x;
+			}
+		}
+		return -1;
+	}
 
 	@Override
 	public int getCount() {
