@@ -97,6 +97,8 @@ public class EntrySkill implements Item
                     skillDescription.setText(s.getDescription());
                     skillDescription.setVisibility(View.VISIBLE);
                 }   
+                
+                v.setTag(s.getUuid());
         return v;
     }
 	

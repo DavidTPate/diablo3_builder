@@ -1,10 +1,15 @@
 package com.pate.diablo;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.pate.diablo.sectionlist.EntrySkill;
 import com.viewpagerindicator.PageIndicator;
 import com.viewpagerindicator.TitlePageIndicator;
 import com.viewpagerindicator.TitlePageIndicator.IndicatorStyle;
@@ -14,6 +19,7 @@ public class SelectSkill extends SherlockFragmentActivity
     SkillFragmentAdapter mAdapter;
     ViewPager mPager;
     PageIndicator mIndicator;
+    int index;
 
     /** Called when the activity is first created. */
     @Override
@@ -25,6 +31,7 @@ public class SelectSkill extends SherlockFragmentActivity
         
         String skillType = null;
         String selectedClass = null;
+        
         int requiredLevel = 0;
         if (b.containsKey("SkillType"))
         {
@@ -40,8 +47,29 @@ public class SelectSkill extends SherlockFragmentActivity
         {
             requiredLevel = b.getInt("RequiredLevel");
         }
+        
+        if (b.containsKey("Index"))
+        {
+        	index = b.getInt("Index");
+        }
+        
+        OnClickListener itemClickListener = new OnClickListener()
+        {
+
+			@Override
+			public void onClick(View v) {
+				
+				Intent intent = getIntent();
+				intent.putExtra("Skill_UUID", v.getTag().toString());
+				intent.putExtra("Index", index);
+				setResult(RESULT_OK, intent);
+				finish();
+			}
+        	
+        };
 
         mAdapter = new SkillFragmentAdapter(getSupportFragmentManager(), SelectSkill.this, skillType, selectedClass, requiredLevel);
+        mAdapter.setOnListItemClickListener(itemClickListener);
         
         mPager = (ViewPager) findViewById(R.id.pager);
         mPager.setAdapter(mAdapter);
@@ -50,7 +78,7 @@ public class SelectSkill extends SherlockFragmentActivity
         indicator.setViewPager(mPager);
         indicator.setFooterIndicatorStyle(IndicatorStyle.Triangle);
         mIndicator = indicator;
-        
+
         mPager.setCurrentItem(mAdapter.getItemPosition(skillType));
     }
 

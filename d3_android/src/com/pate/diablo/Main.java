@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.UUID;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,7 +24,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.pate.diablo.model.D3Application;
 import com.pate.diablo.model.DataModel;
+import com.pate.diablo.model.Skill;
 import com.pate.diablo.sectionlist.EmptyItem;
+import com.pate.diablo.sectionlist.EntrySkill;
 import com.pate.diablo.sectionlist.EntrySkillAdapter;
 import com.pate.diablo.sectionlist.Item;
 import com.pate.diablo.sectionlist.SectionItem;
@@ -31,8 +34,11 @@ import com.pate.diablo.sectionlist.SectionItem;
 public class Main extends SherlockListActivity {
     SpinnerAdapter  adapter;
     ArrayList<Item> items = new ArrayList<Item>();
+    EntrySkillAdapter listAdapter;
     Spinner selectedClass;
     Spinner requiredLevel;
+    int GET_SKILL = 0;
+    int GET_RUNE = 1;
 
     /** Called when the activity is first created. */
     @Override
@@ -134,7 +140,9 @@ public class Main extends SherlockListActivity {
         items.add(new EmptyItem("Choose Skill", 20, "Passive"));
         items.add(new EmptyItem("Choose Skill", 30, "Passive"));
         
-        return new EntrySkillAdapter(this, items);
+        listAdapter = new EntrySkillAdapter(this, items);
+        
+        return listAdapter;
     }
     
     @Override
@@ -151,13 +159,59 @@ public class Main extends SherlockListActivity {
             b.putString("SkillType", e.getSkillType().toString());                
             b.putString("SelectedClass", selectedClass.getSelectedItem().toString());
             b.putInt("RequiredLevel", Integer.parseInt(requiredLevel.getSelectedItem().toString()));
+            b.putInt("Index", position);
             intent.putExtras(b);
 
-            startActivity(intent);
+            startActivityForResult(intent, GET_SKILL);
         }
-        //Toast.makeText(this, "You clicked " + item.title, Toast.LENGTH_SHORT).show();
-
-
         super.onListItemClick(l, v, position, id);
+    }
+    
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+    	if (requestCode == GET_SKILL)
+    	{
+    		if (resultCode == RESULT_OK)
+    		{
+    			Bundle b = data.getExtras();
+    			
+		        String skillUUID = null;
+		        int index = -1;
+		        
+		        if (b.containsKey("Skill_UUID"))
+		        {
+		        	skillUUID = b.getString("Skill_UUID");
+		        }
+		        
+		        if (b.containsKey("Index"))
+		        {
+		        	index = b.getInt("Index");
+		        }
+		        
+		        Log.i("onActivityResult", "UUID: " + skillUUID + " Index: " + index);
+		        
+		        if (skillUUID != null && index >= 0 && D3Application.dataModel.getClassByName(selectedClass.getSelectedItem().toString()).containsActiveSkillByUUID(UUID.fromString(skillUUID)))
+		        {
+		        	Log.i("onActivityResult", "Active Skill Found!");
+		        	Skill s = D3Application.dataModel.getClassByName(selectedClass.getSelectedItem().toString()).getActiveSkillByUUID(UUID.fromString(skillUUID));
+		        	items.set(index, new EntrySkill(s));
+		        	listAdapter.setList(items);
+		        	
+		        }
+		        else if (skillUUID != null && index >= 0 && D3Application.dataModel.getClassByName(selectedClass.getSelectedItem().toString()).containsPassiveSkillByUUID(UUID.fromString(skillUUID)))
+		        {
+		        	Log.i("onActivityResult", "Active Skill Found!");
+		        }
+		        else
+		        {
+		        	//Uh-Oh!
+		        }
+    		}
+    		else
+    		{
+    			//Do nothing?
+    		}
+    	}
     }
 }

@@ -4,7 +4,9 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.ListView;
 
 import com.pate.diablo.model.D3Application;
 import com.viewpagerindicator.TitleProvider;
@@ -16,6 +18,8 @@ class SkillFragmentAdapter extends FragmentPagerAdapter implements TitleProvider
 	private String skillType;
 	private String selectedClass;
 	private int requiredLevel;
+	private OnClickListener listener;
+	int GET_SKILL = -1;
 
 	public SkillFragmentAdapter(FragmentManager fm, Context context, String skillType, String selectedClass, int requiredLevel) {
 	    super(fm);
@@ -30,7 +34,9 @@ class SkillFragmentAdapter extends FragmentPagerAdapter implements TitleProvider
 	@Override
 	public Fragment getItem(int position) {
 	    String s = skillTypes[position % skillTypes.length];
-		return SkillListFragment.newInstance(s, context, s, selectedClass, requiredLevel);
+	    SkillListFragment skillList = SkillListFragment.newInstance(s, context, s, selectedClass, requiredLevel);
+	    skillList.setOnListItemClickListener(listener);
+		return skillList;
 	}
 	
 	@Override
@@ -61,5 +67,10 @@ class SkillFragmentAdapter extends FragmentPagerAdapter implements TitleProvider
     @Override
     public String getTitle(int position) {
         return skillTypes[position % skillTypes.length];
+    }
+    
+    public void setOnListItemClickListener(OnClickListener listener)
+    {
+    	this.listener = listener;
     }
 }

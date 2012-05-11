@@ -3,9 +3,13 @@ package com.pate.diablo;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.ListView;
 
 import com.pate.diablo.model.D3Application;
 import com.pate.diablo.model.Skill;
@@ -19,6 +23,7 @@ public class SkillListFragment extends ListFragment
     String skillType;
     String selectedClass;
     int requiredLevel;
+    OnClickListener listener;
     
     ArrayList<Item> items = new ArrayList<Item>();
     private static final String KEY_CONTENT = "TestFragment:Content";
@@ -45,7 +50,6 @@ public class SkillListFragment extends ListFragment
         EntrySkillAdapter adapter = new EntrySkillAdapter(context, items);
 
         setListAdapter(adapter);
-        
         super.onCreate(savedInstanceState);
     }
 
@@ -54,4 +58,16 @@ public class SkillListFragment extends ListFragment
         super.onSaveInstanceState(outState);
         outState.putString(KEY_CONTENT, mContent);
     }
+    
+    public void setOnListItemClickListener(OnClickListener listener)
+    {
+    	this.listener = listener;
+    }
+
+	@Override
+	public void onListItemClick(ListView l, View v, int position, long id) {
+		listener.onClick(v);
+		super.onListItemClick(l, v, position, id);
+	}
+    
 }

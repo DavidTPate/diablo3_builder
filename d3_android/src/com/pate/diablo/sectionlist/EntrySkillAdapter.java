@@ -29,5 +29,11 @@ public class EntrySkillAdapter extends ArrayAdapter<Item>
         return i.inflate(context, i);
         
     }
+    
+    public void setList(ArrayList<Item> items)
+    {
+    	this.items = items;
+    	notifyDataSetChanged();
+    }
 
 }
