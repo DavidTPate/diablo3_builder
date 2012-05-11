@@ -5,16 +5,23 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.pate.diablo.sectionlist.EmptyItem.SkillType;
 import com.viewpagerindicator.TitleProvider;
 
 class SkillFragmentAdapter extends FragmentPagerAdapter implements TitleProvider {
 	protected static final String[] CONTENT = new String[] { "Primary", "Secondary", "Defensive", "Might", "Tactics", "Rage" };
-	Context context;
+	private Context context;
 	private int mCount = CONTENT.length;
+	private SkillType skillType;
+	private String selectedClass;
+	private int requiredLevel;
 
-	public SkillFragmentAdapter(FragmentManager fm, Context context) {
+	public SkillFragmentAdapter(FragmentManager fm, Context context, SkillType skillType, String selectedClass, int requiredLevel) {
 	    super(fm);
 	    this.context = context;
+	    this.skillType = skillType;
+	    this.selectedClass = selectedClass;
+	    this.requiredLevel = requiredLevel;
 	}
 
 	@Override
