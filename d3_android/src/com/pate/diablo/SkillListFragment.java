@@ -15,10 +15,10 @@ import com.pate.diablo.sectionlist.Item;
 
 public class SkillListFragment extends ListFragment
 {
-    static Context context;
-    static String skillType;
-    static String selectedClass;
-    static int requiredLevel;
+   Context context;
+    String skillType;
+    String selectedClass;
+    int requiredLevel;
     
     ArrayList<Item> items = new ArrayList<Item>();
     private static final String KEY_CONTENT = "TestFragment:Content";
@@ -26,10 +26,10 @@ public class SkillListFragment extends ListFragment
     public static SkillListFragment newInstance(String content, Context c, String skillType, String selectedClass, int requiredLevel) {
         SkillListFragment fragment = new SkillListFragment();
 
-        SkillListFragment.context = c;
-        SkillListFragment.skillType = skillType;
-        SkillListFragment.selectedClass = selectedClass;
-        SkillListFragment.requiredLevel = requiredLevel;
+        fragment.context = c;
+        fragment.skillType = skillType;
+        fragment.selectedClass = selectedClass;
+        fragment.requiredLevel = requiredLevel;
         
         return fragment;
     }
@@ -38,11 +38,7 @@ public class SkillListFragment extends ListFragment
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        
-        Log.i("Getting Skills Type", skillType.toString());
-        Log.i("Selected Class", selectedClass);
-        Log.i("Required Level", "" + requiredLevel);
-        for (Skill s : D3Application.dataModel.getClassByName(selectedClass).getActiveSkillsByType(skillType.toString()))
+        for (Skill s : D3Application.dataModel.getClassByName(selectedClass).getActiveSkillsByType(this.skillType))
         {
             items.add(new EntrySkill(s));
         }
