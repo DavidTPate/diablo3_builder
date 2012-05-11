@@ -26,22 +26,25 @@ public class SelectSkill extends SherlockFragmentActivity
         
         Bundle b = getIntent().getExtras();
         
+        SkillType skillType = null;
+        String selectedClass = null;
+        int requiredLevel = 0;
         if (b.containsKey("SkillType"))
         {
-            SkillType skillType = SkillType.valueOf(b.getString("SkillType"));
+            skillType = SkillType.valueOf(b.getString("SkillType"));
         }
         
         if (b.containsKey("SelectedClass"))
         {
-            String selectedClass = b.getString("SelectedClass");
+            selectedClass = b.getString("SelectedClass");
         }
         
         if (b.containsKey("RequiredLevel"))
         {
-            int requiredLevel = b.getInt("RequiredLevel");
+            requiredLevel = b.getInt("RequiredLevel");
         }
 
-        mAdapter = new SkillFragmentAdapter(getSupportFragmentManager(), SelectSkill.this, skillType, selectedCLass, requiredLevel);
+        mAdapter = new SkillFragmentAdapter(getSupportFragmentManager(), SelectSkill.this, skillType, selectedClass, requiredLevel);
         
         mPager = (ViewPager) findViewById(R.id.pager);
         mPager.setAdapter(mAdapter);
