@@ -7,16 +7,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
-public class EmptyItem implements Item
+public class EmptyRune implements Item
 {
     private final String title;
     private final int level;
-    private final String skillType;
+    private final String skillName;
     
-    public EmptyItem(String title, int level, String skillType) {
+    public EmptyRune(String title, int level, String skillName) {
         this.title = title;
         this.level = level;
-        this.skillType = skillType;
+        this.skillName = skillName;
     }
 
     public String getTitle() {
@@ -27,8 +27,8 @@ public class EmptyItem implements Item
         return level;
     }
 
-    public String getSkillType() {
-        return skillType;
+    public String getSkillName() {
+        return skillName;
     }
 
     @Override
@@ -36,7 +36,7 @@ public class EmptyItem implements Item
         
         LayoutInflater vi = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         
-        EmptyItem e = (EmptyItem) i;
+        EmptyRune e = (EmptyRune) i;
         
         View v = vi.inflate(R.layout.list_item_empty, null);
 
@@ -45,7 +45,7 @@ public class EmptyItem implements Item
         
         // Is this a terrible hack?! I think so...
         emptyItemTitle.setText(e.getTitle());
-        emptySkillType.setText(e.getSkillType());
+        emptySkillType.setText(e.getSkillName());
         
         return v;
     }

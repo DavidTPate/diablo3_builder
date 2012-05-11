@@ -102,6 +102,11 @@ public class Class {
 		
 		return false;
 	}
+	
+	public boolean containsSkillsByType(String type)
+	{
+		return containsActiveSkillsByType(type) || (type.equals("Passive") ? passiveSkills.size() > 0 ? true : false : false);
+	}
 
 	public boolean containsActiveSkillsByType(String type)
 	{
@@ -185,6 +190,11 @@ public class Class {
 		}
 		
 		return skills;
+	}
+	
+	public List<Skill> getSkillsByType(String type)
+	{
+		return (type.equals("Passive") ? passiveSkills : getActiveSkillsByType(type));
 	}
 
 	public List<Skill> getActiveSkillsByType(String type)

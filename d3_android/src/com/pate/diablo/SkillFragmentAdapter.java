@@ -27,7 +27,7 @@ class SkillFragmentAdapter extends FragmentPagerAdapter implements TitleProvider
 	    this.skillType = skillType;
 	    this.selectedClass = selectedClass;
 	    this.requiredLevel = requiredLevel;
-	    skillTypes = D3Application.dataModel.getClassAttributesByName(selectedClass).getSkillTypes();
+	    skillTypes = (skillType.equals("Passive") ? new String[] {"Passive"} : D3Application.dataModel.getClassAttributesByName(selectedClass).getSkillTypes());
 	    mCount = skillTypes.length;
 	}
 

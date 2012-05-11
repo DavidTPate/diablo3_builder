@@ -25,7 +25,9 @@ import com.google.gson.GsonBuilder;
 import com.pate.diablo.model.D3Application;
 import com.pate.diablo.model.DataModel;
 import com.pate.diablo.model.Skill;
-import com.pate.diablo.sectionlist.EmptyItem;
+import com.pate.diablo.sectionlist.EmptyRune;
+import com.pate.diablo.sectionlist.EmptySkill;
+import com.pate.diablo.sectionlist.EntryRune;
 import com.pate.diablo.sectionlist.EntrySkill;
 import com.pate.diablo.sectionlist.EntrySkillAdapter;
 import com.pate.diablo.sectionlist.Item;
@@ -38,7 +40,8 @@ public class Main extends SherlockListActivity {
     Spinner selectedClass;
     Spinner requiredLevel;
     int GET_SKILL = 0;
-    int GET_RUNE = 1;
+    int REPLACE_SKILL = 1;
+    int GET_RUNE = 2;
 
     /** Called when the activity is first created. */
     @Override
@@ -124,21 +127,21 @@ public class Main extends SherlockListActivity {
         String[] skillTypes = D3Application.dataModel.getClassAttributesByName(selectedClass.getSelectedItem().toString()).getSkillTypes();
         
         items.add(new SectionItem("Left Click - Primary"));
-        items.add(new EmptyItem("Choose Skill", 1, skillTypes[0]));
+        items.add(new EmptySkill("Choose Skill", 1, skillTypes[0]));
         
         items.add(new SectionItem("Right Click - Secondary"));
-        items.add(new EmptyItem("Choose Skill", 2, skillTypes[1]));
+        items.add(new EmptySkill("Choose Skill", 2, skillTypes[1]));
         
         items.add(new SectionItem("Action Bar Skills"));
-        items.add(new EmptyItem("Choose Skill", 4 , skillTypes[2]));
-        items.add(new EmptyItem("Choose Skill", 9 , skillTypes[3]));
-        items.add(new EmptyItem("Choose Skill", 14, skillTypes[4]));
-        items.add(new EmptyItem("Choose Skill", 19, skillTypes[5]));
+        items.add(new EmptySkill("Choose Skill", 4 , skillTypes[2]));
+        items.add(new EmptySkill("Choose Skill", 9 , skillTypes[3]));
+        items.add(new EmptySkill("Choose Skill", 14, skillTypes[4]));
+        items.add(new EmptySkill("Choose Skill", 19, skillTypes[5]));
         
         items.add(new SectionItem("Passive Skills"));
-        items.add(new EmptyItem("Choose Skill", 10, "Passive"));
-        items.add(new EmptyItem("Choose Skill", 20, "Passive"));
-        items.add(new EmptyItem("Choose Skill", 30, "Passive"));
+        items.add(new EmptySkill("Choose Skill", 10, "Passive"));
+        items.add(new EmptySkill("Choose Skill", 20, "Passive"));
+        items.add(new EmptySkill("Choose Skill", 30, "Passive"));
         
         listAdapter = new EntrySkillAdapter(this, items);
         
@@ -149,20 +152,37 @@ public class Main extends SherlockListActivity {
     protected void onListItemClick(ListView l, View v, int position, long id) {
 
         Item item = items.get(position);
-
-        if (item instanceof EmptyItem)
+        Bundle b = new Bundle();
+        
+        if (item instanceof EmptySkill)
         {
-            EmptyItem e = (EmptyItem) item;
-            Intent intent = new Intent(v.getContext(), SelectSkill.class);
-
-            Bundle b = new Bundle();
-            b.putString("SkillType", e.getSkillType().toString());                
+        	EmptySkill e = (EmptySkill) item;
+        	
+        	Intent intent = new Intent(v.getContext(), SelectSkill.class);     
+    		b.putString("SkillType", e.getSkillType());
             b.putString("SelectedClass", selectedClass.getSelectedItem().toString());
             b.putInt("RequiredLevel", Integer.parseInt(requiredLevel.getSelectedItem().toString()));
             b.putInt("Index", position);
             intent.putExtras(b);
 
             startActivityForResult(intent, GET_SKILL);
+        } 
+        else if (item instanceof EntrySkill)
+        {
+        	EntrySkill e = (EntrySkill) item;
+        	
+        	Intent intent = new Intent(v.getContext(), SelectSkill.class);     
+    		b.putString("SkillType", e.getSkill().getType());
+            b.putString("SelectedClass", selectedClass.getSelectedItem().toString());
+            b.putInt("RequiredLevel", Integer.parseInt(requiredLevel.getSelectedItem().toString()));
+            b.putInt("Index", position);
+            intent.putExtras(b);
+
+            startActivityForResult(intent, REPLACE_SKILL);
+        } 
+        else if (item instanceof EntryRune)
+        {
+        	
         }
         super.onListItemClick(l, v, position, id);
     }
@@ -170,7 +190,7 @@ public class Main extends SherlockListActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
     {
-    	if (requestCode == GET_SKILL)
+    	if (requestCode == GET_SKILL || requestCode == REPLACE_SKILL)
     	{
     		if (resultCode == RESULT_OK)
     		{
@@ -196,12 +216,23 @@ public class Main extends SherlockListActivity {
 		        	Log.i("onActivityResult", "Active Skill Found!");
 		        	Skill s = D3Application.dataModel.getClassByName(selectedClass.getSelectedItem().toString()).getActiveSkillByUUID(UUID.fromString(skillUUID));
 		        	items.set(index, new EntrySkill(s));
+		        	if (requestCode == GET_SKILL)
+		        	{
+		        		items.add(index + 1,  new EmptyRune("Choose Rune", 1, s.getName()));
+		        	}
+		        	else if (requestCode == REPLACE_SKILL)
+		        	{
+		        		items.set(index + 1,  new EmptyRune("Choose Rune", 1, s.getName()));
+		        	}
 		        	listAdapter.setList(items);
 		        	
 		        }
 		        else if (skillUUID != null && index >= 0 && D3Application.dataModel.getClassByName(selectedClass.getSelectedItem().toString()).containsPassiveSkillByUUID(UUID.fromString(skillUUID)))
 		        {
-		        	Log.i("onActivityResult", "Active Skill Found!");
+		        	Log.i("onActivityResult", "Passive Skill Found!");
+		        	Skill s = D3Application.dataModel.getClassByName(selectedClass.getSelectedItem().toString()).getPassiveSkillByUUID(UUID.fromString(skillUUID));
+		        	items.set(index, new EntrySkill(s));
+		        	listAdapter.setList(items);
 		        }
 		        else
 		        {

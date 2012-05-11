@@ -43,7 +43,7 @@ public class SkillListFragment extends ListFragment
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        for (Skill s : D3Application.dataModel.getClassByName(selectedClass).getActiveSkillsByType(this.skillType))
+        for (Skill s : D3Application.dataModel.getClassByName(selectedClass).getSkillsByType(this.skillType))
         {
             items.add(new EntrySkill(s));
         }
