@@ -28,7 +28,6 @@ public class ClassListFragment extends ListFragment
 {
     private Context context;
     private String selectedClass;
-    private int requiredLevel;
     private OnClickListener listener;
     private EntrySkillAdapter listAdapter;
     private String mContent = "???";
@@ -40,21 +39,19 @@ public class ClassListFragment extends ListFragment
     
     ArrayList<Item> items = new ArrayList<Item>();
 
-    public static ClassListFragment newInstance(String selectedClass,int requiredLevel, Context c) {
+    public static ClassListFragment newInstance(String selectedClass, Context c) {
         ClassListFragment fragment = new ClassListFragment();
 
         fragment.context = c;
         fragment.selectedClass = selectedClass;
-        fragment.requiredLevel = requiredLevel;
-        
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setRetainInstance(true);
         setListAdapter(getSkillListAdapter());
-        super.onCreate(savedInstanceState);
     }
 
     @Override
@@ -70,6 +67,7 @@ public class ClassListFragment extends ListFragment
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
 	    Item item = items.get(position);
+	    int maxLevel = ((Main) getActivity()).getMaxLevel();
         Bundle b = new Bundle();
         
         if (item instanceof EmptySkill)
@@ -79,7 +77,7 @@ public class ClassListFragment extends ListFragment
             Intent intent = new Intent(v.getContext(), SelectSkill.class);     
             b.putString("SkillType", e.getSkillType());
             b.putString("SelectedClass", selectedClass);
-            b.putInt("RequiredLevel", requiredLevel);
+            b.putInt("RequiredLevel", maxLevel);
             b.putInt("Index", position);
             intent.putExtras(b);
 
@@ -92,7 +90,7 @@ public class ClassListFragment extends ListFragment
             Intent intent = new Intent(v.getContext(), SelectSkill.class);     
             b.putString("SkillType", e.getSkill().getType());
             b.putString("SelectedClass", selectedClass);
-            b.putInt("RequiredLevel", requiredLevel);
+            b.putInt("RequiredLevel", maxLevel);
             b.putInt("Index", position);
             intent.putExtras(b);
 
@@ -105,7 +103,7 @@ public class ClassListFragment extends ListFragment
             Intent intent = new Intent(v.getContext(), SelectRune.class);     
             b.putString("SkillName", e.getSkillName());
             b.putString("SelectedClass", selectedClass);
-            b.putInt("RequiredLevel", requiredLevel);
+            b.putInt("RequiredLevel", maxLevel);
             b.putSerializable("SkillUUID", e.getSkillUUID());
             b.putInt("Index", position);
             intent.putExtras(b);
@@ -119,7 +117,7 @@ public class ClassListFragment extends ListFragment
             Intent intent = new Intent(v.getContext(), SelectRune.class);     
             b.putString("SkillName", e.getSkillName());
             b.putString("SelectedClass", selectedClass);
-            b.putInt("RequiredLevel", requiredLevel);
+            b.putInt("RequiredLevel", maxLevel);
             b.putSerializable("SkillUUID", e.getSkillUUID());
             b.putInt("Index", position);
             intent.putExtras(b);

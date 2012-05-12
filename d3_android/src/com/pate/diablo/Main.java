@@ -28,9 +28,10 @@ public class Main extends SherlockFragmentActivity {
     SpinnerAdapter  mSpinnerAdapter;
     ArrayList<Item> items = new ArrayList<Item>();
     EntrySkillAdapter listAdapter;
+    TitlePageIndicator indicator;
     String selectedClass;
     Spinner maxLevelSpinner;
-    int maxLevel = 60;
+    int maxLevel;
     ClassFragmentAdapter mAdapter;
     ViewPager mPager;
     PageIndicator mIndicator;
@@ -64,16 +65,6 @@ public class Main extends SherlockFragmentActivity {
 
         D3Application.setDataModel(gson.fromJson(fakeJson, DataModel.class));
         
-        if (savedInstanceState != null)
-        {
-            this.selectedClass = savedInstanceState.getString("selectedClass");
-            this.maxLevel = savedInstanceState.getInt("maxLevel");
-        }
-        else
-        {
-            selectedClass = D3Application.dataModel.getClasses().get(0).getName();
-            maxLevel = 60;
-        }
 
         mSpinnerAdapter = ArrayAdapter.createFromResource(this, R.array.levels, android.R.layout.simple_dropdown_item_1line);
 
@@ -81,32 +72,55 @@ public class Main extends SherlockFragmentActivity {
         actionBar.setDisplayShowTitleEnabled(false);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
         
+        if (savedInstanceState != null)
+        {
+            this.selectedClass = savedInstanceState.getString("selectedClass");
+            this.maxLevel = savedInstanceState.getInt("maxLevel");
+            Log.i("Saved MaxLevel", "" + maxLevel);
+            getSupportActionBar().setSelectedNavigationItem(maxLevel);
+        }
+        else
+        {
+            selectedClass = D3Application.dataModel.getClasses().get(0).getName();
+        }
+
         ActionBar.OnNavigationListener mNavigationCallback = new ActionBar.OnNavigationListener() {
             
             @Override
             public boolean onNavigationItemSelected(int itemPosition, long itemId) {
                 maxLevel = 60 - itemPosition;
                 Log.i("MaxLevel", "" + maxLevel);
-                mAdapter = new ClassFragmentAdapter(getSupportFragmentManager(), Main.this, selectedClass, maxLevel);
-                mPager.setAdapter(mAdapter);                    
-                return false;
+                mAdapter = new ClassFragmentAdapter(getSupportFragmentManager(), Main.this);
+                mPager.setAdapter(mAdapter);
+                indicator.setViewPager(mPager);
+                return true;
             }
         };
         
         actionBar.setListNavigationCallbacks(mSpinnerAdapter, mNavigationCallback);
         
-        mAdapter = new ClassFragmentAdapter(getSupportFragmentManager(), Main.this, selectedClass, maxLevel);
+        mAdapter = new ClassFragmentAdapter(getSupportFragmentManager(), Main.this);
         
         mPager = (ViewPager) findViewById(R.id.main_pager);
         mPager.setAdapter(mAdapter);
         
-        TitlePageIndicator indicator = (TitlePageIndicator) findViewById(R.id.main_indicator);
+        indicator = (TitlePageIndicator) findViewById(R.id.main_indicator);
         indicator.setViewPager(mPager);
         indicator.setFooterIndicatorStyle(IndicatorStyle.Triangle);
         mIndicator = indicator;
 
     }
     
+    public int getMaxLevel()
+    {
+        return 60 - getSupportActionBar().getSelectedNavigationIndex();
+    }
+    
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putInt("maxLevel", maxLevel);
+        super.onSaveInstanceState(outState);
+    }
     
 
     

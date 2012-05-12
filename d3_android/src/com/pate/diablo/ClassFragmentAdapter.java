@@ -6,7 +6,7 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.view.View.OnClickListener;
+import android.util.Log;
 
 import com.pate.diablo.model.Class;
 import com.pate.diablo.model.D3Application;
@@ -16,15 +16,10 @@ public class ClassFragmentAdapter extends FragmentPagerAdapter implements TitleP
 {
     private List<Class> classes;
     private Context context;
-    private OnClickListener listener;
-    private String selectedClass;
-    private int requiredLevel;
 
-    public ClassFragmentAdapter(FragmentManager fm, Context context, String selectedClass, int requiredLevel) {
+    public ClassFragmentAdapter(FragmentManager fm, Context context) {
         super(fm);
         this.context = context;
-        this.selectedClass = selectedClass;
-        this.requiredLevel = requiredLevel;
         this.classes = D3Application.dataModel.getClasses();
     }
 
@@ -35,7 +30,7 @@ public class ClassFragmentAdapter extends FragmentPagerAdapter implements TitleP
 
     @Override
     public Fragment getItem(int position) {
-        ClassListFragment classList = ClassListFragment.newInstance(classes.get(position).getName(), requiredLevel, context);
+        ClassListFragment classList = ClassListFragment.newInstance(classes.get(position).getName(), context);
         return classList;
         
     }
@@ -45,9 +40,4 @@ public class ClassFragmentAdapter extends FragmentPagerAdapter implements TitleP
         return classes.size();
     }
 
-    public void setOnListItemClickListener(OnClickListener listener)
-    {
-        this.listener = listener;
-    }
-    
 }
