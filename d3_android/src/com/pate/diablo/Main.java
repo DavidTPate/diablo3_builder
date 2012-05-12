@@ -85,6 +85,7 @@ public class Main extends SherlockFragmentActivity {
             
             @Override
             public boolean onNavigationItemSelected(int itemPosition, long itemId) {
+                Log.i("ItemPosition", "" + itemPosition);
                 maxLevel = getResources().getIntArray(R.array.levels)[itemPosition];
                 Log.i("MaxLevel", "" + maxLevel);
                 mAdapter = new ClassFragmentAdapter(getSupportFragmentManager(), Main.this, selectedClass, maxLevel);
