@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
+              android:id="@+id/ads_banner"
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent">
+  <com.google.ads.AdView android:id="@+id/adView"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         ads:adUnitId="a14fadcf33a641a"
+                         ads:adSize="BANNER"
+                         ads:testDevices="TEST_EMULATOR, MFI7TH6JX36A2"
+                         ads:loadAdOnCreate="true"/>
+</LinearLayout>
