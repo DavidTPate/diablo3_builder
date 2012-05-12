@@ -28,9 +28,7 @@ public class ClassListFragment extends ListFragment
 {
     private Context context;
     private String selectedClass;
-    private OnClickListener listener;
     private EntrySkillAdapter listAdapter;
-    private String mContent = "???";
     int index;
     int GET_SKILL = 0;
     int REPLACE_SKILL = 1;
@@ -44,12 +42,14 @@ public class ClassListFragment extends ListFragment
 
         fragment.context = c;
         fragment.selectedClass = selectedClass;
+        Log.i("ClassListFragment-SelectedClass", selectedClass);
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.i("ClassListFragment", "Oncreate");
         setRetainInstance(true);
         setListAdapter(getSkillListAdapter());
     }
@@ -59,11 +59,6 @@ public class ClassListFragment extends ListFragment
         super.onSaveInstanceState(outState);
     }
     
-    public void setOnListItemClickListener(OnClickListener listener)
-    {
-    	this.listener = listener;
-    }
-
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
 	    Item item = items.get(position);

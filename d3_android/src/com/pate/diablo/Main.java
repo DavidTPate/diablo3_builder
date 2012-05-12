@@ -72,18 +72,6 @@ public class Main extends SherlockFragmentActivity {
         actionBar.setDisplayShowTitleEnabled(false);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
         
-        if (savedInstanceState != null)
-        {
-            this.selectedClass = savedInstanceState.getString("selectedClass");
-            this.maxLevel = savedInstanceState.getInt("maxLevel");
-            Log.i("Saved MaxLevel", "" + maxLevel);
-            getSupportActionBar().setSelectedNavigationItem(maxLevel);
-        }
-        else
-        {
-            selectedClass = D3Application.dataModel.getClasses().get(0).getName();
-        }
-
         ActionBar.OnNavigationListener mNavigationCallback = new ActionBar.OnNavigationListener() {
             
             @Override
@@ -109,6 +97,18 @@ public class Main extends SherlockFragmentActivity {
         indicator.setFooterIndicatorStyle(IndicatorStyle.Triangle);
         mIndicator = indicator;
 
+        if (savedInstanceState != null)
+        {
+            this.maxLevel = 60 - savedInstanceState.getInt("maxLevel");
+            Log.i("SelectedPage", "" + savedInstanceState.getInt("selectedPage"));
+            indicator.setCurrentItem(savedInstanceState.getInt("selectedPage"));
+            mPager.setCurrentItem(savedInstanceState.getInt("selectedPage"));
+            getSupportActionBar().setSelectedNavigationItem(maxLevel);
+        }
+        else
+        {
+            selectedClass = D3Application.dataModel.getClasses().get(0).getName();
+        }
     }
     
     public int getMaxLevel()
@@ -119,6 +119,8 @@ public class Main extends SherlockFragmentActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         outState.putInt("maxLevel", maxLevel);
+        Log.i("OnSave CurrenPage", "" + mPager.getCurrentItem());
+        outState.putInt("selectedPage", mPager.getCurrentItem());
         super.onSaveInstanceState(outState);
     }
     
