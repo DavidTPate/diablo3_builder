@@ -14,7 +14,7 @@
         android:layout_alignParentLeft="true"
         android:paddingLeft="5dp"
         android:src="@drawable/rune_a" />
-    
+
     <TextView
         android:id="@+id/list_rune_title"
         android:layout_width="wrap_content"
@@ -30,8 +30,8 @@
         android:id="@+id/list_rune_unlocked_at"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/list_rune_title"
         android:layout_alignLeft="@id/list_rune_title"
+        android:layout_below="@id/list_rune_title"
         android:text="Unlocked at level 6" />
 
     <TextView
