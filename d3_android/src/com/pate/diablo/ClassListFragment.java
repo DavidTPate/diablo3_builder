@@ -62,7 +62,7 @@ public class ClassListFragment extends ListFragment
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
 	    Item item = items.get(position);
-	    int maxLevel = ((Main) getActivity()).getMaxLevel();
+	    int maxLevel = 60;//((Main) getActivity()).getMaxLevel();
         Bundle b = new Bundle();
         
         if (item instanceof EmptySkill)

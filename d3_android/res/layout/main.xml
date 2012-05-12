@@ -5,25 +5,6 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-    <com.viewpagerindicator.TitlePageIndicator
-        android:id="@+id/main_indicator"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dip"/>
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/main_pager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@android:id/list"
-        android:layout_below="@id/main_indicator" />
-
-    <ListView
-        android:id="@android:id/list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/adView" />
-
     <com.google.ads.AdView
         android:id="@+id/adView"
         android:layout_width="wrap_content"
