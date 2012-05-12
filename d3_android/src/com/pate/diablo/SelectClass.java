@@ -1,3 +1,4 @@
+
 package com.pate.diablo;
 
 import java.io.BufferedReader;
@@ -12,6 +13,9 @@ import android.widget.SpinnerAdapter;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.MenuItem;
 import com.google.ads.AdRequest;
 import com.google.ads.AdView;
 import com.google.gson.Gson;
@@ -22,95 +26,124 @@ import com.viewpagerindicator.PageIndicator;
 import com.viewpagerindicator.TitlePageIndicator;
 import com.viewpagerindicator.TitlePageIndicator.IndicatorStyle;
 
-public class SelectClass extends SherlockFragmentActivity {
-	private ClassFragmentAdapter mAdapter;
-	private ViewPager mPager;
-	private PageIndicator mIndicator;
-	private SpinnerAdapter mSpinnerAdapter;
-	private static int maxLevel;
+public class SelectClass extends SherlockFragmentActivity
+{
 
-	/** Called when the activity is first created. */
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+    private ClassFragmentAdapter mAdapter;
+    private ViewPager            mPager;
+    private PageIndicator        mIndicator;
+    private SpinnerAdapter       mSpinnerAdapter;
+    private static int           maxLevel;
 
-		if (D3Application.dataModel == null) {
-			Gson gson = new GsonBuilder()
-					.excludeFieldsWithoutExposeAnnotation().create();
-			BufferedReader reader = new BufferedReader(new InputStreamReader(
-					getResources().openRawResource(R.raw.classes)));
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
 
-			String fakeJson = "";
-			String line;
-			try {
-				line = reader.readLine();
-				while (line != null) {
-					fakeJson = fakeJson + line;
-					line = reader.readLine();
-				}
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+        MenuInflater inflater = getSupportMenuInflater();
+        inflater.inflate(R.menu.main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
-			D3Application
-					.setDataModel(gson.fromJson(fakeJson, DataModel.class));
-		}
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
 
-		setContentView(R.layout.select_skill);
+        ClassListFragment frag = (ClassListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mPager.getCurrentItem());
+        Log.i("linkTest", frag.linkifyClassBuild());
+        return super.onOptionsItemSelected(item);
+    }
 
-		if (savedInstanceState != null) {
-			if (savedInstanceState.containsKey("MaxLevel")) {
-				maxLevel = savedInstanceState.getInt("MaxLevel");
-			}
-		} else {
-			maxLevel = 60;
-		}
+    /** Called when the activity is first created. */
+    @Override
+    public void onCreate(Bundle savedInstanceState)
+    {
 
-		AdView adView = (AdView) this.findViewById(R.id.adView);
-		AdRequest newAd = new AdRequest();
-		newAd.addTestDevice("BDD7A55C1502190E502F14CBFDF9ABC7");
-		newAd.addTestDevice("E85A995C749AE015AA4EE195878C0982");
-		adView.loadAd(newAd);
+        super.onCreate(savedInstanceState);
 
-		mSpinnerAdapter = ArrayAdapter.createFromResource(this, R.array.levels,
-				android.R.layout.simple_dropdown_item_1line);
+        if (D3Application.dataModel == null)
+        {
+            Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(getResources().openRawResource(R.raw.classes)));
 
-		ActionBar actionBar = getSupportActionBar();
+            String fakeJson = "";
+            String line;
+            try
+            {
+                line = reader.readLine();
+                while (line != null)
+                {
+                    fakeJson = fakeJson + line;
+                    line = reader.readLine();
+                }
+            }
+            catch (IOException e)
+            {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
 
-		actionBar.setDisplayShowTitleEnabled(false);
-		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+            D3Application.setDataModel(gson.fromJson(fakeJson, DataModel.class));
+        }
 
-		ActionBar.OnNavigationListener mNavigationCallback = new ActionBar.OnNavigationListener() {
+        setContentView(R.layout.select_skill);
 
-			@Override
-			public boolean onNavigationItemSelected(int itemPosition,
-					long itemId) {
-				maxLevel = 60 - itemPosition;
-				Log.i("MaxLevel", "" + maxLevel);
-				return true;
-			}
-		};
+        if (savedInstanceState != null)
+        {
+            if (savedInstanceState.containsKey("MaxLevel"))
+            {
+                maxLevel = savedInstanceState.getInt("MaxLevel");
+            }
+        }
+        else
+        {
+            maxLevel = 60;
+        }
 
-		actionBar.setListNavigationCallbacks(mSpinnerAdapter,
-				mNavigationCallback);
-		actionBar.setSelectedNavigationItem(60 - maxLevel);
+        AdView adView = (AdView) this.findViewById(R.id.adView);
+        AdRequest newAd = new AdRequest();
+        newAd.addTestDevice("BDD7A55C1502190E502F14CBFDF9ABC7");
+        newAd.addTestDevice("E85A995C749AE015AA4EE195878C0982");
+        adView.loadAd(newAd);
 
-		mAdapter = new ClassFragmentAdapter(getSupportFragmentManager(),
-				SelectClass.this);
+        mSpinnerAdapter = ArrayAdapter.createFromResource(this, R.array.levels, android.R.layout.simple_dropdown_item_1line);
 
-		mPager = (ViewPager) findViewById(R.id.pager);
-		mPager.setAdapter(mAdapter);
+        ActionBar actionBar = getSupportActionBar();
 
-		TitlePageIndicator indicator = (TitlePageIndicator) findViewById(R.id.select_skill_indicator);
-		indicator.setViewPager(mPager);
-		indicator.setFooterIndicatorStyle(IndicatorStyle.Triangle);
-		mIndicator = indicator;
-	}
+        actionBar.setDisplayShowTitleEnabled(false);
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
 
-	@Override
-	protected void onSaveInstanceState(Bundle outState) {
-		outState.putInt("MaxLevel", maxLevel);
-		super.onSaveInstanceState(outState);
-	}
+        ActionBar.OnNavigationListener mNavigationCallback = new ActionBar.OnNavigationListener()
+        {
+
+            @Override
+            public boolean onNavigationItemSelected(int itemPosition, long itemId)
+            {
+
+                maxLevel = 60 - itemPosition;
+                Log.i("MaxLevel", "" + maxLevel);
+                return true;
+            }
+        };
+
+        actionBar.setListNavigationCallbacks(mSpinnerAdapter, mNavigationCallback);
+        actionBar.setSelectedNavigationItem(60 - maxLevel);
+
+        mAdapter = new ClassFragmentAdapter(getSupportFragmentManager(), SelectClass.this);
+
+        mPager = (ViewPager) findViewById(R.id.pager);
+        mPager.setAdapter(mAdapter);
+
+        TitlePageIndicator indicator = (TitlePageIndicator) findViewById(R.id.select_skill_indicator);
+        indicator.setViewPager(mPager);
+        indicator.setFooterIndicatorStyle(IndicatorStyle.Triangle);
+        mIndicator = indicator;
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState)
+    {
+
+        outState.putInt("MaxLevel", maxLevel);
+        super.onSaveInstanceState(outState);
+    }
 }

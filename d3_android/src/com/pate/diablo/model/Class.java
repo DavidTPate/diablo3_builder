@@ -319,6 +319,10 @@ public class Class {
 		return skills;
 	}
 	
+	public List<Skill> getActiveSkills() {
+		return activeSkills;
+	}
+
 	public String getTier1Text() {
 		return tier1Text;
 	}

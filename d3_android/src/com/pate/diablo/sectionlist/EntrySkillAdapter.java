@@ -35,5 +35,10 @@ public class EntrySkillAdapter extends ArrayAdapter<Item>
     	this.items = items;
     	notifyDataSetChanged();
     }
+    
+    public ArrayList<Item> getItems()
+    {
+    	return this.items;
+    }
 
 }

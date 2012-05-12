@@ -1,6 +1,8 @@
+
 package com.pate.diablo;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import android.app.Activity;
@@ -16,6 +18,7 @@ import android.widget.ListView;
 import com.pate.diablo.model.D3Application;
 import com.pate.diablo.model.Rune;
 import com.pate.diablo.model.Skill;
+import com.pate.diablo.model.SkillAttribute;
 import com.pate.diablo.sectionlist.EmptyRune;
 import com.pate.diablo.sectionlist.EmptySkill;
 import com.pate.diablo.sectionlist.EntryRune;
@@ -26,18 +29,21 @@ import com.pate.diablo.sectionlist.SectionItem;
 
 public class ClassListFragment extends ListFragment
 {
-    private Context context;
-    private String selectedClass;
-    private EntrySkillAdapter listAdapter;
-    int index;
-    int GET_SKILL = 0;
-    int REPLACE_SKILL = 1;
-    int GET_RUNE = 2;
-    int REPLACE_RUNE = 3;
-    
-    ArrayList<Item> items = new ArrayList<Item>();
 
-    public static ClassListFragment newInstance(String selectedClass, Context c) {
+    private Context           context;
+    private String            selectedClass;
+    private EntrySkillAdapter listAdapter;
+    int                       index;
+    int                       GET_SKILL     = 0;
+    int                       REPLACE_SKILL = 1;
+    int                       GET_RUNE      = 2;
+    int                       REPLACE_RUNE  = 3;
+
+    ArrayList<Item>           items         = new ArrayList<Item>();
+
+    public static ClassListFragment newInstance(String selectedClass, Context c)
+    {
+
         ClassListFragment fragment = new ClassListFragment();
 
         fragment.context = c;
@@ -47,7 +53,9 @@ public class ClassListFragment extends ListFragment
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState)
+    {
+
         super.onCreate(savedInstanceState);
         Log.i("ClassListFragment", "Oncreate");
         setRetainInstance(true);
@@ -55,21 +63,25 @@ public class ClassListFragment extends ListFragment
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(Bundle outState)
+    {
+
         super.onSaveInstanceState(outState);
     }
-    
-	@Override
-	public void onListItemClick(ListView l, View v, int position, long id) {
-	    Item item = items.get(position);
-	    int maxLevel = 60;//((Main) getActivity()).getMaxLevel();
+
+    @Override
+    public void onListItemClick(ListView l, View v, int position, long id)
+    {
+
+        Item item = items.get(position);
+        int maxLevel = 60;// ((Main) getActivity()).getMaxLevel();
         Bundle b = new Bundle();
-        
+
         if (item instanceof EmptySkill)
         {
             EmptySkill e = (EmptySkill) item;
-            
-            Intent intent = new Intent(v.getContext(), SelectSkill.class);     
+
+            Intent intent = new Intent(v.getContext(), SelectSkill.class);
             b.putString("SkillType", e.getSkillType());
             b.putString("SelectedClass", selectedClass);
             b.putInt("RequiredLevel", maxLevel);
@@ -77,12 +89,12 @@ public class ClassListFragment extends ListFragment
             intent.putExtras(b);
 
             startActivityForResult(intent, GET_SKILL);
-        } 
+        }
         else if (item instanceof EntrySkill)
         {
             EntrySkill e = (EntrySkill) item;
-            
-            Intent intent = new Intent(v.getContext(), SelectSkill.class);     
+
+            Intent intent = new Intent(v.getContext(), SelectSkill.class);
             b.putString("SkillType", e.getSkill().getType());
             b.putString("SelectedClass", selectedClass);
             b.putInt("RequiredLevel", maxLevel);
@@ -90,12 +102,12 @@ public class ClassListFragment extends ListFragment
             intent.putExtras(b);
 
             startActivityForResult(intent, REPLACE_SKILL);
-        } 
+        }
         else if (item instanceof EmptyRune)
         {
             EmptyRune e = (EmptyRune) item;
-            
-            Intent intent = new Intent(v.getContext(), SelectRune.class);     
+
+            Intent intent = new Intent(v.getContext(), SelectRune.class);
             b.putString("SkillName", e.getSkillName());
             b.putString("SelectedClass", selectedClass);
             b.putInt("RequiredLevel", maxLevel);
@@ -108,8 +120,8 @@ public class ClassListFragment extends ListFragment
         else if (item instanceof EntryRune)
         {
             EntryRune e = (EntryRune) item;
-            
-            Intent intent = new Intent(v.getContext(), SelectRune.class);     
+
+            Intent intent = new Intent(v.getContext(), SelectRune.class);
             b.putString("SkillName", e.getSkillName());
             b.putString("SelectedClass", selectedClass);
             b.putInt("RequiredLevel", maxLevel);
@@ -119,60 +131,62 @@ public class ClassListFragment extends ListFragment
 
             startActivityForResult(intent, REPLACE_RUNE);
         }
-		super.onListItemClick(l, v, position, id);
-	}
-	
+        super.onListItemClick(l, v, position, id);
+    }
+
     private EntrySkillAdapter getSkillListAdapter()
     {
+
         items = new ArrayList<Item>();
         String[] skillTypes = D3Application.dataModel.getClassAttributesByName(selectedClass).getSkillTypes();
-        
+
         items.add(new SectionItem("Left Click - Primary"));
         items.add(new EmptySkill("Choose Skill", 1, skillTypes[0]));
-        
+
         items.add(new SectionItem("Right Click - Secondary"));
         items.add(new EmptySkill("Choose Skill", 2, skillTypes[1]));
-        
+
         items.add(new SectionItem("Action Bar Skills"));
-        items.add(new EmptySkill("Choose Skill", 4 , skillTypes[2]));
-        items.add(new EmptySkill("Choose Skill", 9 , skillTypes[3]));
+        items.add(new EmptySkill("Choose Skill", 4, skillTypes[2]));
+        items.add(new EmptySkill("Choose Skill", 9, skillTypes[3]));
         items.add(new EmptySkill("Choose Skill", 14, skillTypes[4]));
         items.add(new EmptySkill("Choose Skill", 19, skillTypes[5]));
-        
+
         items.add(new SectionItem("Passive Skills"));
         items.add(new EmptySkill("Choose Skill", 10, "Passive"));
         items.add(new EmptySkill("Choose Skill", 20, "Passive"));
         items.add(new EmptySkill("Choose Skill", 30, "Passive"));
-        
+
         listAdapter = new EntrySkillAdapter(context, items);
-        
+
         return listAdapter;
     }
-    
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data)
     {
+
         if (requestCode == GET_SKILL || requestCode == REPLACE_SKILL)
         {
             if (resultCode == Activity.RESULT_OK)
             {
                 Bundle b = data.getExtras();
-                
+
                 String skillUUID = null;
                 int index = -1;
-                
+
                 if (b.containsKey("Skill_UUID"))
                 {
                     skillUUID = b.getString("Skill_UUID");
                 }
-                
+
                 if (b.containsKey("Index"))
                 {
                     index = b.getInt("Index");
                 }
-                
+
                 Log.i("onActivityResult", "UUID: " + skillUUID + " Index: " + index);
-                
+
                 if (skillUUID != null && index >= 0 && D3Application.dataModel.getClassByName(selectedClass).containsActiveSkillByUUID(UUID.fromString(skillUUID)))
                 {
                     Log.i("onActivityResult", "Active Skill Found!");
@@ -180,14 +194,14 @@ public class ClassListFragment extends ListFragment
                     items.set(index, new EntrySkill(s));
                     if (requestCode == GET_SKILL)
                     {
-                        items.add(index + 1,  new EmptyRune("Choose Rune", 1, s.getName(), s.getUuid()));
+                        items.add(index + 1, new EmptyRune("Choose Rune", 1, s.getName(), s.getUuid()));
                     }
                     else if (requestCode == REPLACE_SKILL)
                     {
-                        items.set(index + 1,  new EmptyRune("Choose Rune", 1, s.getName(), s.getUuid()));
+                        items.set(index + 1, new EmptyRune("Choose Rune", 1, s.getName(), s.getUuid()));
                     }
                     listAdapter.setList(items);
-                    
+
                 }
                 else if (skillUUID != null && index >= 0 && D3Application.dataModel.getClassByName(selectedClass).containsPassiveSkillByUUID(UUID.fromString(skillUUID)))
                 {
@@ -198,12 +212,12 @@ public class ClassListFragment extends ListFragment
                 }
                 else
                 {
-                    //Uh-Oh!
+                    // Uh-Oh!
                 }
             }
             else
             {
-                //Do nothing?
+                // Do nothing?
             }
         }
         else if (requestCode == GET_RUNE || requestCode == REPLACE_RUNE)
@@ -211,28 +225,28 @@ public class ClassListFragment extends ListFragment
             if (resultCode == Activity.RESULT_OK)
             {
                 Bundle b = data.getExtras();
-                
+
                 String runeUUID = null;
                 String skillUUID = null;
                 int index = -1;
-                
+
                 if (b.containsKey("Rune_UUID"))
                 {
                     runeUUID = b.getString("Rune_UUID");
                 }
-                
+
                 if (b.containsKey("Skill_UUID"))
                 {
                     skillUUID = b.getString("Skill_UUID");
                 }
-                
+
                 if (b.containsKey("Index"))
                 {
                     index = b.getInt("Index");
                 }
-                
+
                 Log.i("onActivityResult", "UUID: " + runeUUID + " Index: " + index);
-                
+
                 if (D3Application.dataModel.getClassByName(selectedClass).containsActiveSkillByUUID(UUID.fromString(skillUUID)))
                 {
                     if (skillUUID != null && index >= 0 && D3Application.dataModel.getClassByName(selectedClass).getActiveSkillByUUID(UUID.fromString(skillUUID)).containsRuneByUUID(UUID.fromString(runeUUID)))
@@ -244,19 +258,81 @@ public class ClassListFragment extends ListFragment
                     }
                     else
                     {
-                        //Uh-Oh!
+                        // Uh-Oh!
                     }
                 }
                 else
                 {
-                    //Uh-Oh
+                    // Uh-Oh
                 }
             }
             else
             {
-                //Do nothing?
+                // Do nothing?
             }
         }
     }
-    
+
+    public String linkifyClassBuild()
+    {
+
+        StringBuffer activeVal = new StringBuffer();
+        StringBuffer passiveVal = new StringBuffer();
+        StringBuffer runeVal = new StringBuffer();
+
+        com.pate.diablo.model.Class currClass = D3Application.dataModel.getClassByName(selectedClass);
+        List<Skill> activeSkills = currClass.getActiveSkills();
+        List<Skill> passiveSkills = currClass.getPassiveSkills();
+        ArrayList<Item> items = listAdapter.getItems();
+
+        SkillAttribute skillAttrbs = D3Application.dataModel.getSkillAttributes();
+        String[] skillMapping = skillAttrbs.getSkillMapping();
+
+        for (Item item : items)
+        {
+            if (item instanceof EmptySkill)
+            {
+                EmptySkill e = (EmptySkill) item;
+
+                if (e.getSkillType().equals("Passive"))
+                {
+                    passiveVal.append(skillAttrbs.getMissingValue());
+                }
+                else
+                {
+                    activeVal.append(skillAttrbs.getMissingValue());
+                    runeVal.append(skillAttrbs.getMissingValue());
+                }
+            }
+            else if (item instanceof EntrySkill)
+            {
+                Skill s = ((EntrySkill) item).getSkill();
+
+                if (s.getType().equals("Passive"))
+                {
+                    passiveVal.append(skillMapping[passiveSkills.indexOf(s)]);
+                }
+                else
+                {
+                    activeVal.append(skillMapping[activeSkills.indexOf(s)]);
+                }
+            }
+            else if (item instanceof EmptyRune)
+            {
+                EmptyRune e = (EmptyRune) item;
+                runeVal.append(skillAttrbs.getMissingValue());
+
+            }
+            else if (item instanceof EntryRune)
+            {
+                EntryRune e = (EntryRune) item;
+                Rune r = e.getRune();
+                Skill s = currClass.getSkillByUUID(activeSkills, e.getSkillUUID());
+                runeVal.append(skillMapping[s.getRunes().indexOf(r)]);
+            }
+        }
+        
+        return "http://us.battle.net/d3/en/calculator/" + selectedClass.toLowerCase() + "#" + activeVal.toString() + skillAttrbs.getPassiveSeparator() + passiveVal.toString() + skillAttrbs.getRuneSeparator() + runeVal.toString();
+    }
+
 }
