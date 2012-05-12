@@ -1,5 +1,7 @@
 package com.pate.diablo.sectionlist;
 
+import java.util.UUID;
+
 import com.pate.diablo.R;
 
 import android.content.Context;
@@ -12,11 +14,13 @@ public class EmptyRune implements Item
     private final String title;
     private final int level;
     private final String skillName;
+    private final UUID skillUUID;
     
-    public EmptyRune(String title, int level, String skillName) {
+    public EmptyRune(String title, int level, String skillName, UUID skillUUID) {
         this.title = title;
         this.level = level;
         this.skillName = skillName;
+        this.skillUUID = skillUUID;
     }
 
     public String getTitle() {
@@ -30,6 +34,10 @@ public class EmptyRune implements Item
     public String getSkillName() {
         return skillName;
     }
+    
+    public UUID getSkillUUID() {
+    	return skillUUID;
+    }
 
     @Override
     public View inflate(Context c, Item i) {
@@ -40,7 +48,7 @@ public class EmptyRune implements Item
         
         View v = vi.inflate(R.layout.list_item_empty, null);
 
-        final TextView emptyItemTitle = (TextView) v.findViewById(R.id.list_empty_skill_type);
+        final TextView emptyItemTitle = (TextView) v.findViewById(R.id.list_empty_title);
         final TextView emptySkillType = (TextView) v.findViewById(R.id.list_empty_skill_type);
         
         // Is this a terrible hack?! I think so...

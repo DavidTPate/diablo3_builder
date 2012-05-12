@@ -935,96 +935,112 @@
 			}]
 		}],
 		"passive-skills": [{
+			"type": "Passive",
 			"name": "Pound of Flesh",
 			"required-level": 10,
 			"icon": "barbarian_passive_poundofflesh",
 			"description": " Increases the chance of finding a health globe by 25% and you gain 100% additional Life from health globes."
 		},
 		{
+			"type": "Passive",
 			"name": "Ruthless",
 			"required-level": 10,
 			"icon": "barbarian_passive_ruthless",
 			"description": " Critical Hit Chance increased by 5%. Critical Hit Damage increased by 50%. Many skills and runes rely on Critical Hits to trigger their effects."
 		},
 		{
+			"type": "Passive",
 			"name": "Nerves Of Steel",
 			"required-level": 13,
 			"icon": "barbarian_passive_nervesofsteel",
 			"description": " Your Armor is increased by 100% of your Vitality."
 		},
 		{
+			"type": "Passive",
 			"name": "Weapons Master",
 			"required-level": 16,
 			"icon": "barbarian_passive_weaponsmaster",
 			"description": " Gain a bonus based on the weapon type of your main hand weapon:Swords\/Daggers: 15% increased damageMaces\/Axes: 10% Critical Hit ChancePolearms\/Spears: 10% attack speedMighty Weapons: 3 Fury per hit"
 		},
 		{
+			"type": "Passive",
 			"name": "Berserker Rage",
 			"required-level": 20,
 			"icon": "barbarian_passive_berserkerrage",
 			"description": " You inflict an additional 25% damage while at maximum Fury."
 		},
 		{
+			"type": "Passive",
 			"name": "Inspiring Presence",
 			"required-level": 20,
 			"icon": "barbarian_passive_inspiringpresence",
 			"description": " The duration of your shouts is doubled. After using a shout you regenerate 1% of your maximum Life per second for 60 seconds. Your shouts are: Battle Rage Threatening Shout War Cry"
 		},
 		{
+			"type": "Passive",
 			"name": "Bloodthirst",
 			"required-level": 24,
 			"icon": "barbarian_passive_bloodthirst",
 			"description": " Gain 3% of all damage done as Life."
 		},
 		{
+			"type": "Passive",
 			"name": "Animosity",
 			"required-level": 27,
 			"icon": "barbarian_passive_animosity",
 			"description": " Increases Fury generation by 10% and maximum Fury is increased by 20. Fury is used to fuel your most powerful attacks."
 		},
 		{
+			"type": "Passive",
 			"name": "Superstition",
 			"required-level": 30,
 			"icon": "barbarian_passive_superstition",
 			"description": " Reduces all non-Physical damage by 20%. Whenever you take damage from a ranged or elemental attack, you have a chance to gain 3 Fury."
 		},
 		{
+			"type": "Passive",
 			"name": "Tough as Nails",
 			"required-level": 30,
 			"icon": "barbarian_passive_toughasnails",
 			"description": " Increases Armor by 25%.Thorns damage dealt increased by 50%."
 		},
 		{
+			"type": "Passive",
 			"name": "No Escape",
 			"required-level": 35,
 			"icon": "barbarian_passive_noescape",
 			"description": " Increases the damage of Ancient Spear and Weapon Throw by 10%. In addition, a Critical Hit with Ancient Spear resets the cooldown while Critical Hits with Weapon Throw have a chance to return 14 Fury."
 		},
 		{
+			"type": "Passive",
 			"name": "Relentless",
 			"required-level": 40,
 			"icon": "barbarian_passive_relentless",
 			"description": " While below 20% Life, all skills cost no Fury and all damage taken is reduced by 50%."
 		},
 		{
+			"type": "Passive",
 			"name": "Brawler",
 			"required-level": 45,
 			"icon": "barbarian_passive_brawler",
 			"description": " As long as there are 3 enemies within 8 yards, all of your damage is increased by 30%."
 		},
 		{
+			"type": "Passive",
 			"name": "Juggernaut",
 			"required-level": 50,
 			"icon": "barbarian_passive_juggernaut",
 			"description": " The duration of control impairing effects on you are reduced by 20%. In addition, whenever a Stun, Fear, Immobilize or Charm is cast on you, you have a chance to recover 15% of your maximum Life."
 		},
 		{
+			"type": "Passive",
 			"name": "Unforgiving",
 			"required-level": 55,
 			"icon": "barbarian_passive_unforgiving",
 			"description": " You no longer degenerate Fury. Instead, you gain 1 Fury every 2 seconds."
 		},
 		{
+			"type": "Passive",
 			"name": "Boon of Bul-Kathos",
 			"required-level": 60,
 			"icon": "barbarian_passive_boonofbulkathos",
@@ -1999,90 +2015,105 @@
 			}]
 		}],
 		"passive-skills": [{
+			"type": "Passive",
 			"name": "Tactical Advantage",
 			"required-level": 10,
 			"icon": "demonhunter_passive_tacticaladvantage",
 			"description": " Whenever you use Vault, Smoke Screen, or backflip with Evasive Fire you gain 60% movement speed for 2 seconds."
 		},
 		{
+			"type": "Passive",
 			"name": "Thrill of the Hunt",
 			"required-level": 10,
 			"icon": "demonhunter_passive_thrillofthehunt",
 			"description": " Every 10 seconds, your next bow attack will immobilize your target for 3 seconds."
 		},
 		{
+			"type": "Passive",
 			"name": "Vengeance",
 			"required-level": 13,
 			"icon": "demonhunter_passive_vengeance",
 			"description": " Your maximum Hatred is increased by 25. In addition, gain 20 Hatred and 2 Discipline whenever you are healed by a health globe."
 		},
 		{
+			"type": "Passive",
 			"name": "Steady Aim",
 			"required-level": 16,
 			"icon": "demonhunter_passive_steadyaim",
 			"description": " As long as there are no enemies within 10 yards, all damage is increased by 20%."
 		},
 		{
+			"type": "Passive",
 			"name": "Cull the Weak",
 			"required-level": 20,
 			"icon": "demonhunter_passive_culltheweak",
 			"description": " Damage against slowed enemies increased by 15%."
 		},
 		{
+			"type": "Passive",
 			"name": "Night Stalker",
 			"required-level": 20,
 			"icon": "demonhunter_passive_nightstalker",
 			"description": " Critical Hits have a chance to restore 1 Discipline. Discipline is used to fuel many of your tactical and defensive skills."
 		},
 		{
+			"type": "Passive",
 			"name": "Brooding",
 			"required-level": 25,
 			"icon": "demonhunter_passive_brooding",
 			"description": " As long as you have not taken damage in the last 3 seconds you gain 1% of your maximum Life per second."
 		},
 		{
+			"type": "Passive",
 			"name": "Hot Pursuit",
 			"required-level": 27,
 			"icon": "demonhunter_passive_hotpursuit",
 			"description": " Whenever you are at full Hatred, movement speed is increased by 15%."
 		},
 		{
+			"type": "Passive",
 			"name": "Archery",
 			"required-level": 30,
 			"icon": "demonhunter_passive_archery",
 			"description": " Gain a bonus based on the weapon type of your main hand weapon:Bow: 15% increased damageCrossbows: 50% Critical Hit DamageHand Crossbows: 10% Critical Hit Chance"
 		},
 		{
+			"type": "Passive",
 			"name": "Numbing Traps",
 			"required-level": 30,
 			"icon": "demonhunter_passive_numbingtraps",
 			"description": " Enemies hit by Fan of Knives, Spike Trap, and Caltrops have their damage reduced by 25% for 3 seconds."
 		},
 		{
+			"type": "Passive",
 			"name": "Perfectionist",
 			"required-level": 35,
 			"icon": "demonhunter_passive_perfectionist",
 			"description": " Reduces the Discipline cost of all skills by 10%. Discipline is used to fuel many of your tactical and defensive skills."
 		},
 		{
+			"type": "Passive",
 			"name": "Custom Engineering",
 			"required-level": 40,
 			"icon": "demonhunter_passive_customengineering",
 			"description": " The duration of your Caltrops, Marked for Death, Spike Trap, and Sentry is increased by 100%."
 		},
 		{
+			"type": "Passive",
 			"name": "Grenadier",
 			"required-level": 45,
 			"icon": "demonhunter_passive_grenadier",
 			"description": " Increases Hatred generated from Grenades by 2 and reduces the Hatred cost of Cluster Arrow by 10. Upon death, you drop a giant grenade that explodes for 450% weapon damage as Fire."
 		},
 		{
+			"type": "Passive",
 			"name": "Sharpshooter",
 			"required-level": 50,
 			"icon": "demonhunter_passive_sharpshooter",
 			"description": " Gain 3% Critical Hit Chance every second. This bonus is reset 1 second after you successfully critically hit."
 		},
 		{
+			"type": "Passive",
 			"name": "Ballistics",
 			"required-level": 55,
 			"icon": "demonhunter_passive_ballistics",
@@ -2989,84 +3020,98 @@
 			}]
 		}],
 		"passive-skills": [{
+			"type": "Passive",
 			"name": "Fleet Footed",
 			"required-level": 10,
 			"icon": "monk_passive_fleetfooted",
 			"description": " Increases movement speed by 10%."
 		},
 		{
+			"type": "Passive",
 			"name": "Resolve",
 			"required-level": 10,
 			"icon": "monk_passive_resolve",
 			"description": " Damage you deal reduces enemy damage by 25% for 2.5 seconds."
 		},
 		{
+			"type": "Passive",
 			"name": "Exalted Soul",
 			"required-level": 13,
 			"icon": "monk_passive_exaltedsoul",
 			"description": " Increases maximum Spirit by 100. Spirit fuels your defensive and offensive abilities."
 		},
 		{
+			"type": "Passive",
 			"name": "Transcendence",
 			"required-level": 16,
 			"icon": "monk_passive_transcendence",
 			"description": " Every point of Spirit spent heals you for 62.0 Life."
 		},
 		{
+			"type": "Passive",
 			"name": "Chant of Resonance",
 			"required-level": 20,
 			"icon": "monk_passive_chantofresonance",
 			"description": " Duration of all Mantras increased by 7 minutes. While one of your Mantras is active you gain 2 Spirit every second."
 		},
 		{
+			"type": "Passive",
 			"name": "Seize the Initiative",
 			"required-level": 20,
 			"icon": "monk_passive_seizetheinitiative",
 			"description": " Your Armor is increased by 100% of your Dexterity."
 		},
 		{
+			"type": "Passive",
 			"name": "The Guardian's Path",
 			"required-level": 24,
 			"icon": "monk_passive_theguardianspath",
 			"description": " While dual-wielding, you gain a 15% chance to dodge incoming attacks. While using a two-handed weapon, all Spirit generation is increased by 25%."
 		},
 		{
+			"type": "Passive",
 			"name": "Sixth Sense",
 			"required-level": 27,
 			"icon": "monk_passive_sixthsense",
 			"description": " Your dodge chance is increased by an amount equal to 30% of your Critical Hit Chance."
 		},
 		{
+			"type": "Passive",
 			"name": "Pacifism",
 			"required-level": 30,
 			"icon": "monk_passive_pacifism",
 			"description": " While you are under a Stun, Fear or Charm effect, all damage taken is reduced by 75%."
 		},
 		{
+			"type": "Passive",
 			"name": "Beacon of Ytar",
 			"required-level": 35,
 			"icon": "monk_passive_beaconofytar",
 			"description": " Reduces all cooldowns by 15%."
 		},
 		{
+			"type": "Passive",
 			"name": "Guiding Light",
 			"required-level": 40,
 			"icon": "monk_passive_guidinglight",
 			"description": " Whenever you use a direct heal skill on another player you and the other player deal 16% more damage for 15 seconds."
 		},
 		{
+			"type": "Passive",
 			"name": "One With Everything",
 			"required-level": 45,
 			"icon": "monk_passive_onewitheverything",
 			"description": " Your resistance to all elements is equal to your highest elemental resistance."
 		},
 		{
+			"type": "Passive",
 			"name": "Combination Strike",
 			"required-level": 50,
 			"icon": "monk_passive_combinationstrike",
 			"description": " Each different Spirit Generator ability you use increases your damage by 8% for 3 seconds."
 		},
 		{
+			"type": "Passive",
 			"name": "Near Death Experience",
 			"required-level": 58,
 			"icon": "monk_passive_neardeathexperience",
@@ -4022,90 +4067,105 @@
 			}]
 		}],
 		"passive-skills": [{
+			"type": "Passive",
 			"name": "Circle of Life",
 			"required-level": 10,
 			"icon": "witchdoctor_passive_circleoflife",
 			"description": " Whenever an enemy dies within 12 yards, there is a 5% chance that a Zombie Dog will automatically emerge. The range of this effect is increased by items that increase your gold pickup radius."
 		},
 		{
+			"type": "Passive",
 			"name": "Jungle Fortitude",
 			"required-level": 10,
 			"icon": "witchdoctor_passive_junglefortitude",
 			"description": " Reduces all damage taken by you and your pets by 20%."
 		},
 		{
+			"type": "Passive",
 			"name": "Spiritual Attunement",
 			"required-level": 13,
 			"icon": "witchdoctor_passive_spiritualattunement",
 			"description": " Maximum Mana is increased by 20%. Regenerate 1% of your maximum Mana per second. Mana is the fuel you use to cast offensive and defensive skills."
 		},
 		{
+			"type": "Passive",
 			"name": "Gruesome Feast",
 			"required-level": 16,
 			"icon": "witchdoctor_passive_gruesomefeast",
 			"description": " Whenever you are healed by a health globe, you gain 10% of your maximum Mana and 10% Intelligence for 10 seconds. The Intelligence bonus can stack up to 5 times."
 		},
 		{
+			"type": "Passive",
 			"name": "Bad Medicine",
 			"required-level": 20,
 			"icon": "witchdoctor_passive_badmedicine",
 			"description": " Whenever you deal Poison damage to an enemy, their damage is reduced by 20% for 3 seconds."
 		},
 		{
+			"type": "Passive",
 			"name": "Blood Ritual",
 			"required-level": 20,
 			"icon": "witchdoctor_passive_bloodritual",
 			"description": " 15% of Mana costs are paid with Life. In addition, you regenerate 1% of your maximum Life per second."
 		},
 		{
+			"type": "Passive",
 			"name": "Zombie Handler",
 			"required-level": 24,
 			"icon": "witchdoctor_passive_zombiehandler",
 			"description": " You can have 4 Zombie Dogs summoned at one time. The health of your Zombie Dogs and Gargantuan is increased by 20%."
 		},
 		{
+			"type": "Passive",
 			"name": "Pierce the Veil",
 			"required-level": 27,
 			"icon": "witchdoctor_passive_piercetheveil",
 			"description": " All of your damage is increased by 20%, but your Mana costs are increased by 30%."
 		},
 		{
+			"type": "Passive",
 			"name": "Fetish Sycophants",
 			"required-level": 30,
 			"icon": "witchdoctor_passive_fetishsycophants",
 			"description": " Whenever you cast a physical realm spell, you have a 3% chance to summon a dagger-wielding Fetish to fight by your side for 60 seconds. Physical realm spells are: Poison Dart Plague of Toads Zombie Charger Corpse Spiders Firebats Firebomb Locust Swarm Acid Cloud Wall of Zombies"
 		},
 		{
+			"type": "Passive",
 			"name": "Spirit Vessel",
 			"required-level": 30,
 			"icon": "witchdoctor_passive_spiritvessel",
 			"description": " Reduces the cooldown of your Horrify, Spirit Walk, and Soul Harvest spells by 2 seconds. In addition, the next time you receive fatal damage, you automatically enter the spirit realm for 3 seconds and heal to 10% of your maximum Life. This effect cannot occur more than once every 90 seconds."
 		},
 		{
+			"type": "Passive",
 			"name": "Rush of Essence",
 			"required-level": 36,
 			"icon": "witchdoctor_passive_rushofessence",
 			"description": " Spirit spells return 30% of their Mana cost over 10 seconds. Spirit spells are: Haunt Horrify Mass Confusion Soul Harvest Spirit Barrage Spirit Walk"
 		},
 		{
+			"type": "Passive",
 			"name": "Vision Quest",
 			"required-level": 40,
 			"icon": "witchdoctor_passive_visionquest",
 			"description": " Any time you have 4 or more skills on cooldown, your Mana regeneration is increased by 300%."
 		},
 		{
+			"type": "Passive",
 			"name": "Fierce Loyalty",
 			"required-level": 45,
 			"icon": "witchdoctor_passive_fierceloyalty",
 			"description": " All your pets get 100% of the benefit of your Thorns and Life regeneration items."
 		},
 		{
+			"type": "Passive",
 			"name": "Grave Injustice",
 			"required-level": 50,
 			"icon": "witchdoctor_passive_graveinjustice",
 			"description": " Whenever an enemy dies within 8 yards, regain 1% of your maximum Life and Mana and the cooldown on all of your abilities is reduced by 1 second. This range is extended by items that increase your gold pickup radius."
 		},
 		{
+			"type": "Passive",
 			"name": "Tribal Rites",
 			"required-level": 55,
 			"icon": "witchdoctor_passive_tribalrites",
@@ -5112,90 +5172,105 @@
 			}]
 		}],
 		"passive-skills": [{
+			"type": "Passive",
 			"name": "Blur",
 			"required-level": 10,
 			"icon": "wizard_passive_blur",
 			"description": " Decreases melee damage taken by 20%."
 		},
 		{
+			"type": "Passive",
 			"name": "Power Hungry",
 			"required-level": 10,
 			"icon": "wizard_passive_powerhungry",
 			"description": " Gain 30 Arcane Power whenever you are healed by a health globe."
 		},
 		{
+			"type": "Passive",
 			"name": "Evocation",
 			"required-level": 13,
 			"icon": "wizard_passive_evocation",
 			"description": " Reduces all cooldowns by 15%."
 		},
 		{
+			"type": "Passive",
 			"name": "Glass Cannon",
 			"required-level": 16,
 			"icon": "wizard_passive_glasscannon",
 			"description": " Increases all damage done by 15%, but decreases Armor and resistances by 10%."
 		},
 		{
+			"type": "Passive",
 			"name": "Prodigy",
 			"required-level": 20,
 			"icon": "wizard_passive_prodigy",
 			"signature-spell": true
 		},
 		{
+			"type": "Passive",
 			"name": "Astral Presence",
 			"required-level": 24,
 			"icon": "wizard_passive_astralpresence",
 			"description": " Increases your maximum Arcane Power by 20 and Arcane Power regeneration by 2 per second."
 		},
 		{
+			"type": "Passive",
 			"name": "Illusionist",
 			"required-level": 27,
 			"icon": "wizard_passive_illusionist",
 			"description": " Whenever you suffer more than 15% of your Life in a single hit, the cooldowns on Mirror Image and Teleport are automatically reset."
 		},
 		{
+			"type": "Passive",
 			"name": "Cold Blooded",
 			"required-level": 30,
 			"icon": "wizard_passive_coldblooded",
 			"description": " Cold damage dealt to chilled and frozen targets is increased by 20%."
 		},
 		{
+			"type": "Passive",
 			"name": "Conflagration",
 			"required-level": 34,
 			"icon": "wizard_passive_conflagration",
 			"description": " Fire damage dealt to enemies applies a burning effect, increasing all damage done to them by 10% for 3 seconds."
 		},
 		{
+			"type": "Passive",
 			"name": "Paralysis",
 			"required-level": 37,
 			"icon": "wizard_passive_paralysis",
 			"description": " Lightning damage dealt to enemies has up to a 5% chance to Stun the target for 3 seconds."
 		},
 		{
+			"type": "Passive",
 			"name": "Galvanizing Ward",
 			"required-level": 40,
 			"icon": "wizard_passive_galvanizingward",
 			"description": " Increases the duration of your Armor spells by 120 seconds. As long as an Armor spell is active, you gain 310 Life per second. The following skills are improved: Energy Armor Ice Armor Storm Armor"
 		},
 		{
+			"type": "Passive",
 			"name": "Temporal Flux",
 			"required-level": 45,
 			"icon": "wizard_passive_temporalflux",
 			"description": " Whenever you deal Arcane damage, enemies are slowed by 30% for 2 seconds."
 		},
 		{
+			"type": "Passive",
 			"name": "Critical Mass",
 			"required-level": 50,
 			"icon": "wizard_passive_criticalmass",
 			"description": " Critical Hits have a chance to reduce the cooldown of your spells by 1 second."
 		},
 		{
+			"type": "Passive",
 			"name": "Arcane Dynamo",
 			"required-level": 55,
 			"icon": "wizard_passive_arcanedynamo",
 			"signature-spell": true
 		},
 		{
+			"type": "Passive",
 			"name": "Unstable Anomaly",
 			"required-level": 60,
 			"icon": "wizard_passive_unstableanomaly",
@@ -5222,7 +5297,8 @@
 		"Defensive",
 		"Might",
 		"Tactics",
-		"Rage"]
+		"Rage",
+		"Passive"]
 	},
 	{
 		"name": "Demon Hunter",
@@ -5231,7 +5307,8 @@
 		"Defensive",
 		"Hunting",
 		"Devices",
-		"Archery"]
+		"Archery",
+		"Passive"]
 	},
 	{
 		"name": "Monk",
@@ -5240,7 +5317,8 @@
 		"Defensive",
 		"Techniques",
 		"Focus",
-		"Mantras"]
+		"Mantras",
+		"Passive"]
 	},
 	{
 		"name": "Witch Doctor",
@@ -5249,7 +5327,8 @@
 		"Defensive",
 		"Terror",
 		"Decay",
-		"Voodoo"]
+		"Voodoo",
+		"Passive"]
 	},
 	{
 		"name": "Wizard",
@@ -5258,7 +5337,8 @@
 		"Defensive",
 		"Force",
 		"Conjuration",
-		"Mastery"]
+		"Mastery",
+		"Passive"]
 	}],
 	"skill-attributes": {
 		"rune-separator": "!",

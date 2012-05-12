@@ -40,7 +40,7 @@ public class EmptySkill implements Item
         
         View v = vi.inflate(R.layout.list_item_empty, null);
 
-        final TextView emptyItemTitle = (TextView) v.findViewById(R.id.list_empty_skill_type);
+        final TextView emptyItemTitle = (TextView) v.findViewById(R.id.list_empty_title);
         final TextView emptySkillType = (TextView) v.findViewById(R.id.list_empty_skill_type);
         
         // Is this a terrible hack?! I think so...

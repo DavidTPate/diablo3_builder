@@ -24,6 +24,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.pate.diablo.model.D3Application;
 import com.pate.diablo.model.DataModel;
+import com.pate.diablo.model.Rune;
 import com.pate.diablo.model.Skill;
 import com.pate.diablo.sectionlist.EmptyRune;
 import com.pate.diablo.sectionlist.EmptySkill;
@@ -42,6 +43,7 @@ public class Main extends SherlockListActivity {
     int GET_SKILL = 0;
     int REPLACE_SKILL = 1;
     int GET_RUNE = 2;
+    int REPLACE_RUNE = 3;
 
     /** Called when the activity is first created. */
     @Override
@@ -180,9 +182,33 @@ public class Main extends SherlockListActivity {
 
             startActivityForResult(intent, REPLACE_SKILL);
         } 
+        else if (item instanceof EmptyRune)
+        {
+        	EmptyRune e = (EmptyRune) item;
+        	
+        	Intent intent = new Intent(v.getContext(), SelectRune.class);     
+    		b.putString("SkillName", e.getSkillName());
+            b.putString("SelectedClass", selectedClass.getSelectedItem().toString());
+            b.putInt("RequiredLevel", Integer.parseInt(requiredLevel.getSelectedItem().toString()));
+            b.putSerializable("SkillUUID", e.getSkillUUID());
+            b.putInt("Index", position);
+            intent.putExtras(b);
+
+            startActivityForResult(intent, GET_RUNE);
+        }
         else if (item instanceof EntryRune)
         {
+        	EntryRune e = (EntryRune) item;
         	
+        	Intent intent = new Intent(v.getContext(), SelectRune.class);     
+    		b.putString("SkillName", e.getSkillName());
+            b.putString("SelectedClass", selectedClass.getSelectedItem().toString());
+            b.putInt("RequiredLevel", Integer.parseInt(requiredLevel.getSelectedItem().toString()));
+            b.putSerializable("SkillUUID", e.getSkillUUID());
+            b.putInt("Index", position);
+            intent.putExtras(b);
+
+            startActivityForResult(intent, REPLACE_RUNE);
         }
         super.onListItemClick(l, v, position, id);
     }
@@ -218,11 +244,11 @@ public class Main extends SherlockListActivity {
 		        	items.set(index, new EntrySkill(s));
 		        	if (requestCode == GET_SKILL)
 		        	{
-		        		items.add(index + 1,  new EmptyRune("Choose Rune", 1, s.getName()));
+		        		items.add(index + 1,  new EmptyRune("Choose Rune", 1, s.getName(), s.getUuid()));
 		        	}
 		        	else if (requestCode == REPLACE_SKILL)
 		        	{
-		        		items.set(index + 1,  new EmptyRune("Choose Rune", 1, s.getName()));
+		        		items.set(index + 1,  new EmptyRune("Choose Rune", 1, s.getName(), s.getUuid()));
 		        	}
 		        	listAdapter.setList(items);
 		        	
@@ -237,6 +263,57 @@ public class Main extends SherlockListActivity {
 		        else
 		        {
 		        	//Uh-Oh!
+		        }
+    		}
+    		else
+    		{
+    			//Do nothing?
+    		}
+    	}
+    	else if (requestCode == GET_RUNE || requestCode == REPLACE_RUNE)
+    	{
+    		if (resultCode == RESULT_OK)
+    		{
+    			Bundle b = data.getExtras();
+    			
+		        String runeUUID = null;
+		        String skillUUID = null;
+		        int index = -1;
+		        
+		        if (b.containsKey("Rune_UUID"))
+		        {
+		        	runeUUID = b.getString("Rune_UUID");
+		        }
+		        
+		        if (b.containsKey("Skill_UUID"))
+		        {
+		        	skillUUID = b.getString("Skill_UUID");
+		        }
+		        
+		        if (b.containsKey("Index"))
+		        {
+		        	index = b.getInt("Index");
+		        }
+		        
+		        Log.i("onActivityResult", "UUID: " + runeUUID + " Index: " + index);
+		        
+		        if (D3Application.dataModel.getClassByName(selectedClass.getSelectedItem().toString()).containsActiveSkillByUUID(UUID.fromString(skillUUID)))
+        		{
+			        if (skillUUID != null && index >= 0 && D3Application.dataModel.getClassByName(selectedClass.getSelectedItem().toString()).getActiveSkillByUUID(UUID.fromString(skillUUID)).containsRuneByUUID(UUID.fromString(runeUUID)))
+			        {
+			        	Log.i("onActivityResult", "Active Skill Found!");
+			        	Rune s = D3Application.dataModel.getClassByName(selectedClass.getSelectedItem().toString()).getActiveSkillByUUID(UUID.fromString(skillUUID)).getRuneByUUID(UUID.fromString(runeUUID));
+			        	items.set(index, new EntryRune(s, D3Application.dataModel.getClassByName(selectedClass.getSelectedItem().toString()).getActiveSkillByUUID(UUID.fromString(skillUUID)).getName(), UUID.fromString(skillUUID)));
+			        	listAdapter.setList(items);
+			        }
+			        else
+			        {
+			        	//Uh-Oh!
+			        }
+        		}
+		        else
+		        {
+		        	//Uh-Oh
 		        }
     		}
     		else

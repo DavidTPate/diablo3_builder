@@ -1,5 +1,7 @@
 package com.pate.diablo.sectionlist;
 
+import java.util.UUID;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,15 +17,29 @@ public class EntryRune implements Item
 {
 
     private final Rune rune;
+    private final String skillName;
+    private final UUID skillUUID;
 
-	public EntryRune(Rune rune) 
+	public EntryRune(Rune rune, String skillName, UUID skillUUID) 
 	{
 		this.rune = rune;
+		this.skillName = skillName;
+		this.skillUUID = skillUUID;
 	}
 	
 	public Rune getRune() 
 	{
 	    return rune;
+	}
+	
+	public String getSkillName()
+	{
+		return skillName;
+	}
+	
+	public UUID getSkillUUID()
+	{
+		return skillUUID;
 	}
 
 	@Override
@@ -39,11 +55,13 @@ public class EntryRune implements Item
         final TextView runeDescription = (TextView) v.findViewById(R.id.list_rune_description);
         
         // Is this a terrible hack?! I think so...
-        int runeImage = c.getResources().getIdentifier("drawable/" + r.getIcon().replaceAll("-", "_"), null, c.getPackageName());
+        int runeImage = c.getResources().getIdentifier("drawable/" + r.getIcon(), null, c.getPackageName());
 
         runeIcon.setBackgroundResource(runeImage);
         runeUnlockedAt.setText((v.getContext().getString(R.string.Unlocked_at_level) + " " + r.getRequiredLevel()));
         runeDescription.setText(r.getDescription());
+        
+        v.setTag(r.getUuid());
         
         return v;
     }
