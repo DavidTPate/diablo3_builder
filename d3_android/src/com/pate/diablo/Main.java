@@ -14,6 +14,8 @@ import android.widget.SpinnerAdapter;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.google.ads.AdRequest;
+import com.google.ads.AdView;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.pate.diablo.model.D3Application;
@@ -46,6 +48,9 @@ public class Main extends SherlockFragmentActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        
+        AdView adView = (AdView)this.findViewById(R.id.adView);
+        adView.loadAd(new AdRequest());
         
         Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
         BufferedReader reader = new BufferedReader(new InputStreamReader(getResources().openRawResource(R.raw.classes)));

@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.google.ads.AdRequest;
+import com.google.ads.AdView;
 import com.viewpagerindicator.PageIndicator;
 import com.viewpagerindicator.TitlePageIndicator;
 import com.viewpagerindicator.TitlePageIndicator.IndicatorStyle;
@@ -25,6 +27,9 @@ public class SelectRune extends SherlockFragmentActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.select_skill);
+		
+		AdView adView = (AdView)this.findViewById(R.id.adView);
+        adView.loadAd(new AdRequest());
 
 		Bundle b = getIntent().getExtras();
 
