@@ -50,7 +50,10 @@ public class Main extends SherlockFragmentActivity {
         setContentView(R.layout.main);
         
         AdView adView = (AdView)this.findViewById(R.id.adView);
-        adView.loadAd(new AdRequest());
+        AdRequest newAd = new AdRequest();
+        newAd.addTestDevice("BDD7A55C1502190E502F14CBFDF9ABC7");
+        newAd.addTestDevice("E85A995C749AE015AA4EE195878C0982");
+        adView.loadAd(newAd);
         
         Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
         BufferedReader reader = new BufferedReader(new InputStreamReader(getResources().openRawResource(R.raw.classes)));
