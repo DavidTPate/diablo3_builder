@@ -5397,18 +5397,6 @@
 		"B",
 		"z",
 		"A"],
-		"follower-mapping": [{
-			"required-level": 5
-		},
-		{
-			"required-level": 10
-		},
-		{
-			"required-level": 15
-		},
-		{
-			"required-level": 20
-		}],
 		"skill-levels": [{
 			"key": "Left Click",
 			"required-level": 1
