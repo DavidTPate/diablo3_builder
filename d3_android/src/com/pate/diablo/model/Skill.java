@@ -73,35 +73,13 @@ public class Skill {
 	private UUID uuid = UUID.randomUUID();
 
 	public boolean containsRuneByUUID(UUID uuid)
-	{		
-		Iterator<Rune> itr = getRunes().iterator();
-		while (itr.hasNext())
-		{
-			Rune rune = itr.next();
-			
-			if (rune.getUuid().equals(uuid))
-			{
-				return true;
-			}
-		}
-		
-		return false;
+	{
+	    return getRuneByUUID(uuid) != null;
 	}
-
+	
 	public boolean containsRunesByRequiredLevel(int requiredLevel)
 	{		
-		Iterator<Rune> itr = getRunes().iterator();
-		while (itr.hasNext())
-		{
-			Rune rune = itr.next();
-			
-			if (rune.getRequiredLevel() <= requiredLevel)
-			{
-				return true;
-			}
-		}
-		
-		return false;
+	    return ((List<Rune>) getRunesByRequiredLevel(requiredLevel)).size() > 0;
 	}
 	
 	public int getCooldown() {
@@ -173,17 +151,15 @@ public class Skill {
 
 	public Rune getRuneByUUID(UUID uuid)
 	{		
-		Iterator<Rune> itr = getRunes().iterator();
-		while (itr.hasNext())
-		{
-			Rune rune = itr.next();
-			
-			if (rune.getUuid().equals(uuid))
-			{
-				return rune;
-			}
-		}
-		
+	    for (Rune rune : getRunes())
+	    {
+	        if (rune.getUuid().equals(uuid))
+	        {
+	            return rune;
+	        }
+	        
+	    }
+	    
 		return null;
 	}
 	
@@ -195,15 +171,12 @@ public class Skill {
 	{
 		ArrayList<Rune> tempRunes = new ArrayList<Rune>();
 		
-		Iterator<Rune> itr = getRunes().iterator();
-		while (itr.hasNext())
+		for (Rune rune : getRunes())
 		{
-			Rune rune = itr.next();
-			
-			if (rune.getRequiredLevel() <= requiredLevel)
-			{
-				tempRunes.add(rune);
-			}
+		    if (rune.getRequiredLevel() <= requiredLevel)
+		    {
+		        tempRunes.add(rune);
+		    }
 		}
 		
 		return tempRunes;
