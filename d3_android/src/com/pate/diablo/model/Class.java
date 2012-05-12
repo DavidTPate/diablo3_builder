@@ -89,25 +89,9 @@ public class Class {
 
 	public boolean containsActiveSkillsByRequiredLevel(int requiredLevel)
 	{	
-		Iterator<Skill> itr = getActiveSkills().iterator();
-		while (itr.hasNext())
-		{
-			Skill skill = itr.next();
-			
-			if (skill.getRequiredLevel() <= requiredLevel)
-			{
-				return true;
-			}
-		}
-		
-		return false;
+		return containsSkillsByRequiredLevel(getActiveSkills(), requiredLevel);
 	}
 	
-	public boolean containsSkillsByType(String type)
-	{
-		return containsActiveSkillsByType(type) || (type.equals("Passive") ? passiveSkills.size() > 0 ? true : false : false);
-	}
-
 	public boolean containsActiveSkillsByType(String type)
 	{
 		Iterator<Skill> itr = getActiveSkills().iterator();
@@ -141,7 +125,12 @@ public class Class {
 
 	public boolean containsPassiveSkillsByRequiredLevel(int requiredLevel)
 	{	
-		Iterator<Skill> itr = getPassiveSkills().iterator();
+		return containsSkillsByRequiredLevel(getPassiveSkills(), requiredLevel);
+	}
+
+	public boolean containsSkillsByRequiredLevel(List<Skill> list, int requiredLevel)
+	{	
+		Iterator<Skill> itr = list.iterator();
 		while (itr.hasNext())
 		{
 			Skill skill = itr.next();
@@ -154,7 +143,12 @@ public class Class {
 		
 		return false;
 	}
-
+	
+	public boolean containsSkillsByType(String type)
+	{
+		return containsActiveSkillsByType(type) || (type.equals("Passive") ? passiveSkills.size() > 0 ? true : false : false);
+	}
+	
 	public Skill getActiveSkillByUUID(UUID uuid)
 	{	
 		Iterator<Skill> itr = getActiveSkills().iterator();
@@ -176,25 +170,7 @@ public class Class {
 
 	public List<Skill> getActiveSkillsByRequiredLevel(int requiredLevel)
 	{
-		ArrayList<Skill> skills = new ArrayList<Skill>();
-		
-		Iterator<Skill> itr = getActiveSkills().iterator();
-		while (itr.hasNext())
-		{
-			Skill skill = itr.next();
-			
-			if (skill.getRequiredLevel() <= requiredLevel)
-			{
-				skills.add(skill);
-			}
-		}
-		
-		return skills;
-	}
-	
-	public List<Skill> getSkillsByType(String type)
-	{
-		return (type.equals("Passive") ? passiveSkills : getActiveSkillsByType(type));
+		return getSkillsByRequiredLevel(getActiveSkills(), requiredLevel);
 	}
 
 	public List<Skill> getActiveSkillsByType(String type)
@@ -214,7 +190,7 @@ public class Class {
 		
 		return skills;
 	}
-
+	
 	public String getDescription() {
 		return description;
 	}
@@ -253,25 +229,12 @@ public class Class {
 	public List<Skill> getPassiveSkills() {
 		return passiveSkills;
 	}
-	
+
 	public List<Skill> getPassiveSkillsByRequiredLevel(int requiredLevel)
 	{
-		ArrayList<Skill> skills = new ArrayList<Skill>();
-		
-		Iterator<Skill> itr = getPassiveSkills().iterator();
-		while (itr.hasNext())
-		{
-			Skill skill = itr.next();
-			
-			if (skill.getRequiredLevel() <= requiredLevel)
-			{
-				skills.add(skill);
-			}
-		}
-		
-		return skills;
+		return getSkillsByRequiredLevel(getPassiveSkills(), requiredLevel);
 	}
-	
+
 	public String getResourceText() {
 		return resourceText;
 	}
@@ -290,6 +253,29 @@ public class Class {
 	
 	public String getShortDescription() {
 		return shortDescription;
+	}
+	
+	public List<Skill> getSkillsByRequiredLevel(List<Skill> list, int requiredLevel)
+	{
+		ArrayList<Skill> skills = new ArrayList<Skill>();
+		
+		Iterator<Skill> itr = list.iterator();
+		while (itr.hasNext())
+		{
+			Skill skill = itr.next();
+			
+			if (skill.getRequiredLevel() <= requiredLevel)
+			{
+				skills.add(skill);
+			}
+		}
+		
+		return skills;
+	}
+	
+	public List<Skill> getSkillsByType(String type)
+	{
+		return (type.equals("Passive") ? passiveSkills : getActiveSkillsByType(type));
 	}
 	
 	public String getTier1Text() {
