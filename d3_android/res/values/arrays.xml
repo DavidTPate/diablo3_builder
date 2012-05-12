@@ -10,66 +10,66 @@
     </string-array>
     
     <string-array name="levels">
-        <item>60</item>
-        <item>59</item>
-        <item>58</item>
-        <item>57</item>
-        <item>56</item>
-        <item>55</item>
-        <item>54</item>
-        <item>53</item>
-        <item>52</item>
-        <item>51</item>
-        <item>50</item>
-        <item>49</item>
-        <item>48</item>
-        <item>47</item>
-        <item>46</item>
-        <item>45</item>
-        <item>44</item>
-        <item>43</item>
-        <item>42</item>
-        <item>41</item>
-        <item>40</item>
-        <item>39</item>
-        <item>38</item>
-        <item>37</item>
-        <item>36</item>
-        <item>35</item>
-        <item>34</item>
-        <item>33</item>
-        <item>32</item>
-        <item>31</item>
-        <item>30</item>
-        <item>29</item>
-        <item>28</item>
-        <item>27</item>
-        <item>26</item>
-        <item>25</item>
-        <item>24</item>
-        <item>23</item>
-        <item>22</item>
-        <item>21</item>
-        <item>20</item>
-        <item>19</item>
-        <item>18</item>
-        <item>17</item>
-        <item>16</item>
-        <item>15</item>
-        <item>14</item>
-        <item>13</item>
-        <item>12</item>
-        <item>11</item>
-        <item>10</item>
-        <item>9</item>
-        <item>8</item>
-        <item>7</item>
-        <item>6</item>
-        <item>5</item>
-        <item>4</item>
-        <item>3</item>
-        <item>2</item>
-        <item>1</item>
+        <item>Max Level: 60</item>
+        <item>Max Level: 59</item>
+        <item>Max Level: 58</item>
+        <item>Max Level: 57</item>
+        <item>Max Level: 56</item>
+        <item>Max Level: 55</item>
+        <item>Max Level: 54</item>
+        <item>Max Level: 53</item>
+        <item>Max Level: 52</item>
+        <item>Max Level: 51</item>
+        <item>Max Level: 50</item>
+        <item>Max Level: 49</item>
+        <item>Max Level: 48</item>
+        <item>Max Level: 47</item>
+        <item>Max Level: 46</item>
+        <item>Max Level: 45</item>
+        <item>Max Level: 44</item>
+        <item>Max Level: 43</item>
+        <item>Max Level: 42</item>
+        <item>Max Level: 41</item>
+        <item>Max Level: 40</item>
+        <item>Max Level: 39</item>
+        <item>Max Level: 38</item>
+        <item>Max Level: 37</item>
+        <item>Max Level: 36</item>
+        <item>Max Level: 35</item>
+        <item>Max Level: 34</item>
+        <item>Max Level: 33</item>
+        <item>Max Level: 32</item>
+        <item>Max Level: 31</item>
+        <item>Max Level: 30</item>
+        <item>Max Level: 29</item>
+        <item>Max Level: 28</item>
+        <item>Max Level: 27</item>
+        <item>Max Level: 26</item>
+        <item>Max Level: 25</item>
+        <item>Max Level: 24</item>
+        <item>Max Level: 23</item>
+        <item>Max Level: 22</item>
+        <item>Max Level: 21</item>
+        <item>Max Level: 20</item>
+        <item>Max Level: 19</item>
+        <item>Max Level: 18</item>
+        <item>Max Level: 17</item>
+        <item>Max Level: 16</item>
+        <item>Max Level: 15</item>
+        <item>Max Level: 14</item>
+        <item>Max Level: 13</item>
+        <item>Max Level: 12</item>
+        <item>Max Level: 11</item>
+        <item>Max Level: 10</item>
+        <item>Max Level: 9</item>
+        <item>Max Level: 8</item>
+        <item>Max Level: 7</item>
+        <item>Max Level: 6</item>
+        <item>Max Level: 5</item>
+        <item>Max Level: 4</item>
+        <item>Max Level: 3</item>
+        <item>Max Level: 2</item>
+        <item>Max Level: 1</item>
     </string-array>
 
 </resources>

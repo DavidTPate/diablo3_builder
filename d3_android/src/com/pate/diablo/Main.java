@@ -30,7 +30,7 @@ public class Main extends SherlockFragmentActivity {
     EntrySkillAdapter listAdapter;
     String selectedClass;
     Spinner maxLevelSpinner;
-    int maxLevel;
+    int maxLevel = 60;
     ClassFragmentAdapter mAdapter;
     ViewPager mPager;
     PageIndicator mIndicator;
@@ -85,8 +85,7 @@ public class Main extends SherlockFragmentActivity {
             
             @Override
             public boolean onNavigationItemSelected(int itemPosition, long itemId) {
-                Log.i("ItemPosition", "" + itemPosition);
-                maxLevel = getResources().getIntArray(R.array.levels)[itemPosition];
+                maxLevel = 60 - itemPosition;
                 Log.i("MaxLevel", "" + maxLevel);
                 mAdapter = new ClassFragmentAdapter(getSupportFragmentManager(), Main.this, selectedClass, maxLevel);
                 mPager.setAdapter(mAdapter);                    

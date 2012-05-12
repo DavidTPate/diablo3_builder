@@ -36,7 +36,6 @@ public class ClassFragmentAdapter extends FragmentPagerAdapter implements TitleP
     @Override
     public Fragment getItem(int position) {
         ClassListFragment classList = ClassListFragment.newInstance(classes.get(position).getName(), requiredLevel, context);
-        classList.setOnListItemClickListener(listener);
         return classList;
         
     }

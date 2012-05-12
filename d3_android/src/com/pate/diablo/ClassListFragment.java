@@ -126,7 +126,6 @@ public class ClassListFragment extends ListFragment
 
             startActivityForResult(intent, REPLACE_RUNE);
         }
-        super.onListItemClick(l, v, position, id);
 		super.onListItemClick(l, v, position, id);
 	}
 	
