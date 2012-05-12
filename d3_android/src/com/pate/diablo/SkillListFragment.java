@@ -43,9 +43,11 @@ public class SkillListFragment extends ListFragment
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        setRetainInstance(true);
         for (Skill s : D3Application.dataModel.getClassByName(selectedClass).getSkillsByType(this.skillType))
         {
-            items.add(new EntrySkill(s));
+            if (s.getRequiredLevel() <= requiredLevel)
+                items.add(new EntrySkill(s));
         }
         EntrySkillAdapter adapter = new EntrySkillAdapter(context, items);
 
