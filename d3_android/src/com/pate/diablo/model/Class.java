@@ -227,6 +227,11 @@ public class Class {
 		return skills;
 	}
 	
+	public List<Skill> getSkillsByRequiredLevel(String type, int requiredLevel)
+	{
+	    return getSkillsByRequiredLevel(getSkillsByType(type), requiredLevel);
+	}
+	
 	public List<Skill> getSkillsByType(String type)
 	{
 		return (type.equals("Passive") ? passiveSkills : getActiveSkillsByType(type));
