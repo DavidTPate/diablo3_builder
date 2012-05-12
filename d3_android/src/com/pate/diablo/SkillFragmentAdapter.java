@@ -57,13 +57,6 @@ class SkillFragmentAdapter extends FragmentPagerAdapter implements TitleProvider
 		return mCount;
 	}
 	
-	public void setCount(int count) {
-		if (count > 0 && count <= 10) {
-			mCount = count;
-			notifyDataSetChanged();
-		}
-	}
-
     @Override
     public String getTitle(int position) {
         return skillTypes[position % skillTypes.length];
