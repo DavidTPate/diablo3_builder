@@ -5297,8 +5297,7 @@
 		"Defensive",
 		"Might",
 		"Tactics",
-		"Rage",
-		"Passive"]
+		"Rage"]
 	},
 	{
 		"name": "Demon Hunter",
@@ -5307,8 +5306,7 @@
 		"Defensive",
 		"Hunting",
 		"Devices",
-		"Archery",
-		"Passive"]
+		"Archery"]
 	},
 	{
 		"name": "Monk",
@@ -5317,8 +5315,7 @@
 		"Defensive",
 		"Techniques",
 		"Focus",
-		"Mantras",
-		"Passive"]
+		"Mantras"]
 	},
 	{
 		"name": "Witch Doctor",
@@ -5327,8 +5324,7 @@
 		"Defensive",
 		"Terror",
 		"Decay",
-		"Voodoo",
-		"Passive"]
+		"Voodoo"]
 	},
 	{
 		"name": "Wizard",
@@ -5337,8 +5333,7 @@
 		"Defensive",
 		"Force",
 		"Conjuration",
-		"Mastery",
-		"Passive"]
+		"Mastery"]
 	}],
 	"skill-attributes": {
 		"rune-separator": "!",
