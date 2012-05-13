@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
-    <item android:id="@+id/Share"
-          android:title="Share"
-          android:icon="@drawable/ic_menu_share"
-          android:showAsAction="ifRoom|withText" />
-    
-    <item android:id="@+id/save"
-          android:icon="@drawable/ic_menu_save"
-          android:showAsAction="always" />
-    
-    <item android:id="@+id/Load"
-          android:icon="@drawable/ic_menu_archive"
-          android:showAsAction="ifRoom|withText" />
 
-    <item android:id="@+id/Clear"
-          android:title="Clear"
-          android:icon="@drawable/ic_menu_clear_playlist"
-          android:showAsAction="ifRoom|withText" />
+    <item
+        android:id="@+id/Share"
+        android:icon="@drawable/ic_menu_share"
+        android:showAsAction="ifRoom|withText"
+        android:title="Share"/>
+    <item
+        android:id="@+id/save"
+        android:icon="@drawable/ic_menu_save"
+        android:showAsAction="ifRoom|withText"
+        android:title="Save"/>
+    <item
+        android:id="@+id/Load"
+        android:icon="@drawable/ic_menu_archive"
+        android:showAsAction="ifRoom|withText"/>
+    <item
+        android:id="@+id/Clear"
+        android:icon="@drawable/ic_menu_clear_playlist"
+        android:showAsAction="ifRoom|withText"
+        android:title="Clear"/>
+
 </menu>

@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.pate.diablo.R;
 import com.pate.diablo.model.Skill;
+import com.pate.diablo.string.Replacer;
 
 
 public class EntrySkill implements Item 
@@ -94,7 +95,8 @@ public class EntrySkill implements Item
                 }
                 else
                 {
-                    skillDescription.setText(s.getDescription());
+                    CharSequence desc = Replacer.replace(s.getDescription(), "\\d+%?", "#01F301");
+                    skillDescription.setText(desc);
                     skillDescription.setVisibility(View.VISIBLE);
                 }   
                 
