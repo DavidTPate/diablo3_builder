@@ -4,12 +4,15 @@ package com.pate.diablo;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.widget.ArrayAdapter;
@@ -101,6 +104,11 @@ public class SelectClass extends SherlockFragmentActivity
         {
             loadClassFromUrl("http://us.battle.net/d3/en/calculator/monk#aZYdfT!aZb!aaaaaa");
 
+        }
+        else if (item.getItemId() == R.id.Clear)
+        {
+            DialogFragment newFragment = MyAlertDialogFragment.newInstance(R.string.alert_dialog_title);
+            newFragment.show(getSupportFragmentManager(), "dialog");
         }
         return super.onOptionsItemSelected(item);
     }
@@ -241,4 +249,51 @@ public class SelectClass extends SherlockFragmentActivity
         outState.putInt("MaxLevel", maxLevel);
         super.onSaveInstanceState(outState);
     }
+    
+    public void doPositiveClick() {
+        // Do stuff here.
+        Log.i("FragmentAlertDialog", "Positive click!");
+        ClassListFragment frag = (ClassListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mPager.getCurrentItem());
+        frag.clear();
+    }
+
+    public void doNegativeClick() {
+        // Do stuff here.
+        Log.i("FragmentAlertDialog", "Negative click!");
+    }
+    
+    public static class MyAlertDialogFragment extends DialogFragment {
+
+        public static MyAlertDialogFragment newInstance(int title) {
+            MyAlertDialogFragment frag = new MyAlertDialogFragment();
+            Bundle args = new Bundle();
+            args.putInt("title", title);
+            frag.setArguments(args);
+            return frag;
+        }
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            int title = getArguments().getInt("title");
+
+            return new AlertDialog.Builder(getActivity())
+                    .setTitle(title)
+                    .setPositiveButton(R.string.alert_dialog_ok,
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                ((SelectClass)getActivity()).doPositiveClick();
+                            }
+                        }
+                    )
+                    .setNegativeButton(R.string.alert_dialog_cancel,
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                ((SelectClass)getActivity()).doNegativeClick();
+                            }
+                        }
+                    )
+                    .create();
+        }
+    }
+    
 }

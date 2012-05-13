@@ -296,6 +296,11 @@ public class ClassListFragment extends ListFragment
             }
         }
     }
+    
+    public void clear()
+    {
+        setListAdapter(getSkillListAdapter());
+    }
 
     public String linkifyClassBuild()
     {
