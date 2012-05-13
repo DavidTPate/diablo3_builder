@@ -4,9 +4,11 @@ package com.pate.diablo;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -36,7 +38,7 @@ public class SelectClass extends SherlockFragmentActivity
     private PageIndicator        mIndicator;
     private SpinnerAdapter       mSpinnerAdapter;
     private static int           maxLevel;
-
+    private String loadFromUrl;
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
@@ -46,6 +48,44 @@ public class SelectClass extends SherlockFragmentActivity
         return super.onCreateOptionsMenu(menu);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.i("SelectClass", "OnResume");
+        Uri data = getIntent().getData();
+        
+        if (data!=null)
+        {
+            loadFromUrl = data.toString();
+            Log.i("loadFromUrl", loadFromUrl == null ? "Null" : loadFromUrl);
+        }
+    }
+    
+    public void loadClassFromUrl(String url)
+    {
+        Pattern p = Pattern.compile("^http://.*/calculator/(.*)#.*$");
+        Matcher m = p.matcher(url);
+        
+        ClassListFragment frag = null;
+
+        while (m.find())
+        {
+            if (m.groupCount() >= 1)
+            {
+                int position =  mAdapter.getItemPosition(m.group(1).replace("-", " "));
+                Log.i("LoadClassFromUrl Position", "" + position);
+                frag = (ClassListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + position);
+                
+                Log.i("loadClassFromUrl", url);
+                if (frag != null)
+                {
+                    frag.delinkifyClassBuild(url);
+                    mPager.setCurrentItem(position);
+                }
+            }
+        }
+    }
+    
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
@@ -57,31 +97,7 @@ public class SelectClass extends SherlockFragmentActivity
         }
         else if (item.getItemId() == R.id.Load)
         {
-            Pattern p = Pattern.compile("^http://.*/calculator/(.*)#.*$");
-            Matcher m = p.matcher("http://us.battle.net/d3/en/calculator/barbarian#aZYdfT!aZb!aaaaaa");
-            
-            ClassListFragment frag = null;
-
-            while (m.find())
-            {
-                if (m.groupCount() >= 1)
-                {
-                    int position =  mAdapter.getItemPosition(m.group(1).replace("-", " "));
-                    frag = (ClassListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + position);
-                    
-                    Log.i("delinkTest", "http://us.battle.net/d3/en/calculator/barbarian#aZYdfT!aZb!aaaaaa");
-                    frag.delinkifyClassBuild("http://us.battle.net/d3/en/calculator/barbarian#aZYdfT!aZb!aaaaaa");
-                    
-                    mPager.setCurrentItem(position);
-                }
-            }
-/*
-            Log.i("delinkTest", "http://us.battle.net/d3/en/calculator/demon-hunter#ac!a");
-            frag.delinkifyClassBuild("http://us.battle.net/d3/en/calculator/demon-hunter#ac!a");
-
-            Log.i("delinkTest", "http://us.battle.net/d3/en/calculator/witch-doctor#!a");
-            frag.delinkifyClassBuild("http://us.battle.net/d3/en/calculator/witch-doctor#!a");
-            */
+            loadClassFromUrl("http://us.battle.net/d3/en/calculator/barbarian#aZYdfT!aZb!aaaaaa");
 
         }
         return super.onOptionsItemSelected(item);
@@ -94,6 +110,13 @@ public class SelectClass extends SherlockFragmentActivity
 
         super.onCreate(savedInstanceState);
 
+        Uri data = getIntent().getData();
+        if (data!=null)
+        {
+            loadFromUrl = data.toString();
+            Log.i("OnCreate loadFromUrl", loadFromUrl == null ? "Null" : loadFromUrl);
+        }
+        
         if (D3Application.dataModel == null)
         {
             Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
@@ -171,6 +194,17 @@ public class SelectClass extends SherlockFragmentActivity
         indicator.setViewPager(mPager);
         indicator.setFooterIndicatorStyle(IndicatorStyle.Triangle);
         mIndicator = indicator;
+        
+        if (loadFromUrl != null)
+        {
+            Log.i("SelectClass OnCreate", "Loading from url: " + loadFromUrl);
+            loadClassFromUrl(loadFromUrl);
+        }
+        else
+        {
+            Log.i("SelectClass OnCreate", "Load from URL was null");
+        }
+            
     }
 
     @Override
