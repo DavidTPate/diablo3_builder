@@ -12,10 +12,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
         android:contentDescription="Skill icon"
-        android:paddingLeft="9dp"
-        android:src="@android:drawable/ic_menu_preferences" />
+        android:paddingLeft="5dp"
+        android:src="@drawable/barbarian_cleave" />
 
     <TextView
         android:id="@+id/list_skill_title"
@@ -23,18 +23,29 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="15dp"
-        android:layout_toLeftOf="@+id/list_skill_required_level"
         android:layout_toRightOf="@id/list_skill_icon"
         android:fadingEdge="horizontal"
-        android:text="Cleave"
+        android:text="Wrath of the Beserker"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+    
+    <TextView
+        android:id="@+id/list_skill_required_level"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/list_skill_title"
+        android:layout_alignLeft="@id/list_skill_title"
+        android:ellipsize="marquee"
+        android:fadingEdge="horizontal"
+        android:singleLine="true"
+        android:text="Required Level: 3"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
         android:id="@+id/list_skill_cost_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/list_skill_title"
-        android:layout_below="@id/list_skill_title"
+        android:layout_alignLeft="@id/list_skill_required_level"
+        android:layout_below="@id/list_skill_required_level"
         android:ellipsize="marquee"
         android:fadingEdge="horizontal"
         android:singleLine="true"
@@ -66,30 +77,16 @@
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
-        android:id="@id/list_skill_required_level"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:ellipsize="marquee"
-        android:fadingEdge="horizontal"
-        android:singleLine="true"
-        android:text="Required Level: 3"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
-
-    <TextView
         android:id="@+id/list_skill_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/list_skill_icon"
+        android:layout_alignLeft="@id/list_skill_cooldown"
+        android:layout_below="@id/list_skill_cooldown"
         android:ellipsize="marquee"
         android:fadingEdge="horizontal"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
-        android:paddingTop="20dp"
+        android:paddingTop="10dp"
         android:singleLine="false"
-        android:text="Swing your weapon in a wide arc to deal 120% weapon damage to all enemies caught in the swing"
+        android:text="Summon the ancient Barbarians Talic, Korlic, and Madawc to fight alongside you for 15 seconds. Each deals 60% weapon damage per swing in addition to bonus abilities. Talic wields a sword and shield and uses the Whirlwind skill. Korlic wields a massive polearm and uses the Cleave skill. Madawc dual-wields axes and uses the Weapon Throw skill."
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
 </RelativeLayout>

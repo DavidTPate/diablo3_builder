@@ -34,12 +34,12 @@ public class Replacer {
         SpannableStringBuilder buffer = new SpannableStringBuilder();
         int i = 0;
         while (mMatcher.find()) {
-            Log.i("Match " + i, mMatcher.group());
+            //Log.i("Match " + i, mMatcher.group());
             appendReplacement(buffer, mMatcher.group());
             i++;
         }
         SpannableStringBuilder retval = appendTail(buffer);
-        Log.i("Returning", retval.toString());
+        //Log.i("Returning", retval.toString());
         return retval;
     }
 
@@ -48,7 +48,7 @@ public class Replacer {
 
         String html = "<font color=\"" + mColor + "\">" + match + "</font>";
         buffer.append(Html.fromHtml(html));
-        Log.i("Buffer3", buffer.toString());
+        //Log.i("Buffer3", buffer.toString());
 
         mAppendPosition = mMatcher.end();
     }

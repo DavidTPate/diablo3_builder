@@ -56,7 +56,7 @@ public class EntrySkill implements Item
                 }
                 else
                 {
-                    skillCost.setText(v.getContext().getString(R.string.Cost) + " " + Replacer.replace(s.getCostText(), "\\d+%?", Vars.DIABLO_GREEN));
+                    skillCost.setText(Replacer.replace(v.getContext().getString(R.string.Cost) + " " + s.getCostText(), "\\d+%?", Vars.DIABLO_GREEN));
                     skillCost.setVisibility(View.VISIBLE);
                 }
 
@@ -66,7 +66,7 @@ public class EntrySkill implements Item
                 }
                 else
                 {
-                    skillGenerates.setText(v.getContext().getString(R.string.Generate) + " " + Replacer.replace(s.getGenerateText(), "\\d+%?", Vars.DIABLO_GREEN));
+                    skillGenerates.setText(Replacer.replace(v.getContext().getString(R.string.Generate) + " " + s.getGenerateText(), "\\d+%?", Vars.DIABLO_GREEN));
                     skillGenerates.setVisibility(View.VISIBLE);
                 }
 
@@ -77,7 +77,7 @@ public class EntrySkill implements Item
                 }
                 else
                 {
-                    skillCooldown.setText(v.getContext().getString(R.string.Cooldown) + " " + s.getCooldownText());
+                    skillCooldown.setText(Replacer.replace(v.getContext().getString(R.string.Cooldown) + " " + s.getCooldownText(), "\\d+%?", Vars.DIABLO_GREEN));
                     skillCooldown.setVisibility(View.VISIBLE);
                 }
 
@@ -97,7 +97,7 @@ public class EntrySkill implements Item
                 }
                 else
                 {
-                    skillDescription.setText(Replacer.replace(s.getDescription(), "\\d+%?", Vars.DIABLO_GREEN));
+                    skillDescription.setText(Replacer.replace(s.getDescription().trim(), "\\d+%?", Vars.DIABLO_GREEN));
                     skillDescription.setVisibility(View.VISIBLE);
                 }   
                 

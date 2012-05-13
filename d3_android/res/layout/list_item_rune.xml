@@ -12,6 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
+        android:layout_centerInParent="true"
         android:paddingLeft="5dp"
         android:src="@drawable/rune_a" />
 
@@ -24,7 +25,7 @@
         android:layout_toRightOf="@id/list_rune_icon"
         android:fadingEdge="horizontal"
         android:text="Clobber"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
         android:id="@+id/list_rune_unlocked_at"
@@ -40,6 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@id/list_rune_unlocked_at"
         android:layout_below="@id/list_rune_unlocked_at"
+        android:paddingTop="10dp"
         android:text="Instead of Knockback, each hit has a 35% chance to Stun the target for 1.5 seconds." />
 
 </RelativeLayout>
