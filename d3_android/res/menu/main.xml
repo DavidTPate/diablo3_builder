@@ -5,8 +5,12 @@
           android:icon="@drawable/ic_menu_share"
           android:showAsAction="ifRoom|withText" />
     
+    <item android:id="@+id/save"
+          android:icon="@drawable/ic_menu_save"
+          android:showAsAction="always" />
+    
     <item android:id="@+id/Load"
-          android:title="Load"
+          android:icon="@drawable/ic_menu_archive"
           android:icon="@drawable/ic_menu_archive"
           android:showAsAction="ifRoom|withText" />
 

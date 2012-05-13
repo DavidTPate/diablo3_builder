@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.util.Log;
+import android.view.ViewGroup;
 
 import com.pate.diablo.model.Class;
 import com.pate.diablo.model.D3Application;
@@ -16,11 +17,13 @@ public class ClassFragmentAdapter extends FragmentPagerAdapter implements TitleP
 {
     private List<Class> classes;
     private Context context;
+    public OnLoadFragmentsCompleteListener listener;
 
-    public ClassFragmentAdapter(FragmentManager fm, Context context) {
+    public ClassFragmentAdapter(FragmentManager fm, Context context, OnLoadFragmentsCompleteListener listener) {
         super(fm);
         this.context = context;
         this.classes = D3Application.dataModel.getClasses();
+        this.listener = listener;
     }
 
     @Override
@@ -30,7 +33,7 @@ public class ClassFragmentAdapter extends FragmentPagerAdapter implements TitleP
 
     @Override
     public Fragment getItem(int position) {
-        ClassListFragment classList = ClassListFragment.newInstance(classes.get(position).getName(), context);
+        ClassListFragment classList = ClassListFragment.newInstance(classes.get(position).getName(), context, listener);
         return classList;
         
     }
@@ -51,6 +54,11 @@ public class ClassFragmentAdapter extends FragmentPagerAdapter implements TitleP
             }
         }
         return -1;
+    }
+    
+    public void setOnLoadFragmentsCompleteListener(OnLoadFragmentsCompleteListener listener)
+    {
+        this.listener = listener;
     }
 
 }
