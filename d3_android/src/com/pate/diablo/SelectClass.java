@@ -212,7 +212,12 @@ public class SelectClass extends SherlockFragmentActivity
                         if (m.groupCount() >= 1)
                         {
                             int position =  mAdapter.getItemPosition(m.group(1).replace("-", " "));
-                            if (position >= 0 && className.equalsIgnoreCase(m.group(1).replace("-", " ")))
+                            if (position > 0 && className.equalsIgnoreCase(m.group(1).replace("-", " ")))
+                            {
+                                loadedFromUrl = true;
+                                loadClassFromUrl(loadFromUrl);
+                            }
+                            else if (position == 0 && !className.equalsIgnoreCase(m.group(1).replace("-", " ")))
                             {
                                 loadedFromUrl = true;
                                 loadClassFromUrl(loadFromUrl);
