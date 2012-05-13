@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.pate.diablo.R;
 import com.pate.diablo.model.Skill;
 import com.pate.diablo.string.Replacer;
+import com.pate.diablo.string.Vars;
 
 
 public class EntrySkill implements Item 
@@ -55,7 +56,7 @@ public class EntrySkill implements Item
                 }
                 else
                 {
-                    skillCost.setText(v.getContext().getString(R.string.Cost) + " " + s.getCostText());
+                    skillCost.setText(v.getContext().getString(R.string.Cost) + " " + Replacer.replace(s.getCostText(), "\\d+%?", Vars.DIABLO_GREEN));
                     skillCost.setVisibility(View.VISIBLE);
                 }
 
@@ -65,12 +66,13 @@ public class EntrySkill implements Item
                 }
                 else
                 {
-                    skillGenerates.setText(v.getContext().getString(R.string.Generate) + " " + s.getGenerateText());
+                    skillGenerates.setText(v.getContext().getString(R.string.Generate) + " " + Replacer.replace(s.getGenerateText(), "\\d+%?", Vars.DIABLO_GREEN));
                     skillGenerates.setVisibility(View.VISIBLE);
                 }
 
                 if (s.getCooldownText() == null || s.getCooldownText().equals(""))
                 {
+                    skillCooldown.setText(Replacer.replace(s.getCooldownText(), "\\d+%?", Vars.DIABLO_GREEN));
                     skillCooldown.setVisibility(View.GONE);
                 }
                 else
@@ -95,8 +97,7 @@ public class EntrySkill implements Item
                 }
                 else
                 {
-                    CharSequence desc = Replacer.replace(s.getDescription(), "\\d+%?", "#01F301");
-                    skillDescription.setText(desc);
+                    skillDescription.setText(Replacer.replace(s.getDescription(), "\\d+%?", Vars.DIABLO_GREEN));
                     skillDescription.setVisibility(View.VISIBLE);
                 }   
                 

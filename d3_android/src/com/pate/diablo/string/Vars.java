@@ -18,6 +18,7 @@ public class Vars {
 	public static final String GENERATE = "generate";
 	public static final String GENERATE_DESCRIPTION = "generate-description";
 	public static final String GENERATE_UNITS = "generate-units";
+	public static final String DIABLO_GREEN = "#01F301";
 	public static final String ICON = "icon";
 	public static final String KEY = "key";
 	public static final String LORE = "lore";
