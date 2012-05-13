@@ -2,6 +2,9 @@
 <resources>
 
     <string name="hello">Hello World!</string>
+    <string name="alert_dialog_ok">Ok</string>
+    <string name="alert_dialog_title">Are you sure you want to clear the current build?</string>
+    <string name="alert_dialog_cancel">Cancel</string>
     <string name="app_name">Diablo 3 Character Planner</string>
     <string name="class_text">Class</string>
     <string name="lvl">Lvl</string>
