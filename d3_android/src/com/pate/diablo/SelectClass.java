@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -99,6 +100,11 @@ public class SelectClass extends SherlockFragmentActivity
         {
             ClassListFragment frag = (ClassListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mPager.getCurrentItem());
             Log.i("linkTest", frag.linkifyClassBuild());
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("text/plain");
+            intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Check out this D3 build");
+            intent.putExtra(android.content.Intent.EXTRA_TEXT, frag.linkifyClassBuild());
+            startActivity(Intent.createChooser(intent,"Share using"));
         }
         else if (item.getItemId() == R.id.Load)
         {
