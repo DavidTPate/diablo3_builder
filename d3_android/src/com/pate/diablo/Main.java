@@ -54,6 +54,8 @@ public class Main extends SherlockFragmentActivity {
 		AdRequest newAd = new AdRequest();
 		newAd.addTestDevice("BDD7A55C1502190E502F14CBFDF9ABC7");
 		newAd.addTestDevice("E85A995C749AE015AA4EE195878C0982");
+		newAd.addTestDevice("E9BD79A28E313B2BDFA0CB0AED6C9697");
+
 		adView.loadAd(newAd);
 
 		if (D3Application.dataModel == null) {

@@ -160,6 +160,7 @@ public class SelectClass extends SherlockFragmentActivity
         AdRequest newAd = new AdRequest();
         newAd.addTestDevice("BDD7A55C1502190E502F14CBFDF9ABC7");
         newAd.addTestDevice("E85A995C749AE015AA4EE195878C0982");
+        newAd.addTestDevice("E9BD79A28E313B2BDFA0CB0AED6C9697");
         adView.loadAd(newAd);
 
         mSpinnerAdapter = ArrayAdapter.createFromResource(this, R.array.levels, android.R.layout.simple_dropdown_item_1line);
@@ -204,7 +205,6 @@ public class SelectClass extends SherlockFragmentActivity
         {
             Log.i("SelectClass OnCreate", "Load from URL was null");
         }
-            
     }
 
     @Override
