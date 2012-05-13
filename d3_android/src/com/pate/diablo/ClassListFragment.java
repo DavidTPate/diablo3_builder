@@ -32,24 +32,26 @@ import com.pate.diablo.sectionlist.SectionItem;
 public class ClassListFragment extends ListFragment
 {
 
-    private Context           context;
-    private String            selectedClass;
-    private EntrySkillAdapter listAdapter;
-    int                       index;
-    int                       GET_SKILL     = 0;
-    int                       REPLACE_SKILL = 1;
-    int                       GET_RUNE      = 2;
-    int                       REPLACE_RUNE  = 3;
+    private Context                         context;
+    private String                          selectedClass;
+    private EntrySkillAdapter               listAdapter;
+    private OnLoadFragmentsCompleteListener listener;
+    int                                     index;
+    int                                     GET_SKILL     = 0;
+    int                                     REPLACE_SKILL = 1;
+    int                                     GET_RUNE      = 2;
+    int                                     REPLACE_RUNE  = 3;
 
-    ArrayList<Item>           items         = new ArrayList<Item>();
+    ArrayList<Item>                         items         = new ArrayList<Item>();
 
-    public static ClassListFragment newInstance(String selectedClass, Context c)
+    public static ClassListFragment newInstance(String selectedClass, Context c, OnLoadFragmentsCompleteListener listener)
     {
 
         ClassListFragment fragment = new ClassListFragment();
 
         fragment.context = c;
         fragment.selectedClass = selectedClass;
+        fragment.listener = listener;
         Log.i("ClassListFragment-SelectedClass", selectedClass);
         return fragment;
     }
@@ -62,6 +64,8 @@ public class ClassListFragment extends ListFragment
         Log.i("ClassListFragment", "Oncreate");
         setRetainInstance(true);
         setListAdapter(getSkillListAdapter());
+        if (listener != null)
+            listener.OnLoadFragmentsComplete(selectedClass);
     }
 
     @Override
@@ -472,7 +476,7 @@ public class ClassListFragment extends ListFragment
                     if (runeVal.charAt(activeIndex) == skillAttrbs.getMissingValue().charAt(0))
                     {
                         tempItems.add(listIndex, new EmptyRune("Choose Rune", 1, s.getName(), s.getUuid()));
-                        
+
                     }
                     else
                     {
@@ -483,7 +487,7 @@ public class ClassListFragment extends ListFragment
                 }
                 else
                 {
-                    //Don't add the rune, since no skill was picked.
+                    // Don't add the rune, since no skill was picked.
                 }
                 activeIndex++;
             }

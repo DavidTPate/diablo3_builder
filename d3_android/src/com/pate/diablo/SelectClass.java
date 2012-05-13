@@ -39,6 +39,7 @@ public class SelectClass extends SherlockFragmentActivity
     private SpinnerAdapter       mSpinnerAdapter;
     private static int           maxLevel;
     private String loadFromUrl;
+    private boolean loadedFromUrl = false;
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
@@ -79,6 +80,7 @@ public class SelectClass extends SherlockFragmentActivity
                 Log.i("loadClassFromUrl", url);
                 if (frag != null)
                 {
+                    mAdapter.setOnLoadFragmentsCompleteListener(null);
                     frag.delinkifyClassBuild(url);
                     mPager.setCurrentItem(position);
                 }
@@ -97,7 +99,7 @@ public class SelectClass extends SherlockFragmentActivity
         }
         else if (item.getItemId() == R.id.Load)
         {
-            loadClassFromUrl("http://us.battle.net/d3/en/calculator/barbarian#aZYdfT!aZb!aaaaaa");
+            loadClassFromUrl("http://us.battle.net/d3/en/calculator/monk#aZYdfT!aZb!aaaaaa");
 
         }
         return super.onOptionsItemSelected(item);
@@ -160,6 +162,7 @@ public class SelectClass extends SherlockFragmentActivity
         AdRequest newAd = new AdRequest();
         newAd.addTestDevice("BDD7A55C1502190E502F14CBFDF9ABC7");
         newAd.addTestDevice("E85A995C749AE015AA4EE195878C0982");
+        newAd.addTestDevice("E9BD79A28E313B2BDFA0CB0AED6C9697");
         adView.loadAd(newAd);
 
         mSpinnerAdapter = ArrayAdapter.createFromResource(this, R.array.levels, android.R.layout.simple_dropdown_item_1line);
@@ -184,10 +187,42 @@ public class SelectClass extends SherlockFragmentActivity
 
         actionBar.setListNavigationCallbacks(mSpinnerAdapter, mNavigationCallback);
         actionBar.setSelectedNavigationItem(60 - maxLevel);
+        
+        OnLoadFragmentsCompleteListener listener = new OnLoadFragmentsCompleteListener()
+        {
+            public void OnLoadFragmentsComplete(String className)
+            {
+                if (!loadedFromUrl && loadFromUrl != null)
+                {
+                    Log.i("SelectClass OnCreate", "Loading from url: " + loadFromUrl);
+                    
+                    Pattern p = Pattern.compile("^http://.*/calculator/(.*)#.*$");
+                    Matcher m = p.matcher(loadFromUrl);
+                    
+                    while (m.find())
+                    {
+                        if (m.groupCount() >= 1)
+                        {
+                            int position =  mAdapter.getItemPosition(m.group(1).replace("-", " "));
+                            if (position >= 0 && className.equalsIgnoreCase(m.group(1).replace("-", " ")))
+                            {
+                                loadedFromUrl = true;
+                                loadClassFromUrl(loadFromUrl);
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    Log.i("SelectClass OnCreate", "Load from URL was null");
+                }
+            }
+        };
 
-        mAdapter = new ClassFragmentAdapter(getSupportFragmentManager(), SelectClass.this);
+        mAdapter = new ClassFragmentAdapter(getSupportFragmentManager(), SelectClass.this, listener);
 
         mPager = (ViewPager) findViewById(R.id.pager);
+        mPager.setOffscreenPageLimit(5);
         mPager.setAdapter(mAdapter);
 
         TitlePageIndicator indicator = (TitlePageIndicator) findViewById(R.id.select_skill_indicator);
@@ -195,15 +230,7 @@ public class SelectClass extends SherlockFragmentActivity
         indicator.setFooterIndicatorStyle(IndicatorStyle.Triangle);
         mIndicator = indicator;
         
-        if (loadFromUrl != null)
-        {
-            Log.i("SelectClass OnCreate", "Loading from url: " + loadFromUrl);
-            loadClassFromUrl(loadFromUrl);
-        }
-        else
-        {
-            Log.i("SelectClass OnCreate", "Load from URL was null");
-        }
+        
             
     }
 
