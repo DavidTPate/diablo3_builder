@@ -3,4 +3,8 @@
     <item android:id="@+id/Share"
           android:title="Share"
           android:showAsAction="always" />
+    
+    <item android:id="@+id/Load"
+          android:title="Load"
+          android:showAsAction="always" />
 </menu>

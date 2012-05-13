@@ -39,5 +39,18 @@ public class ClassFragmentAdapter extends FragmentPagerAdapter implements TitleP
     public int getCount() {
         return classes.size();
     }
+    
+    @Override
+    public int getItemPosition(Object className)
+    {
+        for (Class clss : classes)
+        {
+            if (clss.getName().equalsIgnoreCase((String)className))
+            {
+                return classes.indexOf(clss);
+            }
+        }
+        return -1;
+    }
 
 }

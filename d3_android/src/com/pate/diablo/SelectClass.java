@@ -4,6 +4,8 @@ package com.pate.diablo;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
@@ -48,8 +50,40 @@ public class SelectClass extends SherlockFragmentActivity
     public boolean onOptionsItemSelected(MenuItem item)
     {
 
-        ClassListFragment frag = (ClassListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mPager.getCurrentItem());
-        Log.i("linkTest", frag.linkifyClassBuild());
+        if (item.getItemId() == R.id.Share)
+        {
+            ClassListFragment frag = (ClassListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mPager.getCurrentItem());
+            Log.i("linkTest", frag.linkifyClassBuild());
+        }
+        else if (item.getItemId() == R.id.Load)
+        {
+            Pattern p = Pattern.compile("^http://.*/calculator/(.*)#.*$");
+            Matcher m = p.matcher("http://us.battle.net/d3/en/calculator/barbarian#aZYdfT!aZb!aaaaaa");
+            
+            ClassListFragment frag = null;
+
+            while (m.find())
+            {
+                if (m.groupCount() >= 1)
+                {
+                    int position =  mAdapter.getItemPosition(m.group(1).replace("-", " "));
+                    frag = (ClassListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + position);
+                    
+                    Log.i("delinkTest", "http://us.battle.net/d3/en/calculator/barbarian#aZYdfT!aZb!aaaaaa");
+                    frag.delinkifyClassBuild("http://us.battle.net/d3/en/calculator/barbarian#aZYdfT!aZb!aaaaaa");
+                    
+                    mPager.setCurrentItem(position);
+                }
+            }
+/*
+            Log.i("delinkTest", "http://us.battle.net/d3/en/calculator/demon-hunter#ac!a");
+            frag.delinkifyClassBuild("http://us.battle.net/d3/en/calculator/demon-hunter#ac!a");
+
+            Log.i("delinkTest", "http://us.battle.net/d3/en/calculator/witch-doctor#!a");
+            frag.delinkifyClassBuild("http://us.battle.net/d3/en/calculator/witch-doctor#!a");
+            */
+
+        }
         return super.onOptionsItemSelected(item);
     }
 

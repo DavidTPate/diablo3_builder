@@ -2,8 +2,11 @@
 package com.pate.diablo;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import android.app.Activity;
 import android.content.Context;
@@ -12,7 +15,6 @@ import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.ListView;
 
 import com.pate.diablo.model.D3Application;
@@ -137,20 +139,38 @@ public class ClassListFragment extends ListFragment
     private EntrySkillAdapter getSkillListAdapter()
     {
 
+        return getSkillListAdapter(false);
+    }
+
+    private EntrySkillAdapter getSkillListAdapter(boolean includeRunes)
+    {
+
         items = new ArrayList<Item>();
         String[] skillTypes = D3Application.dataModel.getClassAttributesByName(selectedClass).getSkillTypes();
 
         items.add(new SectionItem("Left Click - Primary"));
         items.add(new EmptySkill("Choose Skill", 1, skillTypes[0]));
+        if (includeRunes)
+            items.add(new EmptyRune("Choose Rune", 1, "Rune", null));
 
         items.add(new SectionItem("Right Click - Secondary"));
         items.add(new EmptySkill("Choose Skill", 2, skillTypes[1]));
+        if (includeRunes)
+            items.add(new EmptyRune("Choose Rune", 1, "Rune", null));
 
         items.add(new SectionItem("Action Bar Skills"));
         items.add(new EmptySkill("Choose Skill", 4, skillTypes[2]));
+        if (includeRunes)
+            items.add(new EmptyRune("Choose Rune", 1, "Rune", null));
         items.add(new EmptySkill("Choose Skill", 9, skillTypes[3]));
+        if (includeRunes)
+            items.add(new EmptyRune("Choose Rune", 1, "Rune", null));
         items.add(new EmptySkill("Choose Skill", 14, skillTypes[4]));
+        if (includeRunes)
+            items.add(new EmptyRune("Choose Rune", 1, "Rune", null));
         items.add(new EmptySkill("Choose Skill", 19, skillTypes[5]));
+        if (includeRunes)
+            items.add(new EmptyRune("Choose Rune", 1, "Rune", null));
 
         items.add(new SectionItem("Passive Skills"));
         items.add(new EmptySkill("Choose Skill", 10, "Passive"));
@@ -331,8 +351,149 @@ public class ClassListFragment extends ListFragment
                 runeVal.append(skillMapping[s.getRunes().indexOf(r)]);
             }
         }
-        
+
         return "http://us.battle.net/d3/en/calculator/" + selectedClass.toLowerCase() + "#" + activeVal.toString() + skillAttrbs.getPassiveSeparator() + passiveVal.toString() + skillAttrbs.getRuneSeparator() + runeVal.toString();
     }
 
+    public void delinkifyClassBuild(String url)
+    {
+
+        Pattern p = Pattern.compile("^http://.*/calculator/(.*)#([a-zA-Z\\.]*)!?([a-zA-Z\\.]*)!?([a-zA-Z\\.]*)$");
+        Matcher m = p.matcher(url);
+
+        Pattern cap = Pattern.compile("\b([a-z])");
+
+        String activeVal = "";
+        String passiveVal = "";
+        String runeVal = "";
+        String tempClass = "";
+
+        while (m.find())
+        {
+            if (m.groupCount() >= 1)
+            {
+
+                // Doesn't work :( Trying to capitalize each word with this, but
+                // it's being a bitch.
+                /*
+                 * Matcher capital = cap.matcher(tempClass); while
+                 * (capital.find()) { if (capital.groupCount() >= 1) { String g
+                 * = capital.group(1); tempClass = tempClass.replace("\b" + g,
+                 * g.toUpperCase()); } }
+                 */
+
+                if (selectedClass.equalsIgnoreCase(m.group(1).replace("-", " ")))
+                {
+                    Log.i("delinkify", "Class matches!");
+                    tempClass = m.group(1).replace("-", " ");
+                }
+                else
+                {
+                    // Uh-oh!
+                }
+            }
+
+            if (m.groupCount() >= 2)
+            {
+                activeVal = m.group(2);
+            }
+
+            if (m.groupCount() >= 3)
+            {
+                passiveVal = m.group(3);
+            }
+
+            if (m.groupCount() >= 4)
+            {
+                runeVal = m.group(4);
+            }
+            Log.i("delinkify", "Class: " + selectedClass + " Active: " + activeVal + " Passive: " + passiveVal + " Rune: " + runeVal);
+        }
+
+        while (activeVal.length() < 6)
+        {
+            activeVal = activeVal + ".";
+        }
+
+        while (passiveVal.length() < 3)
+        {
+            passiveVal = passiveVal + ".";
+        }
+
+        while (runeVal.length() < 6)
+        {
+            runeVal = runeVal + ".";
+        }
+
+        // Reset list
+        setListAdapter(getSkillListAdapter(true));
+
+        com.pate.diablo.model.Class currClass = D3Application.dataModel.getClassByName(selectedClass);
+        List<Skill> activeSkills = currClass.getActiveSkills();
+        List<Skill> passiveSkills = currClass.getPassiveSkills();
+        ArrayList<Item> items = listAdapter.getItems();
+
+        SkillAttribute skillAttrbs = D3Application.dataModel.getSkillAttributes();
+
+        List<String> skillMapping = Arrays.asList(skillAttrbs.getSkillMapping());
+
+        int activeIndex = 0;
+        int passiveIndex = 0;
+        int listIndex = 0;
+
+        ArrayList<Item> tempItems = new ArrayList<Item>();
+
+        for (Item item : items)
+        {
+            if (item instanceof EmptySkill && !((EmptySkill) item).getSkillType().equals("Passive"))
+            {
+                if (activeVal.charAt(activeIndex) != skillAttrbs.getMissingValue().charAt(0))
+                {
+                    Skill s = activeSkills.get(skillMapping.indexOf(String.valueOf(activeVal.charAt(activeIndex))));
+                    tempItems.add(listIndex, new EntrySkill(s));
+                    listIndex++;
+                }
+            }
+            else if (item instanceof EmptySkill && ((EmptySkill) item).getSkillType().equals("Passive"))
+            {
+                if (passiveVal.charAt(passiveIndex) != skillAttrbs.getMissingValue().charAt(0))
+                {
+                    Skill s = passiveSkills.get(skillMapping.indexOf(String.valueOf(passiveVal.charAt(passiveIndex))));
+                    tempItems.add(listIndex, new EntrySkill(s));
+                    listIndex++;
+                }
+                passiveIndex++;
+            }
+            else if (item instanceof EmptyRune)
+            {
+                if (activeVal.charAt(activeIndex) != skillAttrbs.getMissingValue().charAt(0))
+                {
+                    Skill s = activeSkills.get(skillMapping.indexOf(String.valueOf(activeVal.charAt(activeIndex))));
+                    if (runeVal.charAt(activeIndex) == skillAttrbs.getMissingValue().charAt(0))
+                    {
+                        tempItems.add(listIndex, new EmptyRune("Choose Rune", 1, s.getName(), s.getUuid()));
+                        
+                    }
+                    else
+                    {
+                        Rune r = s.getRunes().get(skillMapping.indexOf(String.valueOf(runeVal.charAt(activeIndex))));
+                        tempItems.add(listIndex, new EntryRune(r, s.getName(), s.getUuid()));
+                    }
+                    listIndex++;
+                }
+                else
+                {
+                    //Don't add the rune, since no skill was picked.
+                }
+                activeIndex++;
+            }
+            else
+            {
+                tempItems.add(listIndex, item);
+                listIndex++;
+            }
+        }
+
+        listAdapter.setList(tempItems);
+    }
 }
