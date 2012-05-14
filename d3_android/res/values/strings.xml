@@ -12,6 +12,6 @@
     <string name="Generate">Generate:</string>
     <string name="Cost">Cost:</string>
 	<string name="Required_level">Required Level:</string>
-	<string name="Unlocked_at_level">Unlocked at Level</string>
+	<string name="Unlocked_at_level">Unlocked at Level:</string>
 	<string name="Max_Level">Max Level</string>
 </resources>

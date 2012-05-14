@@ -11,6 +11,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -96,7 +97,7 @@ public class SelectClass extends SherlockFragmentActivity
     public boolean onOptionsItemSelected(MenuItem item)
     {
 
-        if (item.getItemId() == R.id.Share)
+        if (item.getItemId() == R.id.share)
         {
             ClassListFragment frag = (ClassListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mPager.getCurrentItem());
             Log.i("linkTest", frag.linkifyClassBuild());
@@ -106,12 +107,23 @@ public class SelectClass extends SherlockFragmentActivity
             intent.putExtra(android.content.Intent.EXTRA_TEXT, frag.linkifyClassBuild());
             startActivity(Intent.createChooser(intent,"Share using"));
         }
-        else if (item.getItemId() == R.id.Load)
+        else if (item.getItemId() == R.id.load)
         {
-            loadClassFromUrl("http://us.battle.net/d3/en/calculator/monk#aZYdfT!aZb!aaaaaa");
-
+            //loadClassFromUrl("http://us.battle.net/d3/en/calculator/monk#aZYdfT!aZb!aaaaaa");
+            SharedPreferences keyVals = this.getApplicationContext().getSharedPreferences("saved_build_list", MODE_PRIVATE);
+            loadClassFromUrl(keyVals.getString("test", ""));
         }
-        else if (item.getItemId() == R.id.Clear)
+        else if (item.getItemId() == R.id.save)
+        {
+            SharedPreferences keyVals = this.getApplicationContext().getSharedPreferences("saved_build_list", MODE_PRIVATE);
+            SharedPreferences.Editor keyValsEditor = keyVals.edit();
+            
+            ClassListFragment frag = (ClassListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mPager.getCurrentItem());
+            keyValsEditor.putString("test", frag.linkifyClassBuild());
+            
+            keyValsEditor.commit();
+        }
+        else if (item.getItemId() == R.id.clear)
         {
             DialogFragment newFragment = MyAlertDialogFragment.newInstance(R.string.alert_dialog_title);
             newFragment.show(getSupportFragmentManager(), "dialog");

@@ -40,7 +40,7 @@ public class EntrySkill implements Item
         final TextView skillCost = (TextView) v.findViewById(R.id.list_skill_cost_text);
         final TextView skillGenerates = (TextView) v.findViewById(R.id.list_skill_generates);
         final TextView skillCooldown = (TextView) v.findViewById(R.id.list_skill_cooldown);
-        final TextView skillRequiredLevel = (TextView) v.findViewById(R.id.list_skill_required_level);
+        final TextView skillRequiredLevel = (TextView) v.findViewById(R.id.list_skill_unlocked_at);
         final TextView skillDescription = (TextView) v.findViewById(R.id.list_skill_description);
 
         // Is this a terrible hack?! I think so...
@@ -87,7 +87,7 @@ public class EntrySkill implements Item
                 }
                 else
                 {
-                    skillRequiredLevel.setText(v.getContext().getString(R.string.Required_level) + " " + String.valueOf(s.getRequiredLevel()));
+                    skillRequiredLevel.setText(Replacer.replace(v.getContext().getString(R.string.Unlocked_at_level) + " " + String.valueOf(s.getRequiredLevel()), "\\d+%?", Vars.DIABLO_GREEN));
                     skillRequiredLevel.setVisibility(View.VISIBLE);
                 }
 

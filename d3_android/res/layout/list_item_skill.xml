@@ -29,7 +29,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
     
     <TextView
-        android:id="@+id/list_skill_required_level"
+        android:id="@+id/list_skill_unlocked_at"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/list_skill_title"
@@ -37,15 +37,15 @@
         android:ellipsize="marquee"
         android:fadingEdge="horizontal"
         android:singleLine="true"
-        android:text="Required Level: 3"
+        android:text="Unlocked at level: 3"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
         android:id="@+id/list_skill_cost_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/list_skill_required_level"
-        android:layout_below="@id/list_skill_required_level"
+        android:layout_alignLeft="@id/list_skill_unlocked_at"
+        android:layout_below="@id/list_skill_unlocked_at"
         android:ellipsize="marquee"
         android:fadingEdge="horizontal"
         android:singleLine="true"

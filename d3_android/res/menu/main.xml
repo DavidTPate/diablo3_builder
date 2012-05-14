@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <item
-        android:id="@+id/Share"
+        android:id="@+id/share"
         android:icon="@drawable/ic_menu_share"
         android:showAsAction="ifRoom|withText"
         android:title="Share"/>
@@ -12,12 +12,12 @@
         android:showAsAction="ifRoom|withText"
         android:title="Save"/>
     <item
-        android:id="@+id/Load"
+        android:id="@+id/load"
         android:icon="@drawable/ic_menu_archive"
         android:title="Load"
         android:showAsAction="ifRoom|withText"/>
     <item
-        android:id="@+id/Clear"
+        android:id="@+id/clear"
         android:icon="@drawable/ic_menu_clear_playlist"
         android:showAsAction="ifRoom|withText"
         android:title="Clear"/>
