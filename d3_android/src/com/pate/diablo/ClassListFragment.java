@@ -68,11 +68,18 @@ public class ClassListFragment extends ListFragment
             listener.OnLoadFragmentsComplete(selectedClass);
     }
     
+    private boolean isBlankBuild()
+    {
+        
+        String classLink = linkifyClassBuild();
+        return !classLink.isEmpty() && !classLink.matches("http://[A-Za-z]+.battle.net/d3/[A-Za-z]+/calculator/[A-Za-z]+#[\\.]+![\\.]+![\\.]+");
+    }
+    
     @Override
     public void onPause() {
         String classLink = linkifyClassBuild();
         
-        if (!classLink.isEmpty() && !classLink.matches("http://[A-Za-z]+.battle.net/d3/[A-Za-z]+/calculator/[A-Za-z]+#[\\.]+![\\.]+![\\.]+"))
+        if (!classLink.isEmpty() && !isBlankBuild())
         {
             Log.i("onPause - Saving", classLink);
             SharedPreferences settings = getActivity().getSharedPreferences("classes", 0);
@@ -81,20 +88,17 @@ public class ClassListFragment extends ListFragment
             editor.commit();
         }
 
-        // Commit the edits!
         super.onPause();
     }
     
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
-     // Restore preferences
         SharedPreferences settings = getActivity().getSharedPreferences("classes", 0);
         String classLink = settings.getString(selectedClass, "");
-//      
-        if (!classLink.isEmpty() && !classLink.matches("http://[A-Za-z]+.battle.net/d3/[A-Za-z]+/calculator/[A-Za-z]+#[\\.]+![\\.]+![\\.]+"))
+        if (!classLink.isEmpty() && !isBlankBuild())
         {
             Log.i("onActivityCreated - Delinkifying", classLink);
-//            delinkifyClassBuild(classLink);
+            delinkifyClassBuild(classLink);
         }
         else
         {
