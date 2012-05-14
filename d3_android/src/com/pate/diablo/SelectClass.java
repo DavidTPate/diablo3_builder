@@ -109,7 +109,7 @@ public class SelectClass extends SherlockFragmentActivity
         {
             //loadClassFromUrl("http://us.battle.net/d3/en/calculator/monk#aZYdfT!aZb!aaaaaa");
             SharedPreferences keyVals = this.getApplicationContext().getSharedPreferences("saved_build_list", MODE_PRIVATE);
-            loadClassFromUrl(keyVals.getString("test", ""));
+            loadClassFromUrl(keyVals.getString("test", "http://us.battle.net/d3/en/calculator/barbarian#......!...!......"));
         }
         else if (item.getItemId() == R.id.save)
         {

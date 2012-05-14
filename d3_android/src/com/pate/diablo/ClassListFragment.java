@@ -257,7 +257,20 @@ public class ClassListFragment extends ListFragment
                     }
                     else if (requestCode == REPLACE_SKILL)
                     {
-                        items.set(index + 1, new EmptyRune("Choose Rune", 1, s.getName(), s.getUuid()));
+                        Item item = items.get(index + 1);
+                        
+                        if (item instanceof EntryRune)
+                        {
+                            EntryRune e = (EntryRune) item;
+                            if (!e.getSkillUUID().equals(s.getUuid()))
+                            {
+                                items.set(index + 1, new EmptyRune("Choose Rune", 1, s.getName(), s.getUuid()));
+                            }
+                        }
+                        else
+                        {
+                            items.set(index + 1, new EmptyRune("Choose Rune", 1, s.getName(), s.getUuid()));
+                        }
                     }
                     listAdapter.setList(items);
 
@@ -473,6 +486,7 @@ public class ClassListFragment extends ListFragment
         setListAdapter(getSkillListAdapter(true));
 
         com.pate.diablo.model.Class currClass = D3Application.dataModel.getClassByName(selectedClass);
+        String[] skillTypes = D3Application.dataModel.getClassAttributesByName(selectedClass).getSkillTypes();
         List<Skill> activeSkills = currClass.getActiveSkills();
         List<Skill> passiveSkills = currClass.getPassiveSkills();
         ArrayList<Item> items = listAdapter.getItems();
@@ -497,6 +511,11 @@ public class ClassListFragment extends ListFragment
                     tempItems.add(listIndex, new EntrySkill(s));
                     listIndex++;
                 }
+                else
+                {
+                    tempItems.add(new EmptySkill("Choose Skill", 1, skillTypes[activeIndex]));
+                    listIndex++;
+                }
             }
             else if (item instanceof EmptySkill && ((EmptySkill) item).getSkillType().equals("Passive"))
             {
@@ -504,6 +523,11 @@ public class ClassListFragment extends ListFragment
                 {
                     Skill s = passiveSkills.get(skillMapping.indexOf(String.valueOf(passiveVal.charAt(passiveIndex))));
                     tempItems.add(listIndex, new EntrySkill(s));
+                    listIndex++;
+                }
+                else
+                {
+                    tempItems.add(new EmptySkill("Choose Skill", 1, "Passive"));
                     listIndex++;
                 }
                 passiveIndex++;

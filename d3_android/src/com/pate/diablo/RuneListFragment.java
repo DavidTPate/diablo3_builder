@@ -48,7 +48,7 @@ public class RuneListFragment extends ListFragment {
 	public void onCreate(Bundle savedInstanceState) {
 		for (Rune s : D3Application.dataModel.getClassByName(selectedClass)
 				.getActiveSkillByUUID(skillUUID)
-				.getRunesByRequiredLevel(requiredLevel)) {
+				.getRunes()) {
 			items.add(new EntryRune(s, skillName, skillUUID));
 		}
 		EntrySkillAdapter adapter = new EntrySkillAdapter(context, items);
