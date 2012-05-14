@@ -76,34 +76,34 @@ public class ClassListFragment extends ListFragment
     }
     
     @Override
-    public void onPause() {
-        String classLink = linkifyClassBuild();
-        
-        if (!classLink.isEmpty() && !isBlankBuild())
-        {
-            Log.i("onPause - Saving", classLink);
-            SharedPreferences settings = getActivity().getSharedPreferences("classes", 0);
-            SharedPreferences.Editor editor = settings.edit();
-            editor.putString(selectedClass, classLink);
-            editor.commit();
-        }
-
+    public void onStop() {
+//        String classLink = linkifyClassBuild();
+//        
+//        if (!classLink.isEmpty() && !isBlankBuild())
+//        {
+//            Log.i("onPause - Saving", classLink);
+//            SharedPreferences settings = getActivity().getSharedPreferences("classes", 0);
+//            SharedPreferences.Editor editor = settings.edit();
+//            editor.putString(selectedClass, classLink);
+//            editor.commit();
+//        }
+//
         super.onPause();
     }
     
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
-        SharedPreferences settings = getActivity().getSharedPreferences("classes", 0);
-        String classLink = settings.getString(selectedClass, "");
-        if (!classLink.isEmpty() && !isBlankBuild())
-        {
-            Log.i("onActivityCreated - Delinkifying", classLink);
-            delinkifyClassBuild(classLink);
-        }
-        else
-        {
-            Log.i("Not delinkifying blank build", classLink);
-        }
+//        SharedPreferences settings = getActivity().getSharedPreferences("classes", 0);
+//        String classLink = settings.getString(selectedClass, "");
+//        if (!classLink.isEmpty() && !isBlankBuild())
+//        {
+//            Log.i("onActivityCreated - Delinkifying", classLink);
+//            delinkifyClassBuild(classLink);
+//        }
+//        else
+//        {
+//            Log.i("Not delinkifying blank build", classLink);
+//        }
         
         super.onActivityCreated(savedInstanceState);
     }
