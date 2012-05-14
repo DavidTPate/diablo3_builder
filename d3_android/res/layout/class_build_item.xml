@@ -27,7 +27,7 @@
         android:layout_alignParentLeft="true"
         android:layout_centerInParent="true"
         android:text="Frenzy11111111111111"
-        android:ellipsize="true"
+        android:ellipsize="end"
         android:singleLine="true"
         android:maxWidth="150dp" />
 
@@ -40,7 +40,7 @@
         android:text="Class: Barbarian111111111111111111111111111111"
         android:layout_centerInParent="true"
         android:paddingLeft="10dp"
-        android:ellipsize="true"
+        android:ellipsize="end"
         android:singleLine="true"  />
 
     
