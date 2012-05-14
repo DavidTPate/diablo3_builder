@@ -14,7 +14,9 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.pate.diablo.model.D3Application;
@@ -65,24 +67,35 @@ public class ClassListFragment extends ListFragment
 
         super.onCreate(savedInstanceState);
         Log.i("ClassListFragment", "Oncreate");
+        
+        if (savedInstanceState != null)
+        {
+            selectedClass = savedInstanceState.getString("selectedClass");
+        }
+        
+        SharedPreferences settings = getActivity().getSharedPreferences("classes", 0);
+        String classLink = settings.getString(selectedClass, "");
+        if (!classLink.isEmpty() && !isBlankBuild(classLink))
+        {
+            Log.i("onActivityCreated - Delinkifying", classLink);
+            delinkifyClassBuild(classLink);
+        }
+        
         setRetainInstance(true);
         setListAdapter(getSkillListAdapter());
         if (listener != null)
             listener.OnLoadFragmentsComplete(selectedClass);
     }
     
-    private boolean isBlankBuild()
+    private boolean isBlankBuild(String classLink)
     {
-        
-        String classLink = linkifyClassBuild();
-        return !classLink.isEmpty() && !classLink.matches("http://[A-Za-z]+.battle.net/d3/[A-Za-z]+/calculator/[A-Za-z]+#[\\.]+![\\.]+![\\.]+");
+        return classLink.isEmpty() || classLink.matches("http://.+.battle.net/d3/.+/calculator/.+#[\\.]+![\\.]+![\\.]+");
     }
     
     @Override
     public void onPause() {
         String classLink = linkifyClassBuild();
-        
-        if (!classLink.isEmpty() && !isBlankBuild())
+        if (!classLink.isEmpty() && !isBlankBuild(classLink))
         {
             Log.i("onPause - Saving", classLink);
             SharedPreferences settings = getActivity().getSharedPreferences("classes", 0);
@@ -95,28 +108,11 @@ public class ClassListFragment extends ListFragment
     }
     
     @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        SharedPreferences settings = getActivity().getSharedPreferences("classes", 0);
-        String classLink = settings.getString(selectedClass, "");
-        if (!classLink.isEmpty() && !isBlankBuild())
-        {
-            Log.i("onActivityCreated - Delinkifying", classLink);
-            delinkifyClassBuild(classLink);
-        }
-        else
-        {
-            Log.i("Not delinkifying blank build", classLink);
-        }
-        
-        super.onActivityCreated(savedInstanceState);
-    }
-
-    @Override
     public void onSaveInstanceState(Bundle outState) {
-
         super.onSaveInstanceState(outState);
+        outState.putString("selectedClass", selectedClass);
     }
-
+    
     @Override
     public void onListItemClick(ListView l, View v, int position, long id)
     {
@@ -189,7 +185,6 @@ public class ClassListFragment extends ListFragment
 
     private EntrySkillAdapter getSkillListAdapter(boolean includeRunes)
     {
-
         items = new ArrayList<Item>();
         String[] skillTypes = D3Application.dataModel.getClassAttributesByName(selectedClass).getSkillTypes();
 
@@ -230,6 +225,7 @@ public class ClassListFragment extends ListFragment
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data)
     {
+        Log.i("OnActivityResult", "" + requestCode);
 
         if (requestCode == GET_SKILL || requestCode == REPLACE_SKILL)
         {
