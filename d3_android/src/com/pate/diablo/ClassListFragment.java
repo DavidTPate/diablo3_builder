@@ -1,4 +1,3 @@
-
 package com.pate.diablo;
 
 import java.util.ArrayList;
@@ -11,6 +10,7 @@ import java.util.regex.Pattern;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
@@ -44,8 +44,7 @@ public class ClassListFragment extends ListFragment
 
     ArrayList<Item>                         items         = new ArrayList<Item>();
 
-    public static ClassListFragment newInstance(String selectedClass, Context c, OnLoadFragmentsCompleteListener listener)
-    {
+    public static ClassListFragment newInstance(String selectedClass, Context c, OnLoadFragmentsCompleteListener listener) {
 
         ClassListFragment fragment = new ClassListFragment();
 
@@ -56,9 +55,10 @@ public class ClassListFragment extends ListFragment
         return fragment;
     }
 
+    
+    
     @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
+    public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         Log.i("ClassListFragment", "Oncreate");
@@ -67,10 +67,45 @@ public class ClassListFragment extends ListFragment
         if (listener != null)
             listener.OnLoadFragmentsComplete(selectedClass);
     }
+    
+    @Override
+    public void onPause() {
+        String classLink = linkifyClassBuild();
+        
+        if (!classLink.isEmpty() && !classLink.matches("http://[A-Za-z]+.battle.net/d3/[A-Za-z]+/calculator/[A-Za-z]+#[\\.]+![\\.]+![\\.]+"))
+        {
+            Log.i("onPause - Saving", classLink);
+            SharedPreferences settings = getActivity().getSharedPreferences("classes", 0);
+            SharedPreferences.Editor editor = settings.edit();
+            editor.putString(selectedClass, classLink);
+            editor.commit();
+        }
+
+        // Commit the edits!
+        super.onPause();
+    }
+    
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+     // Restore preferences
+        SharedPreferences settings = getActivity().getSharedPreferences("classes", 0);
+        String classLink = settings.getString(selectedClass, "");
+//      
+        if (!classLink.isEmpty() && !classLink.matches("http://[A-Za-z]+.battle.net/d3/[A-Za-z]+/calculator/[A-Za-z]+#[\\.]+![\\.]+![\\.]+"))
+        {
+            Log.i("onActivityCreated - Delinkifying", classLink);
+//            delinkifyClassBuild(classLink);
+        }
+        else
+        {
+            Log.i("Not delinkifying blank build", classLink);
+        }
+        
+        super.onActivityCreated(savedInstanceState);
+    }
 
     @Override
-    public void onSaveInstanceState(Bundle outState)
-    {
+    public void onSaveInstanceState(Bundle outState) {
 
         super.onSaveInstanceState(outState);
     }

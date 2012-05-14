@@ -17,10 +17,7 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
-import android.widget.ArrayAdapter;
-import android.widget.SpinnerAdapter;
 
-import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
@@ -41,8 +38,8 @@ public class SelectClass extends SherlockFragmentActivity
     private ClassFragmentAdapter mAdapter;
     private ViewPager            mPager;
     private PageIndicator        mIndicator;
-    private SpinnerAdapter       mSpinnerAdapter;
-    private static int           maxLevel;
+//    private SpinnerAdapter       mSpinnerAdapter;
+    private static int           maxLevel = 60;
     private String loadFromUrl;
     private boolean loadedFromUrl = false;
     @Override
@@ -54,6 +51,7 @@ public class SelectClass extends SherlockFragmentActivity
         return super.onCreateOptionsMenu(menu);
     }
 
+    
     @Override
     protected void onResume() {
         super.onResume();
@@ -174,14 +172,14 @@ public class SelectClass extends SherlockFragmentActivity
 
         if (savedInstanceState != null)
         {
-            if (savedInstanceState.containsKey("MaxLevel"))
-            {
-                maxLevel = savedInstanceState.getInt("MaxLevel");
-            }
+//            if (savedInstanceState.containsKey("MaxLevel"))
+//            {
+//                maxLevel = savedInstanceState.getInt("MaxLevel");
+//            }
         }
         else
         {
-            maxLevel = 60;
+//            maxLevel = 60;
         }
 
         AdView adView = (AdView) this.findViewById(R.id.adView);
@@ -191,28 +189,28 @@ public class SelectClass extends SherlockFragmentActivity
         newAd.addTestDevice("E9BD79A28E313B2BDFA0CB0AED6C9697");
         adView.loadAd(newAd);
 
-        mSpinnerAdapter = ArrayAdapter.createFromResource(this, R.array.levels, android.R.layout.simple_dropdown_item_1line);
-
-        ActionBar actionBar = getSupportActionBar();
-
-        actionBar.setDisplayShowTitleEnabled(false);
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
-
-        ActionBar.OnNavigationListener mNavigationCallback = new ActionBar.OnNavigationListener()
-        {
-
-            @Override
-            public boolean onNavigationItemSelected(int itemPosition, long itemId)
-            {
-
-                maxLevel = 60 - itemPosition;
-                Log.i("MaxLevel", "" + maxLevel);
-                return true;
-            }
-        };
-
-        actionBar.setListNavigationCallbacks(mSpinnerAdapter, mNavigationCallback);
-        actionBar.setSelectedNavigationItem(60 - maxLevel);
+//        mSpinnerAdapter = ArrayAdapter.createFromResource(this, R.array.levels, android.R.layout.simple_dropdown_item_1line);
+//
+//        ActionBar actionBar = getSupportActionBar();
+//
+//        actionBar.setDisplayShowTitleEnabled(false);
+//        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+//
+//        ActionBar.OnNavigationListener mNavigationCallback = new ActionBar.OnNavigationListener()
+//        {
+//
+//            @Override
+//            public boolean onNavigationItemSelected(int itemPosition, long itemId)
+//            {
+//
+//                maxLevel = 60 - itemPosition;
+//                Log.i("MaxLevel", "" + maxLevel);
+//                return true;
+//            }
+//        };
+//
+//        actionBar.setListNavigationCallbacks(mSpinnerAdapter, mNavigationCallback);
+//        actionBar.setSelectedNavigationItem(60 - maxLevel);
         
         OnLoadFragmentsCompleteListener listener = new OnLoadFragmentsCompleteListener()
         {
@@ -264,24 +262,22 @@ public class SelectClass extends SherlockFragmentActivity
         
             
     }
-
+    
     @Override
     protected void onSaveInstanceState(Bundle outState)
     {
 
-        outState.putInt("MaxLevel", maxLevel);
+//        outState.putInt("MaxLevel", maxLevel);
         super.onSaveInstanceState(outState);
     }
     
     public void doPositiveClick() {
-        // Do stuff here.
         Log.i("FragmentAlertDialog", "Positive click!");
         ClassListFragment frag = (ClassListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mPager.getCurrentItem());
         frag.clear();
     }
 
     public void doNegativeClick() {
-        // Do stuff here.
         Log.i("FragmentAlertDialog", "Negative click!");
     }
     
