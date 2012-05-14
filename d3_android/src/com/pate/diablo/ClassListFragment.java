@@ -55,7 +55,10 @@ public class ClassListFragment extends ListFragment
         return fragment;
     }
 
-    
+    public String getSelectedClass()
+    {
+        return selectedClass;
+    }
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
