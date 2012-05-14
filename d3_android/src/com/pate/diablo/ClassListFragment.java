@@ -117,8 +117,7 @@ public class ClassListFragment extends ListFragment
     @Override
     public void onListItemClick(ListView l, View v, int position, long id)
     {
-
-        Item item = items.get(position);
+        Item item = (Item) getListAdapter().getItem(position);
         int maxLevel = 60;// ((Main) getActivity()).getMaxLevel();
         Bundle b = new Bundle();
 
@@ -565,7 +564,9 @@ public class ClassListFragment extends ListFragment
                 listIndex++;
             }
         }
-
-        listAdapter.setList(tempItems);
+        
+        items = tempItems;
+        
+        setListAdapter(new EntrySkillAdapter(context, items));
     }
 }
