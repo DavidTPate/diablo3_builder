@@ -2,13 +2,13 @@ package com.wemakestuff.d3builder.sectionlist;
 
 import java.util.UUID;
 
-import com.pate.diablo.R;
-
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
+
+import com.wemakestuff.d3builder.R;
 
 public class EmptyRune implements Item {
 	private final String title;

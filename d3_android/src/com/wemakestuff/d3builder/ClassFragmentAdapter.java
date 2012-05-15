@@ -6,8 +6,6 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.util.Log;
-import android.view.ViewGroup;
 
 import com.viewpagerindicator.TitleProvider;
 import com.wemakestuff.d3builder.model.Class;

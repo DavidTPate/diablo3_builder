@@ -7,14 +7,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.ParcelUuid;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.google.ads.AdRequest;
 import com.google.ads.AdView;
-import com.pate.diablo.R;
 import com.viewpagerindicator.PageIndicator;
 import com.viewpagerindicator.TitlePageIndicator;
 import com.viewpagerindicator.TitlePageIndicator.IndicatorStyle;

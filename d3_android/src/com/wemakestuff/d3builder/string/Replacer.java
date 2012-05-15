@@ -7,7 +7,6 @@ import android.os.Parcel;
 import android.text.Html;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
-import android.util.Log;
 
 // see http://stackoverflow.com/a/7365113
 public class Replacer {

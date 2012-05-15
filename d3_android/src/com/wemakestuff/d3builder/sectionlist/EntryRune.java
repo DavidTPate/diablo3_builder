@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.pate.diablo.R;
+import com.wemakestuff.d3builder.R;
 import com.wemakestuff.d3builder.model.Rune;
 import com.wemakestuff.d3builder.string.Replacer;
 import com.wemakestuff.d3builder.string.Vars;

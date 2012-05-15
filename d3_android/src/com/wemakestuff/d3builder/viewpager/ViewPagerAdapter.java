@@ -6,7 +6,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.TextView;
- 
+
 import com.viewpagerindicator.TitleProvider;
  
 public class ViewPagerAdapter extends PagerAdapter implements TitleProvider
