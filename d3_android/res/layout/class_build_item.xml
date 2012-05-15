@@ -3,22 +3,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal" >
-    
+
     <ImageButton
         android:id="@+id/class_build_delete"
         android:layout_width="42dp"
         android:layout_height="42dp"
         android:layout_alignParentRight="true"
         android:layout_centerInParent="true"
+        android:background="@android:color/transparent"
         android:src="@drawable/ic_menu_delete" />
-
+    
     <ImageButton
         android:id="@+id/class_build_share"
         android:layout_width="42dp"
         android:layout_height="42dp"
-        android:src="@drawable/ic_menu_share"
         android:layout_centerInParent="true"
-        android:layout_toLeftOf="@id/class_build_delete" />
+        android:layout_toLeftOf="@id/class_build_delete"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_menu_share" />
+
+    <ImageButton
+        android:id="@+id/class_build_load"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:layout_centerInParent="true"
+        android:layout_toLeftOf="@id/class_build_share"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_menu_view" />
 
     <TextView
         android:id="@+id/class_build_name"
@@ -26,23 +37,22 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_centerInParent="true"
-        android:text="Frenzy11111111111111"
         android:ellipsize="end"
+        android:maxWidth="150dp"
+        android:paddingLeft="10dp"
         android:singleLine="true"
-        android:maxWidth="150dp" />
+        android:text="Frenzy11111111111111" />
 
     <TextView
         android:id="@+id/class_build_class"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/class_build_name"
-        android:layout_toLeftOf="@id/class_build_share"
-        android:text="Class: Barbarian111111111111111111111111111111"
         android:layout_centerInParent="true"
-        android:paddingLeft="10dp"
+        android:layout_toLeftOf="@id/class_build_load"
+        android:layout_toRightOf="@id/class_build_name"
         android:ellipsize="end"
-        android:singleLine="true"  />
-
-    
+        android:paddingLeft="10dp"
+        android:singleLine="true"
+        android:text="Class: Barbarian111111111111111111111111111111" />
 
 </RelativeLayout>

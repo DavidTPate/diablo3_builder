@@ -20,6 +20,7 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
@@ -48,6 +49,8 @@ public class SelectClass extends SherlockFragmentActivity
     private String               loadFromUrl;
     private boolean              loadedFromUrl = false;
     private String               value;
+    private Dialog               dialog;
+    private ClassBuildAdapter    aAdapter;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
@@ -122,26 +125,78 @@ public class SelectClass extends SherlockFragmentActivity
             // MODE_PRIVATE);
             // loadClassFromUrl(keyVals.getString("test",
             // "http://us.battle.net/d3/en/calculator/barbarian#......!...!......"));
-            
+
             ArrayList<ClassBuild> builds = new ArrayList<ClassBuild>();
 
             SharedPreferences valVals = getSharedPreferences("saved_build_value", MODE_PRIVATE);
             SharedPreferences clssVals = getSharedPreferences("saved_build_class", MODE_PRIVATE);
-            
+
             Map<String, String> urls = (Map<String, String>) valVals.getAll();
             Map<String, String> classes = (Map<String, String>) clssVals.getAll();
-            
+
             for (Map.Entry<String, String> pairs : urls.entrySet())
             {
                 if (classes.containsKey(pairs.getKey()))
                 {
                     builds.add(new ClassBuild(pairs.getKey(), classes.get(pairs.getKey()), pairs.getValue()));
+                    Log.i("loadBuilds-list", "N: " + pairs.getKey() + " C: " + classes.get(pairs.getKey()) + " U: " + pairs.getValue());
                 }
             }
-            
-            AlertDialog.Builder alert = new AlertDialog.Builder(this);
-            //builder.setTitle("Load Class Build");
-            
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Load Saved Build");
+
+            final ListView buildList = new ListView(this);
+
+            OnLoadBuildClickListener loadBuildListener = new OnLoadBuildClickListener()
+            {
+
+                @Override
+                public void onLoadBuildClick(ClassBuild build)
+                {
+
+                    loadClassFromUrl(build.getUrl());
+                }
+                
+                @Override
+                public void onLoadBuildDismiss()
+                {
+                    dialog.dismiss();
+                }
+                
+                @Override
+                public void onLoadBuildRefresh()
+                {
+                    ArrayList<ClassBuild> builds = new ArrayList<ClassBuild>();
+                    
+                    SharedPreferences valVals = getSharedPreferences("saved_build_value", MODE_PRIVATE);
+                    SharedPreferences clssVals = getSharedPreferences("saved_build_class", MODE_PRIVATE);
+
+                    Map<String, String> urls = (Map<String, String>) valVals.getAll();
+                    Map<String, String> classes = (Map<String, String>) clssVals.getAll();
+
+                    for (Map.Entry<String, String> pairs : urls.entrySet())
+                    {
+                        if (classes.containsKey(pairs.getKey()))
+                        {
+                            builds.add(new ClassBuild(pairs.getKey(), classes.get(pairs.getKey()), pairs.getValue()));
+                            Log.i("loadBuilds-list", "N: " + pairs.getKey() + " C: " + classes.get(pairs.getKey()) + " U: " + pairs.getValue());
+                        }
+                    }
+                    
+                    aAdapter = new ClassBuildAdapter(builds, SelectClass.this, this);
+                    buildList.setAdapter(aAdapter);
+                }
+            };
+
+            aAdapter = new ClassBuildAdapter(builds, this, loadBuildListener);
+            buildList.setAdapter(aAdapter);
+            builder.setView(buildList);
+
+            dialog = builder.create();
+
+            dialog.show();
+
         }
         else if (item.getItemId() == R.id.save)
         {
@@ -184,6 +239,7 @@ public class SelectClass extends SherlockFragmentActivity
             while (valVals.contains(value) || clssVals.contains(value))
             {
                 Toast toast = Toast.makeText(this, "A Build is Already Saved as: " + value + ". Enter a New Name.", Toast.LENGTH_SHORT);
+                toast.show();
             }
 
             if (value != null && !value.isEmpty())
