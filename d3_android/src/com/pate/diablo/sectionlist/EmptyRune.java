@@ -5,6 +5,7 @@ import java.util.UUID;
 import com.pate.diablo.R;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -41,22 +42,18 @@ public class EmptyRune implements Item {
 	@Override
 	public View inflate(Context c, Item i) {
 
-		LayoutInflater vi = (LayoutInflater) c
-				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
+		LayoutInflater vi = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		EmptyRune e = (EmptyRune) i;
-
 		View v = vi.inflate(R.layout.list_item_empty, null);
 
-		final TextView emptyItemTitle = (TextView) v
-				.findViewById(R.id.list_empty_title);
-		final TextView emptySkillType = (TextView) v
-				.findViewById(R.id.list_empty_skill_type);
+		final TextView emptyItemTitle = (TextView) v.findViewById(R.id.list_empty_title);
+		final TextView emptySkillType = (TextView) v.findViewById(R.id.list_empty_skill_type);
 
 		// Is this a terrible hack?! I think so...
 		emptyItemTitle.setText(e.getTitle());
 		emptySkillType.setText(e.getSkillName());
-
+		emptyItemTitle.setTextColor(Color.parseColor("#d49e43"));
+		
 		return v;
 	}
 
