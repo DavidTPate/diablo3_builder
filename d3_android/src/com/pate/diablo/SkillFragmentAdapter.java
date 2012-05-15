@@ -1,12 +1,13 @@
 package com.pate.diablo;
 
+import java.util.List;
+
 import android.content.Context;
+import android.os.ParcelUuid;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.ListView;
 
 import com.pate.diablo.model.D3Application;
 import com.viewpagerindicator.TitleProvider;
@@ -19,22 +20,24 @@ class SkillFragmentAdapter extends FragmentPagerAdapter implements TitleProvider
 	private String selectedClass;
 	private int requiredLevel;
 	private OnClickListener listener;
+	private List<ParcelUuid> excludeSkills;
 	int GET_SKILL = -1;
 
-	public SkillFragmentAdapter(FragmentManager fm, Context context, String skillType, String selectedClass, int requiredLevel) {
+	public SkillFragmentAdapter(FragmentManager fm, Context context, String skillType, String selectedClass, int requiredLevel, List<ParcelUuid> excludeSkills) {
 	    super(fm);
 	    this.context = context;
 	    this.skillType = skillType;
 	    this.selectedClass = selectedClass;
 	    this.requiredLevel = requiredLevel;
 	    this.skillTypes = (skillType.equals("Passive") ? new String[] {"Passive"} : D3Application.dataModel.getClassAttributesByName(selectedClass).getSkillTypes());
+	    this.excludeSkills = excludeSkills;
 	    this.mCount = skillTypes.length;
 	}
 
 	@Override
 	public Fragment getItem(int position) {
 	    String s = skillTypes[position % skillTypes.length];
-	    SkillListFragment skillList = SkillListFragment.newInstance(s, context, s, selectedClass, requiredLevel);
+	    SkillListFragment skillList = SkillListFragment.newInstance(s, context, s, selectedClass, requiredLevel, excludeSkills);
 	    skillList.setOnListItemClickListener(listener);
 		return skillList;
 	}

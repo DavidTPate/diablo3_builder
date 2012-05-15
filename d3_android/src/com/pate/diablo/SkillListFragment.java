@@ -1,10 +1,12 @@
 package com.pate.diablo;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.ParcelUuid;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
 import android.view.View;
@@ -24,17 +26,19 @@ public class SkillListFragment extends ListFragment
     String selectedClass;
     int requiredLevel;
     OnClickListener listener;
+    List<ParcelUuid> excludeSkills;
     
     ArrayList<Item> items = new ArrayList<Item>();
     private static final String KEY_CONTENT = "TestFragment:Content";
 
-    public static SkillListFragment newInstance(String content, Context c, String skillType, String selectedClass, int requiredLevel) {
+    public static SkillListFragment newInstance(String content, Context c, String skillType, String selectedClass, int requiredLevel, List<ParcelUuid> excludeSkills) {
         SkillListFragment fragment = new SkillListFragment();
 
         fragment.context = c;
         fragment.skillType = skillType;
         fragment.selectedClass = selectedClass;
         fragment.requiredLevel = requiredLevel;
+        fragment.excludeSkills = excludeSkills;
         
         return fragment;
     }
@@ -46,7 +50,9 @@ public class SkillListFragment extends ListFragment
         setRetainInstance(true);
         for (Skill s : D3Application.dataModel.getClassByName(selectedClass).getActiveSkillsByTypeAndRequiredLevel(skillType, requiredLevel))
         {
-            items.add(new EntrySkill(s));
+            // Exclude already selected skills
+            if (excludeSkills == null || !excludeSkills.contains(new ParcelUuid(s.getUuid())))
+                items.add(new EntrySkill(s));
         }
         EntrySkillAdapter adapter = new EntrySkillAdapter(context, items);
 

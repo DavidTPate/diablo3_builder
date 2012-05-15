@@ -1,8 +1,11 @@
 package com.pate.diablo;
 
 
+import java.util.List;
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.ParcelUuid;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
@@ -11,7 +14,6 @@ import android.view.View.OnClickListener;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.google.ads.AdRequest;
 import com.google.ads.AdView;
-import com.pate.diablo.sectionlist.EntrySkill;
 import com.viewpagerindicator.PageIndicator;
 import com.viewpagerindicator.TitlePageIndicator;
 import com.viewpagerindicator.TitlePageIndicator.IndicatorStyle;
@@ -39,6 +41,7 @@ public class SelectSkill extends SherlockFragmentActivity
         
         String skillType = null;
         String selectedClass = null;
+        List<ParcelUuid> skills = null;
         
         int requiredLevel = 0;
         if (b.containsKey("SkillType"))
@@ -61,6 +64,11 @@ public class SelectSkill extends SherlockFragmentActivity
         	index = b.getInt("Index");
         }
         
+        if (b.containsKey("UUIDs"))
+        {
+            skills = b.getParcelableArrayList("UUIDs");
+        }
+        
         OnClickListener itemClickListener = new OnClickListener()
         {
 
@@ -76,7 +84,7 @@ public class SelectSkill extends SherlockFragmentActivity
         	
         };
 
-        mAdapter = new SkillFragmentAdapter(getSupportFragmentManager(), SelectSkill.this, skillType, selectedClass, requiredLevel);
+        mAdapter = new SkillFragmentAdapter(getSupportFragmentManager(), SelectSkill.this, skillType, selectedClass, requiredLevel, skills);
         mAdapter.setOnListItemClickListener(itemClickListener);
         
         mPager = (ViewPager) findViewById(R.id.pager);
