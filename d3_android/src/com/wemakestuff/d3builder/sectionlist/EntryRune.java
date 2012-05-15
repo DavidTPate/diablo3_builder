@@ -56,7 +56,7 @@ public class EntryRune implements Item
 
         runeIcon.setBackgroundResource(runeImage);
         runeTitle.setText(getRune().getName());
-        runeUnlockedAt.setText((v.getContext().getString(R.string.Unlocked_at_level) + " " + r.getRequiredLevel()));
+        runeUnlockedAt.setText(Replacer.replace(v.getContext().getString(R.string.Unlocked_at_level) + " " + r.getRequiredLevel(), "\\d+%?", Vars.DIABLO_GREEN));
         runeDescription.setText(Replacer.replace(r.getDescription().trim(), "\\d+%?", Vars.DIABLO_GREEN));
 
         v.setTag(r.getUuid());

@@ -15,6 +15,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.wemakestuff.d3builder.model.ClassBuild;
+import com.wemakestuff.d3builder.string.Replacer;
+import com.wemakestuff.d3builder.string.Vars;
 
 public class ClassBuildAdapter extends BaseAdapter
 {
@@ -64,6 +66,7 @@ public class ClassBuildAdapter extends BaseAdapter
         TextView className = (TextView) v.findViewById(R.id.class_build_class);
 
         name.setText(item.getName());
+        
         className.setText("Class: " + item.getClassName());
 
         ImageButton delete = (ImageButton) v.findViewById(R.id.class_build_delete);

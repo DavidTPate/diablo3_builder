@@ -52,7 +52,6 @@ public class ClassListFragment extends ListFragment
         fragment.context = c;
         fragment.selectedClass = selectedClass;
         fragment.listener = listener;
-        Log.i("ClassListFragment-SelectedClass", selectedClass);
         return fragment;
     }
 
@@ -65,7 +64,6 @@ public class ClassListFragment extends ListFragment
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        Log.i("ClassListFragment", "Oncreate");
         
         if (savedInstanceState != null)
         {
@@ -236,7 +234,6 @@ public class ClassListFragment extends ListFragment
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data)
     {
-        Log.i("OnActivityResult", "" + requestCode);
 
         if (requestCode == GET_SKILL || requestCode == REPLACE_SKILL)
         {
@@ -257,11 +254,9 @@ public class ClassListFragment extends ListFragment
                     index = b.getInt("Index");
                 }
 
-                Log.i("onActivityResult", "UUID: " + skillUUID + " Index: " + index);
 
                 if (skillUUID != null && index >= 0 && D3Application.dataModel.getClassByName(selectedClass).containsActiveSkillByUUID(UUID.fromString(skillUUID)))
                 {
-                    Log.i("onActivityResult", "Active Skill Found!");
                     Skill s = D3Application.dataModel.getClassByName(selectedClass).getActiveSkillByUUID(UUID.fromString(skillUUID));
                     items.set(index, new EntrySkill(s));
                     if (requestCode == GET_SKILL)
@@ -291,7 +286,6 @@ public class ClassListFragment extends ListFragment
                 }
                 else if (skillUUID != null && index >= 0 && D3Application.dataModel.getClassByName(selectedClass).containsPassiveSkillByUUID(UUID.fromString(skillUUID)))
                 {
-                    Log.i("onActivityResult", "Passive Skill Found!");
                     Skill s = D3Application.dataModel.getClassByName(selectedClass).getPassiveSkillByUUID(UUID.fromString(skillUUID));
                     items.set(index, new EntrySkill(s));
                     listAdapter.setList(items);
@@ -333,13 +327,11 @@ public class ClassListFragment extends ListFragment
                     index = b.getInt("Index");
                 }
 
-                Log.i("onActivityResult", "UUID: " + runeUUID + " Index: " + index);
 
                 if (D3Application.dataModel.getClassByName(selectedClass).containsActiveSkillByUUID(UUID.fromString(skillUUID)))
                 {
                     if (skillUUID != null && index >= 0 && D3Application.dataModel.getClassByName(selectedClass).getActiveSkillByUUID(UUID.fromString(skillUUID)).containsRuneByUUID(UUID.fromString(runeUUID)))
                     {
-                        Log.i("onActivityResult", "Active Skill Found!");
                         Rune s = D3Application.dataModel.getClassByName(selectedClass).getActiveSkillByUUID(UUID.fromString(skillUUID)).getRuneByUUID(UUID.fromString(runeUUID));
                         items.set(index, new EntryRune(s, D3Application.dataModel.getClassByName(selectedClass).getActiveSkillByUUID(UUID.fromString(skillUUID)).getName(), UUID.fromString(skillUUID)));
                         listAdapter.setList(items);
@@ -463,7 +455,6 @@ public class ClassListFragment extends ListFragment
 
                 if (selectedClass.equalsIgnoreCase(m.group(1).replace("-", " ")))
                 {
-                    Log.i("delinkify", "Class matches!");
                     tempClass = m.group(1).replace("-", " ");
                 }
                 else
@@ -486,7 +477,6 @@ public class ClassListFragment extends ListFragment
             {
                 runeVal = m.group(4);
             }
-            Log.i("delinkify", "Class: " + selectedClass + " Active: " + activeVal + " Passive: " + passiveVal + " Rune: " + runeVal);
         }
 
         while (activeVal.length() < 6)

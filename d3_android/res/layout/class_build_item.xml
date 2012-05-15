@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal" >
+    android:layout_height="wrap_content" >
 
     <ImageButton
         android:id="@+id/class_build_delete"
@@ -33,26 +32,27 @@
 
     <TextView
         android:id="@+id/class_build_name"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_centerInParent="true"
+        android:layout_alignParentTop="true"
+        android:paddingTop="2dp"
+        android:textStyle="bold"
         android:ellipsize="end"
         android:maxWidth="150dp"
         android:paddingLeft="10dp"
         android:singleLine="true"
-        android:text="Frenzy11111111111111" />
+        android:text="Frenzy Barb" />
 
     <TextView
         android:id="@+id/class_build_class"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_toLeftOf="@id/class_build_load"
-        android:layout_toRightOf="@id/class_build_name"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/class_build_name"
         android:ellipsize="end"
         android:paddingLeft="10dp"
         android:singleLine="true"
-        android:text="Class: Barbarian111111111111111111111111111111" />
+        android:text="Class: Barbarian" />
 
 </RelativeLayout>

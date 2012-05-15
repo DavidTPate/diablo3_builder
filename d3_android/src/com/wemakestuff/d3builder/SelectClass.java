@@ -74,13 +74,11 @@ public class SelectClass extends SherlockFragmentActivity
     {
 
         super.onResume();
-        Log.i("SelectClass", "OnResume");
         Uri data = getIntent().getData();
 
         if (data != null)
         {
             loadFromUrl = data.toString();
-            Log.i("loadFromUrl", loadFromUrl == null ? "Null" : loadFromUrl);
         }
     }
 
@@ -97,10 +95,8 @@ public class SelectClass extends SherlockFragmentActivity
             if (m.groupCount() >= 1)
             {
                 int position = mAdapter.getItemPosition(m.group(1).replace("-", " "));
-                Log.i("LoadClassFromUrl Position", "" + position);
                 frag = (ClassListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + position);
 
-                Log.i("loadClassFromUrl", url);
                 if (frag != null)
                 {
                     mAdapter.setOnLoadFragmentsCompleteListener(null);
@@ -119,7 +115,6 @@ public class SelectClass extends SherlockFragmentActivity
         if (item.getItemId() == R.id.share)
         {
             ClassListFragment frag = (ClassListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mPager.getCurrentItem());
-            Log.i("linkTest", frag.linkifyClassBuild());
             Intent intent = new Intent(Intent.ACTION_SEND);
             intent.setType("text/plain");
             intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Check out this D3 build");
@@ -148,7 +143,6 @@ public class SelectClass extends SherlockFragmentActivity
                 if (classes.containsKey(pairs.getKey()))
                 {
                     builds.add(new ClassBuild(pairs.getKey(), classes.get(pairs.getKey()), pairs.getValue()));
-                    Log.i("loadBuilds-list", "N: " + pairs.getKey() + " C: " + classes.get(pairs.getKey()) + " U: " + pairs.getValue());
                 }
             }
 
@@ -263,7 +257,6 @@ public class SelectClass extends SherlockFragmentActivity
         if (data != null)
         {
             loadFromUrl = data.toString();
-            Log.i("OnCreate loadFromUrl", loadFromUrl == null ? "Null" : loadFromUrl);
         }
 
         if (D3Application.dataModel == null)
@@ -351,7 +344,6 @@ public class SelectClass extends SherlockFragmentActivity
 
                 if (!loadedFromUrl && loadFromUrl != null)
                 {
-                    Log.i("SelectClass OnCreate", "Loading from url: " + loadFromUrl);
 
                     Pattern p = Pattern.compile("^http://.*/calculator/(.*)#.*$");
                     Matcher m = p.matcher(loadFromUrl);
@@ -376,7 +368,6 @@ public class SelectClass extends SherlockFragmentActivity
                 }
                 else
                 {
-                    Log.i("SelectClass OnCreate", "Load from URL was null");
                 }
             }
         };
@@ -439,7 +430,6 @@ public class SelectClass extends SherlockFragmentActivity
     public void doNegativeClick()
     {
 
-        Log.i("FragmentAlertDialog", "Negative click!");
     }
 
     public static class MyAlertDialogFragment extends DialogFragment
