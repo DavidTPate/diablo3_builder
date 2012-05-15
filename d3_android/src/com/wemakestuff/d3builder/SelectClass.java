@@ -35,14 +35,14 @@ import com.google.ads.AdView;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.pate.diablo.R;
-import com.pate.diablo.string.Replacer;
-import com.pate.diablo.string.Vars;
 import com.viewpagerindicator.PageIndicator;
 import com.viewpagerindicator.TitlePageIndicator;
 import com.viewpagerindicator.TitlePageIndicator.IndicatorStyle;
 import com.wemakestuff.d3builder.model.ClassBuild;
 import com.wemakestuff.d3builder.model.D3Application;
 import com.wemakestuff.d3builder.model.DataModel;
+import com.wemakestuff.d3builder.string.Replacer;
+import com.wemakestuff.d3builder.string.Vars;
 
 public class SelectClass extends SherlockFragmentActivity
 {
@@ -59,6 +59,7 @@ public class SelectClass extends SherlockFragmentActivity
     private ClassBuildAdapter    aAdapter;
     private TextView             requiredLevel;
     private LinearLayout         requiredLevelWrapper;
+    private ArrayList<ClassBuild>     builds;
     
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
