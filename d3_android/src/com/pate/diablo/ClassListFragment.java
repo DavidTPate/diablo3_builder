@@ -12,11 +12,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.ParcelUuid;
+import android.os.Parcelable;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.pate.diablo.model.D3Application;
@@ -73,16 +73,14 @@ public class ClassListFragment extends ListFragment
             selectedClass = savedInstanceState.getString("selectedClass");
         }
         
-        SharedPreferences settings = getActivity().getSharedPreferences("classes", 0);
-        String classLink = settings.getString(selectedClass, "");
-        if (!classLink.isEmpty() && !isBlankBuild(classLink))
-        {
-            Log.i("onActivityCreated - Delinkifying", classLink);
-            delinkifyClassBuild(classLink);
-        }
-        
         setRetainInstance(true);
         setListAdapter(getSkillListAdapter());
+    }
+    
+    @Override
+    public void onResume() {
+        super.onResume();
+
         if (listener != null)
             listener.OnLoadFragmentsComplete(selectedClass);
     }
@@ -116,10 +114,12 @@ public class ClassListFragment extends ListFragment
     @Override
     public void onListItemClick(ListView l, View v, int position, long id)
     {
+        EntrySkillAdapter listAdapter = (EntrySkillAdapter) getListAdapter();
+        
         Item item = (Item) getListAdapter().getItem(position);
         int maxLevel = 60;// ((Main) getActivity()).getMaxLevel();
         Bundle b = new Bundle();
-
+        
         if (item instanceof EmptySkill)
         {
             EmptySkill e = (EmptySkill) item;
@@ -129,6 +129,12 @@ public class ClassListFragment extends ListFragment
             b.putString("SelectedClass", selectedClass);
             b.putInt("RequiredLevel", maxLevel);
             b.putInt("Index", position);
+            
+            List<ParcelUuid> skills = listAdapter.getCurrentSkills();
+            
+            if (skills.size() > 0)
+                b.putParcelableArrayList("UUIDs", (ArrayList<? extends Parcelable>) listAdapter.getCurrentSkills());
+            
             intent.putExtras(b);
 
             startActivityForResult(intent, GET_SKILL);
@@ -142,6 +148,12 @@ public class ClassListFragment extends ListFragment
             b.putString("SelectedClass", selectedClass);
             b.putInt("RequiredLevel", maxLevel);
             b.putInt("Index", position);
+            
+            List<ParcelUuid> skills = listAdapter.getCurrentSkills();
+            
+            if (skills.size() > 0)
+                b.putParcelableArrayList("UUIDs", (ArrayList<? extends Parcelable>) listAdapter.getCurrentSkills());
+            
             intent.putExtras(b);
 
             startActivityForResult(intent, REPLACE_SKILL);

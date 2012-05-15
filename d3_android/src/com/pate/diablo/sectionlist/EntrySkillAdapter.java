@@ -1,9 +1,12 @@
 package com.pate.diablo.sectionlist;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 import android.content.Context;
-import android.util.Log;
+import android.os.ParcelUuid;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +30,19 @@ public class EntrySkillAdapter extends ArrayAdapter<Item>
     public View getView(int position, View convertView, ViewGroup parent) {
         Item i = items.get(position);
         return i.inflate(context, i);
+    }
+    
+    public List<ParcelUuid> getCurrentSkills()
+    {
+        List<ParcelUuid> currentSkills = new ArrayList<ParcelUuid>();
         
+        for (Item i : items)
+        {
+            if (i instanceof EntrySkill)
+                currentSkills.add(new ParcelUuid(((EntrySkill) i).getSkill().getUuid()));
+        }
+        
+        return currentSkills;
     }
     
     public void setList(ArrayList<Item> items)
