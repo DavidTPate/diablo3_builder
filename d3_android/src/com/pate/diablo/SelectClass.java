@@ -18,9 +18,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.Log;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
@@ -34,6 +37,8 @@ import com.google.gson.GsonBuilder;
 import com.pate.diablo.model.ClassBuild;
 import com.pate.diablo.model.D3Application;
 import com.pate.diablo.model.DataModel;
+import com.pate.diablo.string.Replacer;
+import com.pate.diablo.string.Vars;
 import com.viewpagerindicator.PageIndicator;
 import com.viewpagerindicator.TitlePageIndicator;
 import com.viewpagerindicator.TitlePageIndicator.IndicatorStyle;
@@ -51,7 +56,9 @@ public class SelectClass extends SherlockFragmentActivity
     private String               value;
     private Dialog               dialog;
     private ClassBuildAdapter    aAdapter;
-
+    private TextView             requiredLevel;
+    private LinearLayout         requiredLevelWrapper;
+    
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
@@ -98,6 +105,7 @@ public class SelectClass extends SherlockFragmentActivity
                     mAdapter.setOnLoadFragmentsCompleteListener(null);
                     frag.delinkifyClassBuild(url);
                     mPager.setCurrentItem(position);
+                    setRequiredLevel(frag.getMaxLevel());
                 }
             }
         }
@@ -242,7 +250,7 @@ public class SelectClass extends SherlockFragmentActivity
                 toast.show();
             }
 
-            if (value != null && !value.isEmpty())
+            if (value != null && !(value.length() == 0))
             {
                 ClassListFragment frag = (ClassListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mPager.getCurrentItem());
                 valEdit.putString(value, frag.linkifyClassBuild());
@@ -300,7 +308,11 @@ public class SelectClass extends SherlockFragmentActivity
         }
 
         setContentView(R.layout.select_skill);
-
+        
+        requiredLevelWrapper = (LinearLayout) findViewById(R.id.required_level_wrapper);
+        requiredLevel = (TextView) findViewById(R.id.required_level);
+        setRequiredLevel(1);
+        
         if (savedInstanceState != null)
         {
             // if (savedInstanceState.containsKey("MaxLevel"))
@@ -394,10 +406,37 @@ public class SelectClass extends SherlockFragmentActivity
         TitlePageIndicator indicator = (TitlePageIndicator) findViewById(R.id.select_skill_indicator);
         indicator.setViewPager(mPager);
         indicator.setFooterIndicatorStyle(IndicatorStyle.Triangle);
+        
+        indicator.setOnPageChangeListener(new OnPageChangeListener() {
+            
+            @Override
+            public void onPageSelected(int position) {
+                ClassListFragment frag = (ClassListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mPager.getCurrentItem());
+                setRequiredLevel(frag.getMaxLevel());
+            }
+            
+            @Override
+            public void onPageScrolled(int arg0, float arg1, int arg2) {
+                // TODO Auto-generated method stub
+                
+            }
+            
+            @Override
+            public void onPageScrollStateChanged(int arg0) {
+                // TODO Auto-generated method stub
+                
+            }
+        });
+        
         mIndicator = indicator;
 
     }
-
+    
+    public void setRequiredLevel(int level)
+    {
+        requiredLevel.setText(Replacer.replace("Required Level: " + level, "\\d+", Vars.DIABLO_GREEN));
+    }
+    
     @Override
     protected void onSaveInstanceState(Bundle outState)
     {
@@ -409,7 +448,6 @@ public class SelectClass extends SherlockFragmentActivity
     public void doPositiveClick()
     {
 
-        Log.i("FragmentAlertDialog", "Positive click!");
         ClassListFragment frag = (ClassListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mPager.getCurrentItem());
         frag.clear();
     }

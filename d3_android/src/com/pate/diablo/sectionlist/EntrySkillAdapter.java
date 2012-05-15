@@ -56,4 +56,30 @@ public class EntrySkillAdapter extends ArrayAdapter<Item>
     	return this.items;
     }
 
+    public int getMaxLevel() 
+    {
+        int requiredLevel = 1;
+        
+        for (Item i : items)
+        {
+            if (i instanceof EntrySkill)
+            {
+                int tempLevel = ((EntrySkill) i).getSkill().getRequiredLevel();
+                
+                if (tempLevel > requiredLevel)
+                    requiredLevel = tempLevel;
+                
+            }
+            else if (i instanceof EntryRune)
+            {
+                int tempLevel = ((EntryRune) i).getRune().getRequiredLevel();
+                
+                if (tempLevel > requiredLevel)
+                    requiredLevel = tempLevel;
+            }
+        }
+        
+        return requiredLevel;
+    }
+
 }

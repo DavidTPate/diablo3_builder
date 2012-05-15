@@ -22,10 +22,30 @@
         android:id="@android:id/list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingBottom="20dp"
         android:layout_above="@id/adView" />
     
+    <LinearLayout
+        android:id="@+id/required_level_wrapper"
+        android:layout_width="fill_parent"
+        android:layout_height="20dp"
+        android:background="#22FFFFFF"
+        android:layout_centerInParent="true"
+        android:orientation="horizontal"
+        android:layout_above="@+id/adView" >
+
+        <TextView
+            android:id="@+id/required_level"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Required Level: 1" />
+        
+    </LinearLayout>
+    
+        
     <com.google.ads.AdView
-        android:id="@+id/adView"
+        android:id="@id/adView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         ads:adSize="BANNER"

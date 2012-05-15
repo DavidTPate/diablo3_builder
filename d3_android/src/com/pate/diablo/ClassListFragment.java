@@ -87,20 +87,20 @@ public class ClassListFragment extends ListFragment
     
     private boolean isBlankBuild(String classLink)
     {
-        return classLink.isEmpty() || classLink.matches("http://.+.battle.net/d3/.+/calculator/.+#[\\.]+![\\.]+![\\.]+");
+        return classLink.length() == 0 || classLink.matches("http://.+.battle.net/d3/.+/calculator/.+#[\\.]+![\\.]+![\\.]+");
     }
     
     @Override
     public void onPause() {
-        String classLink = linkifyClassBuild();
-        if (!classLink.isEmpty() && !isBlankBuild(classLink))
-        {
-            Log.i("onPause - Saving", classLink);
-            SharedPreferences settings = getActivity().getSharedPreferences("classes", 0);
-            SharedPreferences.Editor editor = settings.edit();
-            editor.putString(selectedClass, classLink);
-            editor.commit();
-        }
+//        String classLink = linkifyClassBuild();
+//        if (!(classLink.length() == 0) && !isBlankBuild(classLink))
+//        {
+//            Log.i("onPause - Saving", classLink);
+//            SharedPreferences settings = getActivity().getSharedPreferences("classes", 0);
+//            SharedPreferences.Editor editor = settings.edit();
+//            editor.putString(selectedClass, classLink);
+//            editor.commit();
+//        }
 
         super.onPause();
     }
@@ -287,6 +287,7 @@ public class ClassListFragment extends ListFragment
                         }
                     }
                     listAdapter.setList(items);
+                    ((SelectClass) getActivity()).setRequiredLevel(listAdapter.getMaxLevel());
 
                 }
                 else if (skillUUID != null && index >= 0 && D3Application.dataModel.getClassByName(selectedClass).containsPassiveSkillByUUID(UUID.fromString(skillUUID)))
@@ -295,6 +296,8 @@ public class ClassListFragment extends ListFragment
                     Skill s = D3Application.dataModel.getClassByName(selectedClass).getPassiveSkillByUUID(UUID.fromString(skillUUID));
                     items.set(index, new EntrySkill(s));
                     listAdapter.setList(items);
+                    
+                    ((SelectClass) getActivity()).setRequiredLevel(listAdapter.getMaxLevel());
                 }
                 else
                 {
@@ -341,6 +344,7 @@ public class ClassListFragment extends ListFragment
                         Rune s = D3Application.dataModel.getClassByName(selectedClass).getActiveSkillByUUID(UUID.fromString(skillUUID)).getRuneByUUID(UUID.fromString(runeUUID));
                         items.set(index, new EntryRune(s, D3Application.dataModel.getClassByName(selectedClass).getActiveSkillByUUID(UUID.fromString(skillUUID)).getName(), UUID.fromString(skillUUID)));
                         listAdapter.setList(items);
+                        ((SelectClass) getActivity()).setRequiredLevel(listAdapter.getMaxLevel());
                     }
                     else
                     {
@@ -357,6 +361,11 @@ public class ClassListFragment extends ListFragment
                 // Do nothing?
             }
         }
+    }
+    
+    public int getMaxLevel()
+    {
+        return listAdapter.getMaxLevel();
     }
     
     public void clear()
