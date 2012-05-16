@@ -14,7 +14,7 @@ import com.wemakestuff.d3builder.R;
 
 public class D3Application extends Application
 {
-    public static DataModel mDataModel;
+    private static DataModel mDataModel;
     private static Context mContext;
 
     @Override
