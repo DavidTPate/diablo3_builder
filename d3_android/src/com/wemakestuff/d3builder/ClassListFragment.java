@@ -195,7 +195,7 @@ public class ClassListFragment extends ListFragment
     private EntrySkillAdapter getSkillListAdapter(boolean includeRunes)
     {
         items = new ArrayList<Item>();
-        String[] skillTypes = D3Application.dataModel.getClassAttributesByName(selectedClass).getSkillTypes();
+        String[] skillTypes = D3Application.getInstance().getClassAttributesByName(selectedClass).getSkillTypes();
 
         items.add(new SectionItem("Left Click - Primary"));
         items.add(new EmptySkill("Choose Skill", 1, skillTypes[0]));
@@ -255,9 +255,9 @@ public class ClassListFragment extends ListFragment
                 }
 
 
-                if (skillUUID != null && index >= 0 && D3Application.dataModel.getClassByName(selectedClass).containsActiveSkillByUUID(UUID.fromString(skillUUID)))
+                if (skillUUID != null && index >= 0 && D3Application.getInstance().getClassByName(selectedClass).containsActiveSkillByUUID(UUID.fromString(skillUUID)))
                 {
-                    Skill s = D3Application.dataModel.getClassByName(selectedClass).getActiveSkillByUUID(UUID.fromString(skillUUID));
+                    Skill s = D3Application.getInstance().getClassByName(selectedClass).getActiveSkillByUUID(UUID.fromString(skillUUID));
                     items.set(index, new EntrySkill(s));
                     if (requestCode == GET_SKILL)
                     {
@@ -284,9 +284,9 @@ public class ClassListFragment extends ListFragment
                     ((SelectClass) getActivity()).setRequiredLevel(listAdapter.getMaxLevel());
 
                 }
-                else if (skillUUID != null && index >= 0 && D3Application.dataModel.getClassByName(selectedClass).containsPassiveSkillByUUID(UUID.fromString(skillUUID)))
+                else if (skillUUID != null && index >= 0 && D3Application.getInstance().getClassByName(selectedClass).containsPassiveSkillByUUID(UUID.fromString(skillUUID)))
                 {
-                    Skill s = D3Application.dataModel.getClassByName(selectedClass).getPassiveSkillByUUID(UUID.fromString(skillUUID));
+                    Skill s = D3Application.getInstance().getClassByName(selectedClass).getPassiveSkillByUUID(UUID.fromString(skillUUID));
                     items.set(index, new EntrySkill(s));
                     listAdapter.setList(items);
                     
@@ -328,12 +328,12 @@ public class ClassListFragment extends ListFragment
                 }
 
 
-                if (D3Application.dataModel.getClassByName(selectedClass).containsActiveSkillByUUID(UUID.fromString(skillUUID)))
+                if (D3Application.getInstance().getClassByName(selectedClass).containsActiveSkillByUUID(UUID.fromString(skillUUID)))
                 {
-                    if (skillUUID != null && index >= 0 && D3Application.dataModel.getClassByName(selectedClass).getActiveSkillByUUID(UUID.fromString(skillUUID)).containsRuneByUUID(UUID.fromString(runeUUID)))
+                    if (skillUUID != null && index >= 0 && D3Application.getInstance().getClassByName(selectedClass).getActiveSkillByUUID(UUID.fromString(skillUUID)).containsRuneByUUID(UUID.fromString(runeUUID)))
                     {
-                        Rune s = D3Application.dataModel.getClassByName(selectedClass).getActiveSkillByUUID(UUID.fromString(skillUUID)).getRuneByUUID(UUID.fromString(runeUUID));
-                        items.set(index, new EntryRune(s, D3Application.dataModel.getClassByName(selectedClass).getActiveSkillByUUID(UUID.fromString(skillUUID)).getName(), UUID.fromString(skillUUID)));
+                        Rune s = D3Application.getInstance().getClassByName(selectedClass).getActiveSkillByUUID(UUID.fromString(skillUUID)).getRuneByUUID(UUID.fromString(runeUUID));
+                        items.set(index, new EntryRune(s, D3Application.getInstance().getClassByName(selectedClass).getActiveSkillByUUID(UUID.fromString(skillUUID)).getName(), UUID.fromString(skillUUID)));
                         listAdapter.setList(items);
                         ((SelectClass) getActivity()).setRequiredLevel(listAdapter.getMaxLevel());
                     }
@@ -371,12 +371,12 @@ public class ClassListFragment extends ListFragment
         StringBuffer passiveVal = new StringBuffer();
         StringBuffer runeVal = new StringBuffer();
 
-        com.wemakestuff.d3builder.model.Class currClass = D3Application.dataModel.getClassByName(selectedClass);
+        com.wemakestuff.d3builder.model.Class currClass = D3Application.getInstance().getClassByName(selectedClass);
         List<Skill> activeSkills = currClass.getActiveSkills();
         List<Skill> passiveSkills = currClass.getPassiveSkills();
         ArrayList<Item> items = listAdapter.getItems();
 
-        SkillAttribute skillAttrbs = D3Application.dataModel.getSkillAttributes();
+        SkillAttribute skillAttrbs = D3Application.getInstance().getSkillAttributes();
         String[] skillMapping = skillAttrbs.getSkillMapping();
 
         for (Item item : items)
@@ -497,13 +497,13 @@ public class ClassListFragment extends ListFragment
         // Reset list
         setListAdapter(getSkillListAdapter(true));
 
-        com.wemakestuff.d3builder.model.Class currClass = D3Application.dataModel.getClassByName(selectedClass);
-        String[] skillTypes = D3Application.dataModel.getClassAttributesByName(selectedClass).getSkillTypes();
+        com.wemakestuff.d3builder.model.Class currClass = D3Application.getInstance().getClassByName(selectedClass);
+        String[] skillTypes = D3Application.getInstance().getClassAttributesByName(selectedClass).getSkillTypes();
         List<Skill> activeSkills = currClass.getActiveSkills();
         List<Skill> passiveSkills = currClass.getPassiveSkills();
         ArrayList<Item> items = listAdapter.getItems();
 
-        SkillAttribute skillAttrbs = D3Application.dataModel.getSkillAttributes();
+        SkillAttribute skillAttrbs = D3Application.getInstance().getSkillAttributes();
 
         List<String> skillMapping = Arrays.asList(skillAttrbs.getSkillMapping());
 

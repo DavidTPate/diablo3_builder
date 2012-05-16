@@ -19,13 +19,13 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
-import android.util.Log;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
@@ -257,31 +257,6 @@ public class SelectClass extends SherlockFragmentActivity
         if (data != null)
         {
             loadFromUrl = data.toString();
-        }
-
-        if (D3Application.dataModel == null)
-        {
-            Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(getResources().openRawResource(R.raw.classes)));
-
-            String fakeJson = "";
-            String line;
-            try
-            {
-                line = reader.readLine();
-                while (line != null)
-                {
-                    fakeJson = fakeJson + line;
-                    line = reader.readLine();
-                }
-            }
-            catch (IOException e)
-            {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-
-            D3Application.setDataModel(gson.fromJson(fakeJson, DataModel.class));
         }
 
         setContentView(R.layout.select_skill);
