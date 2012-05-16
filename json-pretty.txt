@@ -5356,7 +5356,7 @@
 		}],
 		"description": " The templar are holy warriors, fighting for justice and eschewing the dangers that lead to cultism and demonic possession by espousing self-denial. They do not merely pay lip service to protecting the realm - they are battle-trained and experienced to a man, and the brooding, dedicated Kormac is a paragon among them. Kormac came to the order as a young man, and was quickly molded into the ideal templar, adapting naturally to an ascetic way of life. His devotion is particularly unshakable, even for one of his order, and, despite his respect for battle prowess, his disdain for those who don't share his high moral standards is readily apparent. Though Kormac's ways will not always be your own, your aims and goals align, and so he will fight alongside you to purge the world of the insidious darkness that would hide from the light of Heaven. ",
 		"skills": [{
-			"name": "Heal",
+			"name": "Heal",.
 			"required-level": "5",
 			"description": " Heals you or the Templar for 4651 Life. ",
 			"cooldown": "30",
@@ -5414,7 +5414,7 @@
 	{
 		"name": "Scoundrel",
 		"short-description": "Expert grifter who poisons, blinds, and skewers enemies from range.",
-		"icon": "templar",
+		"icon": "scoundrel",
 		"features": [{
 			"name": "Ranged Killing",
 			"icon": "scoundrel-feature-3",
@@ -5490,7 +5490,7 @@
 	{
 		"name": "Enchantress",
 		"short-description": "Mistress of magic whose powerful illusions disable and confuse her foes.",
-		"icon": "templar",
+		"icon": "enchantress",
 		"features": [{
 			"name": "Debilitating Magic",
 			"icon": "enchantress-feature-1",

@@ -1,4 +1,4 @@
-package com.wemakestuff.d3builder;
+package com.wemakestuff.d3builder.followers;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,12 +17,14 @@ import android.support.v4.app.ListFragment;
 import android.view.View;
 import android.widget.ListView;
 
+import com.wemakestuff.d3builder.OnLoadFragmentsCompleteListener;
+import com.wemakestuff.d3builder.SelectClass;
+import com.wemakestuff.d3builder.SelectRune;
+import com.wemakestuff.d3builder.SelectSkill;
 import com.wemakestuff.d3builder.model.D3Application;
-import com.wemakestuff.d3builder.model.Follower;
 import com.wemakestuff.d3builder.model.Rune;
 import com.wemakestuff.d3builder.model.Skill;
 import com.wemakestuff.d3builder.model.SkillAttribute;
-import com.wemakestuff.d3builder.sectionlist.EmptyFollower;
 import com.wemakestuff.d3builder.sectionlist.EmptyRune;
 import com.wemakestuff.d3builder.sectionlist.EmptySkill;
 import com.wemakestuff.d3builder.sectionlist.EntryRune;
@@ -31,11 +33,11 @@ import com.wemakestuff.d3builder.sectionlist.EntrySkillAdapter;
 import com.wemakestuff.d3builder.sectionlist.Item;
 import com.wemakestuff.d3builder.sectionlist.SectionItem;
 
-public class ClassListFragment extends ListFragment
+public class FollowerListFragment extends ListFragment
 {
 
     private Context                         context;
-    private String                          selectedClass;
+    private String                          selectedFollower;
     private EntrySkillAdapter               listAdapter;
     private OnLoadFragmentsCompleteListener listener;
     int                                     index;
@@ -46,19 +48,19 @@ public class ClassListFragment extends ListFragment
 
     ArrayList<Item>                         items         = new ArrayList<Item>();
 
-    public static ClassListFragment newInstance(String selectedClass, Context c, OnLoadFragmentsCompleteListener listener) {
+    public static FollowerListFragment newInstance(String selectedFollower, Context c, OnLoadFragmentsCompleteListener listener) {
 
-        ClassListFragment fragment = new ClassListFragment();
+        FollowerListFragment fragment = new FollowerListFragment();
 
         fragment.context = c;
-        fragment.selectedClass = selectedClass;
+        fragment.selectedFollower = selectedFollower;
         fragment.listener = listener;
         return fragment;
     }
 
     public String getSelectedClass()
     {
-        return selectedClass;
+        return selectedFollower;
     }
     
     @Override
@@ -68,7 +70,7 @@ public class ClassListFragment extends ListFragment
         
         if (savedInstanceState != null)
         {
-            selectedClass = savedInstanceState.getString("selectedClass");
+            selectedFollower = savedInstanceState.getString("selectedClass");
         }
         
         setRetainInstance(true);
@@ -80,12 +82,12 @@ public class ClassListFragment extends ListFragment
         super.onResume();
 
         if (listener != null)
-            listener.OnLoadFragmentsComplete(selectedClass);
+            listener.OnLoadFragmentsComplete(selectedFollower);
     }
     
-    private boolean isBlankBuild(String classLink)
+    private boolean isBlankBuild(String followerLink)
     {
-        return classLink.length() == 0 || classLink.matches("http://.+.battle.net/d3/.+/calculator/.+#[\\.]+![\\.]+![\\.]+");
+        return followerLink.length() == 0 || followerLink.matches("http://.+.battle.net/d3/.+/calculator/.+#[\\.]+![\\.]+![\\.]+");
     }
     
     @Override
@@ -106,7 +108,7 @@ public class ClassListFragment extends ListFragment
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putString("selectedClass", selectedClass);
+        outState.putString("selectedClass", selectedFollower);
     }
     
     @Override
@@ -124,7 +126,7 @@ public class ClassListFragment extends ListFragment
 
             Intent intent = new Intent(v.getContext(), SelectSkill.class);
             b.putString("SkillType", e.getSkillType());
-            b.putString("SelectedClass", selectedClass);
+            b.putString("SelectedClass", selectedFollower);
             b.putInt("RequiredLevel", maxLevel);
             b.putInt("Index", position);
             
@@ -143,7 +145,7 @@ public class ClassListFragment extends ListFragment
 
             Intent intent = new Intent(v.getContext(), SelectSkill.class);
             b.putString("SkillType", e.getSkill().getType());
-            b.putString("SelectedClass", selectedClass);
+            b.putString("SelectedClass", selectedFollower);
             b.putInt("RequiredLevel", maxLevel);
             b.putInt("Index", position);
             
@@ -162,7 +164,7 @@ public class ClassListFragment extends ListFragment
 
             Intent intent = new Intent(v.getContext(), SelectRune.class);
             b.putString("SkillName", e.getSkillName());
-            b.putString("SelectedClass", selectedClass);
+            b.putString("SelectedClass", selectedFollower);
             b.putInt("RequiredLevel", maxLevel);
             b.putSerializable("SkillUUID", e.getSkillUUID());
             b.putInt("Index", position);
@@ -176,7 +178,7 @@ public class ClassListFragment extends ListFragment
 
             Intent intent = new Intent(v.getContext(), SelectRune.class);
             b.putString("SkillName", e.getSkillName());
-            b.putString("SelectedClass", selectedClass);
+            b.putString("SelectedClass", selectedFollower);
             b.putInt("RequiredLevel", maxLevel);
             b.putSerializable("SkillUUID", e.getSkillUUID());
             b.putInt("Index", position);
@@ -189,49 +191,25 @@ public class ClassListFragment extends ListFragment
 
     private EntrySkillAdapter getSkillListAdapter()
     {
-
-        return getSkillListAdapter(false);
-    }
-
-    private EntrySkillAdapter getSkillListAdapter(boolean includeRunes)
-    {
         items = new ArrayList<Item>();
-        String[] skillTypes = D3Application.getInstance().getClassAttributesByName(selectedClass).getSkillTypes();
 
-        items.add(new SectionItem("Left Click - Primary"));
-        items.add(new EmptySkill("Choose Skill", 1, skillTypes[0]));
-        if (includeRunes)
-            items.add(new EmptyRune("Choose Rune", 1, "Rune", null));
-
-        items.add(new SectionItem("Right Click - Secondary"));
-        items.add(new EmptySkill("Choose Skill", 2, skillTypes[1]));
-        if (includeRunes)
-            items.add(new EmptyRune("Choose Rune", 1, "Rune", null));
-
-        items.add(new SectionItem("Action Bar Skills"));
-        items.add(new EmptySkill("Choose Skill", 4, skillTypes[2]));
-        if (includeRunes)
-            items.add(new EmptyRune("Choose Rune", 1, "Rune", null));
-        items.add(new EmptySkill("Choose Skill", 9, skillTypes[3]));
-        if (includeRunes)
-            items.add(new EmptyRune("Choose Rune", 1, "Rune", null));
-        items.add(new EmptySkill("Choose Skill", 14, skillTypes[4]));
-        if (includeRunes)
-            items.add(new EmptyRune("Choose Rune", 1, "Rune", null));
-        items.add(new EmptySkill("Choose Skill", 19, skillTypes[5]));
-        if (includeRunes)
-            items.add(new EmptyRune("Choose Rune", 1, "Rune", null));
-
-        items.add(new SectionItem("Passive Skills"));
-        items.add(new EmptySkill("Choose Skill", 10, "Passive"));
-        items.add(new EmptySkill("Choose Skill", 20, "Passive"));
-        items.add(new EmptySkill("Choose Skill", 30, "Passive"));
+        D3Application.getInstance().getFollowerByName(selectedFollower).getSkills();
         
-        items.add(new SectionItem("Followers"));
-        for (Follower f : D3Application.getInstance().getFollowers())
-        {
-            items.add(new EmptyFollower(f.getName(), f.getShortDescription(), f.getIcon(), f.getUuid()));
-        }
+        items.add(new SectionItem("Level 5"));
+        items.add(new EmptySkill("Skill 1", 1, "Test"));
+        items.add(new EmptySkill("Skill 2", 1, "Test"));
+
+        items.add(new SectionItem("Level 10"));
+        items.add(new EmptySkill("Skill 1", 1, "Test"));
+        items.add(new EmptySkill("Skill 2", 1, "Test"));
+
+        items.add(new SectionItem("Level 15"));
+        items.add(new EmptySkill("Skill 1", 1, "Test"));
+        items.add(new EmptySkill("Skill 2", 1, "Test"));
+
+        items.add(new SectionItem("Level 20"));
+        items.add(new EmptySkill("Skill 1", 1, "Test"));
+        items.add(new EmptySkill("Skill 2", 1, "Test"));
 
         listAdapter = new EntrySkillAdapter(context, items);
 
@@ -262,9 +240,9 @@ public class ClassListFragment extends ListFragment
                 }
 
 
-                if (skillUUID != null && index >= 0 && D3Application.getInstance().getClassByName(selectedClass).containsActiveSkillByUUID(UUID.fromString(skillUUID)))
+                if (skillUUID != null && index >= 0 && D3Application.getInstance().getClassByName(selectedFollower).containsActiveSkillByUUID(UUID.fromString(skillUUID)))
                 {
-                    Skill s = D3Application.getInstance().getClassByName(selectedClass).getActiveSkillByUUID(UUID.fromString(skillUUID));
+                    Skill s = D3Application.getInstance().getClassByName(selectedFollower).getActiveSkillByUUID(UUID.fromString(skillUUID));
                     items.set(index, new EntrySkill(s));
                     if (requestCode == GET_SKILL)
                     {
@@ -291,9 +269,9 @@ public class ClassListFragment extends ListFragment
                     ((SelectClass) getActivity()).setRequiredLevel(listAdapter.getMaxLevel());
 
                 }
-                else if (skillUUID != null && index >= 0 && D3Application.getInstance().getClassByName(selectedClass).containsPassiveSkillByUUID(UUID.fromString(skillUUID)))
+                else if (skillUUID != null && index >= 0 && D3Application.getInstance().getClassByName(selectedFollower).containsPassiveSkillByUUID(UUID.fromString(skillUUID)))
                 {
-                    Skill s = D3Application.getInstance().getClassByName(selectedClass).getPassiveSkillByUUID(UUID.fromString(skillUUID));
+                    Skill s = D3Application.getInstance().getClassByName(selectedFollower).getPassiveSkillByUUID(UUID.fromString(skillUUID));
                     items.set(index, new EntrySkill(s));
                     listAdapter.setList(items);
                     
@@ -335,12 +313,12 @@ public class ClassListFragment extends ListFragment
                 }
 
 
-                if (D3Application.getInstance().getClassByName(selectedClass).containsActiveSkillByUUID(UUID.fromString(skillUUID)))
+                if (D3Application.getInstance().getClassByName(selectedFollower).containsActiveSkillByUUID(UUID.fromString(skillUUID)))
                 {
-                    if (skillUUID != null && index >= 0 && D3Application.getInstance().getClassByName(selectedClass).getActiveSkillByUUID(UUID.fromString(skillUUID)).containsRuneByUUID(UUID.fromString(runeUUID)))
+                    if (skillUUID != null && index >= 0 && D3Application.getInstance().getClassByName(selectedFollower).getActiveSkillByUUID(UUID.fromString(skillUUID)).containsRuneByUUID(UUID.fromString(runeUUID)))
                     {
-                        Rune s = D3Application.getInstance().getClassByName(selectedClass).getActiveSkillByUUID(UUID.fromString(skillUUID)).getRuneByUUID(UUID.fromString(runeUUID));
-                        items.set(index, new EntryRune(s, D3Application.getInstance().getClassByName(selectedClass).getActiveSkillByUUID(UUID.fromString(skillUUID)).getName(), UUID.fromString(skillUUID)));
+                        Rune s = D3Application.getInstance().getClassByName(selectedFollower).getActiveSkillByUUID(UUID.fromString(skillUUID)).getRuneByUUID(UUID.fromString(runeUUID));
+                        items.set(index, new EntryRune(s, D3Application.getInstance().getClassByName(selectedFollower).getActiveSkillByUUID(UUID.fromString(skillUUID)).getName(), UUID.fromString(skillUUID)));
                         listAdapter.setList(items);
                         ((SelectClass) getActivity()).setRequiredLevel(listAdapter.getMaxLevel());
                     }
@@ -378,7 +356,7 @@ public class ClassListFragment extends ListFragment
         StringBuffer passiveVal = new StringBuffer();
         StringBuffer runeVal = new StringBuffer();
 
-        com.wemakestuff.d3builder.model.Class currClass = D3Application.getInstance().getClassByName(selectedClass);
+        com.wemakestuff.d3builder.model.Class currClass = D3Application.getInstance().getClassByName(selectedFollower);
         List<Skill> activeSkills = currClass.getActiveSkills();
         List<Skill> passiveSkills = currClass.getPassiveSkills();
         ArrayList<Item> items = listAdapter.getItems();
@@ -430,7 +408,7 @@ public class ClassListFragment extends ListFragment
             }
         }
 
-        return "http://us.battle.net/d3/en/calculator/" + selectedClass.toLowerCase().replace(" ", "-") + "#" + activeVal.toString() + skillAttrbs.getPassiveSeparator() + passiveVal.toString() + skillAttrbs.getRuneSeparator() + runeVal.toString();
+        return "http://us.battle.net/d3/en/calculator/" + selectedFollower.toLowerCase().replace(" ", "-") + "#" + activeVal.toString() + skillAttrbs.getPassiveSeparator() + passiveVal.toString() + skillAttrbs.getRuneSeparator() + runeVal.toString();
     }
 
     public void delinkifyClassBuild(String url)
@@ -460,7 +438,7 @@ public class ClassListFragment extends ListFragment
                  * g.toUpperCase()); } }
                  */
 
-                if (selectedClass.equalsIgnoreCase(m.group(1).replace("-", " ")))
+                if (selectedFollower.equalsIgnoreCase(m.group(1).replace("-", " ")))
                 {
                     tempClass = m.group(1).replace("-", " ");
                 }
@@ -502,10 +480,10 @@ public class ClassListFragment extends ListFragment
         }
 
         // Reset list
-        setListAdapter(getSkillListAdapter(true));
+        setListAdapter(getSkillListAdapter());
 
-        com.wemakestuff.d3builder.model.Class currClass = D3Application.getInstance().getClassByName(selectedClass);
-        String[] skillTypes = D3Application.getInstance().getClassAttributesByName(selectedClass).getSkillTypes();
+        com.wemakestuff.d3builder.model.Class currClass = D3Application.getInstance().getClassByName(selectedFollower);
+        String[] skillTypes = D3Application.getInstance().getClassAttributesByName(selectedFollower).getSkillTypes();
         List<Skill> activeSkills = currClass.getActiveSkills();
         List<Skill> passiveSkills = currClass.getPassiveSkills();
         ArrayList<Item> items = listAdapter.getItems();

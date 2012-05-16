@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <com.viewpagerindicator.TitlePageIndicator
+        android:id="@+id/select_follower_indicator"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dip" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/follower_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@android:id/list"
+        android:layout_below="@id/select_follower_indicator" />
+
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20dp"
+        android:layout_above="@id/adView" />
+    
+    <LinearLayout
+        android:id="@+id/follower_required_level_wrapper"
+        android:layout_width="fill_parent"
+        android:layout_height="20dp"
+        android:background="#22FFFFFF"
+        android:layout_centerInParent="true"
+        android:orientation="horizontal"
+        android:layout_above="@+id/adView" >
+
+        <TextView
+            android:id="@+id/follower_required_level"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Required Level: 1" />
+        
+    </LinearLayout>
+    
+    <com.google.ads.AdView
+        android:id="@id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        ads:adSize="BANNER"
+        ads:adUnitId="a14fadcf33a641a"
+        ads:testDevices="TEST_EMULATOR, E85A995C749AE015AA4EE195878C0982, BDD7A55C1502190E502F14CBFDF9ABC7"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true" />
+
+</RelativeLayout>

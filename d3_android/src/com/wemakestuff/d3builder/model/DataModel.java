@@ -16,6 +16,10 @@ public class DataModel {
 	@SerializedName(Vars.CLASSES)
 	@Expose
 	private List<Class> classes;
+	
+	@SerializedName(Vars.FOLLOWERS)
+	@Expose
+	private List<Follower> followers;
 
 	@SerializedName(Vars.SKILL_ATTRIBUTES)
 	@Expose
@@ -136,5 +140,31 @@ public class DataModel {
 	public SkillAttribute getSkillAttributes() {
 		return skillAttributes;
 	}
+
+    public List<Follower> getFollowers() {
+        return followers;
+    }
+
+    public Follower getFollowerByUUID(UUID uuid) {
+        for (Follower f : followers)
+        {
+            if (f.getUuid().equals(uuid))
+                return f;
+        }
+        
+        return null;
+    }
+    
+    public Follower getFollowerByName(String name) {
+        for (Follower f : followers)
+        {
+            if (f.getName().equalsIgnoreCase(name))
+                return f;
+        }
+        
+        return null;
+    }
+
+    
 
 }

@@ -15,6 +15,7 @@ public class Vars {
 	public static final String FEATURES = "features";
 	public static final String FOLLOWER_LEVELS = "follower-levels";
 	public static final String FOLLOWER_SEPARATOR = "follower-separator";
+	public static final String FOLLOWERS = "followers";
 	public static final String GENERATE = "generate";
 	public static final String GENERATE_DESCRIPTION = "generate-description";
 	public static final String GENERATE_UNITS = "generate-units";
@@ -38,6 +39,7 @@ public class Vars {
 	public static final String SKILL_LEVELS = "skill-levels";
 	public static final String SKILL_MAPPING = "skill-mapping";
 	public static final String SKILL_TYPES = "skill-types";
+	public static final String SKILLS = "skills";
 	public static final String TIER_1 = "tier-1";
 	public static final String TIER_2 = "tier-2";
 	public static final String TIER_3 = "tier-3";

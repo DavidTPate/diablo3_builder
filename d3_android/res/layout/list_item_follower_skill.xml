@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:minHeight="?android:attr/listPreferredItemHeight"
+    android:padding="10dp"
+    android:paddingRight="?android:attr/scrollbarSize" >
+
+    <ImageView
+        android:id="@+id/follower_skill_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:contentDescription="Follower skill icon"
+        android:paddingLeft="5dp"
+        android:src="@drawable/barbarian_cleave" />
+
+    <TextView
+        android:id="@+id/follower_skill_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="15dp"
+        android:layout_toRightOf="@id/follower_skill_icon"
+        android:fadingEdge="horizontal"
+        android:text="Powered Shot"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+    
+    <TextView
+        android:id="@+id/follower_skill_unlocked_at"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/follower_skill_title"
+        android:layout_alignLeft="@id/follower_skill_title"
+        android:ellipsize="marquee"
+        android:fadingEdge="horizontal"
+        android:singleLine="true"
+        android:text="Unlocked at level: 15"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/follower_skill_cooldown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/follower_skill_unlocked_at"
+        android:layout_below="@id/follower_skill_unlocked_at"
+        android:ellipsize="marquee"
+        android:fadingEdge="horizontal"
+        android:singleLine="true"
+        android:text="Cooldown: 20 secs"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/follower_skill_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/follower_skill_cooldown"
+        android:layout_below="@id/follower_skill_cooldown"
+        android:ellipsize="marquee"
+        android:fadingEdge="horizontal"
+        android:paddingTop="10dp"
+        android:singleLine="false"
+        android:text="Powerful ranged attack that explodes on impact, dealing 25% weapon damage as Arcane to targets within 6 yards and has a 50% change to Stun targets for 2 seconds."
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+</RelativeLayout>

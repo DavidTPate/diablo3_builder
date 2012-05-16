@@ -9,7 +9,7 @@ import android.widget.Button;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.wemakestuff.d3builder.R;
 import com.wemakestuff.d3builder.SelectClass;
-import com.wemakestuff.d3builder.SelectSkill;
+import com.wemakestuff.d3builder.followers.SelectFollower;
 
 public class Dashboard extends SherlockActivity
 {
@@ -38,7 +38,8 @@ public class Dashboard extends SherlockActivity
             
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
+                Intent intent = new Intent(Dashboard.this, SelectFollower.class);
+                startActivity(intent);
                 
             }
         });
