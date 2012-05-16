@@ -117,7 +117,7 @@ public class SelectClass extends SherlockFragmentActivity
             ClassListFragment frag = (ClassListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mPager.getCurrentItem());
             Intent intent = new Intent(Intent.ACTION_SEND);
             intent.setType("text/plain");
-            intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Check out this D3 build");
+            intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Check out my " + frag.getSelectedClass());
             intent.putExtra(android.content.Intent.EXTRA_TEXT, frag.linkifyClassBuild());
             startActivity(Intent.createChooser(intent, "Share using"));
         }

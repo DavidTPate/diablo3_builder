@@ -423,7 +423,7 @@ public class ClassListFragment extends ListFragment
             }
         }
 
-        return "http://us.battle.net/d3/en/calculator/" + selectedClass.toLowerCase() + "#" + activeVal.toString() + skillAttrbs.getPassiveSeparator() + passiveVal.toString() + skillAttrbs.getRuneSeparator() + runeVal.toString();
+        return "http://us.battle.net/d3/en/calculator/" + selectedClass.toLowerCase().replace(" ", "-") + "#" + activeVal.toString() + skillAttrbs.getPassiveSeparator() + passiveVal.toString() + skillAttrbs.getRuneSeparator() + runeVal.toString();
     }
 
     public void delinkifyClassBuild(String url)

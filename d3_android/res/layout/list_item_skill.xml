@@ -82,7 +82,6 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@id/list_skill_cooldown"
         android:layout_below="@id/list_skill_cooldown"
-        android:ellipsize="marquee"
         android:fadingEdge="horizontal"
         android:paddingTop="10dp"
         android:singleLine="false"
