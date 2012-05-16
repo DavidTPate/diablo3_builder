@@ -189,7 +189,7 @@
 			{
 				"required-level": 54,
 				"name": "Avalanche",
-				"description": "Enemies are knocked back 12 yards and inflict 55% weapon damage to enemies in the landing area.",
+				"description": "Enemies are knocked back 9 yards and inflict 55% weapon damage to enemies in the landing area.",
 				"icon": "rune_c"
 			}]
 		},
@@ -444,11 +444,11 @@
 			"cost": 10,
 			"cost-units": "Fury",
 			"cost-description": "",
-			"description": " Hurl a throwing weapon at an enemy for 120% weapon damage and Slow the movement of the enemy by 60% for 2 seconds.",
+			"description": " Hurl a throwing weapon at an enemy for 100% weapon damage and Slow the movement of the enemy by 60% for 2 seconds.",
 			"runes": [{
 				"required-level": 21,
 				"name": "Mighty Throw",
-				"description": "Increase thrown weapon damage to 156% weapon damage.",
+				"description": "Increase thrown weapon damage to 130% weapon damage.",
 				"icon": "rune_a"
 			},
 			{
@@ -460,7 +460,7 @@
 			{
 				"required-level": 33,
 				"name": "Throwing Hammer",
-				"description": "Hurl a hammer with a 75% chance to Stun the target for 2 seconds.",
+				"description": "Hurl a hammer with a 50% chance to Stun the target for 2 seconds.",
 				"icon": "rune_c"
 			},
 			{
@@ -5239,7 +5239,7 @@
 			"name": "Paralysis",
 			"required-level": 37,
 			"icon": "wizard_passive_paralysis",
-			"description": " Lightning damage dealt to enemies has up to a 5% chance to Stun the target for 3 seconds."
+			"description": " Lightning damage dealt to enemies has up to a 8% chance to Stun the target for 2 seconds."
 		},
 		{
 			"type": "Passive",
@@ -5334,6 +5334,237 @@
 		"Force",
 		"Conjuration",
 		"Mastery"]
+	}],
+	"followers": [{
+		"name": "Templar",
+		"short-description": "Peerless holy warrior who challenges demons head-on in melee.",
+		"icon": "templar",
+		"features": [{
+			"name": "Defensive Fighting",
+			"icon": "templar-feature-2",
+			"description": "By taunting enemies, Kormac can make himself the focus of their aggression, and punish them for it, crippling or slowing those that draw too close."
+		},
+		{
+			"name": "Healing & Recovery",
+			"icon": "templar-feature-1",
+			"description": "Kormac calls on his faith to rejuvenate your health or empower you, increasing your natural rate of healing or resource regeneration."
+		},
+		{
+			"name": "Holy Justice",
+			"icon": "templar-feature-3",
+			"description": "Despite his defensive posture, Kormac is equally capable of purging demonic filth with violence. When charging, he causes wicked wounds and leaves foes stunned with the ferocity of his attacks."
+		}],
+		"description": " The templar are holy warriors, fighting for justice and eschewing the dangers that lead to cultism and demonic possession by espousing self-denial. They do not merely pay lip service to protecting the realm - they are battle-trained and experienced to a man, and the brooding, dedicated Kormac is a paragon among them. Kormac came to the order as a young man, and was quickly molded into the ideal templar, adapting naturally to an ascetic way of life. His devotion is particularly unshakable, even for one of his order, and, despite his respect for battle prowess, his disdain for those who don't share his high moral standards is readily apparent. Though Kormac's ways will not always be your own, your aims and goals align, and so he will fight alongside you to purge the world of the insidious darkness that would hide from the light of Heaven. ",
+		"skills": [{
+			"name": "Heal",
+			"required-level": "5",
+			"description": " Heals you or the Templar for 4651 Life. ",
+			"cooldown": "30",
+			"cooldown-units": "seconds",
+			"cooldown-description": ""
+		},
+		{
+			"name": "Intervene",
+			"required-level": "5",
+			"description": " Taunts enemies attacking the hero for 3 seconds when the hero is below 50% Life. ",
+			"cooldown": "60",
+			"cooldown-units": "seconds",
+			"cooldown-description": ""
+		},
+		{
+			"name": "Intimidate",
+			"required-level": "10",
+			"description": " Enemy units are slowed by 60% for 3 seconds when they hit the Templar. "
+		},
+		{
+			"name": "Loyalty",
+			"required-level": "10",
+			"description": " Regenerates 155 Life per second for you and the Templar. "
+		},
+		{
+			"name": "Charge",
+			"required-level": "15",
+			"description": " Charges a target, dealing 50% weapon damage and stunning all enemies within 8 yards for 2 seconds. ",
+			"cooldown": "30",
+			"cooldown-units": "seconds",
+			"cooldown-description": ""
+		},
+		{
+			"name": "Onslaught",
+			"required-level": "15",
+			"description": " Delivers a massive blow to an enemy for 200% weapon damage. ",
+			"cooldown": "15",
+			"cooldown-units": "seconds",
+			"cooldown-description": ""
+		},
+		{
+			"name": "Guardian",
+			"required-level": "20",
+			"description": " Rush to the aid of wounded ally, knocking back enemies within 15 yards and healing the wounded ally for 4651 Life. ",
+			"cooldown": "30",
+			"cooldown-units": "seconds",
+			"cooldown-description": ""
+		},
+		{
+			"name": "Inspire",
+			"required-level": "20",
+			"description": " Increase resource generation for all allies that the Templar is following.Mana: 2 per second.Arcane Power: 0.5 per second.Hatred: 1 per second.Fury: 8% generated.Spirit: 12% generated. "
+		}]
+	},
+	{
+		"name": "Scoundrel",
+		"short-description": "Expert grifter who poisons, blinds, and skewers enemies from range.",
+		"icon": "templar",
+		"features": [{
+			"name": "Ranged Killing",
+			"icon": "scoundrel-feature-3",
+			"description": "Thanks to Lyndon's proficiency with ranged weapons, he can fire multiple bolts at once, poison his arrows for persistent damage, or decimate the armies of the Burning Hells with explosive shots."
+		},
+		{
+			"name": "Disabling Shots",
+			"icon": "scoundrel-feature-2",
+			"description": "With carefully placed shots and tricks, Lyndon can cripple or blind your enemies, or evade imminent danger to himself."
+		},
+		{
+			"name": "Attack Boosts",
+			"icon": "scoundrel-feature-1",
+			"description": "Lyndon's cunning extends to finding the best way to deliver quick or devastating hits, and he shares this knowledge with his allies."
+		}],
+		"description": " Where strife festers, opportunists are rarely far behind. A land caught between the High Heavens and the Burning Hells overflows with rogues and rakes, and both of those words certainly describe Lyndon. The recent years of his whirlwind existence have been spent running from place to place, conning locals, seducing ladies, and relieving the unwitting of their drink and money. The threat of imprisonment or an armed guard has never dissuaded Lyndon from living a life of larceny. Dedicating himself to a conflict against an endless stream of cruel demons and rampaging beasts seems out of character for a man so outwardly charming and unhesitatingly selfish. There must be more to Lyndon than his lust for wine, women and wealth. Mustn't there? ",
+		"skills": [{
+			"name": "Crippling Shot",
+			"required-level": "5",
+			"description": " Ranged attack that slows the target by 60% for 3 seconds. ",
+			"cooldown": "6",
+			"cooldown-units": "seconds",
+			"cooldown-description": ""
+		},
+		{
+			"name": "Poison Bolts",
+			"required-level": "5",
+			"description": " Ranged attack which deals 40% weapon damage and an additional 40% weapon damage as Poison over 3 seconds. ",
+			"cooldown": "6",
+			"cooldown-units": "seconds",
+			"cooldown-description": ""
+		},
+		{
+			"name": "Dirty Fighting",
+			"required-level": "10",
+			"description": " Blinds enemies in front of the Scoundrel for 3 seconds. ",
+			"cooldown": "30",
+			"cooldown-units": "seconds",
+			"cooldown-description": ""
+		},
+		{
+			"name": "Vanish",
+			"required-level": "10",
+			"description": " The Scoundrel vanishes in a cloud of smoke when injured, reappearing after 5 seconds. While vanished, he will heal himself for 15505 Life. ",
+			"cooldown": "30",
+			"cooldown-units": "seconds",
+			"cooldown-description": ""
+		},
+		{
+			"name": "Multishot",
+			"required-level": "15",
+			"description": " The Scoundrel's ranged attacks fire 3 bolts at a time. "
+		},
+		{
+			"name": "Powered Shot",
+			"required-level": "15",
+			"description": " Powerful ranged attack that explodes on impact, dealing 25% weapon damage as Arcane to targets within 6 yards and has a 50% chance to Stun targets for 2 seconds. ",
+			"cooldown": "20",
+			"cooldown-units": "seconds",
+			"cooldown-description": ""
+		},
+		{
+			"name": "Anatomy",
+			"required-level": "20",
+			"description": " Increases Critical Hit Chance by 3% for the Scoundrel and his allies. "
+		},
+		{
+			"name": "Hysteria",
+			"required-level": "20",
+			"description": " Whenever you or the Scoundrel land a Critical Hit, you both will go into hysterics, increasing all damage done by 10% for 3 seconds. This effect cannot occur more than once every 6 seconds. "
+		}]
+	},
+	{
+		"name": "Enchantress",
+		"short-description": "Mistress of magic whose powerful illusions disable and confuse her foes.",
+		"icon": "templar",
+		"features": [{
+			"name": "Debilitating Magic",
+			"icon": "enchantress-feature-1",
+			"description": "Eirena's bewitching spells mean doom for your foes - she can force them into a dreamlike trance or turn them against one another, rendering them easier to kill."
+		},
+		{
+			"name": "Arcane Blasts",
+			"icon": "enchantress-feature-3",
+			"description": "Eirena can conjure waves of arcane power to tear at enemies' bodies or send them flying away from the point of impact."
+		},
+		{
+			"name": "Supportive Spells",
+			"icon": "enchantress-feature-2",
+			"description": "There's true utility in Eirena's magic, whether she's infusing your attacks with demon-slaying energy, or projecting force shields to protect you from danger."
+		}],
+		"description": " Eirena's mastery of enchantments and steely bravery in battle belie her youth - but the truth of her origins reconciles these qualities. Eirena hails from the distant era of the Mage Clan Wars, where she was part of a clandestine sisterhood of magic-users known as the Hand of the Prophet. When the leader of the sisterhood, the eponymous Prophet, foresaw a great disaster that would occur fifteen hundred years in the future, Eirena and her sisters pledged their lives to preventing the tragedy. The sisters' pledges were far from mere words, and the Prophet placed the entire sisterhood in a magical slumber to preserve them until the appointed time. Recently, Eirena awoke to find herself in a world of portents and turmoil, a land vastly changed from the one she remembers. Her sisters are dead, and the Prophet is nowhere to be found. Despite the shock of her situation, Eirena's purpose is clear: she has given herself over to a new age in the hopes that she will discover its salvation. Could her uncommon magic prove to be the key that will help you expel demonkind from Sanctuary? ",
+		"skills": [{
+			"name": "Charm",
+			"required-level": "15",
+			"description": " Charms an enemy to fight for you for 4 seconds. ",
+			"cooldown": "25",
+			"cooldown-units": "seconds",
+			"cooldown-description": ""
+		},
+		{
+			"name": "Forceful Push",
+			"required-level": "15",
+			"description": " Summon an Arcane explosion 8 yards around an enemy, dealing 100% weapon damage as Arcane and knocking back all monsters caught within it. ",
+			"cooldown": "10",
+			"cooldown-units": "seconds",
+			"cooldown-description": ""
+		},
+		{
+			"name": "Powered Armor",
+			"required-level": "20",
+			"description": " Enchantress buffs herself and her allies, increasing Armor by 15%. Attackers are slowed by 30% for 3 seconds. "
+		},
+		{
+			"name": "Reflect Missiles",
+			"required-level": "20",
+			"description": " Place a shield on the Enchantress and her allies that reflects incoming projectiles for 5 seconds. ",
+			"cooldown": "20",
+			"cooldown-units": "seconds",
+			"cooldown-description": ""
+		},
+		{
+			"name": "Disorient",
+			"required-level": "25",
+			"description": " Cast a flash of Confusion on a group of enemies in an area, causing them to stumble around disoriented for 2 seconds. ",
+			"cooldown": "45",
+			"cooldown-units": "seconds",
+			"cooldown-description": ""
+		},
+		{
+			"name": "Erosion",
+			"required-level": "25",
+			"description": " Conjures a pool of energy that deals 50% weapon damage as Arcane per second. Affected enemies take an extra 15% damage from all attacks for 3 seconds. ",
+			"cooldown": "15",
+			"cooldown-units": "seconds",
+			"cooldown-description": ""
+		},
+		{
+			"name": "Focused Mind",
+			"required-level": "30",
+			"description": " An aura that increases attack speed by 3% for allies within 40 yards. "
+		},
+		{
+			"name": "Mass Control",
+			"required-level": "30",
+			"description": " The Enchantress lobs a bulb of magical energy at the player that will hex all enemies within 15 yards into chickens for 5 seconds. Hexed enemies are unable to perform offensive actions. ",
+			"cooldown": "60",
+			"cooldown-units": "seconds",
+			"cooldown-description": ""
+		}]
 	}],
 	"skill-attributes": {
 		"rune-separator": "!",
