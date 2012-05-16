@@ -1,0 +1,41 @@
+<com.wemakestuff.d3builder.dashboard.DashboardLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <Button
+        android:id="@+id/dashboard_btn_skill_calculator"
+        style="@style/DashboardButton"
+        android:drawableTop="@drawable/home_btn_schedule"
+        android:text="Skill Calculator" />
+
+    <Button
+        android:id="@+id/dashboard_btn_followers"
+        style="@style/DashboardButton"
+        android:drawableTop="@drawable/home_btn_map"
+        android:text="Followers" />
+
+    <Button
+        android:id="@+id/dashboard_btn_lore"
+        style="@style/DashboardButton"
+        android:drawableTop="@drawable/home_btn_sessions"
+        android:text="Lore" />
+
+    <Button
+        android:id="@+id/home_btn_starred"
+        style="@style/DashboardButton"
+        android:drawableTop="@drawable/home_btn_starred"
+        android:text="Something" />
+
+    <Button
+        android:id="@+id/home_btn_vendors"
+        style="@style/DashboardButton"
+        android:drawableTop="@drawable/home_btn_vendors"
+        android:text="Another thing" />
+
+    <Button
+        android:id="@+id/home_btn_announcements"
+        style="@style/DashboardButton"
+        android:drawableTop="@drawable/home_btn_announcements"
+        android:text="Global Thermo-nuclear War" />
+
+</com.wemakestuff.d3builder.dashboard.DashboardLayout>

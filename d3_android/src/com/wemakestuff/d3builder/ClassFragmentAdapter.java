@@ -20,7 +20,7 @@ public class ClassFragmentAdapter extends FragmentPagerAdapter implements TitleP
     public ClassFragmentAdapter(FragmentManager fm, Context context, OnLoadFragmentsCompleteListener listener) {
         super(fm);
         this.context = context;
-        this.classes = D3Application.dataModel.getClasses();
+        this.classes = D3Application.getInstance().getClasses();
         this.listener = listener;
     }
 

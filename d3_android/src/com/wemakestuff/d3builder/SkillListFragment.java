@@ -46,7 +46,7 @@ public class SkillListFragment extends ListFragment
     @Override
     public void onCreate(Bundle savedInstanceState) {
         setRetainInstance(true);
-        for (Skill s : D3Application.dataModel.getClassByName(selectedClass).getActiveSkillsByTypeAndRequiredLevel(skillType, requiredLevel))
+        for (Skill s : D3Application.getInstance().getClassByName(selectedClass).getActiveSkillsByTypeAndRequiredLevel(skillType, requiredLevel))
         {
             // Exclude already selected skills
             if (excludeSkills == null || !excludeSkills.contains(new ParcelUuid(s.getUuid())))
