@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.os.ParcelUuid;
 import android.os.Parcelable;
 import android.support.v4.app.ListFragment;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 
@@ -22,11 +23,13 @@ import com.wemakestuff.d3builder.SelectClass;
 import com.wemakestuff.d3builder.SelectRune;
 import com.wemakestuff.d3builder.SelectSkill;
 import com.wemakestuff.d3builder.model.D3Application;
+import com.wemakestuff.d3builder.model.Follower;
 import com.wemakestuff.d3builder.model.Rune;
 import com.wemakestuff.d3builder.model.Skill;
 import com.wemakestuff.d3builder.model.SkillAttribute;
 import com.wemakestuff.d3builder.sectionlist.EmptyRune;
 import com.wemakestuff.d3builder.sectionlist.EmptySkill;
+import com.wemakestuff.d3builder.sectionlist.EntryFollowerSkill;
 import com.wemakestuff.d3builder.sectionlist.EntryRune;
 import com.wemakestuff.d3builder.sectionlist.EntrySkill;
 import com.wemakestuff.d3builder.sectionlist.EntrySkillAdapter;
@@ -193,23 +196,39 @@ public class FollowerListFragment extends ListFragment
     {
         items = new ArrayList<Item>();
 
-        D3Application.getInstance().getFollowerByName(selectedFollower).getSkills();
+        Follower follower = D3Application.getInstance().getFollowerByName(selectedFollower);
+        List<Skill> skills = follower.getSkills();
         
-        items.add(new SectionItem("Level 5"));
-        items.add(new EmptySkill("Skill 1", 1, "Test"));
-        items.add(new EmptySkill("Skill 2", 1, "Test"));
+        Log.i("Number of skills for " + selectedFollower, "" + skills.size());
+        List<Integer> requiredLevels = follower.getRequiredLevels(); 
+        Log.i("Number of required levels for " + selectedFollower, "" + requiredLevels.size());
 
-        items.add(new SectionItem("Level 10"));
-        items.add(new EmptySkill("Skill 1", 1, "Test"));
-        items.add(new EmptySkill("Skill 2", 1, "Test"));
-
-        items.add(new SectionItem("Level 15"));
-        items.add(new EmptySkill("Skill 1", 1, "Test"));
-        items.add(new EmptySkill("Skill 2", 1, "Test"));
-
-        items.add(new SectionItem("Level 20"));
-        items.add(new EmptySkill("Skill 1", 1, "Test"));
-        items.add(new EmptySkill("Skill 2", 1, "Test"));
+        for (Integer i : requiredLevels)
+        {
+            Log.i("On level", i.toString());
+            items.add(new SectionItem("Level " + i));
+            List<Skill> skillsByLevel = follower.getSkillsByRequiredLevel(i.intValue());
+            
+            for (Skill s : skillsByLevel)
+            {
+                Log.i("On skill " + s.getName(), "Required level is " + s.getRequiredLevel() );
+                items.add(new EntryFollowerSkill(s, selectedFollower));
+            }
+            
+        }
+//        // Build the basic list
+//        for (int i = 0; i < requiredLevels.size(); i++)
+//        {
+//            int level = requiredLevels.get(i);
+//            List<Skill> skillsByLevel = D3Application.getInstance().getFollowerByName(selectedFollower).getSkillsByRequiredLevel(level);
+//            items.add(new SectionItem("Level " + level));
+//            
+//            for (Skill s : skillsByLevel)
+//            {
+//                items.add(new EntryFollowerSkill(s));
+//            }
+//            
+//        }
 
         listAdapter = new EntrySkillAdapter(context, items);
 

@@ -12,7 +12,7 @@ public class Follower {
     
 	@SerializedName(Vars.SKILLS)
 	@Expose
-	private List<Skill> Skills;
+	private List<Skill> skills;
 	
 	@SerializedName(Vars.SHORT_DESCRIPTION)
 	@Expose
@@ -38,12 +38,12 @@ public class Follower {
 	
 	public boolean containsSkillByUUID(UUID uuid)
 	{
-		return containsSkillByUUID(Skills, uuid);
+		return containsSkillByUUID(skills, uuid);
 	}
 	
 	public boolean containsSkillsByRequiredLevel(int requiredLevel)
 	{
-		return containsSkillsByRequiredLevel(Skills, requiredLevel);
+		return containsSkillsByRequiredLevel(skills, requiredLevel);
 	}
 	
 	public boolean containsSkillByUUID(List<Skill> list, UUID uuid)
@@ -72,12 +72,12 @@ public class Follower {
 	
 	public Skill getSkillByUUID(UUID uuid)
 	{
-		return getSkillByUUID(Skills, uuid);
+		return getSkillByUUID(skills, uuid);
 	}
 	
 	public List<Skill> getSkillsByRequiredLevel(int requiredLevel)
 	{
-		return getSkillsByRequiredLevel(Skills, requiredLevel);
+		return getSkillsByRequiredLevel(skills, requiredLevel);
 	}
 	
 	public String getDescription() {
@@ -114,7 +114,7 @@ public class Follower {
 		
 		for (Skill skill: list)
 		{
-			if (skill.getRequiredLevel() <= requiredLevel)
+			if (skill.getRequiredLevel() == requiredLevel)
 			{
 				skills.add(skill);
 			}
@@ -122,8 +122,32 @@ public class Follower {
 		return skills;
 	}
 	
+	public List<Skill> getSkillsByLevel(int level) {
+        List<Skill> list = new ArrayList<Skill>();
+        
+        for (Skill skill : skills)
+        {
+            if (skill.getRequiredLevel() == level)
+                list.add(skill);
+        }
+        
+        return list;
+	}
+	
+	public List<Integer> getRequiredLevels() {
+	    List<Integer> list = new ArrayList<Integer>();
+	    
+	    for (Skill skill : skills)
+	    {
+	        if (!list.contains(skill.getRequiredLevel()))
+	            list.add(skill.getRequiredLevel());
+	    }
+	    
+	    return list;
+	}
+	
 	public List<Skill> getSkills() {
-		return Skills;
+		return skills;
 	}
 
 	public UUID getUuid() {
