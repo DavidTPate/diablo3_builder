@@ -62,7 +62,7 @@ public class Follower {
 	{
 		for (Skill skill : list)
 		{
-			if (skill.getRequiredLevel() <= requiredLevel)
+			if (skill.getRequiredLevel() == requiredLevel)
 			{
 				return true;
 			}
@@ -73,11 +73,6 @@ public class Follower {
 	public Skill getSkillByUUID(UUID uuid)
 	{
 		return getSkillByUUID(skills, uuid);
-	}
-	
-	public List<Skill> getSkillsByRequiredLevel(int requiredLevel)
-	{
-		return getSkillsByRequiredLevel(skills, requiredLevel);
 	}
 	
 	public String getDescription() {
@@ -122,7 +117,7 @@ public class Follower {
 		return skills;
 	}
 	
-	public List<Skill> getSkillsByLevel(int level) {
+	public List<Skill> getSkillsByRequiredLevel(int level) {
         List<Skill> list = new ArrayList<Skill>();
         
         for (Skill skill : skills)

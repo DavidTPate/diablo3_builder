@@ -87,7 +87,7 @@ public class SelectFollower extends SherlockFragmentActivity
         };
         
         mAdapter = new FollowerFragmentAdapter(getSupportFragmentManager(), SelectFollower.this, listener);
-
+        
         mPager = (ViewPager) findViewById(R.id.follower_pager);
         mPager.setOffscreenPageLimit(5);
         mPager.setAdapter(mAdapter);

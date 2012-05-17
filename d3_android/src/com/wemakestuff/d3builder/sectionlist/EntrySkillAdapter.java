@@ -2,6 +2,7 @@ package com.wemakestuff.d3builder.sectionlist;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import android.content.Context;
 import android.os.ParcelUuid;
@@ -43,6 +44,30 @@ public class EntrySkillAdapter extends ArrayAdapter<Item>
         return currentSkills;
     }
     
+    public Item getFollowerSkillByUUID(UUID uuid)
+    {
+        for (Item i : items)
+        {
+            if (i instanceof EntryFollowerSkill)
+                if (((EntryFollowerSkill) i).getSkill().getUuid().equals(uuid))
+                        return i;
+        }
+        
+        return null;
+    }
+    
+    public void setFollowerItemChecked(UUID uuid, boolean value)
+    {
+        for (Item i : items)
+        {
+            if (i instanceof EntryFollowerSkill)
+                if (((EntryFollowerSkill) i).getSkill().getUuid().equals(uuid))
+                        ((EntryFollowerSkill) i).setIsChecked(value);
+        }
+        
+        notifyDataSetChanged();
+    }
+    
     public void setList(ArrayList<Item> items)
     {
     	this.items = items;
@@ -56,7 +81,8 @@ public class EntrySkillAdapter extends ArrayAdapter<Item>
 
     public int getMaxLevel() 
     {
-        int requiredLevel = 1;
+        int requiredLevelHero = 0;
+        int requiredLevelFollower = 0;
         
         for (Item i : items)
         {
@@ -64,20 +90,27 @@ public class EntrySkillAdapter extends ArrayAdapter<Item>
             {
                 int tempLevel = ((EntrySkill) i).getSkill().getRequiredLevel();
                 
-                if (tempLevel > requiredLevel)
-                    requiredLevel = tempLevel;
+                if (tempLevel > requiredLevelHero)
+                    requiredLevelHero = tempLevel;
                 
             }
             else if (i instanceof EntryRune)
             {
                 int tempLevel = ((EntryRune) i).getRune().getRequiredLevel();
                 
-                if (tempLevel > requiredLevel)
-                    requiredLevel = tempLevel;
+                if (tempLevel > requiredLevelHero)
+                    requiredLevelHero = tempLevel;
+            }
+            else if (i instanceof EntryFollowerSkill)
+            {
+                int tempLevel = ((EntryFollowerSkill) i).getSkill().getRequiredLevel();
+                
+                if (tempLevel > requiredLevelFollower)
+                    requiredLevelFollower = tempLevel;
             }
         }
         
-        return requiredLevel;
+        return requiredLevelHero > 0 ? requiredLevelHero : requiredLevelFollower;
     }
 
 }

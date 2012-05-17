@@ -25,9 +25,20 @@
         android:layout_marginLeft="15dp"
         android:layout_toRightOf="@id/follower_skill_icon"
         android:fadingEdge="horizontal"
+        android:layout_marginBottom="4dp"
         android:text="Heal"
         android:textAppearance="?android:attr/textAppearanceMedium" />
     
+    <ImageView
+        android:id="@+id/follower_checkmark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_checkmark_holo_light"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp" />
+        
     <TextView
         android:id="@+id/follower_skill_unlocked_at"
         android:layout_width="wrap_content"
@@ -37,6 +48,7 @@
         android:ellipsize="marquee"
         android:fadingEdge="horizontal"
         android:singleLine="true"
+        android:layout_toLeftOf="@id/follower_checkmark"
         android:text="Unlocked at level: 5"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -45,6 +57,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@id/follower_skill_unlocked_at"
+        android:layout_toLeftOf="@id/follower_checkmark"
         android:layout_below="@id/follower_skill_unlocked_at"
         android:ellipsize="marquee"
         android:fadingEdge="horizontal"

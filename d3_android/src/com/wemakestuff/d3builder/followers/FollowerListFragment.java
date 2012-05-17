@@ -117,247 +117,73 @@ public class FollowerListFragment extends ListFragment
     @Override
     public void onListItemClick(ListView l, View v, int position, long id)
     {
-        EntrySkillAdapter listAdapter = (EntrySkillAdapter) getListAdapter();
-        
-        Item item = (Item) getListAdapter().getItem(position);
-        int maxLevel = 60;// ((Main) getActivity()).getMaxLevel();
-        Bundle b = new Bundle();
-        
-        if (item instanceof EmptySkill)
-        {
-            EmptySkill e = (EmptySkill) item;
-
-            Intent intent = new Intent(v.getContext(), SelectSkill.class);
-            b.putString("SkillType", e.getSkillType());
-            b.putString("SelectedClass", selectedFollower);
-            b.putInt("RequiredLevel", maxLevel);
-            b.putInt("Index", position);
-            
-            List<ParcelUuid> skills = listAdapter.getCurrentSkills();
-            
-            if (skills.size() > 0)
-                b.putParcelableArrayList("UUIDs", (ArrayList<? extends Parcelable>) listAdapter.getCurrentSkills());
-            
-            intent.putExtras(b);
-
-            startActivityForResult(intent, GET_SKILL);
-        }
-        else if (item instanceof EntrySkill)
-        {
-            EntrySkill e = (EntrySkill) item;
-
-            Intent intent = new Intent(v.getContext(), SelectSkill.class);
-            b.putString("SkillType", e.getSkill().getType());
-            b.putString("SelectedClass", selectedFollower);
-            b.putInt("RequiredLevel", maxLevel);
-            b.putInt("Index", position);
-            
-            List<ParcelUuid> skills = listAdapter.getCurrentSkills();
-            
-            if (skills.size() > 0)
-                b.putParcelableArrayList("UUIDs", (ArrayList<? extends Parcelable>) listAdapter.getCurrentSkills());
-            
-            intent.putExtras(b);
-
-            startActivityForResult(intent, REPLACE_SKILL);
-        }
-        else if (item instanceof EmptyRune)
-        {
-            EmptyRune e = (EmptyRune) item;
-
-            Intent intent = new Intent(v.getContext(), SelectRune.class);
-            b.putString("SkillName", e.getSkillName());
-            b.putString("SelectedClass", selectedFollower);
-            b.putInt("RequiredLevel", maxLevel);
-            b.putSerializable("SkillUUID", e.getSkillUUID());
-            b.putInt("Index", position);
-            intent.putExtras(b);
-
-            startActivityForResult(intent, GET_RUNE);
-        }
-        else if (item instanceof EntryRune)
-        {
-            EntryRune e = (EntryRune) item;
-
-            Intent intent = new Intent(v.getContext(), SelectRune.class);
-            b.putString("SkillName", e.getSkillName());
-            b.putString("SelectedClass", selectedFollower);
-            b.putInt("RequiredLevel", maxLevel);
-            b.putSerializable("SkillUUID", e.getSkillUUID());
-            b.putInt("Index", position);
-            intent.putExtras(b);
-
-            startActivityForResult(intent, REPLACE_RUNE);
-        }
         super.onListItemClick(l, v, position, id);
-    }
 
+        EntrySkillAdapter skillAdapter = (EntrySkillAdapter) getListAdapter();
+        Item item = (Item) getListAdapter().getItem(position);
+        EntryFollowerSkill pairedSkill = null;
+        Log.i("Found item", item.getClass().toString());
+
+        if (item instanceof EntryFollowerSkill)
+        {
+            Log.i("It is an entryfollowerskill!", "Woot");
+            Follower follower = D3Application.getInstance().getFollowerByName(selectedFollower);
+            EntryFollowerSkill e = (EntryFollowerSkill) item;
+            
+            for (Skill s : follower.getSkillsByRequiredLevel(e.getSkill().getRequiredLevel()))
+            {
+                if (!s.getUuid().equals(e.getSkill().getUuid()))
+                {
+                    pairedSkill = (EntryFollowerSkill) skillAdapter.getFollowerSkillByUUID(s.getUuid());
+                }
+                
+            }
+            
+            if (e.isChecked())
+            {
+                skillAdapter.setFollowerItemChecked(e.getSkill().getUuid(), true);
+                skillAdapter.setFollowerItemChecked(pairedSkill.getSkill().getUuid(), false);
+            }
+            else
+            {
+                skillAdapter.setFollowerItemChecked(e.getSkill().getUuid(), false);
+                skillAdapter.setFollowerItemChecked(pairedSkill.getSkill().getUuid(), true);
+            }
+
+        }
+        else
+        {
+            
+            Log.i("It is NOT an entryfollowerskill!", "Woot");
+        }
+        
+        skillAdapter.notifyDataSetChanged();
+        getListView().invalidateViews();
+    }
+    
     private EntrySkillAdapter getSkillListAdapter()
     {
         items = new ArrayList<Item>();
 
         Follower follower = D3Application.getInstance().getFollowerByName(selectedFollower);
         List<Skill> skills = follower.getSkills();
-        
-        Log.i("Number of skills for " + selectedFollower, "" + skills.size());
         List<Integer> requiredLevels = follower.getRequiredLevels(); 
-        Log.i("Number of required levels for " + selectedFollower, "" + requiredLevels.size());
 
         for (Integer i : requiredLevels)
         {
-            Log.i("On level", i.toString());
             items.add(new SectionItem("Level " + i));
             List<Skill> skillsByLevel = follower.getSkillsByRequiredLevel(i.intValue());
             
             for (Skill s : skillsByLevel)
-            {
-                Log.i("On skill " + s.getName(), "Required level is " + s.getRequiredLevel() );
-                items.add(new EntryFollowerSkill(s, selectedFollower));
-            }
+                items.add(new EntryFollowerSkill(s, selectedFollower, false));
             
         }
-//        // Build the basic list
-//        for (int i = 0; i < requiredLevels.size(); i++)
-//        {
-//            int level = requiredLevels.get(i);
-//            List<Skill> skillsByLevel = D3Application.getInstance().getFollowerByName(selectedFollower).getSkillsByRequiredLevel(level);
-//            items.add(new SectionItem("Level " + level));
-//            
-//            for (Skill s : skillsByLevel)
-//            {
-//                items.add(new EntryFollowerSkill(s));
-//            }
-//            
-//        }
 
         listAdapter = new EntrySkillAdapter(context, items);
 
         return listAdapter;
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
-
-        if (requestCode == GET_SKILL || requestCode == REPLACE_SKILL)
-        {
-            if (resultCode == Activity.RESULT_OK)
-            {
-                Bundle b = data.getExtras();
-
-                String skillUUID = null;
-                int index = -1;
-
-                if (b.containsKey("Skill_UUID"))
-                {
-                    skillUUID = b.getString("Skill_UUID");
-                }
-
-                if (b.containsKey("Index"))
-                {
-                    index = b.getInt("Index");
-                }
-
-
-                if (skillUUID != null && index >= 0 && D3Application.getInstance().getClassByName(selectedFollower).containsActiveSkillByUUID(UUID.fromString(skillUUID)))
-                {
-                    Skill s = D3Application.getInstance().getClassByName(selectedFollower).getActiveSkillByUUID(UUID.fromString(skillUUID));
-                    items.set(index, new EntrySkill(s));
-                    if (requestCode == GET_SKILL)
-                    {
-                        items.add(index + 1, new EmptyRune("Choose Rune", 1, s.getName(), s.getUuid()));
-                    }
-                    else if (requestCode == REPLACE_SKILL)
-                    {
-                        Item item = items.get(index + 1);
-                        
-                        if (item instanceof EntryRune)
-                        {
-                            EntryRune e = (EntryRune) item;
-                            if (!e.getSkillUUID().equals(s.getUuid()))
-                            {
-                                items.set(index + 1, new EmptyRune("Choose Rune", 1, s.getName(), s.getUuid()));
-                            }
-                        }
-                        else
-                        {
-                            items.set(index + 1, new EmptyRune("Choose Rune", 1, s.getName(), s.getUuid()));
-                        }
-                    }
-                    listAdapter.setList(items);
-                    ((SelectClass) getActivity()).setRequiredLevel(listAdapter.getMaxLevel());
-
-                }
-                else if (skillUUID != null && index >= 0 && D3Application.getInstance().getClassByName(selectedFollower).containsPassiveSkillByUUID(UUID.fromString(skillUUID)))
-                {
-                    Skill s = D3Application.getInstance().getClassByName(selectedFollower).getPassiveSkillByUUID(UUID.fromString(skillUUID));
-                    items.set(index, new EntrySkill(s));
-                    listAdapter.setList(items);
-                    
-                    ((SelectClass) getActivity()).setRequiredLevel(listAdapter.getMaxLevel());
-                }
-                else
-                {
-                    // Uh-Oh!
-                }
-            }
-            else
-            {
-                // Do nothing?
-            }
-        }
-        else if (requestCode == GET_RUNE || requestCode == REPLACE_RUNE)
-        {
-            if (resultCode == Activity.RESULT_OK)
-            {
-                Bundle b = data.getExtras();
-
-                String runeUUID = null;
-                String skillUUID = null;
-                int index = -1;
-
-                if (b.containsKey("Rune_UUID"))
-                {
-                    runeUUID = b.getString("Rune_UUID");
-                }
-
-                if (b.containsKey("Skill_UUID"))
-                {
-                    skillUUID = b.getString("Skill_UUID");
-                }
-
-                if (b.containsKey("Index"))
-                {
-                    index = b.getInt("Index");
-                }
-
-
-                if (D3Application.getInstance().getClassByName(selectedFollower).containsActiveSkillByUUID(UUID.fromString(skillUUID)))
-                {
-                    if (skillUUID != null && index >= 0 && D3Application.getInstance().getClassByName(selectedFollower).getActiveSkillByUUID(UUID.fromString(skillUUID)).containsRuneByUUID(UUID.fromString(runeUUID)))
-                    {
-                        Rune s = D3Application.getInstance().getClassByName(selectedFollower).getActiveSkillByUUID(UUID.fromString(skillUUID)).getRuneByUUID(UUID.fromString(runeUUID));
-                        items.set(index, new EntryRune(s, D3Application.getInstance().getClassByName(selectedFollower).getActiveSkillByUUID(UUID.fromString(skillUUID)).getName(), UUID.fromString(skillUUID)));
-                        listAdapter.setList(items);
-                        ((SelectClass) getActivity()).setRequiredLevel(listAdapter.getMaxLevel());
-                    }
-                    else
-                    {
-                        // Uh-Oh!
-                    }
-                }
-                else
-                {
-                    // Uh-Oh
-                }
-            }
-            else
-            {
-                // Do nothing?
-            }
-        }
-    }
-    
     public int getMaxLevel()
     {
         return listAdapter.getMaxLevel();
