@@ -37,9 +37,9 @@ public class SelectFollower extends SherlockFragmentActivity
     private boolean                 loadedFromUrl = false;
     private TextView                requiredLevel;
     private LinearLayout            requiredLevelWrapper;
-    private List<ParcelUuid>              templarSkills;
-    private List<ParcelUuid>              scoundrelSkills;
-    private List<ParcelUuid>              enchantressSkills;
+    private List<ParcelUuid>              templarSkills = new ArrayList<ParcelUuid>();
+    private List<ParcelUuid>              scoundrelSkills = new ArrayList<ParcelUuid>();
+    private List<ParcelUuid>              enchantressSkills = new ArrayList<ParcelUuid>();
 
     /** Called when the activity is first created. */
     @Override
@@ -139,17 +139,17 @@ public class SelectFollower extends SherlockFragmentActivity
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
 
         FollowerListFragment frag = (FollowerListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mPager.getCurrentItem());
         Intent resultIntent = new Intent();
-        resultIntent.putParcelableArrayListExtra("Templar", (ArrayList<? extends Parcelable>) templarSkills);
-        resultIntent.putParcelableArrayListExtra("Scoundrel", (ArrayList<? extends Parcelable>) scoundrelSkills);
-        resultIntent.putParcelableArrayListExtra("Enchantress", (ArrayList<? extends Parcelable>) enchantressSkills);
+        resultIntent.putParcelableArrayListExtra("Templar", (ArrayList<ParcelUuid>) templarSkills);
+        resultIntent.putParcelableArrayListExtra("Scoundrel", (ArrayList<ParcelUuid>) scoundrelSkills);
+        resultIntent.putParcelableArrayListExtra("Enchantress", (ArrayList<ParcelUuid>) enchantressSkills);
         
      // TODO Add extras or a data URI to this intent as appropriate.
         setResult(Activity.RESULT_OK, resultIntent);
         finish();
+        super.onBackPressed();
         // EntrySkillAdapter s = mPager.getAdapter();
 
     }

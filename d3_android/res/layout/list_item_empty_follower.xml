@@ -8,10 +8,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
+        android:layout_alignParentTop="true"
         android:contentDescription="Skill icon"
         android:paddingLeft="5dp"
-        android:src="@drawable/barbarian_cleave" />
+        android:src="@drawable/templar" />
 
     <TextView
         android:id="@+id/empty_follower_name"
@@ -35,5 +35,72 @@
         android:singleLine="false"
         android:text="Peerless holy warrior who challenges demons head-on in melee."
         android:textAppearance="?android:attr/textAppearanceSmall" />
+    
+    <LinearLayout
+        android:id="@+id/empty_follower_skills"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/empty_follower_icon"
+        android:paddingLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:visibility="gone"
+        android:orientation="vertical" >
+        
+        <TextView 
+            android:id="@+id/empty_follower_skill_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Level 5: Heal" />
+        
+        <TextView 
+            android:id="@+id/empty_follower_skill_1_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:text="Heals you or the Templar for 4651 Life." />
+
+        <TextView 
+            android:id="@+id/empty_follower_skill_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Level 10: Intimidate" />
+        
+          <TextView 
+            android:id="@+id/empty_follower_skill_2_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:text="Enemy units are slowed by 60% for 3 seconds when they hit the Templar." />
+
+        <TextView 
+            android:id="@+id/empty_follower_skill_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Level 10: Onslaught" />
+        
+          <TextView 
+            android:id="@+id/empty_follower_skill_3_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:text="Delivers a massive blow to an enemy for 200% weapon damage." />
+        
+        <TextView 
+            android:id="@+id/empty_follower_skill_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Level 10: Guardian" />
+        
+          <TextView 
+            android:id="@+id/empty_follower_skill_4_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:text="Rush to the aid of wounded ally, knocking back enemies within 15 yards and healing the wounded ally for 4651 Life." />
+        
+        
+    </LinearLayout>
+    
+        
 
 </RelativeLayout>

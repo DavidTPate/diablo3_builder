@@ -59,6 +59,35 @@ public class EntrySkillAdapter extends ArrayAdapter<Item>
     	notifyDataSetChanged();
     }
     
+    public List<Item> getFollowers()
+    {
+        List<Item> ret = new ArrayList<Item>();
+        for (Item i : items)
+        {
+            if (i instanceof EmptyFollower)
+                ret.add(i);
+
+        }
+        
+        return ret;
+    }
+    
+    public Item getFollowerByName(String name)
+    {
+        for (Item i : items)
+        {
+            if (i instanceof EmptyFollower)
+            {
+                EmptyFollower e = (EmptyFollower) i;
+                if (e.getName().equalsIgnoreCase(name))
+                    return i;
+            }
+
+        }
+        
+        return null;
+    }
+    
     public ArrayList<Item> getItems()
     {
     	return this.items;

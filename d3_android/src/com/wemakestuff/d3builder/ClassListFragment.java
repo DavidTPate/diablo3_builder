@@ -45,8 +45,8 @@ public class ClassListFragment extends ListFragment
     int                                     REPLACE_SKILL = 1;
     int                                     GET_RUNE      = 2;
     int                                     REPLACE_RUNE  = 3;
-    int                                     NEW_FOLLOWER  = 3;
-    int                                     REPLACE_FOLLOWER  = 3;
+    int                                     NEW_FOLLOWER  = 4;
+    int                                     REPLACE_FOLLOWER  = 5;
 
     ArrayList<Item>                         items         = new ArrayList<Item>();
 
@@ -257,6 +257,15 @@ public class ClassListFragment extends ListFragment
         return listAdapter;
     }
 
+    private void updateFollowerData()
+    {
+        List<Item> items = ((EntrySkillAdapter) getListAdapter()).getFollowers();
+        
+        
+        
+    }
+    
+    
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data)
     {
@@ -264,6 +273,35 @@ public class ClassListFragment extends ListFragment
         if (requestCode == NEW_FOLLOWER)
         {
             Log.i("Got a new follower!", "Testing");
+            Log.i("ResultCode", "" + resultCode);
+            int t = Activity.RESULT_CANCELED;
+            if (resultCode == Activity.RESULT_OK)
+            {
+                
+                List<ParcelUuid> templar = null;
+                List<ParcelUuid> scoundrel = null;
+                List<ParcelUuid> enchantress = null;
+                
+                Log.i("Extras size", "" + data.getExtras().size());
+                
+                if (data.hasExtra("Templar"))
+                {
+                    templar = data.getParcelableArrayListExtra("Templar");
+                    Log.i("ClassList - Got Templar Skills", "" + templar.size());
+                }
+                
+                if (data.hasExtra("Scoundrel"))
+                {
+                    scoundrel = data.getParcelableArrayListExtra("Scoundrel");
+                    Log.i("ClassList - Got Scoundrel Skills", "" + scoundrel.size());
+                }
+                
+                if (data.hasExtra("Enchantress"))
+                {
+                    enchantress = data.getParcelableArrayListExtra("Enchantress");
+                    Log.i("ClassList - Got Enchantress Skills", "" + enchantress.size());
+                }
+            }
         }
         
         if (requestCode == GET_SKILL || requestCode == REPLACE_SKILL)
