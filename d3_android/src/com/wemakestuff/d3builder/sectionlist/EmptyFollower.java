@@ -37,7 +37,7 @@ public class EmptyFollower implements Item {
 		return name;
 	}
 
-	public UUID getSkillUUID() {
+	public UUID getFollowerUUID() {
 		return followerUUID;
 	}
 

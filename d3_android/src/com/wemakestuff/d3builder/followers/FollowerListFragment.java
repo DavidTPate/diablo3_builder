@@ -2,20 +2,19 @@ package com.wemakestuff.d3builder.followers;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.ParcelUuid;
 import android.support.v4.app.ListFragment;
-import android.util.Log;
 import android.view.View;
-import android.widget.BaseAdapter;
 import android.widget.ListView;
 
 import com.wemakestuff.d3builder.OnLoadFragmentsCompleteListener;
-import com.wemakestuff.d3builder.SelectClass;
 import com.wemakestuff.d3builder.model.D3Application;
 import com.wemakestuff.d3builder.model.Follower;
 import com.wemakestuff.d3builder.model.Rune;
@@ -66,6 +65,8 @@ public class FollowerListFragment extends ListFragment
         
         setRetainInstance(true);
         setListAdapter(getSkillListAdapter());
+        
+        ((SelectFollower) getActivity()).setRequiredLevel(Collections.min(D3Application.getInstance().getFollowerByName(selectedFollower).getRequiredLevels()));
     }
     
     @Override
@@ -96,7 +97,7 @@ public class FollowerListFragment extends ListFragment
     public void onListItemClick(ListView l, View v, int position, long id)
     {
         super.onListItemClick(l, v, position, id);
-
+        SelectFollower sf = (SelectFollower) getActivity();
         EntrySkillAdapter skillAdapter = (EntrySkillAdapter) l.getAdapter();
         Item item = (Item) l.getItemAtPosition(position);
         EntryFollowerSkill pairedSkill = null;
@@ -121,8 +122,39 @@ public class FollowerListFragment extends ListFragment
 
         }
         
+        if (selectedFollower.equals("Templar"))
+        {
+            sf.setTemplarSkills(getSelectedSkills());
+        }
+        else if (selectedFollower.equals("Scoundrel"))
+        {
+            sf.setScoundrelSkills(getSelectedSkills());
+        }
+        else if (selectedFollower.equals("Enchantress"))
+        {
+            sf.setEnchantressSkills(getSelectedSkills());
+        }
+        
         ((SelectFollower) getActivity()).setRequiredLevel(skillAdapter.getMaxLevel(true));
         ((SelectFollower) getActivity()).updateData();
+    }
+    
+    private List<ParcelUuid> getSelectedSkills()
+    {
+        List<ParcelUuid> skills = new ArrayList<ParcelUuid>();
+        
+        for (Item i : items)
+        {
+            if (i instanceof EntryFollowerSkill)
+            {
+                EntryFollowerSkill e = (EntryFollowerSkill) i;
+                if (e.isChecked())
+                    skills.add(new ParcelUuid(e.getSkill().getUuid()));
+            }
+        }
+        
+        return skills;
+            
     }
 
     private EntryFollowerSkill getPairedFollowerSkill(EntrySkillAdapter skillAdapter, EntryFollowerSkill pairedSkill, Follower follower, EntryFollowerSkill e) {

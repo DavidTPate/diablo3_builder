@@ -14,9 +14,11 @@ import android.os.Bundle;
 import android.os.ParcelUuid;
 import android.os.Parcelable;
 import android.support.v4.app.ListFragment;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 
+import com.wemakestuff.d3builder.followers.SelectFollower;
 import com.wemakestuff.d3builder.model.D3Application;
 import com.wemakestuff.d3builder.model.Follower;
 import com.wemakestuff.d3builder.model.Rune;
@@ -43,6 +45,8 @@ public class ClassListFragment extends ListFragment
     int                                     REPLACE_SKILL = 1;
     int                                     GET_RUNE      = 2;
     int                                     REPLACE_RUNE  = 3;
+    int                                     NEW_FOLLOWER  = 3;
+    int                                     REPLACE_FOLLOWER  = 3;
 
     ArrayList<Item>                         items         = new ArrayList<Item>();
 
@@ -184,6 +188,21 @@ public class ClassListFragment extends ListFragment
 
             startActivityForResult(intent, REPLACE_RUNE);
         }
+        else if (item instanceof EmptyFollower)
+        {
+            EmptyFollower e = (EmptyFollower) item;
+            
+            Intent intent = new Intent(v.getContext(), SelectFollower.class);
+            b.putString("SkillName", e.getName());
+            b.putString("SelectedClass", selectedClass);
+            b.putInt("RequiredLevel", maxLevel);
+            b.putSerializable("SkillUUID", e.getFollowerUUID());
+            b.putInt("Index", position);
+            b.putParcelable("UUID", new ParcelUuid(e.getFollowerUUID()));
+            intent.putExtras(b);
+            
+            startActivityForResult(intent, NEW_FOLLOWER);
+        }
         super.onListItemClick(l, v, position, id);
     }
 
@@ -242,6 +261,11 @@ public class ClassListFragment extends ListFragment
     public void onActivityResult(int requestCode, int resultCode, Intent data)
     {
 
+        if (requestCode == NEW_FOLLOWER)
+        {
+            Log.i("Got a new follower!", "Testing");
+        }
+        
         if (requestCode == GET_SKILL || requestCode == REPLACE_SKILL)
         {
             if (resultCode == Activity.RESULT_OK)
