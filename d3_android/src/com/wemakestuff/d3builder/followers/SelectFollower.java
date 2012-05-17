@@ -117,6 +117,11 @@ public class SelectFollower extends SherlockFragmentActivity
         });
         
         mIndicator = indicator;
-
+    }
+    
+    public void updateData()
+    {
+        mIndicator.notifyDataSetChanged();
+        mAdapter.notifyDataSetChanged();
     }
 }

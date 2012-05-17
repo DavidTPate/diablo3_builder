@@ -36,7 +36,7 @@ public class FollowerFragmentAdapter extends FragmentPagerAdapter implements Tit
         return classList;
         
     }
-
+    
     @Override
     public int getCount() {
         return followers.size();
@@ -45,9 +45,20 @@ public class FollowerFragmentAdapter extends FragmentPagerAdapter implements Tit
     @Override
     public int getItemPosition(Object className)
     {
+        String followerName = null;
+        
+        if (className instanceof FollowerListFragment)
+        {
+            followerName = ((FollowerListFragment) className).getSelectedFollower();
+        }
+        else if (className instanceof String)
+        {
+            followerName = (String) className;
+        }
+        
         for (Follower follower : followers)
         {
-            if (follower.getName().equalsIgnoreCase((String)className))
+            if (follower.getName().equalsIgnoreCase(followerName))
             {
                 return followers.indexOf(follower);
             }

@@ -3,25 +3,18 @@ package com.wemakestuff.d3builder.followers;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.ParcelUuid;
-import android.os.Parcelable;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
 import android.view.View;
+import android.widget.BaseAdapter;
 import android.widget.ListView;
 
 import com.wemakestuff.d3builder.OnLoadFragmentsCompleteListener;
-import com.wemakestuff.d3builder.SelectClass;
-import com.wemakestuff.d3builder.SelectRune;
-import com.wemakestuff.d3builder.SelectSkill;
 import com.wemakestuff.d3builder.model.D3Application;
 import com.wemakestuff.d3builder.model.Follower;
 import com.wemakestuff.d3builder.model.Rune;
@@ -61,7 +54,7 @@ public class FollowerListFragment extends ListFragment
         return fragment;
     }
 
-    public String getSelectedClass()
+    public String getSelectedFollower()
     {
         return selectedFollower;
     }
@@ -119,9 +112,10 @@ public class FollowerListFragment extends ListFragment
     {
         super.onListItemClick(l, v, position, id);
 
-        EntrySkillAdapter skillAdapter = (EntrySkillAdapter) getListAdapter();
-        Item item = (Item) getListAdapter().getItem(position);
+        EntrySkillAdapter skillAdapter = (EntrySkillAdapter) l.getAdapter();
+        Item item = (Item) l.getItemAtPosition(position);
         EntryFollowerSkill pairedSkill = null;
+        
         Log.i("Found item", item.getClass().toString());
 
         if (item instanceof EntryFollowerSkill)
@@ -141,24 +135,18 @@ public class FollowerListFragment extends ListFragment
             
             if (e.isChecked())
             {
-                skillAdapter.setFollowerItemChecked(e.getSkill().getUuid(), true);
-                skillAdapter.setFollowerItemChecked(pairedSkill.getSkill().getUuid(), false);
+                e.setIsChecked(false);
+                pairedSkill.setIsChecked(true);
+                
             }
             else
             {
-                skillAdapter.setFollowerItemChecked(e.getSkill().getUuid(), false);
-                skillAdapter.setFollowerItemChecked(pairedSkill.getSkill().getUuid(), true);
+                e.setIsChecked(true);
+                pairedSkill.setIsChecked(false);
             }
 
         }
-        else
-        {
-            
-            Log.i("It is NOT an entryfollowerskill!", "Woot");
-        }
-        
-        skillAdapter.notifyDataSetChanged();
-        getListView().invalidateViews();
+        ((SelectFollower) getActivity()).updateData();
     }
     
     private EntrySkillAdapter getSkillListAdapter()

@@ -16,13 +16,11 @@ public class EntrySkillAdapter extends ArrayAdapter<Item>
 
     private Context context;
     private ArrayList<Item> items;
-    private LayoutInflater  vi;
 
     public EntrySkillAdapter(Context context, ArrayList<Item> items) {
         super(context, 0, items);
         this.items = items;
         this.context = context;
-        vi = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
@@ -54,18 +52,6 @@ public class EntrySkillAdapter extends ArrayAdapter<Item>
         }
         
         return null;
-    }
-    
-    public void setFollowerItemChecked(UUID uuid, boolean value)
-    {
-        for (Item i : items)
-        {
-            if (i instanceof EntryFollowerSkill)
-                if (((EntryFollowerSkill) i).getSkill().getUuid().equals(uuid))
-                        ((EntryFollowerSkill) i).setIsChecked(value);
-        }
-        
-        notifyDataSetChanged();
     }
     
     public void setList(ArrayList<Item> items)
