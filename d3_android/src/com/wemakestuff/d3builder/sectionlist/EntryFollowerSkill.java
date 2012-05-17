@@ -37,15 +37,9 @@ public class EntryFollowerSkill implements Item
     {
         if (checkmark != null)
         {
-            Log.i("Setting checkmark to ", "" + isChecked);
+            this.isChecked = isChecked;
             checkmark.setVisibility(isChecked ? View.VISIBLE : View.GONE);
-//            checkmark.postInvalidate();
         }
-        else
-        {
-            Log.i("Checkmark was null, not setting it to", "" + isChecked);
-        }
-        
     }
     
     public boolean isChecked()

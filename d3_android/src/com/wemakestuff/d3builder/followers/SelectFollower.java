@@ -1,12 +1,12 @@
 package com.wemakestuff.d3builder.followers;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.util.Log;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.google.ads.AdRequest;
@@ -14,11 +14,11 @@ import com.google.ads.AdView;
 import com.viewpagerindicator.PageIndicator;
 import com.viewpagerindicator.TitlePageIndicator;
 import com.viewpagerindicator.TitlePageIndicator.IndicatorStyle;
-import com.wemakestuff.d3builder.ClassFragmentAdapter;
 import com.wemakestuff.d3builder.ClassListFragment;
 import com.wemakestuff.d3builder.OnLoadFragmentsCompleteListener;
 import com.wemakestuff.d3builder.R;
-import com.wemakestuff.d3builder.SelectClass;
+import com.wemakestuff.d3builder.string.Replacer;
+import com.wemakestuff.d3builder.string.Vars;
 
 public class SelectFollower extends SherlockFragmentActivity
 {
@@ -27,6 +27,8 @@ public class SelectFollower extends SherlockFragmentActivity
     private PageIndicator        mIndicator;
     private String               loadFromUrl;
     private boolean              loadedFromUrl = false;
+    private TextView             requiredLevel;
+    private LinearLayout         requiredLevelWrapper;
 
     /** Called when the activity is first created. */
     @Override
@@ -42,6 +44,10 @@ public class SelectFollower extends SherlockFragmentActivity
         }
         
         setContentView(R.layout.select_follower);
+        
+        requiredLevelWrapper = (LinearLayout) findViewById(R.id.follower_required_level_wrapper);
+        requiredLevel = (TextView) findViewById(R.id.follower_required_level);
+        setRequiredLevel(5);
         
         AdView adView = (AdView) this.findViewById(R.id.adView);
         AdRequest newAd = new AdRequest();
@@ -117,11 +123,17 @@ public class SelectFollower extends SherlockFragmentActivity
         });
         
         mIndicator = indicator;
+        
     }
     
     public void updateData()
     {
         mIndicator.notifyDataSetChanged();
         mAdapter.notifyDataSetChanged();
+    }
+
+    public void setRequiredLevel(int level) {
+        Log.i("RequiredLevel", ":Setting to " + level);
+        requiredLevel.setText(Replacer.replace("Required Level: " + level, "\\d+", Vars.DIABLO_GREEN));
     }
 }

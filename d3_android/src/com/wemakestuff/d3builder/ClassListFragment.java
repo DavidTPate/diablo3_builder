@@ -288,7 +288,7 @@ public class ClassListFragment extends ListFragment
                         }
                     }
                     listAdapter.setList(items);
-                    ((SelectClass) getActivity()).setRequiredLevel(listAdapter.getMaxLevel());
+                    ((SelectClass) getActivity()).setRequiredLevel(listAdapter.getMaxLevel(false));
 
                 }
                 else if (skillUUID != null && index >= 0 && D3Application.getInstance().getClassByName(selectedClass).containsPassiveSkillByUUID(UUID.fromString(skillUUID)))
@@ -297,7 +297,7 @@ public class ClassListFragment extends ListFragment
                     items.set(index, new EntrySkill(s));
                     listAdapter.setList(items);
                     
-                    ((SelectClass) getActivity()).setRequiredLevel(listAdapter.getMaxLevel());
+                    ((SelectClass) getActivity()).setRequiredLevel(listAdapter.getMaxLevel(false));
                 }
                 else
                 {
@@ -342,7 +342,7 @@ public class ClassListFragment extends ListFragment
                         Rune s = D3Application.getInstance().getClassByName(selectedClass).getActiveSkillByUUID(UUID.fromString(skillUUID)).getRuneByUUID(UUID.fromString(runeUUID));
                         items.set(index, new EntryRune(s, D3Application.getInstance().getClassByName(selectedClass).getActiveSkillByUUID(UUID.fromString(skillUUID)).getName(), UUID.fromString(skillUUID)));
                         listAdapter.setList(items);
-                        ((SelectClass) getActivity()).setRequiredLevel(listAdapter.getMaxLevel());
+                        ((SelectClass) getActivity()).setRequiredLevel(listAdapter.getMaxLevel(false));
                     }
                     else
                     {
@@ -363,7 +363,7 @@ public class ClassListFragment extends ListFragment
     
     public int getMaxLevel()
     {
-        return listAdapter.getMaxLevel();
+        return listAdapter.getMaxLevel(false);
     }
     
     public void clear()

@@ -65,38 +65,45 @@ public class EntrySkillAdapter extends ArrayAdapter<Item>
     	return this.items;
     }
 
-    public int getMaxLevel() 
+    public int getMaxLevel(boolean isFollower) 
     {
-        int requiredLevelHero = 0;
-        int requiredLevelFollower = 0;
+        int requiredLevel = 1;
         
         for (Item i : items)
         {
-            if (i instanceof EntrySkill)
+            if (isFollower)
             {
-                int tempLevel = ((EntrySkill) i).getSkill().getRequiredLevel();
-                
-                if (tempLevel > requiredLevelHero)
-                    requiredLevelHero = tempLevel;
-                
+                if (i instanceof EntryFollowerSkill)
+                {
+                    int tempLevel = ((EntryFollowerSkill) i).getSkill().getRequiredLevel();
+                    boolean isChecked = ((EntryFollowerSkill) i).isChecked();
+                    
+                    if (tempLevel > requiredLevel && isChecked)
+                        requiredLevel = tempLevel;
+                }
             }
-            else if (i instanceof EntryRune)
+            else
             {
-                int tempLevel = ((EntryRune) i).getRune().getRequiredLevel();
-                
-                if (tempLevel > requiredLevelHero)
-                    requiredLevelHero = tempLevel;
+                if (i instanceof EntrySkill)
+                {
+                    int tempLevel = ((EntrySkill) i).getSkill().getRequiredLevel();
+                    
+                    if (tempLevel > requiredLevel)
+                        requiredLevel = tempLevel;
+                    
+                }
+                else if (i instanceof EntryRune)
+                {
+                    int tempLevel = ((EntryRune) i).getRune().getRequiredLevel();
+                    
+                    if (tempLevel > requiredLevel)
+                        requiredLevel = tempLevel;
+                }
             }
-            else if (i instanceof EntryFollowerSkill)
-            {
-                int tempLevel = ((EntryFollowerSkill) i).getSkill().getRequiredLevel();
-                
-                if (tempLevel > requiredLevelFollower)
-                    requiredLevelFollower = tempLevel;
-            }
+            
         }
         
-        return requiredLevelHero > 0 ? requiredLevelHero : requiredLevelFollower;
+        return requiredLevel;
     }
 
 }
