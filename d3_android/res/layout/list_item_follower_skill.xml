@@ -15,7 +15,7 @@
         android:layout_centerVertical="true"
         android:contentDescription="Follower skill icon"
         android:paddingLeft="5dp"
-        android:src="@drawable/follower_heal_on" />
+        android:src="@drawable/templar_heal" />
 
     <TextView
         android:id="@+id/follower_skill_title"
