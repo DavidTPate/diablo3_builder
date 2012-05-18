@@ -257,11 +257,29 @@ public class ClassListFragment extends ListFragment
         return listAdapter;
     }
 
-    private void updateFollowerData()
+    private void updateFollowerData(List<ParcelUuid> templar, List<ParcelUuid> scoundrel, List<ParcelUuid> enchantress)
     {
         List<Item> items = ((EntrySkillAdapter) getListAdapter()).getFollowers();
         
-        
+        for (Item i : items)
+        {
+            if (i instanceof EmptyFollower)
+            {
+                EmptyFollower e = (EmptyFollower) i;
+                if (e.getName().equals("Templar"))
+                {
+                    ((EmptyFollower) i).setSkills(templar);
+                }
+                else if (e.getName().equals("Scoundrel"))
+                {
+                    ((EmptyFollower) i).setSkills(scoundrel);
+                }
+                else if (e.getName().equals("Enchantress"))
+                {
+                    ((EmptyFollower) i).setSkills(enchantress);
+                }
+            }
+        }
         
     }
     
@@ -301,6 +319,8 @@ public class ClassListFragment extends ListFragment
                     enchantress = data.getParcelableArrayListExtra("Enchantress");
                     Log.i("ClassList - Got Enchantress Skills", "" + enchantress.size());
                 }
+                
+                updateFollowerData(templar, scoundrel, enchantress);
             }
         }
         
@@ -422,7 +442,7 @@ public class ClassListFragment extends ListFragment
             }
         }
     }
-    
+
     public int getMaxLevel()
     {
         return listAdapter.getMaxLevel(false);

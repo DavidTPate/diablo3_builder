@@ -2,15 +2,16 @@ package com.wemakestuff.d3builder.followers;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.ParcelUuid;
 import android.support.v4.app.ListFragment;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 
@@ -36,8 +37,13 @@ public class FollowerListFragment extends ListFragment
     private String                          selectedFollower;
     private EntrySkillAdapter               listAdapter;
     private OnLoadFragmentsCompleteListener listener;
+    private OnRequiredLevelUpdate requiredLevelListener; 
     private ArrayList<Item>                 items         = new ArrayList<Item>();
 
+    interface OnRequiredLevelUpdate {
+        void OnRequiredLevelUpdate(int level);
+    }
+    
     public static FollowerListFragment newInstance(String selectedFollower, Context c, OnLoadFragmentsCompleteListener listener) {
 
         FollowerListFragment fragment = new FollowerListFragment();
@@ -48,6 +54,16 @@ public class FollowerListFragment extends ListFragment
         return fragment;
     }
 
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            requiredLevelListener = (OnRequiredLevelUpdate) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString() + " must implement RequiredLevelUpdate");
+        }
+    }
+    
     public String getSelectedFollower()
     {
         return selectedFollower;
@@ -60,19 +76,21 @@ public class FollowerListFragment extends ListFragment
         
         if (savedInstanceState != null)
         {
-            selectedFollower = savedInstanceState.getString("selectedClass");
+            selectedFollower = savedInstanceState.getString("selectedFollower");
         }
         
         setRetainInstance(true);
         setListAdapter(getSkillListAdapter());
-        
-        ((SelectFollower) getActivity()).setRequiredLevel(Collections.min(D3Application.getInstance().getFollowerByName(selectedFollower).getRequiredLevels()));
     }
     
     @Override
     public void onResume() {
         super.onResume();
 
+        Log.i("OnResume", selectedFollower);
+        
+        requiredLevelListener.OnRequiredLevelUpdate(getRequiredLevel());
+        
         if (listener != null)
             listener.OnLoadFragmentsComplete(selectedFollower);
     }
@@ -90,7 +108,7 @@ public class FollowerListFragment extends ListFragment
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putString("selectedClass", selectedFollower);
+        outState.putString("selectedFollower", selectedFollower);
     }
     
     @Override
@@ -112,7 +130,6 @@ public class FollowerListFragment extends ListFragment
             if (e.isChecked())
             {
                 e.setIsChecked(false);
-                pairedSkill.setIsChecked(true);
             }
             else
             {
@@ -139,9 +156,10 @@ public class FollowerListFragment extends ListFragment
         ((SelectFollower) getActivity()).updateData();
     }
     
-    private List<ParcelUuid> getSelectedSkills()
+    public List<ParcelUuid> getSelectedSkills()
     {
         List<ParcelUuid> skills = new ArrayList<ParcelUuid>();
+        ArrayList<Item> items = listAdapter.getItems();
         
         for (Item i : items)
         {
@@ -154,7 +172,27 @@ public class FollowerListFragment extends ListFragment
         }
         
         return skills;
+    }
+    
+    public int getRequiredLevel()
+    {
+        
+        List<ParcelUuid> skills = getSelectedSkills();
+        
+        int returnVal = 1;
+        
+        for (ParcelUuid s : skills)
+        {
+            Skill j = D3Application.getInstance().getFollowerByName(selectedFollower).getSkillByUUID(s.getUuid());
             
+            if (j.getRequiredLevel() > returnVal)
+                returnVal = j.getRequiredLevel();
+            
+        }
+        
+        Log.i("Class " + selectedFollower, "Returning requiredLevel " + returnVal);
+        return returnVal;
+        
     }
 
     private EntryFollowerSkill getPairedFollowerSkill(EntrySkillAdapter skillAdapter, EntryFollowerSkill pairedSkill, Follower follower, EntryFollowerSkill e) {
@@ -193,7 +231,7 @@ public class FollowerListFragment extends ListFragment
 
     public int getMaxLevel()
     {
-        return listAdapter.getMaxLevel(true);
+        return ((EntrySkillAdapter) getListAdapter()).getMaxLevel(true);
     }
     
     public void clear()

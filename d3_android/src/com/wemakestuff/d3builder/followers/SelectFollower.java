@@ -2,14 +2,12 @@ package com.wemakestuff.d3builder.followers;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.ParcelUuid;
-import android.os.Parcelable;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.Log;
@@ -22,24 +20,24 @@ import com.google.ads.AdView;
 import com.viewpagerindicator.PageIndicator;
 import com.viewpagerindicator.TitlePageIndicator;
 import com.viewpagerindicator.TitlePageIndicator.IndicatorStyle;
-import com.wemakestuff.d3builder.ClassListFragment;
 import com.wemakestuff.d3builder.OnLoadFragmentsCompleteListener;
 import com.wemakestuff.d3builder.R;
+import com.wemakestuff.d3builder.followers.FollowerListFragment.OnRequiredLevelUpdate;
 import com.wemakestuff.d3builder.string.Replacer;
 import com.wemakestuff.d3builder.string.Vars;
 
-public class SelectFollower extends SherlockFragmentActivity
+public class SelectFollower extends SherlockFragmentActivity implements OnRequiredLevelUpdate
 {
     private FollowerFragmentAdapter mAdapter;
     private ViewPager               mPager;
     private PageIndicator           mIndicator;
     private String                  loadFromUrl;
-    private boolean                 loadedFromUrl = false;
+    private boolean                 loadedFromUrl     = false;
     private TextView                requiredLevel;
     private LinearLayout            requiredLevelWrapper;
-    private List<ParcelUuid>              templarSkills = new ArrayList<ParcelUuid>();
-    private List<ParcelUuid>              scoundrelSkills = new ArrayList<ParcelUuid>();
-    private List<ParcelUuid>              enchantressSkills = new ArrayList<ParcelUuid>();
+    private List<ParcelUuid>        templarSkills     = new ArrayList<ParcelUuid>();
+    private List<ParcelUuid>        scoundrelSkills   = new ArrayList<ParcelUuid>();
+    private List<ParcelUuid>        enchantressSkills = new ArrayList<ParcelUuid>();
 
     /** Called when the activity is first created. */
     @Override
@@ -56,7 +54,7 @@ public class SelectFollower extends SherlockFragmentActivity
 
         requiredLevelWrapper = (LinearLayout) findViewById(R.id.follower_required_level_wrapper);
         requiredLevel = (TextView) findViewById(R.id.follower_required_level);
-        setRequiredLevel(5);
+        setRequiredLevel(1);
 
         AdView adView = (AdView) this.findViewById(R.id.adView);
         AdRequest newAd = new AdRequest();
@@ -117,7 +115,8 @@ public class SelectFollower extends SherlockFragmentActivity
 
             @Override
             public void onPageSelected(int position) {
-                ClassListFragment frag = (ClassListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mPager.getCurrentItem());
+//                FollowerListFragment frag = (FollowerListFragment) mAdapter.getItem(position);
+//                setRequiredLevel(frag.getMaxLevel());
             }
 
             @Override
@@ -140,17 +139,16 @@ public class SelectFollower extends SherlockFragmentActivity
     @Override
     public void onBackPressed() {
 
-        FollowerListFragment frag = (FollowerListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mPager.getCurrentItem());
+        FollowerListFragment frag = (FollowerListFragment) getSupportFragmentManager().findFragmentByTag(
+                "android:switcher:" + R.id.pager + ":" + mPager.getCurrentItem());
         Intent resultIntent = new Intent();
         resultIntent.putParcelableArrayListExtra("Templar", (ArrayList<ParcelUuid>) templarSkills);
         resultIntent.putParcelableArrayListExtra("Scoundrel", (ArrayList<ParcelUuid>) scoundrelSkills);
         resultIntent.putParcelableArrayListExtra("Enchantress", (ArrayList<ParcelUuid>) enchantressSkills);
-        
-     // TODO Add extras or a data URI to this intent as appropriate.
+
         setResult(Activity.RESULT_OK, resultIntent);
         finish();
         super.onBackPressed();
-        // EntrySkillAdapter s = mPager.getAdapter();
 
     }
 
@@ -186,5 +184,11 @@ public class SelectFollower extends SherlockFragmentActivity
 
     public void setEnchantressSkills(List<ParcelUuid> enchantressSkills) {
         this.enchantressSkills = enchantressSkills;
+    }
+
+    @Override
+    public void OnRequiredLevelUpdate(int level) {
+        setRequiredLevel(level);
+
     }
 }
