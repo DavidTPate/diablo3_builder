@@ -201,7 +201,7 @@ public class ClassListFragment extends ListFragment
             intent.putParcelableArrayListExtra(Vars.TEMPLAR, (ArrayList<ParcelUuid>) templarSkills);
             intent.putParcelableArrayListExtra(Vars.SCOUNDREL, (ArrayList<ParcelUuid>) scoundrelSkills);
             intent.putParcelableArrayListExtra(Vars.ENCHANTRESS, (ArrayList<ParcelUuid>) enchantressSkills);
-            intent.putExtra("SkillName", e.getName());
+            intent.putExtra("Follower", e.getName());
             
             startActivityForResult(intent, NEW_FOLLOWER);
         }

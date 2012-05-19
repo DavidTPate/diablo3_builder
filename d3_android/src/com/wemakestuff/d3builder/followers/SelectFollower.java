@@ -33,6 +33,7 @@ public class SelectFollower extends SherlockFragmentActivity implements OnRequir
     private PageIndicator           mIndicator;
     private String                  loadFromUrl;
     private boolean                 loadedFromUrl     = false;
+    private String selectedFollower;
     private TextView                requiredLevel;
     private LinearLayout            requiredLevelWrapper;
     private List<ParcelUuid>        templarSkills     = new ArrayList<ParcelUuid>();
@@ -53,6 +54,9 @@ public class SelectFollower extends SherlockFragmentActivity implements OnRequir
 
         if (getIntent().hasExtra(Vars.ENCHANTRESS))
             enchantressSkills = getIntent().getParcelableArrayListExtra(Vars.ENCHANTRESS);
+        
+        if (getIntent().hasExtra("Follower"))
+            selectedFollower = getIntent().getStringExtra("Follower");
         
         Uri data = getIntent().getData();
         if (data != null) {
@@ -142,6 +146,16 @@ public class SelectFollower extends SherlockFragmentActivity implements OnRequir
         });
 
         mIndicator = indicator;
+        
+        int item = 0;
+        if (selectedFollower.equals(Vars.TEMPLAR))
+            item = 0;
+        else if (selectedFollower.equals(Vars.SCOUNDREL))
+            item = 1;
+        else if (selectedFollower.equals(Vars.ENCHANTRESS))
+            item = 2;
+        
+        indicator.setCurrentItem(item);
 
     }
 
