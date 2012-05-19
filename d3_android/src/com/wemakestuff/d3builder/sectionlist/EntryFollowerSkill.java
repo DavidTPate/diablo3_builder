@@ -35,9 +35,9 @@ public class EntryFollowerSkill implements Item
 
     public void setIsChecked(boolean isChecked)
     {
+        this.isChecked = isChecked;
         if (checkmark != null)
         {
-            this.isChecked = isChecked;
             checkmark.setVisibility(isChecked ? View.VISIBLE : View.GONE);
         }
     }

@@ -4,29 +4,40 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.ParcelUuid;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.Log;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.MenuItem;
 import com.google.ads.AdRequest;
 import com.google.ads.AdView;
 import com.viewpagerindicator.PageIndicator;
 import com.viewpagerindicator.TitlePageIndicator;
 import com.viewpagerindicator.TitlePageIndicator.IndicatorStyle;
+import com.wemakestuff.d3builder.ClassListFragment;
 import com.wemakestuff.d3builder.OnLoadFragmentsCompleteListener;
 import com.wemakestuff.d3builder.R;
-import com.wemakestuff.d3builder.followers.FollowerListFragment.OnRequiredLevelUpdate;
+import com.wemakestuff.d3builder.followers.FollowerListFragment.OnLoadFragmentCompleteListener;
+import com.wemakestuff.d3builder.followers.FollowerListFragment.OnRequiredLevelUpdateListener;
+import com.wemakestuff.d3builder.model.D3Application;
 import com.wemakestuff.d3builder.string.Replacer;
 import com.wemakestuff.d3builder.string.Vars;
 
-public class SelectFollower extends SherlockFragmentActivity implements OnRequiredLevelUpdate
+public class SelectFollower extends SherlockFragmentActivity implements OnRequiredLevelUpdateListener, OnLoadFragmentCompleteListener
 {
     private FollowerFragmentAdapter mAdapter;
     private ViewPager               mPager;
@@ -39,6 +50,8 @@ public class SelectFollower extends SherlockFragmentActivity implements OnRequir
     private List<ParcelUuid>        templarSkills     = new ArrayList<ParcelUuid>();
     private List<ParcelUuid>        scoundrelSkills   = new ArrayList<ParcelUuid>();
     private List<ParcelUuid>        enchantressSkills = new ArrayList<ParcelUuid>();
+    private int loadedFragmentsCount = 0;
+    
 
     /** Called when the activity is first created. */
     @Override
@@ -61,6 +74,7 @@ public class SelectFollower extends SherlockFragmentActivity implements OnRequir
         Uri data = getIntent().getData();
         if (data != null) {
             loadFromUrl = data.toString();
+            Log.i("LoadFromUrl", loadFromUrl);
         }
 
         setContentView(R.layout.select_follower);
@@ -76,48 +90,10 @@ public class SelectFollower extends SherlockFragmentActivity implements OnRequir
         newAd.addTestDevice("E9BD79A28E313B2BDFA0CB0AED6C9697");
         adView.loadAd(newAd);
 
-        OnLoadFragmentsCompleteListener listener = new OnLoadFragmentsCompleteListener() {
-
-            public void OnLoadFragmentsComplete(String className) {
-                //
-                // if (!loadedFromUrl && loadFromUrl != null)
-                // {
-                //
-                // Pattern p =
-                // Pattern.compile("^http://.*/calculator/(.*)#.*$");
-                // Matcher m = p.matcher(loadFromUrl);
-                //
-                // while (m.find())
-                // {
-                // if (m.groupCount() >= 1)
-                // {
-                // int position =
-                // mAdapter.getItemPosition(m.group(1).replace("-", " "));
-                // if (position > 0 &&
-                // className.equalsIgnoreCase(m.group(1).replace("-", " ")))
-                // {
-                // loadedFromUrl = true;
-                // loadClassFromUrl(loadFromUrl);
-                // }
-                // else if (position == 0 &&
-                // !className.equalsIgnoreCase(m.group(1).replace("-", " ")))
-                // {
-                // loadedFromUrl = true;
-                // loadClassFromUrl(loadFromUrl);
-                // }
-                // }
-                // }
-                // }
-                // else
-                // {
-                // }
-            }
-        };
-
-        mAdapter = new FollowerFragmentAdapter(getSupportFragmentManager(), SelectFollower.this, listener);
+        mAdapter = new FollowerFragmentAdapter(getSupportFragmentManager(), SelectFollower.this);
 
         mPager = (ViewPager) findViewById(R.id.follower_pager);
-        mPager.setOffscreenPageLimit(5);
+        mPager.setOffscreenPageLimit(2);
         mPager.setAdapter(mAdapter);
 
         TitlePageIndicator indicator = (TitlePageIndicator) findViewById(R.id.select_follower_indicator);
@@ -147,16 +123,6 @@ public class SelectFollower extends SherlockFragmentActivity implements OnRequir
 
         mIndicator = indicator;
         
-        int item = 0;
-        if (selectedFollower.equals(Vars.TEMPLAR))
-            item = 0;
-        else if (selectedFollower.equals(Vars.SCOUNDREL))
-            item = 1;
-        else if (selectedFollower.equals(Vars.ENCHANTRESS))
-            item = 2;
-        
-        indicator.setCurrentItem(item);
-
     }
 
     public List<ParcelUuid> getSkillsByClass(String className)
@@ -178,11 +144,159 @@ public class SelectFollower extends SherlockFragmentActivity implements OnRequir
     }
     
     @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+
+        MenuInflater inflater = getSupportMenuInflater();
+        inflater.inflate(R.menu.main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+
+        if (item.getItemId() == R.id.share)
+        {
+            Toast.makeText(getApplicationContext(), getFollowersLink(), Toast.LENGTH_LONG).show();
+//            Intent intent = new Intent(Intent.ACTION_SEND);
+//            intent.setType("text/plain");
+//            intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Check out my " + frag.getSelectedClass());
+//            intent.putExtra(android.content.Intent.EXTRA_TEXT, frag.linkifyClassBuild());
+//            startActivity(Intent.createChooser(intent, "Share using"));
+        }
+        else if (item.getItemId() == R.id.load)
+        {
+            mIndicator.notifyDataSetChanged();
+            mAdapter.notifyDataSetChanged();
+            // loadClassFromUrl("http://us.battle.net/d3/en/calculator/monk#aZYdfT!aZb!aaaaaa");
+            // SharedPreferences keyVals =
+            // this.getApplicationContext().getSharedPreferences("saved_build_list",
+            // MODE_PRIVATE);
+            // loadClassFromUrl(keyVals.getString("test",
+            // "http://us.battle.net/d3/en/calculator/barbarian#......!...!......"));
+
+//            builds = new ArrayList<ClassBuild>();
+//
+//            SharedPreferences valVals = getSharedPreferences("saved_build_value", MODE_PRIVATE);
+//            SharedPreferences clssVals = getSharedPreferences("saved_build_class", MODE_PRIVATE);
+//
+//            Map<String, String> urls = (Map<String, String>) valVals.getAll();
+//            Map<String, String> classes = (Map<String, String>) clssVals.getAll();
+//
+//            for (Map.Entry<String, String> pairs : urls.entrySet())
+//            {
+//                if (classes.containsKey(pairs.getKey()))
+//                {
+//                    builds.add(new ClassBuild(pairs.getKey(), classes.get(pairs.getKey()), pairs.getValue()));
+//                }
+//            }
+//
+//            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//            builder.setTitle("Load Saved Build");
+//
+//            final ListView buildList = new ListView(this);
+//
+//            OnLoadBuildClickListener loadBuildListener = new OnLoadBuildClickListener()
+//            {
+//
+//                @Override
+//                public void onLoadBuildClick(ClassBuild build)
+//                {
+//
+//                    loadClassFromUrl(build.getUrl());
+//                }
+//                
+//                @Override
+//                public void onLoadBuildDismiss()
+//                {
+//                    dialog.dismiss();
+//                }
+//                
+//                @Override
+//                public void onDeleteBuild(ClassBuild build)
+//                {
+//                    builds.remove(build);
+//                    aAdapter.notifyDataSetChanged();
+//                }
+//            };
+//
+//            aAdapter = new ClassBuildAdapter(builds, this, loadBuildListener);
+//            buildList.setAdapter(aAdapter);
+//            builder.setView(buildList);
+//
+//            dialog = builder.create();
+//
+//            dialog.show();
+
+        }
+        else if (item.getItemId() == R.id.save)
+        {
+            delinkifyClassBuild("http://us.battle.net/d3/en/calculator/follower#0100!..10!.01");
+//            final AlertDialog.Builder alert = new AlertDialog.Builder(this);
+//
+//            alert.setTitle("Save Current Build As...");
+//            alert.setMessage("Please Enter a Name to use to Save the Current Build.");
+//
+//            // Set an EditText view to get user input
+//            final EditText input = new EditText(this);
+//            alert.setView(input);
+//
+//            alert.setPositiveButton("Save", new DialogInterface.OnClickListener()
+//            {
+//
+//                public void onClick(DialogInterface dialog, int whichButton)
+//                {
+//
+//                    value = input.getText().toString();
+//                    
+//                    SharedPreferences valVals = getSharedPreferences("saved_build_value", MODE_PRIVATE);
+//                    SharedPreferences.Editor valEdit = valVals.edit();
+//                    SharedPreferences clssVals = getSharedPreferences("saved_build_class", MODE_PRIVATE);
+//                    SharedPreferences.Editor clssEdit = clssVals.edit();
+//
+//                    while (valVals.contains(value) || clssVals.contains(value))
+//                    {
+//                        Toast toast = Toast.makeText(getApplicationContext(), "A Build is Already Saved as: " + value + ". Enter a New Name.", Toast.LENGTH_SHORT);
+//                        toast.show();
+//                    }
+//
+//                    if (value != null && !(value.length() == 0))
+//                    {
+//                        ClassListFragment frag = (ClassListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mPager.getCurrentItem());
+//                        valEdit.putString(value, frag.linkifyClassBuild());
+//                        clssEdit.putString(value, frag.getSelectedClass());
+//
+//                        valEdit.commit();
+//                        clssEdit.commit();
+//                    }
+//                }
+//            });
+//
+//            alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener()
+//            {
+//
+//                public void onClick(DialogInterface dialog, int whichButton)
+//                {
+//
+//                    value = "";
+//                }
+//            });
+//
+//            alert.show();
+
+        }
+        else if (item.getItemId() == R.id.clear)
+        {
+            DialogFragment newFragment = MyAlertDialogFragment.newInstance(R.string.alert_dialog_title);
+            newFragment.show(getSupportFragmentManager(), "dialog");
+        }
+        return super.onOptionsItemSelected(item);
+    }
+    
+    @Override
     public void onBackPressed() {
 
-        FollowerListFragment frag = (FollowerListFragment) getSupportFragmentManager().findFragmentByTag(
-                "android:switcher:" + R.id.pager + ":" + mPager.getCurrentItem());
-        
         Intent resultIntent = new Intent();
         resultIntent.putParcelableArrayListExtra(Vars.TEMPLAR, (ArrayList<ParcelUuid>) templarSkills);
         resultIntent.putParcelableArrayListExtra(Vars.SCOUNDREL, (ArrayList<ParcelUuid>) scoundrelSkills);
@@ -190,8 +304,78 @@ public class SelectFollower extends SherlockFragmentActivity implements OnRequir
 
         setResult(Activity.RESULT_OK, resultIntent);
         finish();
-        super.onBackPressed();
 
+    }
+    
+
+    public void delinkifyClassBuild(String url) {
+
+        FollowerListFragment templar = (FollowerListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.follower_pager + ":" + "0");
+        FollowerListFragment scoundrel = (FollowerListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.follower_pager + ":" + "1");
+        FollowerListFragment enchantress = (FollowerListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.follower_pager + ":" + "2");
+        
+        String build = url.split("#")[1];
+        String templarLink;
+        String scoundrelLink;
+        String enchantressLink;
+        
+        Log.i("Split build", build);
+        
+        String[] followers = build.split("!");
+        
+        for (String s : followers)
+        {
+            Log.i("Followers@!#$" , s);
+        }
+        Log.i("Followers After split!", followers.toString());
+        switch (followers.length) {
+            case 1:
+                templarLink = followers[0];
+                templar.setSelectedSkills(templarLink);
+                break;
+    
+            case 2:
+                templarLink = followers[0];
+                scoundrelLink = followers[1];
+                
+                templar.setSelectedSkills(templarLink);
+                scoundrel.setSelectedSkills(scoundrelLink);
+                break;
+    
+            case 3:
+                templarLink = followers[0];
+                scoundrelLink = followers[1];
+                enchantressLink = followers[2];
+                
+                templar.setSelectedSkills(templarLink);
+                scoundrel.setSelectedSkills(scoundrelLink);
+                enchantress.setSelectedSkills(enchantressLink);
+                break;
+    
+            default:
+                break;
+        }
+        
+        updateData();
+    }
+    
+    public String getFollowersLink()
+    {
+        StringBuffer followerLink = new StringBuffer("http://us.battle.net/d3/en/calculator/follower#");
+        
+        Log.i("CurrentItem", mPager.getCurrentItem() + "");
+        FollowerListFragment frag = (FollowerListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.follower_pager + ":" + "0");
+        followerLink.append(frag.linkifyClassBuild());
+        followerLink.append(D3Application.getInstance().getSkillAttributes().getFollowerSeparator());
+
+        frag = (FollowerListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.follower_pager + ":" + "1");
+        followerLink.append(frag.linkifyClassBuild());
+        followerLink.append(D3Application.getInstance().getSkillAttributes().getFollowerSeparator());
+        
+        frag = (FollowerListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.follower_pager + ":" + "2");
+        followerLink.append(frag.linkifyClassBuild());
+        
+        return followerLink.toString();
     }
 
     public void updateData() {
@@ -232,5 +416,81 @@ public class SelectFollower extends SherlockFragmentActivity implements OnRequir
     public void OnRequiredLevelUpdate(int level) {
         setRequiredLevel(level);
 
+    }
+    
+    public void doPositiveClick()
+    {
+
+        ClassListFragment frag = (ClassListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mPager.getCurrentItem());
+        frag.clear();
+    }
+
+    public void doNegativeClick()
+    {
+
+    }
+
+    public static class MyAlertDialogFragment extends DialogFragment
+    {
+
+        public static MyAlertDialogFragment newInstance(int title)
+        {
+
+            MyAlertDialogFragment frag = new MyAlertDialogFragment();
+            Bundle args = new Bundle();
+            args.putInt("title", title);
+            frag.setArguments(args);
+            return frag;
+        }
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState)
+        {
+
+            int title = getArguments().getInt("title");
+
+            return new AlertDialog.Builder(getActivity()).setTitle(title).setPositiveButton(R.string.alert_dialog_ok, new DialogInterface.OnClickListener()
+            {
+
+                public void onClick(DialogInterface dialog, int whichButton)
+                {
+
+                    ((SelectFollower) getActivity()).doPositiveClick();
+                }
+            }).setNegativeButton(R.string.alert_dialog_cancel, new DialogInterface.OnClickListener()
+            {
+
+                public void onClick(DialogInterface dialog, int whichButton)
+                {
+
+                    ((SelectFollower) getActivity()).doNegativeClick();
+                }
+            }).create();
+        }
+    }
+
+    @Override
+    public void OnLoadFragmentComplete(String follower) {
+        loadedFragmentsCount++;
+        
+        if (loadedFragmentsCount == 3 && loadFromUrl != null)
+        {
+            int item = 0;
+            
+            if (selectedFollower == null || selectedFollower.equals(""))
+                selectedFollower = Vars.TEMPLAR;
+            
+            if (selectedFollower.equals(Vars.TEMPLAR))
+                item = 0;
+            else if (selectedFollower.equals(Vars.SCOUNDREL))
+                item = 1;
+            else if (selectedFollower.equals(Vars.ENCHANTRESS))
+                item = 2;
+            
+            ((TitlePageIndicator) mIndicator).setCurrentItem(item);
+            
+            delinkifyClassBuild(loadFromUrl);
+        }
+        
     }
 }

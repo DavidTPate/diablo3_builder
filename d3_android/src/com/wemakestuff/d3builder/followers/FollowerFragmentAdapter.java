@@ -16,13 +16,11 @@ public class FollowerFragmentAdapter extends FragmentPagerAdapter implements Tit
 {
     private List<Follower> followers;
     private Context context;
-    public OnLoadFragmentsCompleteListener listener;
 
-    public FollowerFragmentAdapter(FragmentManager fm, Context context, OnLoadFragmentsCompleteListener listener) {
+    public FollowerFragmentAdapter(FragmentManager fm, Context context) {
         super(fm);
         this.context = context;
         this.followers = D3Application.getInstance().getFollowers();
-        this.listener = listener;
     }
 
     @Override
@@ -32,7 +30,7 @@ public class FollowerFragmentAdapter extends FragmentPagerAdapter implements Tit
 
     @Override
     public Fragment getItem(int position) {
-        FollowerListFragment classList = FollowerListFragment.newInstance(followers.get(position).getName(), context, listener);
+        FollowerListFragment classList = FollowerListFragment.newInstance(followers.get(position).getName(), context);
         return classList;
         
     }
@@ -66,9 +64,4 @@ public class FollowerFragmentAdapter extends FragmentPagerAdapter implements Tit
         return -1;
     }
     
-    public void setOnLoadFragmentsCompleteListener(OnLoadFragmentsCompleteListener listener)
-    {
-        this.listener = listener;
-    }
-
 }
