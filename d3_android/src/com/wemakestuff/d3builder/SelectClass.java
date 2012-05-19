@@ -202,6 +202,27 @@ public class SelectClass extends SherlockFragmentActivity
                 {
 
                     value = input.getText().toString();
+                    
+                    SharedPreferences valVals = getSharedPreferences("saved_build_value", MODE_PRIVATE);
+                    SharedPreferences.Editor valEdit = valVals.edit();
+                    SharedPreferences clssVals = getSharedPreferences("saved_build_class", MODE_PRIVATE);
+                    SharedPreferences.Editor clssEdit = clssVals.edit();
+
+                    while (valVals.contains(value) || clssVals.contains(value))
+                    {
+                        Toast toast = Toast.makeText(getApplicationContext(), "A Build is Already Saved as: " + value + ". Enter a New Name.", Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
+
+                    if (value != null && !(value.length() == 0))
+                    {
+                        ClassListFragment frag = (ClassListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mPager.getCurrentItem());
+                        valEdit.putString(value, frag.linkifyClassBuild());
+                        clssEdit.putString(value, frag.getSelectedClass());
+
+                        valEdit.commit();
+                        clssEdit.commit();
+                    }
                 }
             });
 
@@ -217,26 +238,6 @@ public class SelectClass extends SherlockFragmentActivity
 
             alert.show();
 
-            SharedPreferences valVals = getSharedPreferences("saved_build_value", MODE_PRIVATE);
-            SharedPreferences.Editor valEdit = valVals.edit();
-            SharedPreferences clssVals = getSharedPreferences("saved_build_class", MODE_PRIVATE);
-            SharedPreferences.Editor clssEdit = clssVals.edit();
-
-            while (valVals.contains(value) || clssVals.contains(value))
-            {
-                Toast toast = Toast.makeText(this, "A Build is Already Saved as: " + value + ". Enter a New Name.", Toast.LENGTH_SHORT);
-                toast.show();
-            }
-
-            if (value != null && !(value.length() == 0))
-            {
-                ClassListFragment frag = (ClassListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mPager.getCurrentItem());
-                valEdit.putString(value, frag.linkifyClassBuild());
-                clssEdit.putString(value, frag.getSelectedClass());
-
-                valEdit.commit();
-                clssEdit.commit();
-            }
         }
         else if (item.getItemId() == R.id.clear)
         {
