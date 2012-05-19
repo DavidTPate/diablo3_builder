@@ -117,7 +117,7 @@ public class SelectClass extends SherlockFragmentActivity
         {
             ClassListFragment frag = (ClassListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mPager.getCurrentItem());
             String subject = getString(R.string.Check_Out_My) + " " + frag.getSelectedClass() + " " + getString(R.string.Build);
-            Funcs.shareBuild(this, subject, subject + ": " + frag.linkifyClassBuild());
+            Funcs.shareBuild(this, subject, subject + ": " + frag.linkifyClassBuild(getString(R.string.EN_Build_URL)));
 
         }
         else if (item.getItemId() == R.id.load)

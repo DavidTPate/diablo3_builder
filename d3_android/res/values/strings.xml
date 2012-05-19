@@ -16,4 +16,6 @@
 	<string name="Check_Out_My">Check out my</string>
 	<string name="Build">build</string>
 	<string name="Load_Build">Load Build</string>
+	<string name="EN_Build_URL">http://us.battle.net/d3/en/calculator/</string>
+	<string name="D3_Builder_URL">d3builder://build/</string>
 </resources>

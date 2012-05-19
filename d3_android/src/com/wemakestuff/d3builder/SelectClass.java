@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -42,9 +43,9 @@ import com.wemakestuff.d3builder.string.Vars;
 public class SelectClass extends SherlockFragmentActivity implements OnRequiredLevelUpdateListener
 {
 
-    private ClassFragmentAdapter mAdapter;
-    private ViewPager            mPager;
-    private PageIndicator        mIndicator;
+    private ClassFragmentAdapter  mAdapter;
+    private ViewPager             mPager;
+    private PageIndicator         mIndicator;
     // private SpinnerAdapter mSpinnerAdapter;
     private static int           maxLevel      = 60;
     private String               loadFromUrl;
@@ -104,33 +105,32 @@ public class SelectClass extends SherlockFragmentActivity implements OnRequiredL
             }
         }
     }
-    
+
     public void loadClassFromUrl(ClassBuild build)
     {
-        
+
         Pattern p = Pattern.compile("^http://.*/calculator/(.*)#.*$");
         Matcher m = p.matcher(build.getUrl());
-        
+
         ClassListFragment frag = null;
-        
+
         while (m.find())
         {
             if (m.groupCount() >= 1)
             {
                 int position = mAdapter.getItemPosition(m.group(1).replace("-", " "));
                 frag = (ClassListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + position);
-                
+
                 if (frag != null)
                 {
                     mAdapter.setOnLoadFragmentsCompleteListener(null);
                     frag.delinkifyClassBuild(build.getUrl());
                     mPager.setCurrentItem(position);
                     setRequiredLevel(frag.getMaxLevel());
-                    
+
                     if (build.getFollowersUrl() != null)
                         frag.setFollowerSkills(build.getFollowersUrl());
-                    
-                    
+
                 }
             }
         }
@@ -142,23 +142,19 @@ public class SelectClass extends SherlockFragmentActivity implements OnRequiredL
 
         if (item.getItemId() == R.id.share)
         {
-            ClassListFragment frag = (ClassListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mPager.getCurrentItem());
+            final ClassListFragment frag = (ClassListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mPager.getCurrentItem());
+            String subject = getString(R.string.Check_Out_My) + " " + frag.getSelectedClass() + " " + getString(R.string.Build);
+            String classes = frag.linkifyClassBuild(getString(R.string.EN_Build_URL));
+            String followers = frag.getFollowerUrl();
+
             Intent intent = new Intent(Intent.ACTION_SEND);
             intent.setType("text/plain");
-            intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Check out my " + frag.getSelectedClass());
-            intent.putExtra(android.content.Intent.EXTRA_TEXT, frag.linkifyClassBuild());
+            intent.putExtra(android.content.Intent.EXTRA_SUBJECT, subject);
+            intent.putExtra(android.content.Intent.EXTRA_TEXT, subject + " " + classes + (frag.getFollowerSkillsCount() > 0 ? " and my followers: " + followers : ""));
             startActivity(Intent.createChooser(intent, "Share using"));
         }
         else if (item.getItemId() == R.id.load)
         {
-            // loadClassFromUrl("http://us.battle.net/d3/en/calculator/monk#aZYdfT!aZb!aaaaaa");
-            // SharedPreferences keyVals =
-            // this.getApplicationContext().getSharedPreferences("saved_build_list",
-            // MODE_PRIVATE);
-            // loadClassFromUrl(keyVals.getString("test",
-            // "http://us.battle.net/d3/en/calculator/barbarian#......!...!......"));
-// [e28bb57b-c629-40b8-9e48-9a81833de8ce]|[447a34cc-aa48-47c6-a521-272f65d5060f, 9f8ee560-a467-4a24-86c3-4b1ac98efd84]|[18042976-f351-42f0-a8a9-80d3da0ce5de]
-
             builds = new ArrayList<ClassBuild>();
 
             SharedPreferences valVals = getSharedPreferences("saved_build_value", MODE_PRIVATE);
@@ -173,9 +169,7 @@ public class SelectClass extends SherlockFragmentActivity implements OnRequiredL
             {
                 if (classes.containsKey(pairs.getKey()))
                 {
-                    ClassBuild c = new ClassBuild(
-                                                    pairs.getKey(), classes.get(pairs.getKey())
-                                                  , pairs.getValue(), followers.get(pairs.getKey()));
+                    ClassBuild c = new ClassBuild(pairs.getKey(), classes.get(pairs.getKey()), pairs.getValue(), followers.get(pairs.getKey()));
                     builds.add(c);
                 }
             }
@@ -194,16 +188,18 @@ public class SelectClass extends SherlockFragmentActivity implements OnRequiredL
 
                     loadClassFromUrl(build);
                 }
-                
+
                 @Override
                 public void onLoadBuildDismiss()
                 {
+
                     dialog.dismiss();
                 }
-                
+
                 @Override
                 public void onDeleteBuild(ClassBuild build)
                 {
+
                     builds.remove(build);
                     aAdapter.notifyDataSetChanged();
                 }
@@ -236,7 +232,7 @@ public class SelectClass extends SherlockFragmentActivity implements OnRequiredL
                 {
 
                     value = input.getText().toString();
-                    
+
                     SharedPreferences valVals = getSharedPreferences("saved_build_value", MODE_PRIVATE);
                     SharedPreferences.Editor valEdit = valVals.edit();
                     SharedPreferences clssVals = getSharedPreferences("saved_build_class", MODE_PRIVATE);
@@ -253,11 +249,11 @@ public class SelectClass extends SherlockFragmentActivity implements OnRequiredL
                     if (value != null && !(value.length() == 0))
                     {
                         ClassListFragment frag = (ClassListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mPager.getCurrentItem());
-                        valEdit.putString(value, frag.linkifyClassBuild());
+                        valEdit.putString(value, frag.linkifyClassBuild(getString(R.string.EN_Build_URL)));
                         clssEdit.putString(value, frag.getSelectedClass());
                         Log.i("Follower Url", frag.getFollowerUrl());
                         followersEdit.putString(value, frag.getFollowerUrl());
-                        
+
                         valEdit.commit();
                         clssEdit.commit();
                         followersEdit.commit();
@@ -298,7 +294,7 @@ public class SelectClass extends SherlockFragmentActivity implements OnRequiredL
         {
             loadFromUrl = data.toString();
             Log.i("LoadFromUrl", data.toString());
-            
+
             if (loadFromUrl.contains("follower"))
             {
                 Intent intent = new Intent(this, SelectFollower.class);
@@ -308,22 +304,10 @@ public class SelectClass extends SherlockFragmentActivity implements OnRequiredL
         }
 
         setContentView(R.layout.select_skill);
-        
+
         requiredLevelWrapper = (LinearLayout) findViewById(R.id.required_level_wrapper);
         requiredLevel = (TextView) findViewById(R.id.required_level);
         setRequiredLevel(1);
-        
-        if (savedInstanceState != null)
-        {
-            // if (savedInstanceState.containsKey("MaxLevel"))
-            // {
-            // maxLevel = savedInstanceState.getInt("MaxLevel");
-            // }
-        }
-        else
-        {
-            // maxLevel = 60;
-        }
 
         AdView adView = (AdView) this.findViewById(R.id.adView);
         AdRequest newAd = new AdRequest();
@@ -331,33 +315,6 @@ public class SelectClass extends SherlockFragmentActivity implements OnRequiredL
         newAd.addTestDevice("E85A995C749AE015AA4EE195878C0982");
         newAd.addTestDevice("E9BD79A28E313B2BDFA0CB0AED6C9697");
         adView.loadAd(newAd);
-
-        // mSpinnerAdapter = ArrayAdapter.createFromResource(this,
-        // R.array.levels, android.R.layout.simple_dropdown_item_1line);
-        //
-        // ActionBar actionBar = getSupportActionBar();
-        //
-        // actionBar.setDisplayShowTitleEnabled(false);
-        // actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
-        //
-        // ActionBar.OnNavigationListener mNavigationCallback = new
-        // ActionBar.OnNavigationListener()
-        // {
-        //
-        // @Override
-        // public boolean onNavigationItemSelected(int itemPosition, long
-        // itemId)
-        // {
-        //
-        // maxLevel = 60 - itemPosition;
-        // Log.i("MaxLevel", "" + maxLevel);
-        // return true;
-        // }
-        // };
-        //
-        // actionBar.setListNavigationCallbacks(mSpinnerAdapter,
-        // mNavigationCallback);
-        // actionBar.setSelectedNavigationItem(60 - maxLevel);
 
         OnLoadFragmentsCompleteListener listener = new OnLoadFragmentsCompleteListener()
         {
@@ -388,6 +345,11 @@ public class SelectClass extends SherlockFragmentActivity implements OnRequiredL
                             }
                         }
                     }
+
+                    if (!loadedFromUrl)
+                    {
+
+                    }
                 }
                 else
                 {
@@ -404,40 +366,45 @@ public class SelectClass extends SherlockFragmentActivity implements OnRequiredL
         TitlePageIndicator indicator = (TitlePageIndicator) findViewById(R.id.select_skill_indicator);
         indicator.setViewPager(mPager);
         indicator.setFooterIndicatorStyle(IndicatorStyle.Triangle);
-        
-        indicator.setOnPageChangeListener(new OnPageChangeListener() {
-            
+
+        indicator.setOnPageChangeListener(new OnPageChangeListener()
+        {
+
             @Override
-            public void onPageSelected(int position) {
+            public void onPageSelected(int position)
+            {
+
                 ClassListFragment frag = (ClassListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mPager.getCurrentItem());
                 setRequiredLevel(frag.getMaxLevel());
             }
-            
+
             @Override
-            public void onPageScrolled(int arg0, float arg1, int arg2) {
+            public void onPageScrolled(int arg0, float arg1, int arg2)
+            {
+
                 // TODO Auto-generated method stub
-                
+
             }
-            
+
             @Override
-            public void onPageScrollStateChanged(int arg0) {
+            public void onPageScrollStateChanged(int arg0)
+            {
+
                 // TODO Auto-generated method stub
-                
+
             }
         });
-        
+
         mIndicator = indicator;
 
     }
-    
+
     public void setRequiredLevel(int level)
     {
-        int currentLevel = Integer.valueOf(requiredLevel.getText().toString().substring(16));
-        Log.i("CurrentLevel", "" + currentLevel);
-        Log.i("NewLevel", "" + level);
+
         requiredLevel.setText(Replacer.replace("Required Level: " + level, "\\d+", Vars.DIABLO_GREEN));
     }
-    
+
     @Override
     protected void onSaveInstanceState(Bundle outState)
     {
