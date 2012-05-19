@@ -13,4 +13,7 @@
 	<string name="Required_level">Required Level:</string>
 	<string name="Unlocked_at_level">Unlocked at Level:</string>
 	<string name="Max_Level">Max Level</string>
+	<string name="Check_Out_My">Check out my</string>
+	<string name="Build">build</string>
+	<string name="Load_Build">Load Build</string>
 </resources>

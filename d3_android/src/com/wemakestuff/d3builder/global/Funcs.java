@@ -1,0 +1,63 @@
+
+package com.wemakestuff.d3builder.global;
+
+import java.util.ArrayList;
+import java.util.Map;
+
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+
+import com.google.ads.AdRequest;
+import com.google.ads.AdView;
+import com.wemakestuff.d3builder.classes.ClassBuildAdapter;
+import com.wemakestuff.d3builder.model.ClassBuild;
+
+public class Funcs
+{
+
+    public static void getNewAd(AdView v)
+    {
+
+        AdRequest newAd = new AdRequest();
+        newAd.addTestDevice("BDD7A55C1502190E502F14CBFDF9ABC7");
+        newAd.addTestDevice("E85A995C749AE015AA4EE195878C0982");
+        newAd.addTestDevice("E9BD79A28E313B2BDFA0CB0AED6C9697");
+        v.loadAd(newAd);
+    }
+
+    public static void shareBuild(Context context, String subject, String content)
+    {
+
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(android.content.Intent.EXTRA_SUBJECT, subject);
+        intent.putExtra(android.content.Intent.EXTRA_TEXT, content);
+        context.startActivity(Intent.createChooser(intent, "Share using..."));
+    }
+
+    public static ArrayList<ClassBuild> getClassAvailableBuilds(Context context)
+    {
+
+        ArrayList<ClassBuild> b = new ArrayList<ClassBuild>();
+
+        SharedPreferences valVals = context.getSharedPreferences("saved_build_value", Context.MODE_PRIVATE);
+        SharedPreferences clssVals = context.getSharedPreferences("saved_build_class", Context.MODE_PRIVATE);
+        SharedPreferences followerVals = context.getSharedPreferences("saved_build_follower", Context.MODE_PRIVATE);
+
+        Map<String, String> urls = (Map<String, String>) valVals.getAll();
+        Map<String, String> classes = (Map<String, String>) clssVals.getAll();
+        Map<String, String> followers = (Map<String, String>) followerVals.getAll();
+
+        for (Map.Entry<String, String> pairs : urls.entrySet())
+        {
+            if (classes.containsKey(pairs.getKey()) || followers.containsKey(pairs.getKey()))
+            {
+                ClassBuild c = new ClassBuild(pairs.getKey(), classes.get(pairs.getKey()), pairs.getValue(), followers.get(pairs.getKey()));
+                b.add(c);
+            }
+        }
+
+        return b;
+    }
+}
