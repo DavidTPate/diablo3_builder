@@ -21,6 +21,7 @@ import android.view.View;
 import android.widget.ListView;
 
 import com.wemakestuff.d3builder.followers.SelectFollower;
+import com.wemakestuff.d3builder.followers.FollowerListFragment.OnRequiredLevelUpdateListener;
 import com.wemakestuff.d3builder.model.D3Application;
 import com.wemakestuff.d3builder.model.Follower;
 import com.wemakestuff.d3builder.model.Rune;
@@ -47,6 +48,7 @@ public class ClassListFragment extends ListFragment
     private List<ParcelUuid>        templarSkills     = new ArrayList<ParcelUuid>();
     private List<ParcelUuid>        scoundrelSkills   = new ArrayList<ParcelUuid>();
     private List<ParcelUuid>        enchantressSkills = new ArrayList<ParcelUuid>();
+    private OnRequiredLevelUpdateListener   requiredLevelListener;
     int                                     index;
     int                                     GET_SKILL     = 0;
     int                                     REPLACE_SKILL = 1;
@@ -54,6 +56,7 @@ public class ClassListFragment extends ListFragment
     int                                     REPLACE_RUNE  = 3;
     int                                     NEW_FOLLOWER  = 4;
     int                                     REPLACE_FOLLOWER  = 5;
+    int followerRequiredLevel = 1;
 
     ArrayList<Item>                         items         = new ArrayList<Item>();
 
@@ -70,6 +73,17 @@ public class ClassListFragment extends ListFragment
     public String getSelectedClass()
     {
         return selectedClass;
+    }
+    
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        
+        try {
+            requiredLevelListener = (OnRequiredLevelUpdateListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString() + " must implement OnRequiredLevelUpdate(int level)");
+        }
     }
     
     @Override
@@ -136,7 +150,7 @@ public class ClassListFragment extends ListFragment
             Intent intent = new Intent(v.getContext(), SelectSkill.class);
             b.putString("SkillType", e.getSkillType());
             b.putString("SelectedClass", selectedClass);
-            b.putInt("RequiredLevel", maxLevel);
+            b.putInt("RequiredLevel", getMaxLevel());
             b.putInt("Index", position);
             
             List<ParcelUuid> skills = listAdapter.getCurrentSkills();
@@ -155,7 +169,7 @@ public class ClassListFragment extends ListFragment
             Intent intent = new Intent(v.getContext(), SelectSkill.class);
             b.putString("SkillType", e.getSkill().getType());
             b.putString("SelectedClass", selectedClass);
-            b.putInt("RequiredLevel", maxLevel);
+            b.putInt("RequiredLevel", getMaxLevel());
             b.putInt("Index", position);
             
             List<ParcelUuid> skills = listAdapter.getCurrentSkills();
@@ -174,7 +188,7 @@ public class ClassListFragment extends ListFragment
             Intent intent = new Intent(v.getContext(), SelectRune.class);
             b.putString("SkillName", e.getSkillName());
             b.putString("SelectedClass", selectedClass);
-            b.putInt("RequiredLevel", maxLevel);
+            b.putInt("RequiredLevel", getMaxLevel());
             b.putSerializable("SkillUUID", e.getSkillUUID());
             b.putInt("Index", position);
             intent.putExtras(b);
@@ -188,7 +202,7 @@ public class ClassListFragment extends ListFragment
             Intent intent = new Intent(v.getContext(), SelectRune.class);
             b.putString("SkillName", e.getSkillName());
             b.putString("SelectedClass", selectedClass);
-            b.putInt("RequiredLevel", maxLevel);
+            b.putInt("RequiredLevel", getMaxLevel());
             b.putSerializable("SkillUUID", e.getSkillUUID());
             b.putInt("Index", position);
             intent.putExtras(b);
@@ -321,6 +335,13 @@ public class ClassListFragment extends ListFragment
                     Log.i("URL", followerUrl);
                 }
                 
+                if (data.hasExtra(Vars.REQUIRED_LEVEL))
+                {
+                    followerRequiredLevel = data.getIntExtra(Vars.REQUIRED_LEVEL, 1);
+                    Log.i("Got required level back!", "" + followerRequiredLevel);
+                    requiredLevelListener.OnRequiredLevelUpdate(Vars.FOLLOWERS, getMaxLevel());
+                }
+                
                 updateFollowerData(templarSkills, scoundrelSkills, enchantressSkills, followerUrl);
             }
         }
@@ -371,7 +392,7 @@ public class ClassListFragment extends ListFragment
                         }
                     }
                     listAdapter.setList(items);
-                    ((SelectClass) getActivity()).setRequiredLevel(listAdapter.getMaxLevel(false));
+                    requiredLevelListener.OnRequiredLevelUpdate(selectedClass, getMaxLevel());
 
                 }
                 else if (skillUUID != null && index >= 0 && D3Application.getInstance().getClassByName(selectedClass).containsPassiveSkillByUUID(UUID.fromString(skillUUID)))
@@ -380,7 +401,7 @@ public class ClassListFragment extends ListFragment
                     items.set(index, new EntrySkill(s));
                     listAdapter.setList(items);
                     
-                    ((SelectClass) getActivity()).setRequiredLevel(listAdapter.getMaxLevel(false));
+                    requiredLevelListener.OnRequiredLevelUpdate(selectedClass, getMaxLevel());
                 }
                 else
                 {
@@ -446,7 +467,7 @@ public class ClassListFragment extends ListFragment
 
     public int getMaxLevel()
     {
-        return listAdapter.getMaxLevel(false);
+        return Math.max(followerRequiredLevel, listAdapter.getMaxLevel(false));
     }
     
     public void clear()
@@ -516,39 +537,6 @@ public class ClassListFragment extends ListFragment
         return "http://us.battle.net/d3/en/calculator/" + selectedClass.toLowerCase().replace(" ", "-") + "#" + activeVal.toString() + skillAttrbs.getPassiveSeparator() + passiveVal.toString() + skillAttrbs.getRuneSeparator() + runeVal.toString();
     }
 
-    public String getFollowerSkills()
-    {
-        List<Item> items = ((EntrySkillAdapter) getListAdapter()).getFollowers();
-        String templar = null;
-        String scoundrel = null;
-        String enchantress = null;
-        
-        for (Item i : items)
-        {
-            if (i instanceof EmptyFollower)
-            {
-                EmptyFollower e = (EmptyFollower) i;
-                if (e.getName().equals(Vars.TEMPLAR))
-                {
-                    templar = e.getSkills().toString();
-                    Log.i("Templar", templar);
-                }
-                else if (e.getName().equals(Vars.SCOUNDREL))
-                {
-                    scoundrel = e.getSkills().toString();
-                    Log.i("Scoundrel", scoundrel);
-                }
-                else if (e.getName().equals(Vars.ENCHANTRESS))
-                {
-                    enchantress = e.getSkills().toString();
-                    Log.i("Enchantress", enchantress);
-                }
-            }
-        }
-        
-        return templar + "|" + scoundrel + "|" + enchantress;
-    }
-    
     public static String[] trim(final String[] val)
     {
         for (int i = 0, len = val.length; i < len; i++)

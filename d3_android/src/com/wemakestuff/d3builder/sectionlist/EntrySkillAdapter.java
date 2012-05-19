@@ -10,6 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
+import com.wemakestuff.d3builder.model.D3Application;
+import com.wemakestuff.d3builder.model.Skill;
+
 public class EntrySkillAdapter extends ArrayAdapter<Item>
 {
 
@@ -93,6 +96,33 @@ public class EntrySkillAdapter extends ArrayAdapter<Item>
     	return this.items;
     }
 
+    public int getFollowerMaxLevel(String followerName)
+    {
+        int requiredLevel = 1;
+        List<Skill> followerSkills = D3Application.getInstance().getFollowerByName(followerName).getSkills();
+        
+        for (Item i : items)
+        {
+            if (i instanceof EntryFollowerSkill)
+            {
+                EntryFollowerSkill efs = (EntryFollowerSkill) i;
+                Skill s = efs.getSkill();
+
+                if (followerSkills.contains(s))
+                {
+                    int tempLevel = s.getRequiredLevel();
+                    boolean isChecked = efs.isChecked();
+                    
+                    if (tempLevel > requiredLevel && isChecked)
+                        requiredLevel = tempLevel;
+                }
+            }
+            
+        }
+        
+        return requiredLevel;
+    }
+    
     public int getMaxLevel(boolean isFollower) 
     {
         int requiredLevel = 1;

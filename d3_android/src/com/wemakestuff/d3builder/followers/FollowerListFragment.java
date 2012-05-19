@@ -12,7 +12,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 
-import com.wemakestuff.d3builder.OnLoadFragmentsCompleteListener;
 import com.wemakestuff.d3builder.model.D3Application;
 import com.wemakestuff.d3builder.model.Follower;
 import com.wemakestuff.d3builder.model.Skill;
@@ -33,7 +32,7 @@ public class FollowerListFragment extends ListFragment
 
     public interface OnRequiredLevelUpdateListener
     {
-        void OnRequiredLevelUpdate(int level);
+        void OnRequiredLevelUpdate(String name, int level);
     }
     
     public interface OnLoadFragmentCompleteListener
@@ -91,7 +90,7 @@ public class FollowerListFragment extends ListFragment
 
         Log.i("OnResume", selectedFollower);
 
-        requiredLevelListener.OnRequiredLevelUpdate(getRequiredLevel());
+        requiredLevelListener.OnRequiredLevelUpdate(selectedFollower, getMaxLevel());
         loadFragmentCompleteListener.OnLoadFragmentComplete(selectedFollower);
     }
 
@@ -137,8 +136,7 @@ public class FollowerListFragment extends ListFragment
             sf.setEnchantressSkills(getSelectedSkills());
         }
 
-        ((SelectFollower) getActivity()).setRequiredLevel(skillAdapter.getMaxLevel(true));
-        ((SelectFollower) getActivity()).updateData();
+        requiredLevelListener.OnRequiredLevelUpdate(selectedFollower, getMaxLevel());
     }
 
     public List<ParcelUuid> getSelectedSkills() {
@@ -154,25 +152,6 @@ public class FollowerListFragment extends ListFragment
         }
 
         return skills;
-    }
-
-    public int getRequiredLevel() {
-
-        List<ParcelUuid> skills = getSelectedSkills();
-
-        int returnVal = 1;
-
-        for (ParcelUuid s : skills) {
-            Skill j = D3Application.getInstance().getFollowerByName(selectedFollower).getSkillByUUID(s.getUuid());
-
-            if (j.getRequiredLevel() > returnVal)
-                returnVal = j.getRequiredLevel();
-
-        }
-
-        Log.i("Class " + selectedFollower, "Returning requiredLevel " + returnVal);
-        return returnVal;
-
     }
 
     private EntryFollowerSkill getPairedFollowerSkill(EntrySkillAdapter skillAdapter, EntryFollowerSkill pairedSkill, Follower follower, EntryFollowerSkill e) {
@@ -207,7 +186,7 @@ public class FollowerListFragment extends ListFragment
     }
 
     public int getMaxLevel() {
-        return ((EntrySkillAdapter) getListAdapter()).getMaxLevel(true);
+        return ((EntrySkillAdapter) getListAdapter()).getFollowerMaxLevel(selectedFollower);
     }
 
     public void clear() {
@@ -260,7 +239,7 @@ public class FollowerListFragment extends ListFragment
         }
         
         setListAdapter(new EntrySkillAdapter(getActivity(), items));
-        requiredLevelListener.OnRequiredLevelUpdate(getMaxLevel());
+        requiredLevelListener.OnRequiredLevelUpdate(selectedFollower, getMaxLevel());
     }
 
     public String linkifyClassBuild() {

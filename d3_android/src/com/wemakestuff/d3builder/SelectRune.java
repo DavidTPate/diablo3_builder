@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.google.ads.AdRequest;
@@ -14,12 +15,15 @@ import com.google.ads.AdView;
 import com.viewpagerindicator.PageIndicator;
 import com.viewpagerindicator.TitlePageIndicator;
 import com.viewpagerindicator.TitlePageIndicator.IndicatorStyle;
+import com.wemakestuff.d3builder.string.Replacer;
+import com.wemakestuff.d3builder.string.Vars;
 
 public class SelectRune extends SherlockFragmentActivity {
 	RuneFragmentAdapter mAdapter;
 	ViewPager mPager;
 	PageIndicator mIndicator;
 	int index;
+	int maxLevel = 60;
 	UUID skillUUID;
 
 	/** Called when the activity is first created. */
@@ -75,10 +79,13 @@ public class SelectRune extends SherlockFragmentActivity {
 			}
 
 		};
+		
+		TextView requiredLevelText = (TextView) findViewById(R.id.required_level);
+        requiredLevelText.setText(Replacer.replace("Required Level: " + requiredLevel, "\\d+", Vars.DIABLO_GREEN));
 
 		mAdapter = new RuneFragmentAdapter(getSupportFragmentManager(),
 				SelectRune.this, skillName, skillUUID, selectedClass,
-				requiredLevel);
+				maxLevel);
 		mAdapter.setOnListItemClickListener(itemClickListener);
 
 		mPager = (ViewPager) findViewById(R.id.pager);

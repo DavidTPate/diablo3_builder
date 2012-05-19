@@ -16,19 +16,19 @@ class RuneFragmentAdapter extends FragmentPagerAdapter implements TitleProvider 
 	private int mCount = 0;
 	private String skillName;
 	private String selectedClass;
-	private int requiredLevel;
+	private int maxLevel;
 	private OnClickListener listener;
 	private UUID skillUUID;
 	int GET_SKILL = -1;
 
 	public RuneFragmentAdapter(FragmentManager fm, Context context,
 			String skillName, UUID skillUUID, String selectedClass,
-			int requiredLevel) {
+			int maxLevel) {
 		super(fm);
 		this.context = context;
 		this.skillName = skillName;
 		this.selectedClass = selectedClass;
-		this.requiredLevel = requiredLevel;
+		this.maxLevel = maxLevel;
 		this.runeTypes = new String[] { this.skillName };
 		this.skillUUID = skillUUID;
 		mCount = runeTypes.length;
@@ -38,7 +38,7 @@ class RuneFragmentAdapter extends FragmentPagerAdapter implements TitleProvider 
 	public Fragment getItem(int position) {
 		String s = runeTypes[position % runeTypes.length];
 		RuneListFragment runeList = RuneListFragment.newInstance(s, context, s,
-				skillUUID, selectedClass, requiredLevel);
+				skillUUID, selectedClass, maxLevel);
 		runeList.setOnListItemClickListener(listener);
 		return runeList;
 	}

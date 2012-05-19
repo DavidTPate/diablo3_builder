@@ -2,6 +2,7 @@
 package com.wemakestuff.d3builder;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -32,12 +33,13 @@ import com.google.ads.AdView;
 import com.viewpagerindicator.PageIndicator;
 import com.viewpagerindicator.TitlePageIndicator;
 import com.viewpagerindicator.TitlePageIndicator.IndicatorStyle;
+import com.wemakestuff.d3builder.followers.FollowerListFragment.OnRequiredLevelUpdateListener;
 import com.wemakestuff.d3builder.followers.SelectFollower;
 import com.wemakestuff.d3builder.model.ClassBuild;
 import com.wemakestuff.d3builder.string.Replacer;
 import com.wemakestuff.d3builder.string.Vars;
 
-public class SelectClass extends SherlockFragmentActivity
+public class SelectClass extends SherlockFragmentActivity implements OnRequiredLevelUpdateListener
 {
 
     private ClassFragmentAdapter mAdapter;
@@ -53,6 +55,7 @@ public class SelectClass extends SherlockFragmentActivity
     private TextView             requiredLevel;
     private LinearLayout         requiredLevelWrapper;
     private ArrayList<ClassBuild>     builds;
+    private Map<String, Integer>    requiredLevelMap = new HashMap<String, Integer>();
     
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
@@ -429,6 +432,9 @@ public class SelectClass extends SherlockFragmentActivity
     
     public void setRequiredLevel(int level)
     {
+        int currentLevel = Integer.valueOf(requiredLevel.getText().toString().substring(16));
+        Log.i("CurrentLevel", "" + currentLevel);
+        Log.i("NewLevel", "" + level);
         requiredLevel.setText(Replacer.replace("Required Level: " + level, "\\d+", Vars.DIABLO_GREEN));
     }
     
@@ -489,6 +495,12 @@ public class SelectClass extends SherlockFragmentActivity
                 }
             }).create();
         }
+    }
+
+    @Override
+    public void OnRequiredLevelUpdate(String name, int level) {
+        requiredLevelMap.put(name, level);
+        setRequiredLevel(level);
     }
 
     

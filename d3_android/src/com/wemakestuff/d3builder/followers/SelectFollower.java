@@ -1,6 +1,7 @@
 package com.wemakestuff.d3builder.followers;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -13,7 +14,6 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.ParcelUuid;
-import android.os.Parcelable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
@@ -33,10 +33,8 @@ import com.google.ads.AdView;
 import com.viewpagerindicator.PageIndicator;
 import com.viewpagerindicator.TitlePageIndicator;
 import com.viewpagerindicator.TitlePageIndicator.IndicatorStyle;
-import com.wemakestuff.d3builder.ClassBuildAdapter;
 import com.wemakestuff.d3builder.FollowerBuildAdapter;
 import com.wemakestuff.d3builder.OnLoadBuildClickInterface;
-import com.wemakestuff.d3builder.OnLoadBuildClickListener;
 import com.wemakestuff.d3builder.R;
 import com.wemakestuff.d3builder.followers.FollowerListFragment.OnLoadFragmentCompleteListener;
 import com.wemakestuff.d3builder.followers.FollowerListFragment.OnRequiredLevelUpdateListener;
@@ -61,6 +59,8 @@ public class SelectFollower extends SherlockFragmentActivity implements OnRequir
     private List<ParcelUuid>        templarSkills     = new ArrayList<ParcelUuid>();
     private List<ParcelUuid>        scoundrelSkills   = new ArrayList<ParcelUuid>();
     private List<ParcelUuid>        enchantressSkills = new ArrayList<ParcelUuid>();
+    private Map<String, Integer>    requiredLevelMap = new HashMap<String, Integer>();
+    
     private int loadedFragmentsCount = 0;
     
 
@@ -120,19 +120,28 @@ public class SelectFollower extends SherlockFragmentActivity implements OnRequir
 
             @Override
             public void onPageSelected(int position) {
-//                FollowerListFragment frag = (FollowerListFragment) mAdapter.getItem(position);
-//                setRequiredLevel(frag.getMaxLevel());
+                switch (position)
+                {
+                case 0:
+                    setRequiredLevel(requiredLevelMap.get(Vars.TEMPLAR));
+                    break;
+                case 1:
+                    setRequiredLevel(requiredLevelMap.get(Vars.SCOUNDREL));
+                    break;
+                case 2:
+                    setRequiredLevel(requiredLevelMap.get(Vars.ENCHANTRESS));
+                    break;
+                }
+                
             }
 
             @Override
             public void onPageScrolled(int arg0, float arg1, int arg2) {
-                // TODO Auto-generated method stub
 
             }
 
             @Override
             public void onPageScrollStateChanged(int arg0) {
-                // TODO Auto-generated method stub
 
             }
         });
@@ -220,10 +229,16 @@ public class SelectFollower extends SherlockFragmentActivity implements OnRequir
         resultIntent.putParcelableArrayListExtra(Vars.TEMPLAR, (ArrayList<ParcelUuid>) templarSkills);
         resultIntent.putParcelableArrayListExtra(Vars.SCOUNDREL, (ArrayList<ParcelUuid>) scoundrelSkills);
         resultIntent.putParcelableArrayListExtra(Vars.ENCHANTRESS, (ArrayList<ParcelUuid>) enchantressSkills);
-        resultIntent.putExtra("url", getFollowersLink());
+        resultIntent.putExtra(Vars.URL, getFollowersLink());
+        resultIntent.putExtra(Vars.REQUIRED_LEVEL, getFollowersMaxLevel());
         setResult(Activity.RESULT_OK, resultIntent);
         finish();
 
+    }
+    
+    public int getFollowersMaxLevel()
+    {
+        return Math.max(requiredLevelMap.get(Vars.TEMPLAR), Math.max(requiredLevelMap.get(Vars.SCOUNDREL), requiredLevelMap.get(Vars.ENCHANTRESS)));
     }
     
 
@@ -327,7 +342,8 @@ public class SelectFollower extends SherlockFragmentActivity implements OnRequir
     }
 
     @Override
-    public void OnRequiredLevelUpdate(int level) {
+    public void OnRequiredLevelUpdate(String name, int level) {
+        requiredLevelMap.put(name, level);
         setRequiredLevel(level);
 
     }

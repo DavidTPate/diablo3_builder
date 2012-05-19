@@ -20,7 +20,7 @@ public class RuneListFragment extends ListFragment {
 	Context context;
 	String skillName;
 	String selectedClass;
-	int requiredLevel;
+	int maxLevel;
 	OnClickListener listener;
 	UUID skillUUID;
 
@@ -29,13 +29,13 @@ public class RuneListFragment extends ListFragment {
 
 	public static RuneListFragment newInstance(String content, Context c,
 			String skillName, UUID skillUUID, String selectedClass,
-			int requiredLevel) {
+			int maxLevel) {
 		RuneListFragment fragment = new RuneListFragment();
 
 		fragment.context = c;
 		fragment.skillName = skillName;
 		fragment.selectedClass = selectedClass;
-		fragment.requiredLevel = requiredLevel;
+		fragment.maxLevel = maxLevel;
 		fragment.skillUUID = skillUUID;
 
 		return fragment;

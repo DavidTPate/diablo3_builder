@@ -18,17 +18,17 @@ class SkillFragmentAdapter extends FragmentPagerAdapter implements TitleProvider
 	private int mCount = 0;
 	private String skillType;
 	private String selectedClass;
-	private int requiredLevel;
+	private int maxLevel = 60;
 	private OnClickListener listener;
 	private List<ParcelUuid> excludeSkills;
 	int GET_SKILL = -1;
 
-	public SkillFragmentAdapter(FragmentManager fm, Context context, String skillType, String selectedClass, int requiredLevel, List<ParcelUuid> excludeSkills) {
+	public SkillFragmentAdapter(FragmentManager fm, Context context, String skillType, String selectedClass, int maxLevel, List<ParcelUuid> excludeSkills) {
 	    super(fm);
 	    this.context = context;
 	    this.skillType = skillType;
 	    this.selectedClass = selectedClass;
-	    this.requiredLevel = requiredLevel;
+	    this.maxLevel = maxLevel;
 	    this.skillTypes = (skillType.equals("Passive") ? new String[] {"Passive"} : D3Application.getInstance().getClassAttributesByName(selectedClass).getSkillTypes());
 	    this.excludeSkills = excludeSkills;
 	    this.mCount = skillTypes.length;
@@ -37,7 +37,7 @@ class SkillFragmentAdapter extends FragmentPagerAdapter implements TitleProvider
 	@Override
 	public Fragment getItem(int position) {
 	    String s = skillTypes[position % skillTypes.length];
-	    SkillListFragment skillList = SkillListFragment.newInstance(s, context, s, selectedClass, requiredLevel, excludeSkills);
+	    SkillListFragment skillList = SkillListFragment.newInstance(s, context, s, selectedClass, maxLevel, excludeSkills);
 	    skillList.setOnListItemClickListener(listener);
 		return skillList;
 	}

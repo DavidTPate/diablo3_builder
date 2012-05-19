@@ -9,6 +9,7 @@ import android.os.ParcelUuid;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.google.ads.AdRequest;
@@ -16,6 +17,8 @@ import com.google.ads.AdView;
 import com.viewpagerindicator.PageIndicator;
 import com.viewpagerindicator.TitlePageIndicator;
 import com.viewpagerindicator.TitlePageIndicator.IndicatorStyle;
+import com.wemakestuff.d3builder.string.Replacer;
+import com.wemakestuff.d3builder.string.Vars;
 
 public class SelectSkill extends SherlockFragmentActivity
 {
@@ -23,6 +26,8 @@ public class SelectSkill extends SherlockFragmentActivity
     ViewPager mPager;
     PageIndicator mIndicator;
     int index;
+    int requiredLevel = 1;
+    int maxLevel = 60;
 
     /** Called when the activity is first created. */
     @Override
@@ -42,7 +47,7 @@ public class SelectSkill extends SherlockFragmentActivity
         String selectedClass = null;
         List<ParcelUuid> skills = null;
         
-        int requiredLevel = 0;
+        
         if (b.containsKey("SkillType"))
         {
             skillType = b.getString("SkillType");
@@ -83,7 +88,10 @@ public class SelectSkill extends SherlockFragmentActivity
         	
         };
 
-        mAdapter = new SkillFragmentAdapter(getSupportFragmentManager(), SelectSkill.this, skillType, selectedClass, requiredLevel, skills);
+        TextView requiredLevelText = (TextView) findViewById(R.id.required_level);
+        requiredLevelText.setText(Replacer.replace("Required Level: " + requiredLevel, "\\d+", Vars.DIABLO_GREEN));
+        
+        mAdapter = new SkillFragmentAdapter(getSupportFragmentManager(), SelectSkill.this, skillType, selectedClass, maxLevel, skills);
         mAdapter.setOnListItemClickListener(itemClickListener);
         
         mPager = (ViewPager) findViewById(R.id.pager);
