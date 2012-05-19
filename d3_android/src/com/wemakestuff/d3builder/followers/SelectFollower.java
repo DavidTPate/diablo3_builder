@@ -87,6 +87,11 @@ public class SelectFollower extends SherlockFragmentActivity implements OnRequir
             loadFromUrl = data.toString();
             Log.i("LoadFromUrl", loadFromUrl);
         }
+        
+        if (getIntent().hasExtra("url"))
+        {
+            loadFromUrl = getIntent().getStringExtra("url");
+        }
 
         setContentView(R.layout.select_follower);
 

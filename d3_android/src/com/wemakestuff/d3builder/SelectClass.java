@@ -1,9 +1,6 @@
 
 package com.wemakestuff.d3builder;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -19,27 +16,24 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.google.ads.AdRequest;
 import com.google.ads.AdView;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.viewpagerindicator.PageIndicator;
 import com.viewpagerindicator.TitlePageIndicator;
 import com.viewpagerindicator.TitlePageIndicator.IndicatorStyle;
+import com.wemakestuff.d3builder.followers.SelectFollower;
 import com.wemakestuff.d3builder.model.ClassBuild;
-import com.wemakestuff.d3builder.model.D3Application;
-import com.wemakestuff.d3builder.model.DataModel;
 import com.wemakestuff.d3builder.string.Replacer;
 import com.wemakestuff.d3builder.string.Vars;
 
@@ -258,6 +252,14 @@ public class SelectClass extends SherlockFragmentActivity
         if (data != null)
         {
             loadFromUrl = data.toString();
+            Log.i("LoadFromUrl", data.toString());
+            
+            if (loadFromUrl.contains("follower"))
+            {
+                Intent intent = new Intent(this, SelectFollower.class);
+                intent.putExtra("url", loadFromUrl);
+                startActivity(intent);
+            }
         }
 
         setContentView(R.layout.select_skill);
