@@ -2,20 +2,25 @@ package com.wemakestuff.d3builder.followers;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.ParcelUuid;
+import android.os.Parcelable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.Log;
+import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,25 +33,31 @@ import com.google.ads.AdView;
 import com.viewpagerindicator.PageIndicator;
 import com.viewpagerindicator.TitlePageIndicator;
 import com.viewpagerindicator.TitlePageIndicator.IndicatorStyle;
-import com.wemakestuff.d3builder.ClassListFragment;
-import com.wemakestuff.d3builder.OnLoadFragmentsCompleteListener;
+import com.wemakestuff.d3builder.ClassBuildAdapter;
+import com.wemakestuff.d3builder.FollowerBuildAdapter;
+import com.wemakestuff.d3builder.OnLoadBuildClickInterface;
+import com.wemakestuff.d3builder.OnLoadBuildClickListener;
 import com.wemakestuff.d3builder.R;
 import com.wemakestuff.d3builder.followers.FollowerListFragment.OnLoadFragmentCompleteListener;
 import com.wemakestuff.d3builder.followers.FollowerListFragment.OnRequiredLevelUpdateListener;
+import com.wemakestuff.d3builder.model.ClassBuild;
 import com.wemakestuff.d3builder.model.D3Application;
 import com.wemakestuff.d3builder.string.Replacer;
 import com.wemakestuff.d3builder.string.Vars;
 
-public class SelectFollower extends SherlockFragmentActivity implements OnRequiredLevelUpdateListener, OnLoadFragmentCompleteListener
+public class SelectFollower extends SherlockFragmentActivity implements OnRequiredLevelUpdateListener, OnLoadFragmentCompleteListener, OnLoadBuildClickInterface
 {
     private FollowerFragmentAdapter mAdapter;
     private ViewPager               mPager;
     private PageIndicator           mIndicator;
     private String                  loadFromUrl;
     private boolean                 loadedFromUrl     = false;
-    private String selectedFollower;
+    private String                  selectedFollower;
+    private DialogFragment          dialog;
     private TextView                requiredLevel;
     private LinearLayout            requiredLevelWrapper;
+    private static FollowerBuildAdapter       aAdapter;
+    private List<ClassBuild>        builds;
     private List<ParcelUuid>        templarSkills     = new ArrayList<ParcelUuid>();
     private List<ParcelUuid>        scoundrelSkills   = new ArrayList<ParcelUuid>();
     private List<ParcelUuid>        enchantressSkills = new ArrayList<ParcelUuid>();
@@ -158,133 +169,36 @@ public class SelectFollower extends SherlockFragmentActivity implements OnRequir
 
         if (item.getItemId() == R.id.share)
         {
-            Toast.makeText(getApplicationContext(), getFollowersLink(), Toast.LENGTH_LONG).show();
-//            Intent intent = new Intent(Intent.ACTION_SEND);
-//            intent.setType("text/plain");
-//            intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Check out my " + frag.getSelectedClass());
-//            intent.putExtra(android.content.Intent.EXTRA_TEXT, frag.linkifyClassBuild());
-//            startActivity(Intent.createChooser(intent, "Share using"));
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("text/plain");
+            intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Check out my followers build");
+            intent.putExtra(android.content.Intent.EXTRA_TEXT, getFollowersLink());
+            startActivity(Intent.createChooser(intent, "Share using"));
         }
         else if (item.getItemId() == R.id.load)
         {
             mIndicator.notifyDataSetChanged();
             mAdapter.notifyDataSetChanged();
-            // loadClassFromUrl("http://us.battle.net/d3/en/calculator/monk#aZYdfT!aZb!aaaaaa");
-            // SharedPreferences keyVals =
-            // this.getApplicationContext().getSharedPreferences("saved_build_list",
-            // MODE_PRIVATE);
-            // loadClassFromUrl(keyVals.getString("test",
-            // "http://us.battle.net/d3/en/calculator/barbarian#......!...!......"));
 
-//            builds = new ArrayList<ClassBuild>();
-//
-//            SharedPreferences valVals = getSharedPreferences("saved_build_value", MODE_PRIVATE);
-//            SharedPreferences clssVals = getSharedPreferences("saved_build_class", MODE_PRIVATE);
-//
-//            Map<String, String> urls = (Map<String, String>) valVals.getAll();
-//            Map<String, String> classes = (Map<String, String>) clssVals.getAll();
-//
-//            for (Map.Entry<String, String> pairs : urls.entrySet())
-//            {
-//                if (classes.containsKey(pairs.getKey()))
-//                {
-//                    builds.add(new ClassBuild(pairs.getKey(), classes.get(pairs.getKey()), pairs.getValue()));
-//                }
-//            }
-//
-//            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//            builder.setTitle("Load Saved Build");
-//
-//            final ListView buildList = new ListView(this);
-//
-//            OnLoadBuildClickListener loadBuildListener = new OnLoadBuildClickListener()
-//            {
-//
-//                @Override
-//                public void onLoadBuildClick(ClassBuild build)
-//                {
-//
-//                    loadClassFromUrl(build.getUrl());
-//                }
-//                
-//                @Override
-//                public void onLoadBuildDismiss()
-//                {
-//                    dialog.dismiss();
-//                }
-//                
-//                @Override
-//                public void onDeleteBuild(ClassBuild build)
-//                {
-//                    builds.remove(build);
-//                    aAdapter.notifyDataSetChanged();
-//                }
-//            };
-//
-//            aAdapter = new ClassBuildAdapter(builds, this, loadBuildListener);
-//            buildList.setAdapter(aAdapter);
-//            builder.setView(buildList);
-//
-//            dialog = builder.create();
-//
-//            dialog.show();
+            builds = new ArrayList<ClassBuild>();
 
+            SharedPreferences valVals = getSharedPreferences("saved_follower_value", MODE_PRIVATE);
+
+            Map<String, String> urls = (Map<String, String>) valVals.getAll();
+
+            for (Map.Entry<String, String> pairs : urls.entrySet())
+            {
+                builds.add(new ClassBuild(pairs.getKey(), "Followers", pairs.getValue()));
+            }
+
+            dialog = LoadFollowerDialog.newInstance("Load Saved Build", builds);
+            dialog.show(getSupportFragmentManager(), "load");
+            
         }
         else if (item.getItemId() == R.id.save)
         {
-            delinkifyClassBuild("http://us.battle.net/d3/en/calculator/follower#0100!..10!.01");
-//            final AlertDialog.Builder alert = new AlertDialog.Builder(this);
-//
-//            alert.setTitle("Save Current Build As...");
-//            alert.setMessage("Please Enter a Name to use to Save the Current Build.");
-//
-//            // Set an EditText view to get user input
-//            final EditText input = new EditText(this);
-//            alert.setView(input);
-//
-//            alert.setPositiveButton("Save", new DialogInterface.OnClickListener()
-//            {
-//
-//                public void onClick(DialogInterface dialog, int whichButton)
-//                {
-//
-//                    value = input.getText().toString();
-//                    
-//                    SharedPreferences valVals = getSharedPreferences("saved_build_value", MODE_PRIVATE);
-//                    SharedPreferences.Editor valEdit = valVals.edit();
-//                    SharedPreferences clssVals = getSharedPreferences("saved_build_class", MODE_PRIVATE);
-//                    SharedPreferences.Editor clssEdit = clssVals.edit();
-//
-//                    while (valVals.contains(value) || clssVals.contains(value))
-//                    {
-//                        Toast toast = Toast.makeText(getApplicationContext(), "A Build is Already Saved as: " + value + ". Enter a New Name.", Toast.LENGTH_SHORT);
-//                        toast.show();
-//                    }
-//
-//                    if (value != null && !(value.length() == 0))
-//                    {
-//                        ClassListFragment frag = (ClassListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mPager.getCurrentItem());
-//                        valEdit.putString(value, frag.linkifyClassBuild());
-//                        clssEdit.putString(value, frag.getSelectedClass());
-//
-//                        valEdit.commit();
-//                        clssEdit.commit();
-//                    }
-//                }
-//            });
-//
-//            alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener()
-//            {
-//
-//                public void onClick(DialogInterface dialog, int whichButton)
-//                {
-//
-//                    value = "";
-//                }
-//            });
-//
-//            alert.show();
-
+            dialog = SaveFollowerDialogFragment.newInstance("Save Followers Build As...", "Please enter a name for the build.");
+            dialog.show(getSupportFragmentManager(), "save");
         }
         else if (item.getItemId() == R.id.clear)
         {
@@ -319,15 +233,8 @@ public class SelectFollower extends SherlockFragmentActivity implements OnRequir
         String scoundrelLink;
         String enchantressLink;
         
-        Log.i("Split build", build);
-        
         String[] followers = build.split("!");
         
-        for (String s : followers)
-        {
-            Log.i("Followers@!#$" , s);
-        }
-        Log.i("Followers After split!", followers.toString());
         switch (followers.length) {
             case 1:
                 templarLink = followers[0];
@@ -357,6 +264,8 @@ public class SelectFollower extends SherlockFragmentActivity implements OnRequir
         }
         
         updateData();
+        
+        Toast.makeText(getApplicationContext(), "Load complete!", Toast.LENGTH_SHORT).show();
     }
     
     public String getFollowersLink()
@@ -421,13 +330,64 @@ public class SelectFollower extends SherlockFragmentActivity implements OnRequir
     public void doPositiveClick()
     {
 
-        ClassListFragment frag = (ClassListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mPager.getCurrentItem());
+        FollowerListFragment frag = (FollowerListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.follower_pager + ":" + mPager.getCurrentItem());
         frag.clear();
     }
 
     public void doNegativeClick()
     {
 
+    }
+    
+    public void doSaveFollowerPositiveClick(String input)
+    {
+        String value = input;
+
+        SharedPreferences valVals = getSharedPreferences("saved_follower_value", MODE_PRIVATE);
+        SharedPreferences.Editor valEdit = valVals.edit();
+
+        while (valVals.contains(value))
+        {
+            Toast toast = Toast.makeText(getApplicationContext(), "A Build is Already Saved as: " + value + ". Enter a New Name.", Toast.LENGTH_SHORT);
+            toast.show();
+        }
+
+        if (value != null && !(value.length() == 0))
+        {
+            valEdit.putString(value, getFollowersLink());
+            valEdit.commit();
+        }
+    }
+    
+    public void doSaveFollowerNegativeClick()
+    {
+        
+    }
+    
+
+    @Override
+    public void OnLoadFragmentComplete(String follower) {
+        loadedFragmentsCount++;
+        
+        if (loadedFragmentsCount == 3 && loadFromUrl != null)
+        {
+            int item = 0;
+            
+            if (selectedFollower == null || selectedFollower.equals(""))
+                selectedFollower = Vars.TEMPLAR;
+            
+            if (selectedFollower.equals(Vars.TEMPLAR))
+                item = 0;
+            else if (selectedFollower.equals(Vars.SCOUNDREL))
+                item = 1;
+            else if (selectedFollower.equals(Vars.ENCHANTRESS))
+                item = 2;
+            
+            ((TitlePageIndicator) mIndicator).setCurrentItem(item);
+            
+            delinkifyClassBuild(loadFromUrl);
+        }
+        
     }
 
     public static class MyAlertDialogFragment extends DialogFragment
@@ -468,29 +428,95 @@ public class SelectFollower extends SherlockFragmentActivity implements OnRequir
             }).create();
         }
     }
+    
+    public static class SaveFollowerDialogFragment extends DialogFragment
+    {
+        public static SaveFollowerDialogFragment newInstance(String title, String message)
+        {
+            
+            SaveFollowerDialogFragment frag = new SaveFollowerDialogFragment();
+            Bundle args = new Bundle();
+            args.putString("title", title);
+            args.putString("message", message);
+            frag.setArguments(args);
+            return frag;
+        }
+        
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState)
+        {
+            
+            String title = getArguments().getString("title");
+            String message = getArguments().getString("message");
+          
+            final EditText input = new EditText(getActivity());
+
+            //@formatter:off
+            return new AlertDialog.Builder(getActivity())
+                                  .setTitle(title)
+                                  .setView(input)
+                                  .setMessage(message)
+                                  .setPositiveButton(R.string.alert_dialog_ok, new DialogInterface.OnClickListener() 
+                                  {
+                                      public void onClick(DialogInterface dialog, int whichButton)
+                                      {
+                                          ((SelectFollower) getActivity()).doSaveFollowerPositiveClick(input.getText().toString());
+                                      }
+                                  }).setNegativeButton(R.string.alert_dialog_cancel, new DialogInterface.OnClickListener()
+                                  {
+                                      public void onClick(DialogInterface dialog, int whichButton)
+                                      {
+                                        
+                                          ((SelectFollower) getActivity()).doSaveFollowerNegativeClick();
+                                      }
+                                  }).create();
+        }
+    }
+    
+    public static class LoadFollowerDialog extends DialogFragment {
+
+        public static DialogFragment newInstance(String title, List<ClassBuild> builds) {
+            LoadFollowerDialog frag = new LoadFollowerDialog();
+            Bundle args = new Bundle();
+            args.putString("title", title);
+            args.putParcelableArrayList("builds", (ArrayList<ClassBuild>) builds);
+            frag.setArguments(args);
+            return frag;
+        }
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            String title = getArguments().getString("title");
+            List<ClassBuild> builds = getArguments().getParcelableArrayList("builds");
+            final ListView buildList = new ListView(getActivity());
+
+            aAdapter = new FollowerBuildAdapter((ArrayList<ClassBuild>) builds, getActivity(), (OnLoadBuildClickInterface) getActivity());
+            buildList.setAdapter(aAdapter);
+            
+            return new AlertDialog.Builder(getActivity())
+                    .setTitle(title)
+                    .setView(buildList)
+                    .create();
+        }
+    }
+
+    
+    @Override
+    public void onLoadBuildClick(ClassBuild build) {
+        delinkifyClassBuild(build.getUrl());
+        dialog.dismiss();
+    }
 
     @Override
-    public void OnLoadFragmentComplete(String follower) {
-        loadedFragmentsCount++;
-        
-        if (loadedFragmentsCount == 3 && loadFromUrl != null)
-        {
-            int item = 0;
-            
-            if (selectedFollower == null || selectedFollower.equals(""))
-                selectedFollower = Vars.TEMPLAR;
-            
-            if (selectedFollower.equals(Vars.TEMPLAR))
-                item = 0;
-            else if (selectedFollower.equals(Vars.SCOUNDREL))
-                item = 1;
-            else if (selectedFollower.equals(Vars.ENCHANTRESS))
-                item = 2;
-            
-            ((TitlePageIndicator) mIndicator).setCurrentItem(item);
-            
-            delinkifyClassBuild(loadFromUrl);
-        }
+    public void onLoadBuildDismiss() {
+        if (dialog != null && dialog.isVisible())
+            dialog.dismiss();
+    }
+
+    @Override
+    public void onDeleteBuild(ClassBuild build) {
+        builds.remove(build);
+        aAdapter.notifyDataSetChanged();
         
     }
 }

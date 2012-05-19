@@ -3,7 +3,11 @@ package com.wemakestuff.d3builder.model;
 
 import java.util.UUID;
 
-public class ClassBuild
+import android.os.Parcel;
+import android.os.ParcelUuid;
+import android.os.Parcelable;
+
+public class ClassBuild implements Parcelable
 {
 
     private String className;
@@ -19,6 +23,25 @@ public class ClassBuild
         this.className = className;
         this.url = url;
     }
+
+    public ClassBuild(Parcel source)
+    {
+        super();
+        this.name = source.readString();
+        this.className = source.readString();
+        this.url = source.readString();
+        this.uuid = source.readParcelable(ParcelUuid.class.getClassLoader());
+    }
+
+    public final Parcelable.Creator<ClassBuild> CREATOR = new Parcelable.Creator<ClassBuild>() {
+        public ClassBuild createFromParcel(Parcel in) {
+            return new ClassBuild(in);
+        }
+
+        public ClassBuild[] newArray(int size) {
+            return new ClassBuild[size];
+        }
+    };
 
     public String getClassName()
     {
@@ -43,4 +66,20 @@ public class ClassBuild
 
         return uuid;
     }
+
+    @Override
+    public int describeContents() {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(name);
+        dest.writeString(className);
+        dest.writeString(url);
+        dest.writeParcelable(new ParcelUuid(uuid), 0);
+    }
+
+
 }

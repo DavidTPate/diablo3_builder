@@ -86,12 +86,6 @@ public class FollowerListFragment extends ListFragment
     }
     
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-//        loadFragmentCompleteListener.OnLoadFragmentComplete(selectedFollower);
-    }
-
-    @Override
     public void onResume() {
         super.onResume();
 
@@ -99,10 +93,6 @@ public class FollowerListFragment extends ListFragment
 
         requiredLevelListener.OnRequiredLevelUpdate(getRequiredLevel());
         loadFragmentCompleteListener.OnLoadFragmentComplete(selectedFollower);
-    }
-
-    private boolean isBlankBuild(String followerLink) {
-        return followerLink.length() == 0 || followerLink.matches("http://.+.battle.net/d3/.+/calculator/.+#[\\.]+![\\.]+![\\.]+");
     }
 
     @Override
