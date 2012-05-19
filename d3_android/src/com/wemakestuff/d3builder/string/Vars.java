@@ -48,4 +48,5 @@ public class Vars {
 	public static final String TIER_2 = "tier-2";
 	public static final String TIER_3 = "tier-3";
 	public static final String TYPE = "type";
+	public static final String URL = "url";
 }

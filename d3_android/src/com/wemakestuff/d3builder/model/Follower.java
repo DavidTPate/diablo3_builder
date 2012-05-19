@@ -141,6 +141,17 @@ public class Follower {
 	    return list;
 	}
 	
+	public Skill getSkillByName(String name)
+	{
+        for (Skill skill : skills)
+        {
+            if (skill.getName().equalsIgnoreCase(name))
+                return skill;
+        }
+        
+        return null;
+	}
+	
 	public List<Skill> getSkills() {
 		return skills;
 	}

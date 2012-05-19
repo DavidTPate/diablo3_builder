@@ -2,7 +2,9 @@ package com.wemakestuff.d3builder;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -27,7 +29,6 @@ import com.wemakestuff.d3builder.model.SkillAttribute;
 import com.wemakestuff.d3builder.sectionlist.EmptyFollower;
 import com.wemakestuff.d3builder.sectionlist.EmptyRune;
 import com.wemakestuff.d3builder.sectionlist.EmptySkill;
-import com.wemakestuff.d3builder.sectionlist.EntryFollowerSkill;
 import com.wemakestuff.d3builder.sectionlist.EntryRune;
 import com.wemakestuff.d3builder.sectionlist.EntrySkill;
 import com.wemakestuff.d3builder.sectionlist.EntrySkillAdapter;
@@ -40,6 +41,7 @@ public class ClassListFragment extends ListFragment
 
     private Context                         context;
     private String                          selectedClass;
+    private String                          followerUrl;
     private EntrySkillAdapter               listAdapter;
     private OnLoadFragmentsCompleteListener listener;
     private List<ParcelUuid>        templarSkills     = new ArrayList<ParcelUuid>();
@@ -251,7 +253,7 @@ public class ClassListFragment extends ListFragment
         items.add(new SectionItem("Followers"));
         for (Follower f : D3Application.getInstance().getFollowers())
         {
-            items.add(new EmptyFollower(f.getName(), f.getShortDescription(), f.getIcon(), f.getUuid()));
+            items.add(new EmptyFollower(f.getName(), f.getShortDescription(), f.getIcon(), f.getUuid(), ""));
         }
 
         listAdapter = new EntrySkillAdapter(context, items);
@@ -259,9 +261,11 @@ public class ClassListFragment extends ListFragment
         return listAdapter;
     }
 
-    private void updateFollowerData(List<ParcelUuid> templar, List<ParcelUuid> scoundrel, List<ParcelUuid> enchantress)
+    private void updateFollowerData(List<ParcelUuid> templar, List<ParcelUuid> scoundrel, List<ParcelUuid> enchantress, String followerUrl)
     {
         List<Item> items = ((EntrySkillAdapter) getListAdapter()).getFollowers();
+        
+        this.followerUrl = followerUrl;
         
         for (Item i : items)
         {
@@ -311,7 +315,13 @@ public class ClassListFragment extends ListFragment
                     Log.i("ClassList - Got Enchantress Skills", "" + enchantressSkills.size());
                 }
                 
-                updateFollowerData(templarSkills, scoundrelSkills, enchantressSkills);
+                if (data.hasExtra(Vars.URL))
+                {
+                    followerUrl = data.getStringExtra(Vars.URL);
+                    Log.i("URL", followerUrl);
+                }
+                
+                updateFollowerData(templarSkills, scoundrelSkills, enchantressSkills, followerUrl);
             }
         }
         
@@ -506,6 +516,135 @@ public class ClassListFragment extends ListFragment
         return "http://us.battle.net/d3/en/calculator/" + selectedClass.toLowerCase().replace(" ", "-") + "#" + activeVal.toString() + skillAttrbs.getPassiveSeparator() + passiveVal.toString() + skillAttrbs.getRuneSeparator() + runeVal.toString();
     }
 
+    public String getFollowerSkills()
+    {
+        List<Item> items = ((EntrySkillAdapter) getListAdapter()).getFollowers();
+        String templar = null;
+        String scoundrel = null;
+        String enchantress = null;
+        
+        for (Item i : items)
+        {
+            if (i instanceof EmptyFollower)
+            {
+                EmptyFollower e = (EmptyFollower) i;
+                if (e.getName().equals(Vars.TEMPLAR))
+                {
+                    templar = e.getSkills().toString();
+                    Log.i("Templar", templar);
+                }
+                else if (e.getName().equals(Vars.SCOUNDREL))
+                {
+                    scoundrel = e.getSkills().toString();
+                    Log.i("Scoundrel", scoundrel);
+                }
+                else if (e.getName().equals(Vars.ENCHANTRESS))
+                {
+                    enchantress = e.getSkills().toString();
+                    Log.i("Enchantress", enchantress);
+                }
+            }
+        }
+        
+        return templar + "|" + scoundrel + "|" + enchantress;
+    }
+    
+    public static String[] trim(final String[] val)
+    {
+        for (int i = 0, len = val.length; i < len; i++)
+        {
+            if (val[i] != null)
+                val[i] = val[i].trim();
+        }
+        
+        return val;
+    }
+    
+    public void setFollowerSkills(String skills)
+    {
+        String build = skills.split("#")[1];
+        String templarLink = null;
+        String scoundrelLink = null;
+        String enchantressLink = null;
+        
+        String[] followers = build.split("!");
+        
+        switch (followers.length) {
+            case 1:
+                templarLink = followers[0];
+                break;
+    
+            case 2:
+                templarLink = followers[0];
+                scoundrelLink = followers[1];
+                break;
+    
+            case 3:
+                templarLink = followers[0];
+                scoundrelLink = followers[1];
+                enchantressLink = followers[2];
+                break;
+    
+            default:
+                break;
+        }
+        
+        Log.i("SetFollowerSkills", skills);
+        
+        List<Item> items = ((EntrySkillAdapter) getListAdapter()).getFollowers();
+        List<ParcelUuid> templarSkills = new ArrayList<ParcelUuid>();
+        List<ParcelUuid> scoundrelSkills = new ArrayList<ParcelUuid>();
+        List<ParcelUuid> enchantressSkills = new ArrayList<ParcelUuid>();
+        
+        Map<String, List<ParcelUuid>> followersMap = new HashMap<String, List<ParcelUuid>>();
+        Map<String, String> followersLinkMap = new HashMap<String, String>();
+        
+        followersMap.put(Vars.TEMPLAR, templarSkills);
+        followersLinkMap.put(Vars.TEMPLAR, templarLink);
+        
+        followersMap.put(Vars.SCOUNDREL, scoundrelSkills);
+        followersLinkMap.put(Vars.SCOUNDREL, scoundrelLink);
+        
+        followersMap.put(Vars.ENCHANTRESS, enchantressSkills);
+        followersLinkMap.put(Vars.ENCHANTRESS, enchantressLink);
+        
+        for (Item i : items)
+        {
+            if (i instanceof EmptyFollower)
+            {
+                EmptyFollower e = (EmptyFollower) i;
+                String name = e.getName();
+                Follower f = D3Application.getInstance().getFollowerByName(name);
+                List<Integer> levels = f.getRequiredLevels();         
+                
+                for (int x = 0; x < levels.size(); x++)
+                {
+                    List<Skill> skillsForLevel = f.getSkillsByRequiredLevel(levels.get(x).intValue());
+
+                    String indicator = String.valueOf(followersLinkMap.get(name).charAt(x));
+                    if (indicator.equals("0"))
+                    {
+                        followersMap.get(name).add(new ParcelUuid(skillsForLevel.get(0).getUuid()));
+                    }
+                    else if (indicator.equals("1"))
+                    {
+                        followersMap.get(name).add(new ParcelUuid(skillsForLevel.get(1).getUuid()));
+                    }
+
+                }
+                Log.i("Templar", templarSkills.toString());
+            }
+        }
+        
+     
+        updateFollowerData(followersMap.get(Vars.TEMPLAR), followersMap.get(Vars.SCOUNDREL), followersMap.get(Vars.ENCHANTRESS), skills);
+        
+    }
+    
+    public String getFollowerUrl() {
+        return followerUrl;
+    }
+    
     public void delinkifyClassBuild(String url)
     {
 

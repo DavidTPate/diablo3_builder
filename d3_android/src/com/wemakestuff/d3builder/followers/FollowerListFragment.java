@@ -260,6 +260,7 @@ public class FollowerListFragment extends ListFragment
         }
         
         setListAdapter(new EntrySkillAdapter(getActivity(), items));
+        requiredLevelListener.OnRequiredLevelUpdate(getMaxLevel());
     }
 
     public String linkifyClassBuild() {

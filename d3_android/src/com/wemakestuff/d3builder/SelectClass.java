@@ -101,6 +101,37 @@ public class SelectClass extends SherlockFragmentActivity
             }
         }
     }
+    
+    public void loadClassFromUrl(ClassBuild build)
+    {
+        
+        Pattern p = Pattern.compile("^http://.*/calculator/(.*)#.*$");
+        Matcher m = p.matcher(build.getUrl());
+        
+        ClassListFragment frag = null;
+        
+        while (m.find())
+        {
+            if (m.groupCount() >= 1)
+            {
+                int position = mAdapter.getItemPosition(m.group(1).replace("-", " "));
+                frag = (ClassListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + position);
+                
+                if (frag != null)
+                {
+                    mAdapter.setOnLoadFragmentsCompleteListener(null);
+                    frag.delinkifyClassBuild(build.getUrl());
+                    mPager.setCurrentItem(position);
+                    setRequiredLevel(frag.getMaxLevel());
+                    
+                    if (build.getFollowersUrl() != null)
+                        frag.setFollowerSkills(build.getFollowersUrl());
+                    
+                    
+                }
+            }
+        }
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
@@ -123,20 +154,26 @@ public class SelectClass extends SherlockFragmentActivity
             // MODE_PRIVATE);
             // loadClassFromUrl(keyVals.getString("test",
             // "http://us.battle.net/d3/en/calculator/barbarian#......!...!......"));
+// [e28bb57b-c629-40b8-9e48-9a81833de8ce]|[447a34cc-aa48-47c6-a521-272f65d5060f, 9f8ee560-a467-4a24-86c3-4b1ac98efd84]|[18042976-f351-42f0-a8a9-80d3da0ce5de]
 
             builds = new ArrayList<ClassBuild>();
 
             SharedPreferences valVals = getSharedPreferences("saved_build_value", MODE_PRIVATE);
             SharedPreferences clssVals = getSharedPreferences("saved_build_class", MODE_PRIVATE);
+            SharedPreferences followerVals = getSharedPreferences("saved_build_follower", MODE_PRIVATE);
 
             Map<String, String> urls = (Map<String, String>) valVals.getAll();
             Map<String, String> classes = (Map<String, String>) clssVals.getAll();
+            Map<String, String> followers = (Map<String, String>) followerVals.getAll();
 
             for (Map.Entry<String, String> pairs : urls.entrySet())
             {
                 if (classes.containsKey(pairs.getKey()))
                 {
-                    builds.add(new ClassBuild(pairs.getKey(), classes.get(pairs.getKey()), pairs.getValue()));
+                    ClassBuild c = new ClassBuild(
+                                                    pairs.getKey(), classes.get(pairs.getKey())
+                                                  , pairs.getValue(), followers.get(pairs.getKey()));
+                    builds.add(c);
                 }
             }
 
@@ -152,7 +189,7 @@ public class SelectClass extends SherlockFragmentActivity
                 public void onLoadBuildClick(ClassBuild build)
                 {
 
-                    loadClassFromUrl(build.getUrl());
+                    loadClassFromUrl(build);
                 }
                 
                 @Override
@@ -201,6 +238,8 @@ public class SelectClass extends SherlockFragmentActivity
                     SharedPreferences.Editor valEdit = valVals.edit();
                     SharedPreferences clssVals = getSharedPreferences("saved_build_class", MODE_PRIVATE);
                     SharedPreferences.Editor clssEdit = clssVals.edit();
+                    SharedPreferences followers = getSharedPreferences("saved_build_follower", MODE_PRIVATE);
+                    SharedPreferences.Editor followersEdit = followers.edit();
 
                     while (valVals.contains(value) || clssVals.contains(value))
                     {
@@ -213,9 +252,12 @@ public class SelectClass extends SherlockFragmentActivity
                         ClassListFragment frag = (ClassListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mPager.getCurrentItem());
                         valEdit.putString(value, frag.linkifyClassBuild());
                         clssEdit.putString(value, frag.getSelectedClass());
-
+                        Log.i("Follower Url", frag.getFollowerUrl());
+                        followersEdit.putString(value, frag.getFollowerUrl());
+                        
                         valEdit.commit();
                         clssEdit.commit();
+                        followersEdit.commit();
                     }
                 }
             });

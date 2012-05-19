@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.wemakestuff.d3builder.R;
+import com.wemakestuff.d3builder.followers.FollowerListFragment;
 import com.wemakestuff.d3builder.model.D3Application;
 import com.wemakestuff.d3builder.model.Skill;
 import com.wemakestuff.d3builder.string.Replacer;
@@ -24,6 +25,7 @@ public class EmptyFollower implements Item {
 	private final String icon;
 	private final String description;
 	private final UUID followerUUID;
+	private String url;
 	private List<ParcelUuid> skills = new ArrayList<ParcelUuid>();;
 
 	private LinearLayout emptyFollowerSkills;
@@ -37,11 +39,17 @@ public class EmptyFollower implements Item {
 	private TextView emptyFollowerSkill4Description;
 	
 	
-	public EmptyFollower(String name, String shortDescription, String icon, UUID followerUUID) {
+	public EmptyFollower(String name, String shortDescription, String icon, UUID followerUUID, String url) {
 		this.name = name;
 		this.description = shortDescription;
 		this.icon = icon;
 		this.followerUUID = followerUUID;
+		this.url = url;
+	}
+	
+	public void setUrl(String url)
+	{
+	    this.url = url;
 	}
 
 	public String getDescription()
@@ -59,6 +67,16 @@ public class EmptyFollower implements Item {
 
 	public UUID getFollowerUUID() {
 		return followerUUID;
+	}
+	
+	public List<ParcelUuid> getSkills()
+	{
+	    return skills;
+	}
+	
+	public String getFollowerUrl()
+	{
+	    return url;
 	}
 	
 	public void setSkills(List<ParcelUuid> list)

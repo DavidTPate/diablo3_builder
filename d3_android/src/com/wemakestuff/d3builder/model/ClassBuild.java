@@ -14,7 +14,8 @@ public class ClassBuild implements Parcelable
     private String name;
     private String url;
     private UUID   uuid = UUID.randomUUID();
-
+    private String followersUrl;
+    
     public ClassBuild(String name, String className, String url)
     {
 
@@ -22,6 +23,16 @@ public class ClassBuild implements Parcelable
         this.name = name;
         this.className = className;
         this.url = url;
+    }
+    
+    public ClassBuild(String name, String className, String url, String followerUrl)
+    {
+        
+        super();
+        this.name = name;
+        this.className = className;
+        this.url = url;
+        this.followersUrl = followerUrl;
     }
 
     public ClassBuild(Parcel source)
@@ -31,6 +42,7 @@ public class ClassBuild implements Parcelable
         this.className = source.readString();
         this.url = source.readString();
         this.uuid = source.readParcelable(ParcelUuid.class.getClassLoader());
+        this.followersUrl = source.readString();
     }
 
     public final Parcelable.Creator<ClassBuild> CREATOR = new Parcelable.Creator<ClassBuild>() {
@@ -60,6 +72,11 @@ public class ClassBuild implements Parcelable
 
         return url;
     }
+    
+    public String getFollowersUrl()
+    {
+        return followersUrl;
+    }
 
     public UUID getUuid()
     {
@@ -79,6 +96,7 @@ public class ClassBuild implements Parcelable
         dest.writeString(className);
         dest.writeString(url);
         dest.writeParcelable(new ParcelUuid(uuid), 0);
+        dest.writeString(followersUrl);
     }
 
 

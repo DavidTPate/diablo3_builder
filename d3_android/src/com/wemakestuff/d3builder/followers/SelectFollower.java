@@ -220,7 +220,7 @@ public class SelectFollower extends SherlockFragmentActivity implements OnRequir
         resultIntent.putParcelableArrayListExtra(Vars.TEMPLAR, (ArrayList<ParcelUuid>) templarSkills);
         resultIntent.putParcelableArrayListExtra(Vars.SCOUNDREL, (ArrayList<ParcelUuid>) scoundrelSkills);
         resultIntent.putParcelableArrayListExtra(Vars.ENCHANTRESS, (ArrayList<ParcelUuid>) enchantressSkills);
-
+        resultIntent.putExtra("url", getFollowersLink());
         setResult(Activity.RESULT_OK, resultIntent);
         finish();
 
