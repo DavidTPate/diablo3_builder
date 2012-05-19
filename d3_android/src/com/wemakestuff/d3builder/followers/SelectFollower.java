@@ -45,6 +45,15 @@ public class SelectFollower extends SherlockFragmentActivity implements OnRequir
 
         super.onCreate(savedInstanceState);
 
+        if (getIntent().hasExtra(Vars.TEMPLAR))
+            templarSkills = getIntent().getParcelableArrayListExtra(Vars.TEMPLAR);
+        
+        if (getIntent().hasExtra(Vars.SCOUNDREL))
+            scoundrelSkills = getIntent().getParcelableArrayListExtra(Vars.SCOUNDREL);
+
+        if (getIntent().hasExtra(Vars.ENCHANTRESS))
+            enchantressSkills = getIntent().getParcelableArrayListExtra(Vars.ENCHANTRESS);
+        
         Uri data = getIntent().getData();
         if (data != null) {
             loadFromUrl = data.toString();
@@ -136,15 +145,34 @@ public class SelectFollower extends SherlockFragmentActivity implements OnRequir
 
     }
 
+    public List<ParcelUuid> getSkillsByClass(String className)
+    {
+        if (className.equalsIgnoreCase(Vars.TEMPLAR))
+        {
+            return templarSkills;
+        }
+        else if (className.equalsIgnoreCase(Vars.SCOUNDREL))
+        {
+            return scoundrelSkills;
+        }
+        else if (className.equalsIgnoreCase(Vars.ENCHANTRESS))
+        {
+            return enchantressSkills;
+        }
+        
+        return null;
+    }
+    
     @Override
     public void onBackPressed() {
 
         FollowerListFragment frag = (FollowerListFragment) getSupportFragmentManager().findFragmentByTag(
                 "android:switcher:" + R.id.pager + ":" + mPager.getCurrentItem());
+        
         Intent resultIntent = new Intent();
-        resultIntent.putParcelableArrayListExtra("Templar", (ArrayList<ParcelUuid>) templarSkills);
-        resultIntent.putParcelableArrayListExtra("Scoundrel", (ArrayList<ParcelUuid>) scoundrelSkills);
-        resultIntent.putParcelableArrayListExtra("Enchantress", (ArrayList<ParcelUuid>) enchantressSkills);
+        resultIntent.putParcelableArrayListExtra(Vars.TEMPLAR, (ArrayList<ParcelUuid>) templarSkills);
+        resultIntent.putParcelableArrayListExtra(Vars.SCOUNDREL, (ArrayList<ParcelUuid>) scoundrelSkills);
+        resultIntent.putParcelableArrayListExtra(Vars.ENCHANTRESS, (ArrayList<ParcelUuid>) enchantressSkills);
 
         setResult(Activity.RESULT_OK, resultIntent);
         finish();

@@ -27,11 +27,13 @@ import com.wemakestuff.d3builder.model.SkillAttribute;
 import com.wemakestuff.d3builder.sectionlist.EmptyFollower;
 import com.wemakestuff.d3builder.sectionlist.EmptyRune;
 import com.wemakestuff.d3builder.sectionlist.EmptySkill;
+import com.wemakestuff.d3builder.sectionlist.EntryFollowerSkill;
 import com.wemakestuff.d3builder.sectionlist.EntryRune;
 import com.wemakestuff.d3builder.sectionlist.EntrySkill;
 import com.wemakestuff.d3builder.sectionlist.EntrySkillAdapter;
 import com.wemakestuff.d3builder.sectionlist.Item;
 import com.wemakestuff.d3builder.sectionlist.SectionItem;
+import com.wemakestuff.d3builder.string.Vars;
 
 public class ClassListFragment extends ListFragment
 {
@@ -40,6 +42,9 @@ public class ClassListFragment extends ListFragment
     private String                          selectedClass;
     private EntrySkillAdapter               listAdapter;
     private OnLoadFragmentsCompleteListener listener;
+    private List<ParcelUuid>        templarSkills     = new ArrayList<ParcelUuid>();
+    private List<ParcelUuid>        scoundrelSkills   = new ArrayList<ParcelUuid>();
+    private List<ParcelUuid>        enchantressSkills = new ArrayList<ParcelUuid>();
     int                                     index;
     int                                     GET_SKILL     = 0;
     int                                     REPLACE_SKILL = 1;
@@ -193,13 +198,10 @@ public class ClassListFragment extends ListFragment
             EmptyFollower e = (EmptyFollower) item;
             
             Intent intent = new Intent(v.getContext(), SelectFollower.class);
-            b.putString("SkillName", e.getName());
-            b.putString("SelectedClass", selectedClass);
-            b.putInt("RequiredLevel", maxLevel);
-            b.putSerializable("SkillUUID", e.getFollowerUUID());
-            b.putInt("Index", position);
-            b.putParcelable("UUID", new ParcelUuid(e.getFollowerUUID()));
-            intent.putExtras(b);
+            intent.putParcelableArrayListExtra(Vars.TEMPLAR, (ArrayList<ParcelUuid>) templarSkills);
+            intent.putParcelableArrayListExtra(Vars.SCOUNDREL, (ArrayList<ParcelUuid>) scoundrelSkills);
+            intent.putParcelableArrayListExtra(Vars.ENCHANTRESS, (ArrayList<ParcelUuid>) enchantressSkills);
+            intent.putExtra("SkillName", e.getName());
             
             startActivityForResult(intent, NEW_FOLLOWER);
         }
@@ -266,15 +268,15 @@ public class ClassListFragment extends ListFragment
             if (i instanceof EmptyFollower)
             {
                 EmptyFollower e = (EmptyFollower) i;
-                if (e.getName().equals("Templar"))
+                if (e.getName().equals(Vars.TEMPLAR))
                 {
                     ((EmptyFollower) i).setSkills(templar);
                 }
-                else if (e.getName().equals("Scoundrel"))
+                else if (e.getName().equals(Vars.SCOUNDREL))
                 {
                     ((EmptyFollower) i).setSkills(scoundrel);
                 }
-                else if (e.getName().equals("Enchantress"))
+                else if (e.getName().equals(Vars.ENCHANTRESS))
                 {
                     ((EmptyFollower) i).setSkills(enchantress);
                 }
@@ -287,40 +289,29 @@ public class ClassListFragment extends ListFragment
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data)
     {
-
         if (requestCode == NEW_FOLLOWER)
         {
-            Log.i("Got a new follower!", "Testing");
-            Log.i("ResultCode", "" + resultCode);
-            int t = Activity.RESULT_CANCELED;
             if (resultCode == Activity.RESULT_OK)
             {
-                
-                List<ParcelUuid> templar = null;
-                List<ParcelUuid> scoundrel = null;
-                List<ParcelUuid> enchantress = null;
-                
-                Log.i("Extras size", "" + data.getExtras().size());
-                
-                if (data.hasExtra("Templar"))
+                if (data.hasExtra(Vars.TEMPLAR))
                 {
-                    templar = data.getParcelableArrayListExtra("Templar");
-                    Log.i("ClassList - Got Templar Skills", "" + templar.size());
+                    templarSkills = data.getParcelableArrayListExtra(Vars.TEMPLAR);
+                    Log.i("ClassList - Got Templar Skills", "" + templarSkills.size());
                 }
                 
-                if (data.hasExtra("Scoundrel"))
+                if (data.hasExtra(Vars.SCOUNDREL))
                 {
-                    scoundrel = data.getParcelableArrayListExtra("Scoundrel");
-                    Log.i("ClassList - Got Scoundrel Skills", "" + scoundrel.size());
+                    scoundrelSkills = data.getParcelableArrayListExtra(Vars.SCOUNDREL);
+                    Log.i("ClassList - Got Scoundrel Skills", "" + scoundrelSkills.size());
                 }
                 
-                if (data.hasExtra("Enchantress"))
+                if (data.hasExtra(Vars.ENCHANTRESS))
                 {
-                    enchantress = data.getParcelableArrayListExtra("Enchantress");
-                    Log.i("ClassList - Got Enchantress Skills", "" + enchantress.size());
+                    enchantressSkills = data.getParcelableArrayListExtra(Vars.ENCHANTRESS);
+                    Log.i("ClassList - Got Enchantress Skills", "" + enchantressSkills.size());
                 }
                 
-                updateFollowerData(templar, scoundrel, enchantress);
+                updateFollowerData(templarSkills, scoundrelSkills, enchantressSkills);
             }
         }
         

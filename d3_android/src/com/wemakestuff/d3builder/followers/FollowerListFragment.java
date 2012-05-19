@@ -29,6 +29,7 @@ import com.wemakestuff.d3builder.sectionlist.EntrySkill;
 import com.wemakestuff.d3builder.sectionlist.EntrySkillAdapter;
 import com.wemakestuff.d3builder.sectionlist.Item;
 import com.wemakestuff.d3builder.sectionlist.SectionItem;
+import com.wemakestuff.d3builder.string.Vars;
 
 public class FollowerListFragment extends ListFragment
 {
@@ -139,15 +140,15 @@ public class FollowerListFragment extends ListFragment
 
         }
         
-        if (selectedFollower.equals("Templar"))
+        if (selectedFollower.equals(Vars.TEMPLAR))
         {
             sf.setTemplarSkills(getSelectedSkills());
         }
-        else if (selectedFollower.equals("Scoundrel"))
+        else if (selectedFollower.equals(Vars.SCOUNDREL))
         {
             sf.setScoundrelSkills(getSelectedSkills());
         }
-        else if (selectedFollower.equals("Enchantress"))
+        else if (selectedFollower.equals(Vars.ENCHANTRESS))
         {
             sf.setEnchantressSkills(getSelectedSkills());
         }
@@ -210,7 +211,9 @@ public class FollowerListFragment extends ListFragment
     private EntrySkillAdapter getSkillListAdapter()
     {
         items = new ArrayList<Item>();
-
+        SelectFollower f = (SelectFollower) getActivity();
+        List<ParcelUuid> selectedSkills = f.getSkillsByClass(selectedFollower);
+        
         Follower follower = D3Application.getInstance().getFollowerByName(selectedFollower);
         List<Integer> requiredLevels = follower.getRequiredLevels(); 
 
@@ -220,10 +223,12 @@ public class FollowerListFragment extends ListFragment
             List<Skill> skillsByLevel = follower.getSkillsByRequiredLevel(i.intValue());
             
             for (Skill s : skillsByLevel)
-                items.add(new EntryFollowerSkill(s, selectedFollower, false));
+            {
+                items.add(new EntryFollowerSkill(s, selectedFollower, selectedSkills.contains(new ParcelUuid(s.getUuid()))));
+            }
             
         }
-
+        
         listAdapter = new EntrySkillAdapter(context, items);
 
         return listAdapter;

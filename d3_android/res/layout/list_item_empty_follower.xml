@@ -43,7 +43,8 @@
         android:layout_below="@id/empty_follower_icon"
         android:paddingLeft="10dp"
         android:layout_marginTop="10dp"
-        android:visibility="gone"
+        android:layout_marginBottom="5dp"
+        android:visibility="visible"
         android:orientation="vertical" >
         
         <TextView 
@@ -63,6 +64,7 @@
             android:id="@+id/empty_follower_skill_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingTop="3dp"
             android:text="Level 10: Intimidate" />
         
           <TextView 
@@ -76,6 +78,7 @@
             android:id="@+id/empty_follower_skill_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingTop="3dp"
             android:text="Level 10: Onslaught" />
         
           <TextView 
@@ -89,6 +92,7 @@
             android:id="@+id/empty_follower_skill_4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingTop="3dp"
             android:text="Level 10: Guardian" />
         
           <TextView 

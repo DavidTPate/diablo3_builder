@@ -1,5 +1,6 @@
 package com.wemakestuff.d3builder.sectionlist;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -15,12 +16,15 @@ import android.widget.TextView;
 import com.wemakestuff.d3builder.R;
 import com.wemakestuff.d3builder.model.D3Application;
 import com.wemakestuff.d3builder.model.Skill;
+import com.wemakestuff.d3builder.string.Replacer;
+import com.wemakestuff.d3builder.string.Vars;
 
 public class EmptyFollower implements Item {
 	private final String name;
 	private final String icon;
 	private final String description;
 	private final UUID followerUUID;
+	private List<ParcelUuid> skills = new ArrayList<ParcelUuid>();;
 
 	private LinearLayout emptyFollowerSkills;
 	private TextView emptyFollowerSkill1;
@@ -57,19 +61,32 @@ public class EmptyFollower implements Item {
 		return followerUUID;
 	}
 	
-	public void setSkills(List<ParcelUuid> skills)
+	public void setSkills(List<ParcelUuid> list)
 	{
-	    hideAllSkills();
+	    this.skills = list;
+	    
+	    if (!hideAllSkills())
+	    {
+	        Log.e("EmptyFollower - setSkills", "View was null, can't add skills!");
+	        return;
+	    }
+	    
 	    int index = 0;
 	    for (ParcelUuid u : skills)
 	    {
 	        Skill s = D3Application.getInstance().getFollowerByName(name).getSkillByUUID(u.getUuid());
+	        
+	        if (s == null)
+	        {
+	            Log.i(name, "UUID did not exist! - " + u.getUuid().toString());
+	            continue;
+	        }
 	        Log.i("Adding skill", s.getName() );
 	        
 	        if (index == 0)
 	        {
-    	        emptyFollowerSkill1.setText(s.getName());
-    	        emptyFollowerSkill1Description.setText(s.getDescription());
+    	        emptyFollowerSkill1.setText(Replacer.replace(s.getName(), ".+", Vars.DIABLO_GOLD));
+    	        emptyFollowerSkill1Description.setText(Replacer.replace(s.getDescription().trim(), "\\d+%?", Vars.DIABLO_GREEN));
     	        
     	        emptyFollowerSkill1.setVisibility(View.VISIBLE);
     	        emptyFollowerSkill1Description.setVisibility(View.VISIBLE);
@@ -77,24 +94,24 @@ public class EmptyFollower implements Item {
 	        }
 	        else if (index == 1)
 	        {
-	            emptyFollowerSkill2.setText(s.getName());
-	            emptyFollowerSkill2Description.setText(s.getDescription());
+	            emptyFollowerSkill2.setText(Replacer.replace(s.getName(), ".+", Vars.DIABLO_GOLD));
+	            emptyFollowerSkill2Description.setText(Replacer.replace(s.getDescription().trim(), "\\d+%?", Vars.DIABLO_GREEN));
 	            
 	            emptyFollowerSkill2.setVisibility(View.VISIBLE);
 	            emptyFollowerSkill2Description.setVisibility(View.VISIBLE);
 	        }
 	        else if (index == 2)
 	        {
-	            emptyFollowerSkill3.setText(s.getName());
-	            emptyFollowerSkill3Description.setText(s.getDescription());
+	            emptyFollowerSkill3.setText(Replacer.replace(s.getName(), ".+", Vars.DIABLO_GOLD));
+	            emptyFollowerSkill3Description.setText(Replacer.replace(s.getDescription().trim(), "\\d+%?", Vars.DIABLO_GREEN));
 
 	            emptyFollowerSkill3.setVisibility(View.VISIBLE);
 	            emptyFollowerSkill3Description.setVisibility(View.VISIBLE);
 	        }
 	        else if (index == 3)
 	        {
-	            emptyFollowerSkill4.setText(s.getName());
-	            emptyFollowerSkill4Description.setText(s.getDescription());
+	            emptyFollowerSkill4.setText(Replacer.replace(s.getName(), ".+", Vars.DIABLO_GOLD));
+	            emptyFollowerSkill4Description.setText(Replacer.replace(s.getDescription().trim(), "\\d+%?", Vars.DIABLO_GREEN));
 	            
 	            emptyFollowerSkill4.setVisibility(View.VISIBLE);
 	            emptyFollowerSkill4Description.setVisibility(View.VISIBLE);
@@ -105,8 +122,12 @@ public class EmptyFollower implements Item {
 	    emptyFollowerSkills.setVisibility(View.VISIBLE);
 	}
 	
-	private void hideAllSkills()
+	private boolean hideAllSkills()
 	{
+	    if (emptyFollowerSkill1 == null || emptyFollowerSkill2 == null || emptyFollowerSkill3 == null || emptyFollowerSkill4 == null ||
+	        emptyFollowerSkill1Description == null || emptyFollowerSkill2Description == null || emptyFollowerSkill3Description == null || emptyFollowerSkill4Description == null)
+	        return false;
+	        
 	    emptyFollowerSkill1.setVisibility(View.GONE);
 	    emptyFollowerSkill2.setVisibility(View.GONE);
 	    emptyFollowerSkill3.setVisibility(View.GONE);
@@ -117,11 +138,14 @@ public class EmptyFollower implements Item {
 	    emptyFollowerSkill3Description.setVisibility(View.GONE);
 	    emptyFollowerSkill4Description.setVisibility(View.GONE);
 	    
+	    return true;
+	    
 	}
 
 	@Override
 	public View inflate(Context c, Item i) {
-
+	    Log.i("Inflating EmptyFollower", "Skills = " + skills.size());
+	    
 		LayoutInflater vi = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		EmptyFollower e = (EmptyFollower) i;
 		View v = vi.inflate(R.layout.list_item_empty_follower, null);
@@ -147,6 +171,8 @@ public class EmptyFollower implements Item {
 		emptyFollowerSkill2Description = (TextView) v.findViewById(R.id.empty_follower_skill_2_description);
 		emptyFollowerSkill3Description = (TextView) v.findViewById(R.id.empty_follower_skill_3_description);
 		emptyFollowerSkill4Description = (TextView) v.findViewById(R.id.empty_follower_skill_4_description);
+		
+		setSkills(skills);
 		
 		return v;
 	}
