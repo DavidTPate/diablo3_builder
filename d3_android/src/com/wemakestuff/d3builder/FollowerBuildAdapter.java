@@ -86,7 +86,7 @@ public class FollowerBuildAdapter extends BaseAdapter
 
                 SharedPreferences clssVals = context.getSharedPreferences("saved_build_class", Context.MODE_PRIVATE);
 
-                SharedPreferences followerVals = context.getSharedPreferences("saved_build_follower", Context.MODE_PRIVATE);
+                SharedPreferences followerVals = context.getSharedPreferences("saved_follower_value", Context.MODE_PRIVATE);
                 SharedPreferences.Editor followEdit = followerVals.edit();
 
                 //If class is declared with the same name, don't delete it from here.
