@@ -126,11 +126,11 @@ public class SelectClass extends SherlockFragmentActivity implements OnRequiredL
                     mAdapter.setOnLoadFragmentsCompleteListener(null);
                     frag.delinkifyClassBuild(build.getUrl());
                     mPager.setCurrentItem(position);
-                    setRequiredLevel(frag.getMaxLevel());
 
                     if (build.getFollowersUrl() != null)
                         frag.setFollowerSkills(build.getFollowersUrl());
 
+                    setRequiredLevel(frag.getMaxLevel());
                 }
             }
         }

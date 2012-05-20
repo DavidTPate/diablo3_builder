@@ -303,18 +303,50 @@ public class ClassListFragment extends ListFragment
                 EmptyFollower e = (EmptyFollower) i;
                 if (e.getName().equals(Vars.TEMPLAR))
                 {
-                    ((EmptyFollower) i).setSkills(templar);
+                    e.setSkills(templar);
                 }
                 else if (e.getName().equals(Vars.SCOUNDREL))
                 {
-                    ((EmptyFollower) i).setSkills(scoundrel);
+                    e.setSkills(scoundrel);
                 }
                 else if (e.getName().equals(Vars.ENCHANTRESS))
                 {
-                    ((EmptyFollower) i).setSkills(enchantress);
+                    e.setSkills(enchantress);
                 }
             }
         }
+        
+        int maxLevel = 1;
+        for (ParcelUuid u : templar)
+        {
+            Skill s = D3Application.getInstance().getFollowerByName(Vars.TEMPLAR).getSkillByUUID(u.getUuid());
+            
+            if (s.getRequiredLevel() > maxLevel)
+            {
+                maxLevel = s.getRequiredLevel();
+            }
+        }
+        for (ParcelUuid u : scoundrel)
+        {
+            Skill s = D3Application.getInstance().getFollowerByName(Vars.SCOUNDREL).getSkillByUUID(u.getUuid());
+            
+            if (s.getRequiredLevel() > maxLevel)
+            {
+                maxLevel = s.getRequiredLevel();
+            }
+        }
+        for (ParcelUuid u : enchantress)
+        {
+            Skill s = D3Application.getInstance().getFollowerByName(Vars.ENCHANTRESS).getSkillByUUID(u.getUuid());
+            
+            if (s.getRequiredLevel() > maxLevel)
+            {
+                maxLevel = s.getRequiredLevel();
+            }
+        }
+        
+        followerRequiredLevel = maxLevel;
+        
 
     }
 
@@ -488,6 +520,9 @@ public class ClassListFragment extends ListFragment
         templarSkills = new ArrayList<ParcelUuid>();
         scoundrelSkills = new ArrayList<ParcelUuid>();
         enchantressSkills = new ArrayList<ParcelUuid>();
+        followerRequiredLevel = 1;
+        requiredLevelListener.OnRequiredLevelUpdate(Vars.FOLLOWERS, 1);
+        requiredLevelListener.OnRequiredLevelUpdate(selectedClass, 1);
         setListAdapter(getSkillListAdapter());
     }
 
