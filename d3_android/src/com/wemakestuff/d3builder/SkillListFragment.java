@@ -1,3 +1,4 @@
+
 package com.wemakestuff.d3builder;
 
 import java.util.ArrayList;
@@ -19,17 +20,20 @@ import com.wemakestuff.d3builder.sectionlist.Item;
 
 public class SkillListFragment extends ListFragment
 {
-   Context context;
-    String skillType;
-    String selectedClass;
-    int maxLevel = 60;
-    OnClickListener listener;
-    List<ParcelUuid> excludeSkills;
-    
-    ArrayList<Item> items = new ArrayList<Item>();
+
+    Context                     context;
+    private static String       skillType;
+    private static String       selectedClass;
+    private static int          maxLevel    = 60;
+    OnClickListener             listener;
+    List<ParcelUuid>            excludeSkills;
+
+    ArrayList<Item>             items       = new ArrayList<Item>();
     private static final String KEY_CONTENT = "TestFragment:Content";
 
-    public static SkillListFragment newInstance(String content, Context c, String skillType, String selectedClass, int maxLevel, List<ParcelUuid> excludeSkills) {
+    public static SkillListFragment newInstance(String content, Context c, String skillType, String selectedClass, int maxLevel, List<ParcelUuid> excludeSkills)
+    {
+
         SkillListFragment fragment = new SkillListFragment();
 
         fragment.context = c;
@@ -37,14 +41,16 @@ public class SkillListFragment extends ListFragment
         fragment.selectedClass = selectedClass;
         fragment.maxLevel = maxLevel;
         fragment.excludeSkills = excludeSkills;
-        
+
         return fragment;
     }
 
     private String mContent = "???";
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState)
+    {
+
         setRetainInstance(true);
         for (Skill s : D3Application.getInstance().getClassByName(selectedClass).getActiveSkillsByTypeAndRequiredLevel(skillType, maxLevel))
         {
@@ -59,20 +65,25 @@ public class SkillListFragment extends ListFragment
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(Bundle outState)
+    {
+
         super.onSaveInstanceState(outState);
         outState.putString(KEY_CONTENT, mContent);
     }
-    
+
     public void setOnListItemClickListener(OnClickListener listener)
     {
-    	this.listener = listener;
+
+        this.listener = listener;
     }
 
-	@Override
-	public void onListItemClick(ListView l, View v, int position, long id) {
-		listener.onClick(v);
-		super.onListItemClick(l, v, position, id);
-	}
-    
+    @Override
+    public void onListItemClick(ListView l, View v, int position, long id)
+    {
+
+        listener.onClick(v);
+        super.onListItemClick(l, v, position, id);
+    }
+
 }
