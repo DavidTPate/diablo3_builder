@@ -437,7 +437,7 @@ public class ClassListFragment extends ListFragment
                             items.set(index + 1, new EmptyRune("Choose Rune", 1, s.getName(), s.getUuid()));
                         }
                     }
-                    listAdapter.setList(items);
+                    listAdapter.notifyDataSetChanged();
                     requiredLevelListener.OnRequiredLevelUpdate(selectedClass, getMaxLevel());
 
                 }
@@ -445,8 +445,7 @@ public class ClassListFragment extends ListFragment
                 {
                     Skill s = D3Application.getInstance().getClassByName(selectedClass).getPassiveSkillByUUID(UUID.fromString(skillUUID));
                     items.set(index, new EntrySkill(s));
-                    listAdapter.setList(items);
-
+                    listAdapter.notifyDataSetChanged();
                     requiredLevelListener.OnRequiredLevelUpdate(selectedClass, getMaxLevel());
                 }
                 else
@@ -870,9 +869,10 @@ public class ClassListFragment extends ListFragment
             }
         }
 
-        items = tempItems;
+        this.items = tempItems;
+        listAdapter = new EntrySkillAdapter(context, this.items);
 
-        setListAdapter(new EntrySkillAdapter(context, items));
+        setListAdapter(listAdapter);
     }
 
     public int getFollowerSkillsCount()
