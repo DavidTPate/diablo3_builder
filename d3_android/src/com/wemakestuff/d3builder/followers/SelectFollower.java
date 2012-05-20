@@ -94,7 +94,6 @@ public class SelectFollower extends SherlockFragmentActivity implements OnRequir
         Uri data = getIntent().getData();
         if (data != null) {
             loadFromUrl = data.toString();
-            Log.i("LoadFromUrl", loadFromUrl);
         }
         
         if (getIntent().hasExtra("url"))
@@ -301,15 +300,12 @@ public class SelectFollower extends SherlockFragmentActivity implements OnRequir
         }
         
         updateData();
-        
-        Toast.makeText(getApplicationContext(), "Load complete!", Toast.LENGTH_SHORT).show();
     }
     
     public String getFollowersLink()
     {
         StringBuffer followerLink = new StringBuffer("http://us.battle.net/d3/en/calculator/follower#");
         
-        Log.i("CurrentItem", mPager.getCurrentItem() + "");
         FollowerListFragment frag = (FollowerListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.follower_pager + ":" + "0");
         followerLink.append(frag.linkifyClassBuild());
         followerLink.append(D3Application.getInstance().getSkillAttributes().getFollowerSeparator());
@@ -330,7 +326,6 @@ public class SelectFollower extends SherlockFragmentActivity implements OnRequir
     }
 
     public void setRequiredLevel(int level) {
-        Log.i("RequiredLevel", ":Setting to " + level);
         requiredLevel.setText(Replacer.replace("Required Level: " + level, "\\d+", Vars.DIABLO_GREEN));
     }
 

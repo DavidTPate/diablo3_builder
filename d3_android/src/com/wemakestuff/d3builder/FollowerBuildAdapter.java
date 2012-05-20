@@ -22,12 +22,13 @@ import com.wemakestuff.d3builder.string.Vars;
 public class FollowerBuildAdapter extends BaseAdapter
 {
 
-    private ArrayList<ClassBuild> items;
-    private Context               context;
+    private ArrayList<ClassBuild>     items;
+    private Context                   context;
     private OnLoadBuildClickInterface clickInterface;
 
     public FollowerBuildAdapter(ArrayList<ClassBuild> items, Context context, OnLoadBuildClickInterface clickInterface)
     {
+
         this.clickInterface = clickInterface;
         this.items = items;
         this.context = context;
@@ -66,7 +67,7 @@ public class FollowerBuildAdapter extends BaseAdapter
         TextView className = (TextView) v.findViewById(R.id.class_build_class);
 
         name.setText(item.getName());
-        
+
         className.setText("Class: " + item.getClassName());
 
         ImageButton delete = (ImageButton) v.findViewById(R.id.class_build_delete);
@@ -84,13 +85,18 @@ public class FollowerBuildAdapter extends BaseAdapter
                 SharedPreferences.Editor valEdit = valVals.edit();
 
                 SharedPreferences clssVals = context.getSharedPreferences("saved_build_class", Context.MODE_PRIVATE);
-                SharedPreferences.Editor clssEdit = clssVals.edit();
 
-                valEdit.remove(item.getName());
-                clssEdit.remove(item.getName());
+                SharedPreferences followerVals = context.getSharedPreferences("saved_build_follower", Context.MODE_PRIVATE);
+                SharedPreferences.Editor followEdit = followerVals.edit();
 
-                valEdit.commit();
-                clssEdit.commit();
+                //If class is declared with the same name, don't delete it from here.
+                if (!clssVals.contains(item.getName()))
+                    valEdit.remove(item.getName());
+                followEdit.remove(item.getName());
+
+                if (!clssVals.contains(item.getName()))
+                    valEdit.commit();
+                followEdit.commit();
                 clickInterface.onDeleteBuild(item);
             }
 
@@ -107,7 +113,7 @@ public class FollowerBuildAdapter extends BaseAdapter
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("text/plain");
                 intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Check out my " + item.getClassName() + " D3 build!");
-                intent.putExtra(android.content.Intent.EXTRA_TEXT, item.getUrl());
+                intent.putExtra(android.content.Intent.EXTRA_TEXT, "Check out my " + item.getClassName() + " D3 build: " + item.getUrl());
                 context.startActivity(Intent.createChooser(intent, "Share Using"));
                 clickInterface.onLoadBuildDismiss();
             }
@@ -121,6 +127,7 @@ public class FollowerBuildAdapter extends BaseAdapter
             @Override
             public void onClick(View v)
             {
+
                 clickInterface.onLoadBuildClick(item);
                 clickInterface.onLoadBuildDismiss();
             }
