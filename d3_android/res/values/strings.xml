@@ -3,6 +3,9 @@
 
     <string name="alert_dialog_ok">Ok</string>
     <string name="alert_dialog_title">Are you sure you want to clear the current build?</string>
+    <string name="alert_dialog_title_clear">Are you sure you want to clear the current follower?</string>
+    <string name="alert_dialog_title_clear_all">Are you sure you want to clear all followers?</string>
+    <string name="alert_dialog_title_build_clear_all">Are you sure you want to clear all builds?</string>
     <string name="alert_dialog_cancel">Cancel</string>
     <string name="app_name">D3 Builder</string>
     <string name="class_text">Class</string>

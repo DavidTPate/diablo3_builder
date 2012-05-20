@@ -80,8 +80,8 @@ public class SelectFollower extends SherlockFragmentActivity implements OnRequir
         if (getIntent().hasExtra(Vars.ENCHANTRESS))
             enchantressSkills = getIntent().getParcelableArrayListExtra(Vars.ENCHANTRESS);
         
-        if (getIntent().hasExtra("Follower"))
-            selectedFollower = getIntent().getStringExtra("Follower");
+        if (getIntent().hasExtra(Vars.FOLLOWERS))
+            selectedFollower = getIntent().getStringExtra(Vars.FOLLOWERS);
         
 
         if (!requiredLevelMap.containsKey(Vars.TEMPLAR))
@@ -185,7 +185,7 @@ public class SelectFollower extends SherlockFragmentActivity implements OnRequir
     {
 
         MenuInflater inflater = getSupportMenuInflater();
-        inflater.inflate(R.menu.main, menu);
+        inflater.inflate(R.menu.follower, menu);
         return super.onCreateOptionsMenu(menu);
     }
     
@@ -228,8 +228,13 @@ public class SelectFollower extends SherlockFragmentActivity implements OnRequir
         }
         else if (item.getItemId() == R.id.clear)
         {
-            DialogFragment newFragment = MyAlertDialogFragment.newInstance(R.string.alert_dialog_title);
-            newFragment.show(getSupportFragmentManager(), "dialog");
+            DialogFragment newFragment = MyAlertDialogFragment.newInstance(R.string.alert_dialog_title_clear, false);
+            newFragment.show(getSupportFragmentManager(), "dialog_clear");
+        }
+        else if (item.getItemId() == R.id.clear_all)
+        {
+            DialogFragment newFragment = MyAlertDialogFragment.newInstance(R.string.alert_dialog_title_clear_all, true);
+            newFragment.show(getSupportFragmentManager(), "dialog_clear_all");
         }
         return super.onOptionsItemSelected(item);
     }
@@ -360,14 +365,27 @@ public class SelectFollower extends SherlockFragmentActivity implements OnRequir
 
     }
     
-    public void doPositiveClick()
+    public void doPositiveClick(boolean clearAll)
     {
-
-        FollowerListFragment frag = (FollowerListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.follower_pager + ":" + mPager.getCurrentItem());
-        frag.clear();
+        
+        if (!clearAll)
+        {
+            FollowerListFragment frag = (FollowerListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.follower_pager + ":" + mPager.getCurrentItem());
+            frag.clear();
+        }
+        else
+        {
+            FollowerListFragment frag1 = (FollowerListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.follower_pager + ":" + "0");
+            FollowerListFragment frag2 = (FollowerListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.follower_pager + ":" + "1");
+            FollowerListFragment frag3 = (FollowerListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.follower_pager + ":" + "2");
+            
+            if (frag1 != null) frag1.clear();
+            if (frag2 != null) frag2.clear();
+            if (frag3 != null) frag3.clear();
+        }
     }
 
-    public void doNegativeClick()
+    public void doNegativeClick(boolean clearAll)
     {
 
     }
@@ -402,7 +420,7 @@ public class SelectFollower extends SherlockFragmentActivity implements OnRequir
     public void OnLoadFragmentComplete(String follower) {
         loadedFragmentsCount++;
         
-        if (loadedFragmentsCount == 3 && loadFromUrl != null)
+        if (loadedFragmentsCount == 3)
         {
             int item = 0;
             
@@ -418,7 +436,8 @@ public class SelectFollower extends SherlockFragmentActivity implements OnRequir
             
             ((TitlePageIndicator) mIndicator).setCurrentItem(item);
             
-            delinkifyClassBuild(loadFromUrl);
+            if (loadFromUrl != null)
+                delinkifyClassBuild(loadFromUrl);
         }
         
     }
@@ -426,12 +445,13 @@ public class SelectFollower extends SherlockFragmentActivity implements OnRequir
     public static class MyAlertDialogFragment extends DialogFragment
     {
 
-        public static MyAlertDialogFragment newInstance(int title)
+        public static MyAlertDialogFragment newInstance(int title, boolean clearAll)
         {
 
             MyAlertDialogFragment frag = new MyAlertDialogFragment();
             Bundle args = new Bundle();
             args.putInt("title", title);
+            args.putBoolean("clearAll", clearAll);
             frag.setArguments(args);
             return frag;
         }
@@ -441,14 +461,15 @@ public class SelectFollower extends SherlockFragmentActivity implements OnRequir
         {
 
             int title = getArguments().getInt("title");
-
+            final boolean clearAll = getArguments().getBoolean("clearAll");
+            
             return new AlertDialog.Builder(getActivity()).setTitle(title).setPositiveButton(R.string.alert_dialog_ok, new DialogInterface.OnClickListener()
             {
 
                 public void onClick(DialogInterface dialog, int whichButton)
                 {
 
-                    ((SelectFollower) getActivity()).doPositiveClick();
+                    ((SelectFollower) getActivity()).doPositiveClick(clearAll);
                 }
             }).setNegativeButton(R.string.alert_dialog_cancel, new DialogInterface.OnClickListener()
             {
@@ -456,7 +477,7 @@ public class SelectFollower extends SherlockFragmentActivity implements OnRequir
                 public void onClick(DialogInterface dialog, int whichButton)
                 {
 
-                    ((SelectFollower) getActivity()).doNegativeClick();
+                    ((SelectFollower) getActivity()).doNegativeClick(clearAll);
                 }
             }).create();
         }

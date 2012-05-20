@@ -35,6 +35,7 @@ import com.viewpagerindicator.PageIndicator;
 import com.viewpagerindicator.TitlePageIndicator;
 import com.viewpagerindicator.TitlePageIndicator.IndicatorStyle;
 import com.wemakestuff.d3builder.followers.FollowerListFragment.OnRequiredLevelUpdateListener;
+import com.wemakestuff.d3builder.followers.SelectFollower.MyAlertDialogFragment;
 import com.wemakestuff.d3builder.followers.SelectFollower;
 import com.wemakestuff.d3builder.model.ClassBuild;
 import com.wemakestuff.d3builder.string.Replacer;
@@ -126,11 +127,11 @@ public class SelectClass extends SherlockFragmentActivity implements OnRequiredL
                     mAdapter.setOnLoadFragmentsCompleteListener(null);
                     frag.delinkifyClassBuild(build.getUrl());
                     mPager.setCurrentItem(position);
-                    setRequiredLevel(frag.getMaxLevel());
 
                     if (build.getFollowersUrl() != null)
                         frag.setFollowerSkills(build.getFollowersUrl());
 
+                    setRequiredLevel(frag.getMaxLevel());
                 }
             }
         }
@@ -276,8 +277,13 @@ public class SelectClass extends SherlockFragmentActivity implements OnRequiredL
         }
         else if (item.getItemId() == R.id.clear)
         {
-            DialogFragment newFragment = MyAlertDialogFragment.newInstance(R.string.alert_dialog_title);
+            DialogFragment newFragment = MyAlertDialogFragment.newInstance(R.string.alert_dialog_title, false);
             newFragment.show(getSupportFragmentManager(), "dialog");
+        }
+        else if (item.getItemId() == R.id.clear_all)
+        {
+            DialogFragment newFragment = MyAlertDialogFragment.newInstance(R.string.alert_dialog_title_build_clear_all, true);
+            newFragment.show(getSupportFragmentManager(), "dialog_clear_all");
         }
         return super.onOptionsItemSelected(item);
     }
@@ -409,15 +415,32 @@ public class SelectClass extends SherlockFragmentActivity implements OnRequiredL
         super.onSaveInstanceState(outState);
     }
 
-    public void doPositiveClick()
+    public void doPositiveClick(boolean clearAll)
     {
 
-        ClassListFragment frag = (ClassListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mPager.getCurrentItem());
+        if (clearAll)
+        {
+            ClassListFragment frag1 = (ClassListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + "0");
+            ClassListFragment frag2 = (ClassListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + "1");
+            ClassListFragment frag3 = (ClassListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + "2");
+            ClassListFragment frag4 = (ClassListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + "3");
+            ClassListFragment frag5 = (ClassListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + "4");
+            
+            if (frag1 != null) frag1.clear();
+            if (frag2 != null) frag2.clear();
+            if (frag3 != null) frag3.clear();
+            if (frag4 != null) frag4.clear();
+            if (frag5 != null) frag5.clear();
+        }
+        else
+        {
+            ClassListFragment frag = (ClassListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mPager.getCurrentItem());
+            frag.clear();
+        }
         setRequiredLevel(1);
-        frag.clear();
     }
 
-    public void doNegativeClick()
+    public void doNegativeClick(boolean clearAll)
     {
 
     }
@@ -425,12 +448,13 @@ public class SelectClass extends SherlockFragmentActivity implements OnRequiredL
     public static class MyAlertDialogFragment extends DialogFragment
     {
 
-        public static MyAlertDialogFragment newInstance(int title)
+        public static MyAlertDialogFragment newInstance(int title, boolean clearAll)
         {
 
             MyAlertDialogFragment frag = new MyAlertDialogFragment();
             Bundle args = new Bundle();
             args.putInt("title", title);
+            args.putBoolean("clearAll", clearAll);
             frag.setArguments(args);
             return frag;
         }
@@ -440,14 +464,15 @@ public class SelectClass extends SherlockFragmentActivity implements OnRequiredL
         {
 
             int title = getArguments().getInt("title");
-
+            final boolean clearAll = getArguments().getBoolean("clearAll");
+            
             return new AlertDialog.Builder(getActivity()).setTitle(title).setPositiveButton(R.string.alert_dialog_ok, new DialogInterface.OnClickListener()
             {
 
                 public void onClick(DialogInterface dialog, int whichButton)
                 {
 
-                    ((SelectClass) getActivity()).doPositiveClick();
+                    ((SelectClass) getActivity()).doPositiveClick(clearAll);
                 }
             }).setNegativeButton(R.string.alert_dialog_cancel, new DialogInterface.OnClickListener()
             {
@@ -455,7 +480,7 @@ public class SelectClass extends SherlockFragmentActivity implements OnRequiredL
                 public void onClick(DialogInterface dialog, int whichButton)
                 {
 
-                    ((SelectClass) getActivity()).doNegativeClick();
+                    ((SelectClass) getActivity()).doNegativeClick(clearAll);
                 }
             }).create();
         }
