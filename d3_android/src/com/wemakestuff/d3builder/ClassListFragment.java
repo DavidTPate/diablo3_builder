@@ -182,7 +182,7 @@ public class ClassListFragment extends ListFragment
     public String clearClassFromUrl(String searchClass)
     {
         String[] url = followerUrl.split("#");
-        StringBuffer returnVal = new StringBuffer(url[0]);
+        StringBuffer returnVal = new StringBuffer(url[0] + "#");
         
         String build = url[1];
         String templarLink = null;
