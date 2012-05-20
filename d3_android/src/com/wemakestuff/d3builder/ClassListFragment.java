@@ -1,3 +1,4 @@
+
 package com.wemakestuff.d3builder;
 
 import java.util.ArrayList;
@@ -86,6 +87,7 @@ public class ClassListFragment extends ListFragment
     @Override
     public void onAttach(Activity activity)
     {
+
         super.onAttach(activity);
 
         try
@@ -111,16 +113,18 @@ public class ClassListFragment extends ListFragment
 
         setRetainInstance(true);
         setListAdapter(getSkillListAdapter());
-        
+
     }
-    
+
     public void clearListItem(int position)
     {
+
         Item i = items.get(position);
-        
+
         if (i instanceof EntrySkill)
         {
-            // If this is a skill, check if the next item in the list is a rune, if so we need to remove that too.
+            // If this is a skill, check if the next item in the list is a rune,
+            // if so we need to remove that too.
             String type = ((EntrySkill) i).getSkill().getType();
             items.set(position, new EmptySkill("Choose Skill", 1, type));
             if (items.size() > (position + 1))
@@ -131,7 +135,7 @@ public class ClassListFragment extends ListFragment
                     items.remove(i2);
                 }
             }
-            
+
         }
         else if (i instanceof EntryRune)
         {
@@ -140,20 +144,21 @@ public class ClassListFragment extends ListFragment
         else if (i instanceof EmptyFollower)
         {
             EmptyFollower e = (EmptyFollower) i;
-            
+
             String existingName = e.getName();
-            
+
             // No skills selected, nothing to clear
             if (!(getFollowerSkillsCount() > 0))
                 return;
-            
+
             for (Follower f : D3Application.getInstance().getFollowers())
             {
                 if (f.getName().equalsIgnoreCase(existingName))
                 {
                     items.set(position, new EmptyFollower(f.getName(), f.getShortDescription(), f.getIcon(), f.getUuid(), ""));
-                    
-                    // Clear the skills, update the list, remove the skills from the URL
+
+                    // Clear the skills, update the list, remove the skills from
+                    // the URL
                     if (existingName.equals(Vars.TEMPLAR))
                     {
                         Log.i("FollowerUrl", followerUrl);
@@ -175,15 +180,16 @@ public class ClassListFragment extends ListFragment
                 }
             }
         }
-        
+
         listAdapter.notifyDataSetChanged();
     }
-    
+
     public String clearClassFromUrl(String searchClass)
     {
+
         String[] url = followerUrl.split("#");
         StringBuffer returnVal = new StringBuffer(url[0] + "#");
-        
+
         String build = url[1];
         String templarLink = null;
         String scoundrelLink = null;
@@ -193,25 +199,25 @@ public class ClassListFragment extends ListFragment
 
         switch (followers.length)
         {
-            case 1:
-                templarLink = followers[0];
-                break;
+        case 1:
+            templarLink = followers[0];
+            break;
 
-            case 2:
-                templarLink = followers[0];
-                scoundrelLink = followers[1];
-                break;
+        case 2:
+            templarLink = followers[0];
+            scoundrelLink = followers[1];
+            break;
 
-            case 3:
-                templarLink = followers[0];
-                scoundrelLink = followers[1];
-                enchantressLink = followers[2];
-                break;
+        case 3:
+            templarLink = followers[0];
+            scoundrelLink = followers[1];
+            enchantressLink = followers[2];
+            break;
 
-            default:
-                break;
+        default:
+            break;
         }
-        
+
         if (searchClass.equalsIgnoreCase(Vars.TEMPLAR))
         {
             templarLink = "....";
@@ -224,17 +230,17 @@ public class ClassListFragment extends ListFragment
         {
             enchantressLink = "....";
         }
-        
+
         returnVal.append(templarLink);
         returnVal.append(D3Application.getInstance().getSkillAttributes().getFollowerSeparator());
         returnVal.append(scoundrelLink);
         returnVal.append(D3Application.getInstance().getSkillAttributes().getFollowerSeparator());
         returnVal.append(enchantressLink);
-        
+
         Log.i("clearClassFromurl", returnVal.toString());
-        
+
         return returnVal.toString();
-        
+
     }
 
     @Override
@@ -250,36 +256,39 @@ public class ClassListFragment extends ListFragment
     @Override
     public void onActivityCreated(Bundle savedInstanceState)
     {
+
         super.onActivityCreated(savedInstanceState);
 
-        getListView().setOnItemLongClickListener(new OnItemLongClickListener() {
+        getListView().setOnItemLongClickListener(new OnItemLongClickListener()
+        {
 
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id)
             {
+
                 Item selected = (Item) getListAdapter().getItem(position);
-                
+
                 if (selected instanceof EntrySkill)
                 {
                     ((SelectClass) getActivity()).onListItemLongClick(position, "Remove Skill");
-                    
+
                 }
                 else if (selected instanceof EntryRune)
                 {
                     ((SelectClass) getActivity()).onListItemLongClick(position, "Remove Rune");
-                    
+
                 }
                 else if (selected instanceof EmptyFollower)
                 {
                     EmptyFollower e = (EmptyFollower) selected;
-                    
+
                     if (e.getSkills().size() > 0)
                     {
                         ((SelectClass) getActivity()).onListItemLongClick(position, "Remove Follower");
                     }
-                    
+
                 }
-                
+
                 return true;
             }
         });
@@ -302,6 +311,7 @@ public class ClassListFragment extends ListFragment
     @Override
     public void onPause()
     {
+
         super.onPause();
     }
 
@@ -316,6 +326,7 @@ public class ClassListFragment extends ListFragment
     @Override
     public void onListItemClick(ListView l, View v, int position, long id)
     {
+
         ((SelectClass) getActivity()).clearActionMode();
 
         EntrySkillAdapter listAdapter = (EntrySkillAdapter) getListAdapter();
@@ -452,7 +463,7 @@ public class ClassListFragment extends ListFragment
             items.add(new EmptyFollower(f.getName(), f.getShortDescription(), f.getIcon(), f.getUuid(), ""));
         }
 
-        listAdapter = new EntrySkillAdapter(context, items);
+        listAdapter = new EntrySkillAdapter(getActivity(), items);
 
         return listAdapter;
     }
@@ -574,8 +585,7 @@ public class ClassListFragment extends ListFragment
                     index = b.getInt("Index");
                 }
 
-                if (skillUUID != null && index >= 0
-                        && D3Application.getInstance().getClassByName(selectedClass).containsActiveSkillByUUID(UUID.fromString(skillUUID)))
+                if (skillUUID != null && index >= 0 && D3Application.getInstance().getClassByName(selectedClass).containsActiveSkillByUUID(UUID.fromString(skillUUID)))
                 {
                     Skill s = D3Application.getInstance().getClassByName(selectedClass).getActiveSkillByUUID(UUID.fromString(skillUUID));
                     items.set(index, new EntrySkill(s));
@@ -604,8 +614,7 @@ public class ClassListFragment extends ListFragment
                     requiredLevelListener.OnRequiredLevelUpdate(selectedClass, getMaxLevel());
 
                 }
-                else if (skillUUID != null && index >= 0
-                        && D3Application.getInstance().getClassByName(selectedClass).containsPassiveSkillByUUID(UUID.fromString(skillUUID)))
+                else if (skillUUID != null && index >= 0 && D3Application.getInstance().getClassByName(selectedClass).containsPassiveSkillByUUID(UUID.fromString(skillUUID)))
                 {
                     Skill s = D3Application.getInstance().getClassByName(selectedClass).getPassiveSkillByUUID(UUID.fromString(skillUUID));
                     items.set(index, new EntrySkill(s));
@@ -622,7 +631,7 @@ public class ClassListFragment extends ListFragment
             {
                 // Do nothing?
             }
-            
+
         }
         else if (requestCode == GET_RUNE || requestCode == REPLACE_RUNE)
         {
@@ -651,16 +660,10 @@ public class ClassListFragment extends ListFragment
 
                 if (D3Application.getInstance().getClassByName(selectedClass).containsActiveSkillByUUID(UUID.fromString(skillUUID)))
                 {
-                    if (skillUUID != null
-                            && index >= 0
-                            && D3Application.getInstance().getClassByName(selectedClass).getActiveSkillByUUID(UUID.fromString(skillUUID))
-                                    .containsRuneByUUID(UUID.fromString(runeUUID)))
+                    if (skillUUID != null && index >= 0 && D3Application.getInstance().getClassByName(selectedClass).getActiveSkillByUUID(UUID.fromString(skillUUID)).containsRuneByUUID(UUID.fromString(runeUUID)))
                     {
-                        Rune s = D3Application.getInstance().getClassByName(selectedClass).getActiveSkillByUUID(UUID.fromString(skillUUID))
-                                .getRuneByUUID(UUID.fromString(runeUUID));
-                        items.set(index,
-                                new EntryRune(s, D3Application.getInstance().getClassByName(selectedClass).getActiveSkillByUUID(UUID.fromString(skillUUID))
-                                        .getName(), UUID.fromString(skillUUID)));
+                        Rune s = D3Application.getInstance().getClassByName(selectedClass).getActiveSkillByUUID(UUID.fromString(skillUUID)).getRuneByUUID(UUID.fromString(runeUUID));
+                        items.set(index, new EntryRune(s, D3Application.getInstance().getClassByName(selectedClass).getActiveSkillByUUID(UUID.fromString(skillUUID)).getName(), UUID.fromString(skillUUID)));
                         listAdapter.setList(items);
                         ((SelectClass) getActivity()).setRequiredLevel(listAdapter.getMaxLevel(false));
                     }
@@ -679,17 +682,19 @@ public class ClassListFragment extends ListFragment
             {
                 // Do nothing?
             }
-            
+
         }
     }
 
     public int getMaxLevel()
     {
+
         return Math.max(followerRequiredLevel, listAdapter.getMaxLevel(false));
     }
 
     public void clear()
     {
+
         templarSkills = new ArrayList<ParcelUuid>();
         scoundrelSkills = new ArrayList<ParcelUuid>();
         enchantressSkills = new ArrayList<ParcelUuid>();
@@ -758,8 +763,7 @@ public class ClassListFragment extends ListFragment
             }
         }
 
-        return prefix + selectedClass.toLowerCase().replace(" ", "-") + "#" + activeVal.toString() + skillAttrbs.getPassiveSeparator() + passiveVal.toString()
-                + skillAttrbs.getRuneSeparator() + runeVal.toString();
+        return prefix + selectedClass.toLowerCase().replace(" ", "-") + "#" + activeVal.toString() + skillAttrbs.getPassiveSeparator() + passiveVal.toString() + skillAttrbs.getRuneSeparator() + runeVal.toString();
     }
 
     public String getFollowerSkills()
@@ -817,23 +821,23 @@ public class ClassListFragment extends ListFragment
 
         switch (followers.length)
         {
-            case 1:
-                templarLink = followers[0];
-                break;
+        case 1:
+            templarLink = followers[0];
+            break;
 
-            case 2:
-                templarLink = followers[0];
-                scoundrelLink = followers[1];
-                break;
+        case 2:
+            templarLink = followers[0];
+            scoundrelLink = followers[1];
+            break;
 
-            case 3:
-                templarLink = followers[0];
-                scoundrelLink = followers[1];
-                enchantressLink = followers[2];
-                break;
+        case 3:
+            templarLink = followers[0];
+            scoundrelLink = followers[1];
+            enchantressLink = followers[2];
+            break;
 
-            default:
-                break;
+        default:
+            break;
         }
 
         List<Item> items = ((EntrySkillAdapter) getListAdapter()).getFollowers();
@@ -886,6 +890,7 @@ public class ClassListFragment extends ListFragment
 
     public String getFollowerUrl()
     {
+
         return followerUrl;
     }
 
