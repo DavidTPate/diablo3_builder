@@ -67,25 +67,33 @@ public class SelectClass extends SherlockFragmentActivity implements OnRequiredL
         return super.onCreateOptionsMenu(menu);
     }
 
-    public void onListItemLongClick(int position)
+    public void onListItemLongClick(int position, String title)
     {
-        mMode = startActionMode(new ActionModeEditListItem(position));
+        mMode = startActionMode(new ActionModeEditListItem(position, title));
+    }
+    
+    public void clearActionMode()
+    {
+        if (mMode != null)
+            mMode.finish();
     }
 
     public final class ActionModeEditListItem implements ActionMode.Callback
     {
         int position;
+        String title;
         
-        public ActionModeEditListItem(int position)
+        public ActionModeEditListItem(int position, String title)
         {
             this.position = position;
+            this.title = title;
         }
 
         @Override
         public boolean onCreateActionMode(ActionMode mode, Menu menu)
         {
 
-            mode.setTitle("Remove skill");
+            mode.setTitle(title);
             //@formatter:off
             menu.add("Delete")
                 .setIcon(R.drawable.ic_menu_delete)
@@ -104,10 +112,13 @@ public class SelectClass extends SherlockFragmentActivity implements OnRequiredL
         @Override
         public boolean onActionItemClicked(ActionMode mode, MenuItem item)
         {
-            Toast.makeText(SelectClass.this, "Got click: " + item, Toast.LENGTH_SHORT).show();
             ClassListFragment frag = (ClassListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mPager.getCurrentItem());
-            frag.clearListItem(position);
-            mode.finish();
+            
+            if (frag != null)
+            {
+                frag.clearListItem(position);
+                mode.finish();
+            }
             return true;
         }
 
@@ -429,6 +440,11 @@ public class SelectClass extends SherlockFragmentActivity implements OnRequiredL
             public void onPageSelected(int position)
             {
 
+                if (mMode != null)
+                {
+                    mMode.finish();
+                }
+                
                 ClassListFragment frag = (ClassListFragment) getSupportFragmentManager().findFragmentByTag(
                         "android:switcher:" + R.id.pager + ":" + mPager.getCurrentItem());
                 if (frag != null)

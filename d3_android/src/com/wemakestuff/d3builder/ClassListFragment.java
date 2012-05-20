@@ -23,7 +23,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.actionbarsherlock.view.ActionMode;
 import com.wemakestuff.d3builder.followers.FollowerListFragment.OnRequiredLevelUpdateListener;
@@ -118,12 +117,10 @@ public class ClassListFragment extends ListFragment
     public void clearListItem(int position)
     {
         Item i = items.get(position);
-        String[] skillTypes = D3Application.getInstance().getClassAttributesByName(selectedClass).getSkillTypes();
         
         if (i instanceof EntrySkill)
         {
             // If this is a skill, check if the next item in the list is a rune, if so we need to remove that too.
-            
             String type = ((EntrySkill) i).getSkill().getType();
             items.set(position, new EmptySkill("Choose Skill", 1, type));
             if (items.size() > (position + 1))
@@ -145,18 +142,99 @@ public class ClassListFragment extends ListFragment
             EmptyFollower e = (EmptyFollower) i;
             
             String existingName = e.getName();
+            
+            // No skills selected, nothing to clear
+            if (!(getFollowerSkillsCount() > 0))
+                return;
+            
             for (Follower f : D3Application.getInstance().getFollowers())
             {
                 if (f.getName().equalsIgnoreCase(existingName))
                 {
                     items.set(position, new EmptyFollower(f.getName(), f.getShortDescription(), f.getIcon(), f.getUuid(), ""));
                     
+                    // Clear the skills, update the list, remove the skills from the URL
+                    if (existingName.equals(Vars.TEMPLAR))
+                    {
+                        Log.i("FollowerUrl", followerUrl);
+                        templarSkills = new ArrayList<ParcelUuid>();
+                        updateFollowerData(templarSkills, scoundrelSkills, enchantressSkills, clearClassFromUrl(Vars.TEMPLAR));
+                    }
+                    else if (existingName.equals(Vars.SCOUNDREL))
+                    {
+                        Log.i("FollowerUrl", followerUrl);
+                        scoundrelSkills = new ArrayList<ParcelUuid>();
+                        updateFollowerData(templarSkills, scoundrelSkills, enchantressSkills, clearClassFromUrl(Vars.SCOUNDREL));
+                    }
+                    else if (existingName.equals(Vars.ENCHANTRESS))
+                    {
+                        Log.i("FollowerUrl", followerUrl);
+                        enchantressSkills = new ArrayList<ParcelUuid>();
+                        updateFollowerData(templarSkills, scoundrelSkills, enchantressSkills, clearClassFromUrl(Vars.ENCHANTRESS));
+                    }
                 }
             }
         }
         
         listAdapter.notifyDataSetChanged();
-        ((SelectClass) getActivity()).updateData();
+    }
+    
+    public String clearClassFromUrl(String searchClass)
+    {
+        String[] url = followerUrl.split("#");
+        StringBuffer returnVal = new StringBuffer(url[0]);
+        
+        String build = url[1];
+        String templarLink = null;
+        String scoundrelLink = null;
+        String enchantressLink = null;
+
+        String[] followers = build.split("!");
+
+        switch (followers.length)
+        {
+            case 1:
+                templarLink = followers[0];
+                break;
+
+            case 2:
+                templarLink = followers[0];
+                scoundrelLink = followers[1];
+                break;
+
+            case 3:
+                templarLink = followers[0];
+                scoundrelLink = followers[1];
+                enchantressLink = followers[2];
+                break;
+
+            default:
+                break;
+        }
+        
+        if (searchClass.equalsIgnoreCase(Vars.TEMPLAR))
+        {
+            templarLink = "....";
+        }
+        else if (searchClass.equalsIgnoreCase(Vars.SCOUNDREL))
+        {
+            scoundrelLink = "....";
+        }
+        else if (searchClass.equalsIgnoreCase(Vars.ENCHANTRESS))
+        {
+            enchantressLink = "....";
+        }
+        
+        returnVal.append(templarLink);
+        returnVal.append(D3Application.getInstance().getSkillAttributes().getFollowerSeparator());
+        returnVal.append(scoundrelLink);
+        returnVal.append(D3Application.getInstance().getSkillAttributes().getFollowerSeparator());
+        returnVal.append(enchantressLink);
+        
+        Log.i("clearClassFromurl", returnVal.toString());
+        
+        return returnVal.toString();
+        
     }
 
     @Override
@@ -183,20 +261,22 @@ public class ClassListFragment extends ListFragment
                 
                 if (selected instanceof EntrySkill)
                 {
-                    ((SelectClass) getActivity()).onListItemLongClick(position);
-                    Toast.makeText(getActivity(), "On long click listener - EntrySkill", Toast.LENGTH_LONG).show();
+                    ((SelectClass) getActivity()).onListItemLongClick(position, "Remove Skill");
                     
                 }
                 else if (selected instanceof EntryRune)
                 {
-                    ((SelectClass) getActivity()).onListItemLongClick(position);
-                    Toast.makeText(getActivity(), "On long click listener - EntryRune", Toast.LENGTH_LONG).show();
+                    ((SelectClass) getActivity()).onListItemLongClick(position, "Remove Rune");
                     
                 }
                 else if (selected instanceof EmptyFollower)
                 {
-                    ((SelectClass) getActivity()).onListItemLongClick(position);
-                    Toast.makeText(getActivity(), "On long click listener - EmptyFollower", Toast.LENGTH_LONG).show();
+                    EmptyFollower e = (EmptyFollower) selected;
+                    
+                    if (e.getSkills().size() > 0)
+                    {
+                        ((SelectClass) getActivity()).onListItemLongClick(position, "Remove Follower");
+                    }
                     
                 }
                 
@@ -236,6 +316,7 @@ public class ClassListFragment extends ListFragment
     @Override
     public void onListItemClick(ListView l, View v, int position, long id)
     {
+        ((SelectClass) getActivity()).clearActionMode();
 
         EntrySkillAdapter listAdapter = (EntrySkillAdapter) getListAdapter();
 
@@ -805,7 +886,6 @@ public class ClassListFragment extends ListFragment
 
     public String getFollowerUrl()
     {
-
         return followerUrl;
     }
 
