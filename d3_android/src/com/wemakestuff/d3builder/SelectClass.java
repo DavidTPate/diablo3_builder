@@ -1,4 +1,3 @@
-
 package com.wemakestuff.d3builder;
 
 import java.util.ArrayList;
@@ -10,7 +9,6 @@ import java.util.regex.Pattern;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -26,6 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.actionbarsherlock.view.ActionMode;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
@@ -35,7 +34,6 @@ import com.viewpagerindicator.PageIndicator;
 import com.viewpagerindicator.TitlePageIndicator;
 import com.viewpagerindicator.TitlePageIndicator.IndicatorStyle;
 import com.wemakestuff.d3builder.followers.FollowerListFragment.OnRequiredLevelUpdateListener;
-import com.wemakestuff.d3builder.followers.SelectFollower.MyAlertDialogFragment;
 import com.wemakestuff.d3builder.followers.SelectFollower;
 import com.wemakestuff.d3builder.model.ClassBuild;
 import com.wemakestuff.d3builder.string.Replacer;
@@ -48,17 +46,18 @@ public class SelectClass extends SherlockFragmentActivity implements OnRequiredL
     private ViewPager             mPager;
     private PageIndicator         mIndicator;
     // private SpinnerAdapter mSpinnerAdapter;
-    private static int           maxLevel      = 60;
-    private String               loadFromUrl;
-    private boolean              loadedFromUrl = false;
-    private String               value;
-    private Dialog               dialog;
-    private ClassBuildAdapter    aAdapter;
-    private TextView             requiredLevel;
-    private LinearLayout         requiredLevelWrapper;
-    private ArrayList<ClassBuild>     builds;
-    private Map<String, Integer>    requiredLevelMap = new HashMap<String, Integer>();
-    
+    private static int            maxLevel         = 60;
+    private String                loadFromUrl;
+    private boolean               loadedFromUrl    = false;
+    private String                value;
+    private Dialog                dialog;
+    private ClassBuildAdapter     aAdapter;
+    private TextView              requiredLevel;
+    private LinearLayout          requiredLevelWrapper;
+    private ArrayList<ClassBuild> builds;
+    private Map<String, Integer>  requiredLevelMap = new HashMap<String, Integer>();
+    private ActionMode            mMode;
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
@@ -66,6 +65,47 @@ public class SelectClass extends SherlockFragmentActivity implements OnRequiredL
         MenuInflater inflater = getSupportMenuInflater();
         inflater.inflate(R.menu.main, menu);
         return super.onCreateOptionsMenu(menu);
+    }
+
+    public void onContextMenu()
+    {
+        mMode = startActionMode(new ActionModeEditListItem());
+    }
+
+    public final class ActionModeEditListItem implements ActionMode.Callback
+    {
+        @Override
+        public boolean onCreateActionMode(ActionMode mode, Menu menu)
+        {
+
+            mode.setTitle("Remove skill");
+            //@formatter:off
+            menu.add("Delete")
+                .setIcon(R.drawable.ic_menu_delete)
+                .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+
+            //@formatter:on
+            return true;
+        }
+
+        @Override
+        public boolean onPrepareActionMode(ActionMode mode, Menu menu)
+        {
+            return false;
+        }
+
+        @Override
+        public boolean onActionItemClicked(ActionMode mode, MenuItem item)
+        {
+            Toast.makeText(SelectClass.this, "Got click: " + item, Toast.LENGTH_SHORT).show();
+            mode.finish();
+            return true;
+        }
+
+        @Override
+        public void onDestroyActionMode(ActionMode mode)
+        {
+        }
     }
 
     @Override
@@ -143,7 +183,8 @@ public class SelectClass extends SherlockFragmentActivity implements OnRequiredL
 
         if (item.getItemId() == R.id.share)
         {
-            final ClassListFragment frag = (ClassListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mPager.getCurrentItem());
+            final ClassListFragment frag = (ClassListFragment) getSupportFragmentManager().findFragmentByTag(
+                    "android:switcher:" + R.id.pager + ":" + mPager.getCurrentItem());
             String subject = getString(R.string.Check_Out_My) + " " + frag.getSelectedClass() + " " + getString(R.string.Build);
             String classes = frag.linkifyClassBuild(getString(R.string.EN_Build_URL));
             String followers = frag.getFollowerUrl();
@@ -151,7 +192,8 @@ public class SelectClass extends SherlockFragmentActivity implements OnRequiredL
             Intent intent = new Intent(Intent.ACTION_SEND);
             intent.setType("text/plain");
             intent.putExtra(android.content.Intent.EXTRA_SUBJECT, subject);
-            intent.putExtra(android.content.Intent.EXTRA_TEXT, subject + " " + classes + (frag.getFollowerSkillsCount() > 0 ? " and my followers: " + followers : ""));
+            intent.putExtra(android.content.Intent.EXTRA_TEXT, subject + " " + classes
+                    + (frag.getFollowerSkillsCount() > 0 ? " and my followers: " + followers : ""));
             startActivity(Intent.createChooser(intent, "Share using"));
         }
         else if (item.getItemId() == R.id.load)
@@ -180,8 +222,7 @@ public class SelectClass extends SherlockFragmentActivity implements OnRequiredL
 
             final ListView buildList = new ListView(this);
 
-            OnLoadBuildClickListener loadBuildListener = new OnLoadBuildClickListener()
-            {
+            OnLoadBuildClickListener loadBuildListener = new OnLoadBuildClickListener() {
 
                 @Override
                 public void onLoadBuildClick(ClassBuild build)
@@ -226,8 +267,7 @@ public class SelectClass extends SherlockFragmentActivity implements OnRequiredL
             final EditText input = new EditText(this);
             alert.setView(input);
 
-            alert.setPositiveButton("Save", new DialogInterface.OnClickListener()
-            {
+            alert.setPositiveButton("Save", new DialogInterface.OnClickListener() {
 
                 public void onClick(DialogInterface dialog, int whichButton)
                 {
@@ -243,13 +283,15 @@ public class SelectClass extends SherlockFragmentActivity implements OnRequiredL
 
                     while (valVals.contains(value) || clssVals.contains(value))
                     {
-                        Toast toast = Toast.makeText(getApplicationContext(), "A Build is Already Saved as: " + value + ". Enter a New Name.", Toast.LENGTH_SHORT);
+                        Toast toast = Toast.makeText(getApplicationContext(), "A Build is Already Saved as: " + value + ". Enter a New Name.",
+                                Toast.LENGTH_SHORT);
                         toast.show();
                     }
 
                     if (value != null && !(value.length() == 0))
                     {
-                        ClassListFragment frag = (ClassListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mPager.getCurrentItem());
+                        ClassListFragment frag = (ClassListFragment) getSupportFragmentManager().findFragmentByTag(
+                                "android:switcher:" + R.id.pager + ":" + mPager.getCurrentItem());
                         valEdit.putString(value, frag.linkifyClassBuild(getString(R.string.EN_Build_URL)));
                         clssEdit.putString(value, frag.getSelectedClass());
                         Log.i("Follower Url", frag.getFollowerUrl());
@@ -262,8 +304,7 @@ public class SelectClass extends SherlockFragmentActivity implements OnRequiredL
                 }
             });
 
-            alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener()
-            {
+            alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
 
                 public void onClick(DialogInterface dialog, int whichButton)
                 {
@@ -322,8 +363,7 @@ public class SelectClass extends SherlockFragmentActivity implements OnRequiredL
         newAd.addTestDevice("E9BD79A28E313B2BDFA0CB0AED6C9697");
         adView.loadAd(newAd);
 
-        OnLoadFragmentsCompleteListener listener = new OnLoadFragmentsCompleteListener()
-        {
+        OnLoadFragmentsCompleteListener listener = new OnLoadFragmentsCompleteListener() {
 
             public void OnLoadFragmentsComplete(String className)
             {
@@ -373,14 +413,14 @@ public class SelectClass extends SherlockFragmentActivity implements OnRequiredL
         indicator.setViewPager(mPager);
         indicator.setFooterIndicatorStyle(IndicatorStyle.Triangle);
 
-        indicator.setOnPageChangeListener(new OnPageChangeListener()
-        {
+        indicator.setOnPageChangeListener(new OnPageChangeListener() {
 
             @Override
             public void onPageSelected(int position)
             {
 
-                ClassListFragment frag = (ClassListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mPager.getCurrentItem());
+                ClassListFragment frag = (ClassListFragment) getSupportFragmentManager().findFragmentByTag(
+                        "android:switcher:" + R.id.pager + ":" + mPager.getCurrentItem());
                 if (frag != null)
                     setRequiredLevel(frag.getMaxLevel());
                 else
@@ -425,16 +465,22 @@ public class SelectClass extends SherlockFragmentActivity implements OnRequiredL
             ClassListFragment frag3 = (ClassListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + "2");
             ClassListFragment frag4 = (ClassListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + "3");
             ClassListFragment frag5 = (ClassListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + "4");
-            
-            if (frag1 != null) frag1.clear();
-            if (frag2 != null) frag2.clear();
-            if (frag3 != null) frag3.clear();
-            if (frag4 != null) frag4.clear();
-            if (frag5 != null) frag5.clear();
+
+            if (frag1 != null)
+                frag1.clear();
+            if (frag2 != null)
+                frag2.clear();
+            if (frag3 != null)
+                frag3.clear();
+            if (frag4 != null)
+                frag4.clear();
+            if (frag5 != null)
+                frag5.clear();
         }
         else
         {
-            ClassListFragment frag = (ClassListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mPager.getCurrentItem());
+            ClassListFragment frag = (ClassListFragment) getSupportFragmentManager().findFragmentByTag(
+                    "android:switcher:" + R.id.pager + ":" + mPager.getCurrentItem());
             frag.clear();
         }
         setRequiredLevel(1);
@@ -465,17 +511,15 @@ public class SelectClass extends SherlockFragmentActivity implements OnRequiredL
 
             int title = getArguments().getInt("title");
             final boolean clearAll = getArguments().getBoolean("clearAll");
-            
-            return new AlertDialog.Builder(getActivity()).setTitle(title).setPositiveButton(R.string.alert_dialog_ok, new DialogInterface.OnClickListener()
-            {
+
+            return new AlertDialog.Builder(getActivity()).setTitle(title).setPositiveButton(R.string.alert_dialog_ok, new DialogInterface.OnClickListener() {
 
                 public void onClick(DialogInterface dialog, int whichButton)
                 {
 
                     ((SelectClass) getActivity()).doPositiveClick(clearAll);
                 }
-            }).setNegativeButton(R.string.alert_dialog_cancel, new DialogInterface.OnClickListener()
-            {
+            }).setNegativeButton(R.string.alert_dialog_cancel, new DialogInterface.OnClickListener() {
 
                 public void onClick(DialogInterface dialog, int whichButton)
                 {
@@ -487,10 +531,10 @@ public class SelectClass extends SherlockFragmentActivity implements OnRequiredL
     }
 
     @Override
-    public void OnRequiredLevelUpdate(String name, int level) {
+    public void OnRequiredLevelUpdate(String name, int level)
+    {
         requiredLevelMap.put(name, level);
         setRequiredLevel(level);
     }
 
-    
 }

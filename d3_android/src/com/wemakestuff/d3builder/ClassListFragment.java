@@ -1,4 +1,3 @@
-
 package com.wemakestuff.d3builder;
 
 import java.util.ArrayList;
@@ -18,11 +17,17 @@ import android.os.ParcelUuid;
 import android.os.Parcelable;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ListView;
+import android.widget.Toast;
 
-import com.wemakestuff.d3builder.followers.SelectFollower;
+import com.actionbarsherlock.view.ActionMode;
 import com.wemakestuff.d3builder.followers.FollowerListFragment.OnRequiredLevelUpdateListener;
+import com.wemakestuff.d3builder.followers.SelectFollower;
 import com.wemakestuff.d3builder.model.D3Application;
 import com.wemakestuff.d3builder.model.Follower;
 import com.wemakestuff.d3builder.model.Rune;
@@ -46,20 +51,21 @@ public class ClassListFragment extends ListFragment
     private String                          followerUrl;
     private EntrySkillAdapter               listAdapter;
     private OnLoadFragmentsCompleteListener listener;
-    private List<ParcelUuid>                templarSkills     = new ArrayList<ParcelUuid>();
-    private List<ParcelUuid>                scoundrelSkills   = new ArrayList<ParcelUuid>();
-    private List<ParcelUuid>                enchantressSkills = new ArrayList<ParcelUuid>();
+    private List<ParcelUuid>                templarSkills         = new ArrayList<ParcelUuid>();
+    private List<ParcelUuid>                scoundrelSkills       = new ArrayList<ParcelUuid>();
+    private List<ParcelUuid>                enchantressSkills     = new ArrayList<ParcelUuid>();
     private OnRequiredLevelUpdateListener   requiredLevelListener;
     int                                     index;
-    int                                     GET_SKILL         = 0;
-    int                                     REPLACE_SKILL     = 1;
-    int                                     GET_RUNE          = 2;
-    int                                     REPLACE_RUNE      = 3;
-    int                                     NEW_FOLLOWER      = 4;
-    int                                     REPLACE_FOLLOWER  = 5;
-    int followerRequiredLevel = 1;
+    int                                     GET_SKILL             = 0;
+    int                                     REPLACE_SKILL         = 1;
+    int                                     GET_RUNE              = 2;
+    int                                     REPLACE_RUNE          = 3;
+    int                                     NEW_FOLLOWER          = 4;
+    int                                     REPLACE_FOLLOWER      = 5;
+    int                                     followerRequiredLevel = 1;
+    ActionMode                              mMode;
 
-    ArrayList<Item>                         items             = new ArrayList<Item>();
+    ArrayList<Item>                         items                 = new ArrayList<Item>();
 
     public static ClassListFragment newInstance(String selectedClass, Context c, OnLoadFragmentsCompleteListener listener)
     {
@@ -79,16 +85,20 @@ public class ClassListFragment extends ListFragment
     }
 
     @Override
-    public void onAttach(Activity activity) {
+    public void onAttach(Activity activity)
+    {
         super.onAttach(activity);
-        
-        try {
+
+        try
+        {
             requiredLevelListener = (OnRequiredLevelUpdateListener) activity;
-        } catch (ClassCastException e) {
+        }
+        catch (ClassCastException e)
+        {
             throw new ClassCastException(activity.toString() + " must implement OnRequiredLevelUpdate(int level)");
         }
     }
-    
+
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
@@ -112,6 +122,31 @@ public class ClassListFragment extends ListFragment
 
         if (listener != null)
             listener.OnLoadFragmentsComplete(selectedClass);
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState)
+    {
+        super.onActivityCreated(savedInstanceState);
+
+        getListView().setOnItemLongClickListener(new OnItemLongClickListener() {
+
+            @Override
+            public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int arg2, long arg3)
+            {
+                ((SelectClass) getActivity()).onContextMenu();
+                Toast.makeText(getActivity(), "On long click listener", Toast.LENGTH_LONG).show();
+                return true;
+            }
+        });
+
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo)
+    {
+
+        super.onCreateContextMenu(menu, v, menuInfo);
     }
 
     private boolean isBlankBuild(String classLink)
@@ -315,12 +350,12 @@ public class ClassListFragment extends ListFragment
                 }
             }
         }
-        
+
         int maxLevel = 1;
         for (ParcelUuid u : templar)
         {
             Skill s = D3Application.getInstance().getFollowerByName(Vars.TEMPLAR).getSkillByUUID(u.getUuid());
-            
+
             if (s.getRequiredLevel() > maxLevel)
             {
                 maxLevel = s.getRequiredLevel();
@@ -329,7 +364,7 @@ public class ClassListFragment extends ListFragment
         for (ParcelUuid u : scoundrel)
         {
             Skill s = D3Application.getInstance().getFollowerByName(Vars.SCOUNDREL).getSkillByUUID(u.getUuid());
-            
+
             if (s.getRequiredLevel() > maxLevel)
             {
                 maxLevel = s.getRequiredLevel();
@@ -338,15 +373,14 @@ public class ClassListFragment extends ListFragment
         for (ParcelUuid u : enchantress)
         {
             Skill s = D3Application.getInstance().getFollowerByName(Vars.ENCHANTRESS).getSkillByUUID(u.getUuid());
-            
+
             if (s.getRequiredLevel() > maxLevel)
             {
                 maxLevel = s.getRequiredLevel();
             }
         }
-        
+
         followerRequiredLevel = maxLevel;
-        
 
     }
 
@@ -388,7 +422,7 @@ public class ClassListFragment extends ListFragment
                     Log.i("Got required level back!", "" + followerRequiredLevel);
                     requiredLevelListener.OnRequiredLevelUpdate(Vars.FOLLOWERS, getMaxLevel());
                 }
-                
+
                 updateFollowerData(templarSkills, scoundrelSkills, enchantressSkills, followerUrl);
             }
         }
@@ -412,7 +446,8 @@ public class ClassListFragment extends ListFragment
                     index = b.getInt("Index");
                 }
 
-                if (skillUUID != null && index >= 0 && D3Application.getInstance().getClassByName(selectedClass).containsActiveSkillByUUID(UUID.fromString(skillUUID)))
+                if (skillUUID != null && index >= 0
+                        && D3Application.getInstance().getClassByName(selectedClass).containsActiveSkillByUUID(UUID.fromString(skillUUID)))
                 {
                     Skill s = D3Application.getInstance().getClassByName(selectedClass).getActiveSkillByUUID(UUID.fromString(skillUUID));
                     items.set(index, new EntrySkill(s));
@@ -441,7 +476,8 @@ public class ClassListFragment extends ListFragment
                     requiredLevelListener.OnRequiredLevelUpdate(selectedClass, getMaxLevel());
 
                 }
-                else if (skillUUID != null && index >= 0 && D3Application.getInstance().getClassByName(selectedClass).containsPassiveSkillByUUID(UUID.fromString(skillUUID)))
+                else if (skillUUID != null && index >= 0
+                        && D3Application.getInstance().getClassByName(selectedClass).containsPassiveSkillByUUID(UUID.fromString(skillUUID)))
                 {
                     Skill s = D3Application.getInstance().getClassByName(selectedClass).getPassiveSkillByUUID(UUID.fromString(skillUUID));
                     items.set(index, new EntrySkill(s));
@@ -486,10 +522,16 @@ public class ClassListFragment extends ListFragment
 
                 if (D3Application.getInstance().getClassByName(selectedClass).containsActiveSkillByUUID(UUID.fromString(skillUUID)))
                 {
-                    if (skillUUID != null && index >= 0 && D3Application.getInstance().getClassByName(selectedClass).getActiveSkillByUUID(UUID.fromString(skillUUID)).containsRuneByUUID(UUID.fromString(runeUUID)))
+                    if (skillUUID != null
+                            && index >= 0
+                            && D3Application.getInstance().getClassByName(selectedClass).getActiveSkillByUUID(UUID.fromString(skillUUID))
+                                    .containsRuneByUUID(UUID.fromString(runeUUID)))
                     {
-                        Rune s = D3Application.getInstance().getClassByName(selectedClass).getActiveSkillByUUID(UUID.fromString(skillUUID)).getRuneByUUID(UUID.fromString(runeUUID));
-                        items.set(index, new EntryRune(s, D3Application.getInstance().getClassByName(selectedClass).getActiveSkillByUUID(UUID.fromString(skillUUID)).getName(), UUID.fromString(skillUUID)));
+                        Rune s = D3Application.getInstance().getClassByName(selectedClass).getActiveSkillByUUID(UUID.fromString(skillUUID))
+                                .getRuneByUUID(UUID.fromString(runeUUID));
+                        items.set(index,
+                                new EntryRune(s, D3Application.getInstance().getClassByName(selectedClass).getActiveSkillByUUID(UUID.fromString(skillUUID))
+                                        .getName(), UUID.fromString(skillUUID)));
                         listAdapter.setList(items);
                         ((SelectClass) getActivity()).setRequiredLevel(listAdapter.getMaxLevel(false));
                     }
@@ -585,7 +627,8 @@ public class ClassListFragment extends ListFragment
             }
         }
 
-        return prefix + selectedClass.toLowerCase().replace(" ", "-") + "#" + activeVal.toString() + skillAttrbs.getPassiveSeparator() + passiveVal.toString() + skillAttrbs.getRuneSeparator() + runeVal.toString();
+        return prefix + selectedClass.toLowerCase().replace(" ", "-") + "#" + activeVal.toString() + skillAttrbs.getPassiveSeparator() + passiveVal.toString()
+                + skillAttrbs.getRuneSeparator() + runeVal.toString();
     }
 
     public String getFollowerSkills()
@@ -646,23 +689,23 @@ public class ClassListFragment extends ListFragment
 
         switch (followers.length)
         {
-        case 1:
-            templarLink = followers[0];
-            break;
+            case 1:
+                templarLink = followers[0];
+                break;
 
-        case 2:
-            templarLink = followers[0];
-            scoundrelLink = followers[1];
-            break;
+            case 2:
+                templarLink = followers[0];
+                scoundrelLink = followers[1];
+                break;
 
-        case 3:
-            templarLink = followers[0];
-            scoundrelLink = followers[1];
-            enchantressLink = followers[2];
-            break;
+            case 3:
+                templarLink = followers[0];
+                scoundrelLink = followers[1];
+                enchantressLink = followers[2];
+                break;
 
-        default:
-            break;
+            default:
+                break;
         }
 
         Log.i("SetFollowerSkills", skills);
