@@ -485,7 +485,9 @@ public class ClassListFragment extends ListFragment
 
     public void clear()
     {
-
+        templarSkills = new ArrayList<ParcelUuid>();
+        scoundrelSkills = new ArrayList<ParcelUuid>();
+        enchantressSkills = new ArrayList<ParcelUuid>();
         setListAdapter(getSkillListAdapter());
     }
 
