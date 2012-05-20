@@ -435,12 +435,13 @@ public class ClassListFragment extends ListFragment
                 {
                     // Uh-Oh!
                 }
+                this.getListView().setSelection(index);
             }
             else
             {
                 // Do nothing?
             }
-            this.setSelection(index);
+            
         }
         else if (requestCode == GET_RUNE || requestCode == REPLACE_RUNE)
         {
@@ -485,12 +486,13 @@ public class ClassListFragment extends ListFragment
                 {
                     // Uh-Oh
                 }
+                this.getListView().setSelection(index - 1);
             }
             else
             {
                 // Do nothing?
             }
-            this.setSelection(index);
+            
         }
     }
 
