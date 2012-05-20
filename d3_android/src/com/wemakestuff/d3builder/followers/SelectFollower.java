@@ -80,8 +80,8 @@ public class SelectFollower extends SherlockFragmentActivity implements OnRequir
         if (getIntent().hasExtra(Vars.ENCHANTRESS))
             enchantressSkills = getIntent().getParcelableArrayListExtra(Vars.ENCHANTRESS);
         
-        if (getIntent().hasExtra("Follower"))
-            selectedFollower = getIntent().getStringExtra("Follower");
+        if (getIntent().hasExtra(Vars.FOLLOWERS))
+            selectedFollower = getIntent().getStringExtra(Vars.FOLLOWERS);
         
 
         if (!requiredLevelMap.containsKey(Vars.TEMPLAR))
@@ -402,7 +402,7 @@ public class SelectFollower extends SherlockFragmentActivity implements OnRequir
     public void OnLoadFragmentComplete(String follower) {
         loadedFragmentsCount++;
         
-        if (loadedFragmentsCount == 3 && loadFromUrl != null)
+        if (loadedFragmentsCount == 3)
         {
             int item = 0;
             
@@ -418,7 +418,8 @@ public class SelectFollower extends SherlockFragmentActivity implements OnRequir
             
             ((TitlePageIndicator) mIndicator).setCurrentItem(item);
             
-            delinkifyClassBuild(loadFromUrl);
+            if (loadFromUrl != null)
+                delinkifyClassBuild(loadFromUrl);
         }
         
     }
