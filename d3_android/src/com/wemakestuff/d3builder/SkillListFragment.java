@@ -52,7 +52,7 @@ public class SkillListFragment extends ListFragment
             if (excludeSkills == null || !excludeSkills.contains(new ParcelUuid(s.getUuid())))
                 items.add(new EntrySkill(s));
         }
-        EntrySkillAdapter adapter = new EntrySkillAdapter(context, items);
+        EntrySkillAdapter adapter = new EntrySkillAdapter(getActivity(), items);
 
         setListAdapter(adapter);
         super.onCreate(savedInstanceState);

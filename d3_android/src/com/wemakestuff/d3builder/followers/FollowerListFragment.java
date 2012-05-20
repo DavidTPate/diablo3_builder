@@ -195,7 +195,7 @@ public class FollowerListFragment extends ListFragment
 
         }
 
-        setListAdapter(new EntrySkillAdapter(context, items));
+        setListAdapter(new EntrySkillAdapter(getActivity(), items));
     }
 
     public int getMaxLevel() {

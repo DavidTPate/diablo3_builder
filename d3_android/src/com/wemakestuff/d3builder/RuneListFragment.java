@@ -50,7 +50,7 @@ public class RuneListFragment extends ListFragment {
 				.getRunes()) {
 			items.add(new EntryRune(s, skillName, skillUUID));
 		}
-		EntrySkillAdapter adapter = new EntrySkillAdapter(context, items);
+		EntrySkillAdapter adapter = new EntrySkillAdapter(getActivity(), items);
 
 		setListAdapter(adapter);
 		super.onCreate(savedInstanceState);
