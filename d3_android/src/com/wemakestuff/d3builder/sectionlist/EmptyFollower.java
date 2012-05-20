@@ -103,7 +103,7 @@ public class EmptyFollower implements Item {
 	        
 	        if (index == 0)
 	        {
-    	        emptyFollowerSkill1.setText(Replacer.replace(s.getName(), ".+", Vars.DIABLO_GOLD));
+    	        emptyFollowerSkill1.setText(Replacer.replace("Level " + s.getRequiredLevel() + ": " + s.getName(), ".+", Vars.DIABLO_GOLD));
     	        emptyFollowerSkill1Description.setText(Replacer.replace(s.getDescription().trim(), "\\d+%?", Vars.DIABLO_GREEN));
     	        
     	        emptyFollowerSkill1.setVisibility(View.VISIBLE);
@@ -112,7 +112,7 @@ public class EmptyFollower implements Item {
 	        }
 	        else if (index == 1)
 	        {
-	            emptyFollowerSkill2.setText(Replacer.replace(s.getName(), ".+", Vars.DIABLO_GOLD));
+	            emptyFollowerSkill2.setText(Replacer.replace("Level " + s.getRequiredLevel() + ": " + s.getName(), ".+", Vars.DIABLO_GOLD));
 	            emptyFollowerSkill2Description.setText(Replacer.replace(s.getDescription().trim(), "\\d+%?", Vars.DIABLO_GREEN));
 	            
 	            emptyFollowerSkill2.setVisibility(View.VISIBLE);
@@ -120,7 +120,7 @@ public class EmptyFollower implements Item {
 	        }
 	        else if (index == 2)
 	        {
-	            emptyFollowerSkill3.setText(Replacer.replace(s.getName(), ".+", Vars.DIABLO_GOLD));
+	            emptyFollowerSkill3.setText(Replacer.replace("Level " + s.getRequiredLevel() + ": " + s.getName(), ".+", Vars.DIABLO_GOLD));
 	            emptyFollowerSkill3Description.setText(Replacer.replace(s.getDescription().trim(), "\\d+%?", Vars.DIABLO_GREEN));
 
 	            emptyFollowerSkill3.setVisibility(View.VISIBLE);
@@ -128,7 +128,7 @@ public class EmptyFollower implements Item {
 	        }
 	        else if (index == 3)
 	        {
-	            emptyFollowerSkill4.setText(Replacer.replace(s.getName(), ".+", Vars.DIABLO_GOLD));
+	            emptyFollowerSkill4.setText(Replacer.replace("Level " + s.getRequiredLevel() + ": " + s.getName(), ".+", Vars.DIABLO_GOLD));
 	            emptyFollowerSkill4Description.setText(Replacer.replace(s.getDescription().trim(), "\\d+%?", Vars.DIABLO_GREEN));
 	            
 	            emptyFollowerSkill4.setVisibility(View.VISIBLE);
