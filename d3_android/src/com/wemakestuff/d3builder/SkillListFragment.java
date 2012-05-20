@@ -21,14 +21,14 @@ import com.wemakestuff.d3builder.sectionlist.Item;
 public class SkillListFragment extends ListFragment
 {
 
-    Context                     context;
-    private static String       skillType;
-    private static String       selectedClass;
-    private static int          maxLevel    = 60;
-    OnClickListener             listener;
-    List<ParcelUuid>            excludeSkills;
+    private Context             context;
+    private String              skillType;
+    private String              selectedClass;
+    private int                 maxLevel    = 60;
+    private OnClickListener     listener;
+    private List<ParcelUuid>    excludeSkills;
 
-    ArrayList<Item>             items       = new ArrayList<Item>();
+    private ArrayList<Item>     items       = new ArrayList<Item>();
     private static final String KEY_CONTENT = "TestFragment:Content";
 
     public static SkillListFragment newInstance(String content, Context c, String skillType, String selectedClass, int maxLevel, List<ParcelUuid> excludeSkills)
