@@ -4,44 +4,51 @@
     android:layout_height="wrap_content"
     android:padding="15dp" >
 
-    <ImageView
-        android:id="@+id/empty_follower_icon"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:id="@+id/empty_follower_top_wrapper"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:contentDescription="Skill icon"
-        android:paddingLeft="5dp"
-        android:src="@drawable/templar" />
+        android:layout_alignParentTop="true" >
 
-    <TextView
-        android:id="@+id/empty_follower_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="15dp"
-        android:layout_toRightOf="@id/empty_follower_icon"
-        android:fadingEdge="horizontal"
-        android:text="Templar"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        <ImageView
+            android:id="@+id/empty_follower_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:contentDescription="Skill icon"
+            android:paddingLeft="5dp"
+            android:src="@drawable/templar" />
 
-    <TextView
-        android:id="@+id/empty_follower_description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/empty_follower_name"
-        android:layout_below="@id/empty_follower_name"
-        android:fadingEdge="horizontal"
-        android:paddingTop="10dp"
-        android:singleLine="false"
-        android:text="Peerless holy warrior who challenges demons head-on in melee."
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        <TextView
+            android:id="@+id/empty_follower_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@id/empty_follower_icon"
+            android:fadingEdge="horizontal"
+            android:text="Templar"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/empty_follower_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/empty_follower_name"
+            android:layout_below="@id/empty_follower_name"
+            android:fadingEdge="horizontal"
+            android:paddingTop="10dp"
+            android:singleLine="false"
+            android:text="Peerless holy warrior who challenges demons head-on in melee."
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+    </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/empty_follower_skills"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/empty_follower_icon"
+        android:layout_below="@id/empty_follower_top_wrapper"
         android:layout_marginBottom="5dp"
         android:layout_marginTop="10dp"
         android:orientation="vertical"

@@ -71,7 +71,6 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@id/follower_skill_cooldown"
         android:layout_below="@id/follower_skill_cooldown"
-        android:ellipsize="marquee"
         android:fadingEdge="horizontal"
         android:paddingTop="10dp"
         android:singleLine="false"
