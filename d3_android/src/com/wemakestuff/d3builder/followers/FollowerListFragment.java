@@ -28,11 +28,17 @@ public class FollowerListFragment extends ListFragment
     private String                          selectedFollower;
     private OnLoadFragmentCompleteListener  loadFragmentCompleteListener;
     private OnRequiredLevelUpdateListener   requiredLevelListener;
+    private OnSkillUpdateListener           skillUpdateListener;
     private ArrayList<Item>                 items = new ArrayList<Item>();
 
     public interface OnRequiredLevelUpdateListener
     {
         void OnRequiredLevelUpdate(String name, int level);
+    }
+    
+    public interface OnSkillUpdateListener
+    {
+        void OnSkillUpdate(String name, List<ParcelUuid> skills);
     }
     
     public interface OnLoadFragmentCompleteListener
@@ -64,6 +70,12 @@ public class FollowerListFragment extends ListFragment
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString() + " must implement OnLoadFragmentCompleteListener(String follower)");
         }
+        
+        try {
+            skillUpdateListener = (OnSkillUpdateListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString() + " must implement skillUpdateListener(String name, List<ParcelUuid> Skills)");
+        }
     }
 
     public String getSelectedFollower() {
@@ -80,7 +92,7 @@ public class FollowerListFragment extends ListFragment
         }
 
         setRetainInstance(true);
-        populateSkillListAdapter();
+        populateSkillListAdapter(false);
         
     }
     
@@ -164,7 +176,7 @@ public class FollowerListFragment extends ListFragment
         return pairedSkill;
     }
 
-    private void populateSkillListAdapter() {
+    private void populateSkillListAdapter(boolean clear) {
         items = new ArrayList<Item>();
         SelectFollower f = (SelectFollower) getActivity();
         List<ParcelUuid> selectedSkills = f.getSkillsByClass(selectedFollower);
@@ -177,7 +189,11 @@ public class FollowerListFragment extends ListFragment
             List<Skill> skillsByLevel = follower.getSkillsByRequiredLevel(i.intValue());
 
             for (Skill s : skillsByLevel) {
-                items.add(new EntryFollowerSkill(s, selectedFollower, selectedSkills.contains(new ParcelUuid(s.getUuid()))));
+                if (clear)
+                    items.add(new EntryFollowerSkill(s, selectedFollower, false));
+                else
+                    items.add(new EntryFollowerSkill(s, selectedFollower, selectedSkills.contains(new ParcelUuid(s.getUuid()))));
+                    
             }
 
         }
@@ -190,7 +206,26 @@ public class FollowerListFragment extends ListFragment
     }
 
     public void clear() {
-        populateSkillListAdapter();
+        clearSelectedSkills();
+        populateSkillListAdapter(true);
+        requiredLevelListener.OnRequiredLevelUpdate(selectedFollower, 1);
+    }
+    
+    public void clearSelectedSkills()
+    {
+        for (int i = 0; i < items.size(); i++) {
+            Item item = items.get(i);
+            if (item instanceof EntryFollowerSkill)
+            {
+                EntryFollowerSkill s1 = (EntryFollowerSkill) item;
+                s1.setIsChecked(false);
+            }
+        }
+        
+        List<ParcelUuid> blank = new ArrayList<ParcelUuid>();
+        skillUpdateListener.OnSkillUpdate(Vars.TEMPLAR, blank);
+        skillUpdateListener.OnSkillUpdate(Vars.SCOUNDREL, blank);
+        skillUpdateListener.OnSkillUpdate(Vars.ENCHANTRESS, blank);
     }
     
     public void setSelectedSkills(String followerLink)

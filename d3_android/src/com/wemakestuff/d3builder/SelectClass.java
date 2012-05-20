@@ -375,23 +375,20 @@ public class SelectClass extends SherlockFragmentActivity implements OnRequiredL
             {
 
                 ClassListFragment frag = (ClassListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mPager.getCurrentItem());
-                setRequiredLevel(frag.getMaxLevel());
+                if (frag != null)
+                    setRequiredLevel(frag.getMaxLevel());
+                else
+                    Log.e("Fragment was null!", "Could not set max level");
             }
 
             @Override
             public void onPageScrolled(int arg0, float arg1, int arg2)
             {
-
-                // TODO Auto-generated method stub
-
             }
 
             @Override
             public void onPageScrollStateChanged(int arg0)
             {
-
-                // TODO Auto-generated method stub
-
             }
         });
 
@@ -401,7 +398,6 @@ public class SelectClass extends SherlockFragmentActivity implements OnRequiredL
 
     public void setRequiredLevel(int level)
     {
-
         requiredLevel.setText(Replacer.replace("Required Level: " + level, "\\d+", Vars.DIABLO_GREEN));
     }
 
@@ -417,6 +413,7 @@ public class SelectClass extends SherlockFragmentActivity implements OnRequiredL
     {
 
         ClassListFragment frag = (ClassListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mPager.getCurrentItem());
+        setRequiredLevel(1);
         frag.clear();
     }
 

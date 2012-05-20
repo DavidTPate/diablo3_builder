@@ -38,12 +38,13 @@ import com.wemakestuff.d3builder.OnLoadBuildClickInterface;
 import com.wemakestuff.d3builder.R;
 import com.wemakestuff.d3builder.followers.FollowerListFragment.OnLoadFragmentCompleteListener;
 import com.wemakestuff.d3builder.followers.FollowerListFragment.OnRequiredLevelUpdateListener;
+import com.wemakestuff.d3builder.followers.FollowerListFragment.OnSkillUpdateListener;
 import com.wemakestuff.d3builder.model.ClassBuild;
 import com.wemakestuff.d3builder.model.D3Application;
 import com.wemakestuff.d3builder.string.Replacer;
 import com.wemakestuff.d3builder.string.Vars;
 
-public class SelectFollower extends SherlockFragmentActivity implements OnRequiredLevelUpdateListener, OnLoadFragmentCompleteListener, OnLoadBuildClickInterface
+public class SelectFollower extends SherlockFragmentActivity implements OnRequiredLevelUpdateListener, OnLoadFragmentCompleteListener, OnLoadBuildClickInterface, OnSkillUpdateListener
 {
     private FollowerFragmentAdapter mAdapter;
     private ViewPager               mPager;
@@ -81,6 +82,14 @@ public class SelectFollower extends SherlockFragmentActivity implements OnRequir
         
         if (getIntent().hasExtra("Follower"))
             selectedFollower = getIntent().getStringExtra("Follower");
+        
+
+        if (!requiredLevelMap.containsKey(Vars.TEMPLAR))
+            requiredLevelMap.put(Vars.TEMPLAR, 1);
+        if (!requiredLevelMap.containsKey(Vars.SCOUNDREL))
+            requiredLevelMap.put(Vars.SCOUNDREL, 1);
+        if (!requiredLevelMap.containsKey(Vars.ENCHANTRESS))
+            requiredLevelMap.put(Vars.ENCHANTRESS, 1);
         
         Uri data = getIntent().getData();
         if (data != null) {
@@ -123,13 +132,16 @@ public class SelectFollower extends SherlockFragmentActivity implements OnRequir
                 switch (position)
                 {
                 case 0:
-                    setRequiredLevel(requiredLevelMap.get(Vars.TEMPLAR));
+                    if (requiredLevelMap.containsKey(Vars.TEMPLAR))
+                        setRequiredLevel(requiredLevelMap.get(Vars.TEMPLAR));
                     break;
                 case 1:
-                    setRequiredLevel(requiredLevelMap.get(Vars.SCOUNDREL));
+                    if (requiredLevelMap.containsKey(Vars.SCOUNDREL))
+                        setRequiredLevel(requiredLevelMap.get(Vars.SCOUNDREL));
                     break;
                 case 2:
-                    setRequiredLevel(requiredLevelMap.get(Vars.ENCHANTRESS));
+                    if (requiredLevelMap.containsKey(Vars.ENCHANTRESS))
+                        setRequiredLevel(requiredLevelMap.get(Vars.ENCHANTRESS));
                     break;
                 }
                 
@@ -539,5 +551,21 @@ public class SelectFollower extends SherlockFragmentActivity implements OnRequir
         builds.remove(build);
         aAdapter.notifyDataSetChanged();
         
+    }
+
+    @Override
+    public void OnSkillUpdate(String name, List<ParcelUuid> skills) {
+        if (name.equals(Vars.TEMPLAR))
+        {
+            templarSkills = skills;
+        }
+        else if (name.equals(Vars.SCOUNDREL))
+        {
+            scoundrelSkills = skills;
+        }
+        else if (name.equals(Vars.ENCHANTRESS))
+        {
+            enchantressSkills = skills;
+        }
     }
 }
