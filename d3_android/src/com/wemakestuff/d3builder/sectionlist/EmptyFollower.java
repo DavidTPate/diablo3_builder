@@ -96,10 +96,8 @@ public class EmptyFollower implements Item {
 	        
 	        if (s == null)
 	        {
-	            Log.i(name, "UUID did not exist! - " + u.getUuid().toString());
 	            continue;
 	        }
-	        Log.i("Adding skill", s.getName() );
 	        
 	        if (index == 0)
 	        {
@@ -162,7 +160,6 @@ public class EmptyFollower implements Item {
 
 	@Override
 	public View inflate(Context c, Item i) {
-	    Log.i("Inflating EmptyFollower", "Skills = " + skills.size());
 	    
 		LayoutInflater vi = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		EmptyFollower e = (EmptyFollower) i;

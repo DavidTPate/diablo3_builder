@@ -21,9 +21,9 @@ import com.wemakestuff.d3builder.string.Vars;
 public class ClassBuildAdapter extends BaseAdapter
 {
 
-    private ArrayList<ClassBuild> items;
-    private Context               context;
-    private OnLoadBuildClickListener   listener;
+    private ArrayList<ClassBuild>    items;
+    private Context                  context;
+    private OnLoadBuildClickListener listener;
 
     public ClassBuildAdapter(ArrayList<ClassBuild> items, Context context, OnLoadBuildClickListener listener)
     {
@@ -66,7 +66,7 @@ public class ClassBuildAdapter extends BaseAdapter
         TextView className = (TextView) v.findViewById(R.id.class_build_class);
 
         name.setText(item.getName());
-        
+
         className.setText("Class: " + item.getClassName());
 
         ImageButton delete = (ImageButton) v.findViewById(R.id.class_build_delete);
@@ -86,11 +86,16 @@ public class ClassBuildAdapter extends BaseAdapter
                 SharedPreferences clssVals = context.getSharedPreferences("saved_build_class", Context.MODE_PRIVATE);
                 SharedPreferences.Editor clssEdit = clssVals.edit();
 
+                SharedPreferences followerVals = context.getSharedPreferences("saved_build_follower", Context.MODE_PRIVATE);
+                SharedPreferences.Editor followEdit = followerVals.edit();
+
                 valEdit.remove(item.getName());
                 clssEdit.remove(item.getName());
+                followEdit.remove(item.getName());
 
                 valEdit.commit();
                 clssEdit.commit();
+                followEdit.commit();
                 listener.onDeleteBuild(item);
             }
 
@@ -104,11 +109,15 @@ public class ClassBuildAdapter extends BaseAdapter
             public void onClick(View v)
             {
 
+                String subject = context.getString(R.string.Check_Out_My) + " " + item.getClassName() + " " + context.getString(R.string.Build);
+                String classes = item.getUrl();
+                String followers = item.getFollowersUrl();
+
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("text/plain");
-                intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Check out my " + item.getClassName() + " D3 build!");
-                intent.putExtra(android.content.Intent.EXTRA_TEXT, item.getUrl());
-                context.startActivity(Intent.createChooser(intent, "Share Using"));
+                intent.putExtra(android.content.Intent.EXTRA_SUBJECT, subject);
+                intent.putExtra(android.content.Intent.EXTRA_TEXT, subject + " " + classes + (followers != null ? " and my followers: " + followers : ""));
+                context.startActivity(Intent.createChooser(intent, "Share using"));
                 listener.onLoadBuildDismiss();
             }
 
@@ -121,6 +130,7 @@ public class ClassBuildAdapter extends BaseAdapter
             @Override
             public void onClick(View v)
             {
+
                 listener.onLoadBuildClick(item);
                 listener.onLoadBuildDismiss();
             }

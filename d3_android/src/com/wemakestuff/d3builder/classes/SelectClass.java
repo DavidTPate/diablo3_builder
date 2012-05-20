@@ -47,12 +47,6 @@ public class SelectClass extends SherlockFragmentActivity
 
         String loadFromUrl = getIntent().getData() != null ? getIntent().getData().toString() : "";
 
-        if (loadFromUrl != null && !loadFromUrl.equals(""))
-        {
-            Log.i("Class Load SavedInstanceState", loadFromUrl);
-
-        }
-
         setContentView(R.layout.select_skill);
 
         TextView requiredLevel = (TextView) findViewById(R.id.required_level);
@@ -100,7 +94,6 @@ public class SelectClass extends SherlockFragmentActivity
             {
 
                 ClassListFragment frag = (ClassListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mPager.getCurrentItem());
-                Log.i("Frag Selected", "Pos: " + position + " " + frag.getSelectedClass());
             }
 
         };

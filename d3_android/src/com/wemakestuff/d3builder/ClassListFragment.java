@@ -123,18 +123,6 @@ public class ClassListFragment extends ListFragment
     @Override
     public void onPause()
     {
-
-        // String classLink = linkifyClassBuild();
-        // if (!(classLink.length() == 0) && !isBlankBuild(classLink))
-        // {
-        // Log.i("onPause - Saving", classLink);
-        // SharedPreferences settings =
-        // getActivity().getSharedPreferences("classes", 0);
-        // SharedPreferences.Editor editor = settings.edit();
-        // editor.putString(selectedClass, classLink);
-        // editor.commit();
-        // }
-
         super.onPause();
     }
 
@@ -361,31 +349,26 @@ public class ClassListFragment extends ListFragment
                 if (data.hasExtra(Vars.TEMPLAR))
                 {
                     templarSkills = data.getParcelableArrayListExtra(Vars.TEMPLAR);
-                    Log.i("ClassList - Got Templar Skills", "" + templarSkills.size());
                 }
 
                 if (data.hasExtra(Vars.SCOUNDREL))
                 {
                     scoundrelSkills = data.getParcelableArrayListExtra(Vars.SCOUNDREL);
-                    Log.i("ClassList - Got Scoundrel Skills", "" + scoundrelSkills.size());
                 }
 
                 if (data.hasExtra(Vars.ENCHANTRESS))
                 {
                     enchantressSkills = data.getParcelableArrayListExtra(Vars.ENCHANTRESS);
-                    Log.i("ClassList - Got Enchantress Skills", "" + enchantressSkills.size());
                 }
 
                 if (data.hasExtra(Vars.URL))
                 {
                     followerUrl = data.getStringExtra(Vars.URL);
-                    Log.i("URL", followerUrl);
                 }
 
                 if (data.hasExtra(Vars.REQUIRED_LEVEL))
                 {
                     followerRequiredLevel = data.getIntExtra(Vars.REQUIRED_LEVEL, 1);
-                    Log.i("Got required level back!", "" + followerRequiredLevel);
                     requiredLevelListener.OnRequiredLevelUpdate(Vars.FOLLOWERS, getMaxLevel());
                 }
                 
@@ -457,6 +440,7 @@ public class ClassListFragment extends ListFragment
             {
                 // Do nothing?
             }
+            this.setSelection(index);
         }
         else if (requestCode == GET_RUNE || requestCode == REPLACE_RUNE)
         {
@@ -506,6 +490,7 @@ public class ClassListFragment extends ListFragment
             {
                 // Do nothing?
             }
+            this.setSelection(index);
         }
     }
 
@@ -603,17 +588,14 @@ public class ClassListFragment extends ListFragment
                 if (e.getName().equals(Vars.TEMPLAR))
                 {
                     templar = e.getSkills().toString();
-                    Log.i("Templar", templar);
                 }
                 else if (e.getName().equals(Vars.SCOUNDREL))
                 {
                     scoundrel = e.getSkills().toString();
-                    Log.i("Scoundrel", scoundrel);
                 }
                 else if (e.getName().equals(Vars.ENCHANTRESS))
                 {
                     enchantress = e.getSkills().toString();
-                    Log.i("Enchantress", enchantress);
                 }
             }
         }
@@ -664,8 +646,6 @@ public class ClassListFragment extends ListFragment
             break;
         }
 
-        Log.i("SetFollowerSkills", skills);
-
         List<Item> items = ((EntrySkillAdapter) getListAdapter()).getFollowers();
         List<ParcelUuid> templarSkills = new ArrayList<ParcelUuid>();
         List<ParcelUuid> scoundrelSkills = new ArrayList<ParcelUuid>();
@@ -707,7 +687,6 @@ public class ClassListFragment extends ListFragment
                     }
 
                 }
-                Log.i("Templar", templarSkills.toString());
             }
         }
 

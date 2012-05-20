@@ -241,18 +241,16 @@ public class SelectClass extends SherlockFragmentActivity implements OnRequiredL
                     SharedPreferences followers = getSharedPreferences("saved_build_follower", MODE_PRIVATE);
                     SharedPreferences.Editor followersEdit = followers.edit();
 
-                    while (valVals.contains(value) || clssVals.contains(value))
+                    if (valVals.contains(value) || clssVals.contains(value) || followers.contains(value))
                     {
-                        Toast toast = Toast.makeText(getApplicationContext(), "A Build is Already Saved as: " + value + ". Enter a New Name.", Toast.LENGTH_SHORT);
+                        Toast toast = Toast.makeText(getApplicationContext(), "A Build is Already Saved as: " + value + ". Enter a New Name.", Toast.LENGTH_LONG);
                         toast.show();
                     }
-
-                    if (value != null && !(value.length() == 0))
+                    else if (value != null && !(value.length() == 0))
                     {
                         ClassListFragment frag = (ClassListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mPager.getCurrentItem());
                         valEdit.putString(value, frag.linkifyClassBuild(getString(R.string.EN_Build_URL)));
                         clssEdit.putString(value, frag.getSelectedClass());
-                        Log.i("Follower Url", frag.getFollowerUrl());
                         followersEdit.putString(value, frag.getFollowerUrl());
 
                         valEdit.commit();
@@ -299,7 +297,6 @@ public class SelectClass extends SherlockFragmentActivity implements OnRequiredL
         if (data != null)
         {
             loadFromUrl = data.toString();
-            Log.i("LoadFromUrl", data.toString());
 
             if (loadFromUrl.contains("follower"))
             {

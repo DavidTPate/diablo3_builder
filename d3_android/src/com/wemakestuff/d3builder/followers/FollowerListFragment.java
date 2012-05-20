@@ -99,9 +99,6 @@ public class FollowerListFragment extends ListFragment
     @Override
     public void onResume() {
         super.onResume();
-
-        Log.i("OnResume", selectedFollower);
-
         requiredLevelListener.OnRequiredLevelUpdate(selectedFollower, getMaxLevel());
         loadFragmentCompleteListener.OnLoadFragmentComplete(selectedFollower);
     }
@@ -298,8 +295,7 @@ public class FollowerListFragment extends ListFragment
             }
         }
         //@formatter:on
-        
-        Log.i("LinkifyClassBuild", build.toString());
+
         return build.toString();
     }
 
