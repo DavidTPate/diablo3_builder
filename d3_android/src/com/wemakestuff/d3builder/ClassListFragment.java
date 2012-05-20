@@ -112,6 +112,51 @@ public class ClassListFragment extends ListFragment
 
         setRetainInstance(true);
         setListAdapter(getSkillListAdapter());
+        
+    }
+    
+    public void clearListItem(int position)
+    {
+        Item i = items.get(position);
+        String[] skillTypes = D3Application.getInstance().getClassAttributesByName(selectedClass).getSkillTypes();
+        
+        if (i instanceof EntrySkill)
+        {
+            // If this is a skill, check if the next item in the list is a rune, if so we need to remove that too.
+            
+            String type = ((EntrySkill) i).getSkill().getType();
+            items.set(position, new EmptySkill("Choose Skill", 1, type));
+            if (items.size() > (position + 1))
+            {
+                Item i2 = items.get(position + 1);
+                if (i2 instanceof EntryRune || i2 instanceof EmptyRune)
+                {
+                    items.remove(i2);
+                }
+            }
+            
+        }
+        else if (i instanceof EntryRune)
+        {
+            items.set(position, new EmptyRune("Choose Rune", 1, "Rune", null));
+        }
+        else if (i instanceof EmptyFollower)
+        {
+            EmptyFollower e = (EmptyFollower) i;
+            
+            String existingName = e.getName();
+            for (Follower f : D3Application.getInstance().getFollowers())
+            {
+                if (f.getName().equalsIgnoreCase(existingName))
+                {
+                    items.set(position, new EmptyFollower(f.getName(), f.getShortDescription(), f.getIcon(), f.getUuid(), ""));
+                    
+                }
+            }
+        }
+        
+        listAdapter.notifyDataSetChanged();
+        ((SelectClass) getActivity()).updateData();
     }
 
     @Override
@@ -132,10 +177,29 @@ public class ClassListFragment extends ListFragment
         getListView().setOnItemLongClickListener(new OnItemLongClickListener() {
 
             @Override
-            public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int arg2, long arg3)
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id)
             {
-                ((SelectClass) getActivity()).onContextMenu();
-                Toast.makeText(getActivity(), "On long click listener", Toast.LENGTH_LONG).show();
+                Item selected = (Item) getListAdapter().getItem(position);
+                
+                if (selected instanceof EntrySkill)
+                {
+                    ((SelectClass) getActivity()).onListItemLongClick(position);
+                    Toast.makeText(getActivity(), "On long click listener - EntrySkill", Toast.LENGTH_LONG).show();
+                    
+                }
+                else if (selected instanceof EntryRune)
+                {
+                    ((SelectClass) getActivity()).onListItemLongClick(position);
+                    Toast.makeText(getActivity(), "On long click listener - EntryRune", Toast.LENGTH_LONG).show();
+                    
+                }
+                else if (selected instanceof EmptyFollower)
+                {
+                    ((SelectClass) getActivity()).onListItemLongClick(position);
+                    Toast.makeText(getActivity(), "On long click listener - EmptyFollower", Toast.LENGTH_LONG).show();
+                    
+                }
+                
                 return true;
             }
         });

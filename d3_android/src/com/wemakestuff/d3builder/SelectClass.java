@@ -67,13 +67,20 @@ public class SelectClass extends SherlockFragmentActivity implements OnRequiredL
         return super.onCreateOptionsMenu(menu);
     }
 
-    public void onContextMenu()
+    public void onListItemLongClick(int position)
     {
-        mMode = startActionMode(new ActionModeEditListItem());
+        mMode = startActionMode(new ActionModeEditListItem(position));
     }
 
     public final class ActionModeEditListItem implements ActionMode.Callback
     {
+        int position;
+        
+        public ActionModeEditListItem(int position)
+        {
+            this.position = position;
+        }
+
         @Override
         public boolean onCreateActionMode(ActionMode mode, Menu menu)
         {
@@ -98,6 +105,8 @@ public class SelectClass extends SherlockFragmentActivity implements OnRequiredL
         public boolean onActionItemClicked(ActionMode mode, MenuItem item)
         {
             Toast.makeText(SelectClass.this, "Got click: " + item, Toast.LENGTH_SHORT).show();
+            ClassListFragment frag = (ClassListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mPager.getCurrentItem());
+            frag.clearListItem(position);
             mode.finish();
             return true;
         }
@@ -108,6 +117,11 @@ public class SelectClass extends SherlockFragmentActivity implements OnRequiredL
         }
     }
 
+    public void updateData() {
+        mIndicator.notifyDataSetChanged();
+        mAdapter.notifyDataSetChanged();
+    }
+    
     @Override
     protected void onResume()
     {
