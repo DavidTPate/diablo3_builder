@@ -8,6 +8,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.ParcelUuid;
 import android.support.v4.app.ListFragment;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ListView;
@@ -50,6 +51,26 @@ public class SkillListFragment extends ListFragment
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
+        
+        if (savedInstanceState != null)
+        {
+            if (savedInstanceState.containsKey("skillType"))
+            {
+                skillType = savedInstanceState.getString("skillType");
+            }
+            
+            if (savedInstanceState.containsKey("selectedClass"))
+            {
+                selectedClass = savedInstanceState.getString("selectedClass");
+            }
+            
+            if (savedInstanceState.containsKey("maxLevel"))
+            {
+                maxLevel = savedInstanceState.getInt("maxLevel");
+            }
+            
+            Log.i("got", skillType + " " + selectedClass + " " + maxLevel);
+        }
 
         setRetainInstance(true);
         for (Skill s : D3Application.getInstance().getClassByName(selectedClass).getActiveSkillsByTypeAndRequiredLevel(skillType, maxLevel))
@@ -69,7 +90,11 @@ public class SkillListFragment extends ListFragment
     {
 
         super.onSaveInstanceState(outState);
-        outState.putString(KEY_CONTENT, mContent);
+        outState.putString("skillType", skillType);
+        outState.putString("selectedClass", selectedClass);
+        outState.putInt("maxLevel", maxLevel);
+        
+        Log.i("put", skillType + " " + selectedClass + " " + " " + maxLevel);
     }
 
     public void setOnListItemClickListener(OnClickListener listener)
