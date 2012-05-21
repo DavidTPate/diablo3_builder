@@ -46,7 +46,6 @@ import com.wemakestuff.d3builder.string.Vars;
 public class ClassListFragment extends ListFragment
 {
 
-    private Context                         context;
     private String                          selectedClass;
     private String                          followerUrl;
     private EntrySkillAdapter               listAdapter;
@@ -72,7 +71,6 @@ public class ClassListFragment extends ListFragment
 
         ClassListFragment fragment = new ClassListFragment();
 
-        fragment.context = c;
         fragment.selectedClass = selectedClass;
         fragment.listener = listener;
         return fragment;
@@ -1043,7 +1041,7 @@ public class ClassListFragment extends ListFragment
         }
 
         this.items = tempItems;
-        listAdapter = new EntrySkillAdapter(context, this.items);
+        listAdapter = new EntrySkillAdapter(getActivity(), this.items);
 
         setListAdapter(listAdapter);
     }

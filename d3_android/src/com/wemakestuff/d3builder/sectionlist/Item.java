@@ -1,9 +1,11 @@
 package com.wemakestuff.d3builder.sectionlist;
 
-import android.content.Context;
+import android.os.Parcelable;
 import android.view.View;
 
-public interface Item 
+public interface Item
 {
-	public View inflate(Context c, Item i);
+	public View inflate(View v, Item i);
+	public int getViewResource();
+	
 }

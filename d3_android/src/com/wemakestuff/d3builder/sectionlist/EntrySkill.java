@@ -11,42 +11,47 @@ import com.wemakestuff.d3builder.model.Skill;
 import com.wemakestuff.d3builder.string.Replacer;
 import com.wemakestuff.d3builder.string.Vars;
 
-
-public class EntrySkill implements Item 
+public class EntrySkill implements Item
 {
 
     private final Skill skill;
+    private ImageView skillIcon;
+    private TextView skillName;
+    private TextView skillCost;
+    private TextView skillGenerates;
+    private TextView skillCooldown;
+    private TextView skillRequiredLevel;
+    private TextView skillDescription;
 
-	public EntrySkill(Skill skill) 
-	{
-		this.skill = skill;
-	}
-	
-	public Skill getSkill() 
-	{
-	    return skill;
-	}
 
-	@Override
-    public View inflate(Context c, Item i) {
-        
-        LayoutInflater vi = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    public EntrySkill(Skill skill)
+    {
+        this.skill = skill;
+    }
+
+    public Skill getSkill()
+    {
+        return skill;
+    }
+
+    @Override
+    public View inflate(View v, Item i)
+    {
+
         Skill s = ((EntrySkill) i).getSkill();
-        
-        View v = vi.inflate(R.layout.list_item_skill, null);
 
-        final ImageView skillIcon = (ImageView) v.findViewById(R.id.list_skill_icon);
-        final TextView skillName = (TextView) v.findViewById(R.id.list_skill_title);
-        final TextView skillCost = (TextView) v.findViewById(R.id.list_skill_cost_text);
-        final TextView skillGenerates = (TextView) v.findViewById(R.id.list_skill_generates);
-        final TextView skillCooldown = (TextView) v.findViewById(R.id.list_skill_cooldown);
-        final TextView skillRequiredLevel = (TextView) v.findViewById(R.id.list_skill_unlocked_at);
-        final TextView skillDescription = (TextView) v.findViewById(R.id.list_skill_description);
+        skillIcon = (ImageView) v.findViewById(R.id.list_skill_icon);
+        skillName = (TextView) v.findViewById(R.id.list_skill_title);
+        skillCost = (TextView) v.findViewById(R.id.list_skill_cost_text);
+        skillGenerates = (TextView) v.findViewById(R.id.list_skill_generates);
+        skillCooldown = (TextView) v.findViewById(R.id.list_skill_cooldown);
+        skillRequiredLevel = (TextView) v.findViewById(R.id.list_skill_unlocked_at);
+        skillDescription = (TextView) v.findViewById(R.id.list_skill_description);
 
         // Is this a terrible hack?! I think so...
-                int skillImage = c.getResources().getIdentifier("drawable/" + s.getIcon(), null, c.getPackageName());
+        int skillImage = v.getContext().getResources().getIdentifier("drawable/" + s.getIcon(), null, v.getContext().getPackageName());
 
-                //@formatter:off
+        //@formatter:off
                 skillIcon         .setImageResource(skillImage);
                 skillName         .setText(s.getName());
 
@@ -103,6 +108,12 @@ public class EntrySkill implements Item
                 
                 v.setTag(s.getUuid());
         return v;
+    }
+
+    @Override
+    public int getViewResource()
+    {
+        return R.layout.list_item_skill;
     }
 	
 }

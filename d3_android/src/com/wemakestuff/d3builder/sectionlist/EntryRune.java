@@ -19,6 +19,10 @@ public class EntryRune implements Item
     private final Rune   rune;
     private final String skillName;
     private final UUID   skillUUID;
+    private ImageView runeIcon;
+    private TextView runeTitle;
+    private TextView runeUnlockedAt;
+    private TextView runeDescription;
 
     public EntryRune(Rune rune, String skillName, UUID skillUUID) {
         this.rune = rune;
@@ -39,20 +43,24 @@ public class EntryRune implements Item
     }
 
     @Override
-    public View inflate(Context c, Item i) {
+    public int getViewResource()
+    {
+        return R.layout.list_item_rune;
+    }
+    
+    @Override
+    public View inflate(View v, Item i) {
 
-        LayoutInflater vi = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         Rune r = ((EntryRune) i).getRune();
-        View v = vi.inflate(R.layout.list_item_rune, null);
 
-        final ImageView runeIcon = (ImageView) v.findViewById(R.id.list_rune_icon);
-        final TextView runeTitle = (TextView) v.findViewById(R.id.list_rune_title);
-        final TextView runeUnlockedAt = (TextView) v.findViewById(R.id.list_rune_unlocked_at);
-        final TextView runeDescription = (TextView) v.findViewById(R.id.list_rune_description);
+        runeIcon = (ImageView) v.findViewById(R.id.list_rune_icon);
+        runeTitle = (TextView) v.findViewById(R.id.list_rune_title);
+        runeUnlockedAt = (TextView) v.findViewById(R.id.list_rune_unlocked_at);
+        runeDescription = (TextView) v.findViewById(R.id.list_rune_description);
 
         // Is this a terrible hack?! I think so...
-        int runeImage = c.getResources().getIdentifier("drawable/" + r.getIcon(), null, c.getPackageName());
+        int runeImage = v.getContext().getResources().getIdentifier("drawable/" + r.getIcon(), null, v.getContext().getPackageName());
 
         runeIcon.setBackgroundResource(runeImage);
         runeTitle.setText(getRune().getName());

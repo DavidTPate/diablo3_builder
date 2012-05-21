@@ -6,6 +6,8 @@ import java.util.UUID;
 
 import android.content.Context;
 import android.os.ParcelUuid;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -16,19 +18,31 @@ import com.wemakestuff.d3builder.model.Skill;
 public class EntrySkillAdapter extends ArrayAdapter<Item>
 {
 
-    private Context context;
     private ArrayList<Item> items;
-
+    private LayoutInflater inflater;
+    
     public EntrySkillAdapter(Context context, ArrayList<Item> items) {
         super(context, 0, items);
         this.items = items;
-        this.context = context;
+        this.inflater = LayoutInflater.from(context);
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        View v = convertView;
         Item i = items.get(position);
-        return i.inflate(context, i);
+        
+        Log.i("Postion - " + i, "View Type =" + getItemViewType(position));
+        if (i == null)
+        {
+            Log.e("List item " + position + " was null", "Not inflating view");
+            return v;
+        }
+
+        v = inflater.inflate(i.getViewResource(), null);
+        v = i.inflate(v, i);
+        
+        return v;
     }
     
     public List<ParcelUuid> getCurrentSkills()

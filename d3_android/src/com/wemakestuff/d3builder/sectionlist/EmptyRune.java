@@ -15,6 +15,8 @@ public class EmptyRune implements Item {
 	private final int level;
 	private final String skillName;
 	private final UUID skillUUID;
+	private TextView emptyItemTitle;
+	private TextView emptySkillType;
 
 	public EmptyRune(String title, int level, String skillName, UUID skillUUID) {
 		this.title = title;
@@ -39,15 +41,19 @@ public class EmptyRune implements Item {
 		return skillUUID;
 	}
 
+//	@Override
+    public int getViewResource()
+    {
+        return R.layout.list_item_empty;
+    }
+	
 	@Override
-	public View inflate(Context c, Item i) {
+	public View inflate(View v, Item i) {
 
-		LayoutInflater vi = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		EmptyRune e = (EmptyRune) i;
-		View v = vi.inflate(R.layout.list_item_empty, null);
 
-		final TextView emptyItemTitle = (TextView) v.findViewById(R.id.list_empty_title);
-		final TextView emptySkillType = (TextView) v.findViewById(R.id.list_empty_skill_type);
+		emptyItemTitle = (TextView) v.findViewById(R.id.list_empty_title);
+		emptySkillType = (TextView) v.findViewById(R.id.list_empty_skill_type);
 
 		// Is this a terrible hack?! I think so...
 		emptyItemTitle.setText(e.getTitle());

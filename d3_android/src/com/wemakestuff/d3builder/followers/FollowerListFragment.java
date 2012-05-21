@@ -24,7 +24,6 @@ import com.wemakestuff.d3builder.string.Vars;
 public class FollowerListFragment extends ListFragment
 {
 
-    private Context                         context;
     private String                          selectedFollower;
     private OnLoadFragmentCompleteListener  loadFragmentCompleteListener;
     private OnRequiredLevelUpdateListener   requiredLevelListener;
@@ -50,7 +49,6 @@ public class FollowerListFragment extends ListFragment
 
         FollowerListFragment fragment = new FollowerListFragment();
 
-        fragment.context = c;
         fragment.selectedFollower = selectedFollower;
         return fragment;
     }

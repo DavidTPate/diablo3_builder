@@ -22,7 +22,7 @@ import com.wemakestuff.d3builder.string.Vars;
 
 public class EmptyFollower implements Item {
 	private final String name;
-	private final String icon;
+	private final String iconText;
 	private final String description;
 	private final UUID followerUUID;
 	private String url;
@@ -38,11 +38,15 @@ public class EmptyFollower implements Item {
 	private TextView emptyFollowerSkill3Description;
 	private TextView emptyFollowerSkill4Description;
 	
+	private ImageView icon;
+    private TextView emptyItemName;
+    private TextView emptyFollowerDescription;
+	
 	
 	public EmptyFollower(String name, String shortDescription, String icon, UUID followerUUID, String url) {
 		this.name = name;
 		this.description = shortDescription;
-		this.icon = icon;
+		this.iconText = icon;
 		this.followerUUID = followerUUID;
 		this.url = url;
 	}
@@ -58,7 +62,7 @@ public class EmptyFollower implements Item {
 	}
 
 	public String getIcon() {
-	    return icon;
+	    return iconText;
 	}
 	
 	public String getName() {
@@ -159,17 +163,21 @@ public class EmptyFollower implements Item {
 	}
 
 	@Override
-	public View inflate(Context c, Item i) {
+    public int getViewResource()
+    {
+        return R.layout.list_item_empty_follower;
+    }
+	
+	@Override
+	public View inflate(View v, Item i) {
 	    
-		LayoutInflater vi = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		EmptyFollower e = (EmptyFollower) i;
-		View v = vi.inflate(R.layout.list_item_empty_follower, null);
 
-		final ImageView icon = (ImageView) v.findViewById (R.id.empty_follower_icon);
-		final TextView emptyItemName = (TextView) v.findViewById(R.id.empty_follower_name);
-		final TextView emptyFollowerDescription = (TextView) v.findViewById(R.id.empty_follower_description);
+		icon = (ImageView) v.findViewById (R.id.empty_follower_icon);
+		emptyItemName = (TextView) v.findViewById(R.id.empty_follower_name);
+		emptyFollowerDescription = (TextView) v.findViewById(R.id.empty_follower_description);
 
-		int iconImage = c.getResources().getIdentifier("drawable/" + e.getIcon(), null, c.getPackageName());
+		int iconImage = v.getContext().getResources().getIdentifier("drawable/" + e.getIcon(), null, v.getContext().getPackageName());
 		emptyItemName.setText(e.getName());
 		emptyFollowerDescription.setText(e.getDescription());
 		icon.setImageResource(iconImage);
