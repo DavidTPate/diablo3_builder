@@ -1,4 +1,3 @@
-
 package com.wemakestuff.d3builder.widgets;
 
 import java.util.ArrayList;
@@ -20,42 +19,45 @@ import com.wemakestuff.d3builder.sectionlist.EntryFollowerSkill;
 import com.wemakestuff.d3builder.sectionlist.EntryRune;
 import com.wemakestuff.d3builder.sectionlist.EntrySkill;
 import com.wemakestuff.d3builder.sectionlist.Item;
+import com.wemakestuff.d3builder.sectionlist.EntrySkillAdapter.RowType;
 
 public class ItemAdapter extends ArrayAdapter<Item>
 {
 
+    public enum RowType
+    {
+        SECTION_ITEM, EMPTY_FOLLOWER, EMPTY_FOLLOWER_SKILL, EMPTY_RUNE, ENTRY_RUNE, EMPTY_SKILL, ENTRY_SKILL
+    }
+
     private ArrayList<Item> items;
-    private LayoutInflater  inflater;
 
     public ItemAdapter(Context context, ArrayList<Item> items)
     {
-
         super(context, 0, items);
         this.items = items;
-        this.inflater = LayoutInflater.from(context);
+    }
+
+    @Override
+    public int getViewTypeCount()
+    {
+        return RowType.values().length;
+
+    }
+
+    @Override
+    public int getItemViewType(int position)
+    {
+        return items.get(position).getViewType();
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent)
     {
-
-        View v = convertView;
-        Item i = items.get(position);
-
-        if (i == null)
-        {
-            return v;
-        }
-
-        v = inflater.inflate(i.getViewResource(), null);
-        v = i.inflate(v, i);
-
-        return v;
+        return items.get(position).getView(convertView);
     }
 
     public List<ParcelUuid> getCurrentSkills()
     {
-
         List<ParcelUuid> currentSkills = new ArrayList<ParcelUuid>();
 
         for (Item i : items)
@@ -69,7 +71,6 @@ public class ItemAdapter extends ArrayAdapter<Item>
 
     public Item getFollowerSkillByUUID(UUID uuid)
     {
-
         for (Item i : items)
         {
             if (i instanceof EntryFollowerSkill)
@@ -82,14 +83,12 @@ public class ItemAdapter extends ArrayAdapter<Item>
 
     public void setList(ArrayList<Item> items)
     {
-
         this.items = items;
         notifyDataSetChanged();
     }
 
     public List<Item> getFollowers()
     {
-
         List<Item> ret = new ArrayList<Item>();
         for (Item i : items)
         {
@@ -103,7 +102,6 @@ public class ItemAdapter extends ArrayAdapter<Item>
 
     public Item getFollowerByName(String name)
     {
-
         for (Item i : items)
         {
             if (i instanceof EmptyFollower)
@@ -120,13 +118,11 @@ public class ItemAdapter extends ArrayAdapter<Item>
 
     public ArrayList<Item> getItems()
     {
-
         return this.items;
     }
 
     public int getFollowerMaxLevel(String followerName)
     {
-
         int requiredLevel = 1;
         List<Skill> followerSkills = D3Application.getInstance().getFollowerByName(followerName).getSkills();
 
@@ -154,7 +150,6 @@ public class ItemAdapter extends ArrayAdapter<Item>
 
     public int getMaxLevel(boolean isFollower)
     {
-
         int requiredLevel = 1;
 
         for (Item i : items)

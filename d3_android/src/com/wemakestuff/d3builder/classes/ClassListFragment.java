@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
+import android.view.LayoutInflater;
 import android.widget.ListAdapter;
 
 import com.wemakestuff.d3builder.classes.interfaces.OnClassFragmentLoadedInterface;
@@ -68,10 +69,10 @@ public class ClassListFragment extends ListFragment
     private ItemAdapter getBlankSkillListAdapter(boolean includeRunes)
     {
 
+        LayoutInflater l = LayoutInflater.from(getActivity());
         ArrayList<Item> items = new ArrayList<Item>();
         String[] skillTypes = D3Application.getInstance().getClassAttributesByName(mSelectedClass).getSkillTypes();
 
-        items.add(new SectionItem("Left Click - Primary"));
         items.add(new SectionItem(l, "Left Click - Primary"));
         items.add(new EmptySkill(l, "Choose Skill", 1, skillTypes[0]));
         if (includeRunes)
@@ -96,20 +97,14 @@ public class ClassListFragment extends ListFragment
         if (includeRunes)
             items.add(new EmptyRune(l, "Choose Rune", 1, "Rune", null));
 
-        items.add(new SectionItem("Passive Skills"));
-        items.add(new EmptySkill("Choose Skill", 10, "Passive"));
-        items.add(new EmptySkill("Choose Skill", 20, "Passive"));
-        items.add(new EmptySkill("Choose Skill", 30, "Passive"));
         items.add(new SectionItem(l, "Passive Skills"));
         items.add(new EmptySkill(l, "Choose Skill", 10, "Passive"));
         items.add(new EmptySkill(l, "Choose Skill", 20, "Passive"));
         items.add(new EmptySkill(l, "Choose Skill", 30, "Passive"));
 
-        items.add(new SectionItem("Followers"));
         items.add(new SectionItem(l, "Followers"));
         for (Follower f : D3Application.getInstance().getFollowers())
         {
-            items.add(new EmptyFollower(f.getName(), f.getShortDescription(), f.getIcon(), f.getUuid(), ""));
             items.add(new EmptyFollower(l, f.getName(), f.getShortDescription(), f.getIcon(), f.getUuid(), ""));
         }
 

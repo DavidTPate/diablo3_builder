@@ -15,16 +15,18 @@ import com.google.ads.AdView;
 import com.viewpagerindicator.PageIndicator;
 import com.viewpagerindicator.TitlePageIndicator;
 import com.viewpagerindicator.TitlePageIndicator.IndicatorStyle;
+import com.wemakestuff.d3builder.RuneListFragment.OnRuneSelectedListener;
 import com.wemakestuff.d3builder.string.Replacer;
 import com.wemakestuff.d3builder.string.Vars;
 
-public class SelectRune extends SherlockFragmentActivity {
+public class SelectRune extends SherlockFragmentActivity implements OnRuneSelectedListener {
 	RuneFragmentAdapter mAdapter;
 	ViewPager mPager;
 	PageIndicator mIndicator;
 	int index;
 	int maxLevel = 60;
 	UUID skillUUID;
+	UUID runeUUID;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -74,7 +76,7 @@ public class SelectRune extends SherlockFragmentActivity {
 
 				Intent intent = getIntent();
 				intent.putExtra("Rune_UUID", v.getTag().toString());
-				intent.putExtra("Skill_UUID", skillUUID.toString());
+				
 				intent.putExtra("Index", index);
 				setResult(RESULT_OK, intent);
 				finish();
@@ -100,5 +102,17 @@ public class SelectRune extends SherlockFragmentActivity {
 
 		mPager.setCurrentItem(mAdapter.getItemPosition(skillName));
 	}
+
+    @Override
+    public void OnRuneSelected(UUID rune)
+    {
+        this.runeUUID = rune;
+        Intent intent = getIntent();
+        intent.putExtra("Rune_UUID", rune.toString());
+        intent.putExtra("Skill_UUID", skillUUID.toString());
+        intent.putExtra("Index", index);
+        setResult(RESULT_OK, intent);
+        finish();        
+    }
 
 }
