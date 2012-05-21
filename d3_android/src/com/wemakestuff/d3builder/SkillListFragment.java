@@ -26,7 +26,7 @@ public class SkillListFragment extends ListFragment
     private String              skillType;
     private String              selectedClass;
     private int                 maxLevel    = 60;
-    private OnClickListener     listener;
+    private static OnClickListener     listener;
     private List<ParcelUuid>    excludeSkills;
 
     private ArrayList<Item>     items       = new ArrayList<Item>();

@@ -24,7 +24,7 @@ public class RuneListFragment extends ListFragment
     String                      skillName;
     String                      selectedClass;
     int                         maxLevel;
-    OnClickListener             listener;
+    static OnClickListener             listener;
     UUID                        skillUUID;
 
     ArrayList<Item>             items       = new ArrayList<Item>();
