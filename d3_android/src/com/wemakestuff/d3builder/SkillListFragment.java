@@ -58,18 +58,17 @@ public class SkillListFragment extends ListFragment
             {
                 skillType = savedInstanceState.getString("skillType");
             }
-            
+
             if (savedInstanceState.containsKey("selectedClass"))
             {
                 selectedClass = savedInstanceState.getString("selectedClass");
             }
-            
+
             if (savedInstanceState.containsKey("maxLevel"))
             {
                 maxLevel = savedInstanceState.getInt("maxLevel");
             }
-            
-            Log.i("got", skillType + " " + selectedClass + " " + maxLevel);
+
         }
 
         setRetainInstance(true);
@@ -93,8 +92,6 @@ public class SkillListFragment extends ListFragment
         outState.putString("skillType", skillType);
         outState.putString("selectedClass", selectedClass);
         outState.putInt("maxLevel", maxLevel);
-        
-        Log.i("put", skillType + " " + selectedClass + " " + " " + maxLevel);
     }
 
     public void setOnListItemClickListener(OnClickListener listener)
