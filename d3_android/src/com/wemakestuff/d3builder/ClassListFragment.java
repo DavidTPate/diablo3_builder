@@ -139,7 +139,9 @@ public class ClassListFragment extends ListFragment
         }
         else if (i instanceof EntryRune)
         {
-            items.set(position, new EmptyRune(l, "Choose Rune", 1, "Rune", null));
+            EntryRune e = (EntryRune) i;
+            
+            items.set(position, new EmptyRune(l, "Choose Rune", 1, "Rune", e.getSkillUUID()));
         }
         else if (i instanceof EmptyFollower)
         {
@@ -521,6 +523,8 @@ public class ClassListFragment extends ListFragment
         }
 
         followerRequiredLevel = maxLevel;
+        
+        listAdapter.notifyDataSetChanged();
 
     }
 

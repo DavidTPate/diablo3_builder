@@ -44,45 +44,45 @@ import com.wemakestuff.d3builder.model.D3Application;
 import com.wemakestuff.d3builder.string.Replacer;
 import com.wemakestuff.d3builder.string.Vars;
 
-public class SelectFollower extends SherlockFragmentActivity implements OnRequiredLevelUpdateListener, OnLoadFragmentCompleteListener, OnLoadBuildClickInterface, OnSkillUpdateListener
+public class SelectFollower extends SherlockFragmentActivity implements OnRequiredLevelUpdateListener, OnLoadFragmentCompleteListener,
+        OnLoadBuildClickInterface, OnSkillUpdateListener
 {
-    private FollowerFragmentAdapter mAdapter;
-    private ViewPager               mPager;
-    private PageIndicator           mIndicator;
-    private String                  loadFromUrl;
-    private boolean                 loadedFromUrl     = false;
-    private String                  selectedFollower;
-    private DialogFragment          dialog;
-    private TextView                requiredLevel;
-    private LinearLayout            requiredLevelWrapper;
-    private static FollowerBuildAdapter       aAdapter;
-    private List<ClassBuild>        builds;
-    private List<ParcelUuid>        templarSkills     = new ArrayList<ParcelUuid>();
-    private List<ParcelUuid>        scoundrelSkills   = new ArrayList<ParcelUuid>();
-    private List<ParcelUuid>        enchantressSkills = new ArrayList<ParcelUuid>();
-    private Map<String, Integer>    requiredLevelMap = new HashMap<String, Integer>();
-    
-    private int loadedFragmentsCount = 0;
-    
+    private FollowerFragmentAdapter     mAdapter;
+    private ViewPager                   mPager;
+    private PageIndicator               mIndicator;
+    private String                      loadFromUrl;
+    private boolean                     loadedFromUrl        = false;
+    private String                      selectedFollower;
+    private DialogFragment              dialog;
+    private TextView                    requiredLevel;
+    private LinearLayout                requiredLevelWrapper;
+    private static FollowerBuildAdapter aAdapter;
+    private List<ClassBuild>            builds;
+    private List<ParcelUuid>            templarSkills        = new ArrayList<ParcelUuid>();
+    private List<ParcelUuid>            scoundrelSkills      = new ArrayList<ParcelUuid>();
+    private List<ParcelUuid>            enchantressSkills    = new ArrayList<ParcelUuid>();
+    private Map<String, Integer>        requiredLevelMap     = new HashMap<String, Integer>();
+
+    private int                         loadedFragmentsCount = 0;
 
     /** Called when the activity is first created. */
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState)
+    {
 
         super.onCreate(savedInstanceState);
 
         if (getIntent().hasExtra(Vars.TEMPLAR))
             templarSkills = getIntent().getParcelableArrayListExtra(Vars.TEMPLAR);
-        
+
         if (getIntent().hasExtra(Vars.SCOUNDREL))
             scoundrelSkills = getIntent().getParcelableArrayListExtra(Vars.SCOUNDREL);
 
         if (getIntent().hasExtra(Vars.ENCHANTRESS))
             enchantressSkills = getIntent().getParcelableArrayListExtra(Vars.ENCHANTRESS);
-        
+
         if (getIntent().hasExtra(Vars.FOLLOWERS))
             selectedFollower = getIntent().getStringExtra(Vars.FOLLOWERS);
-        
 
         if (!requiredLevelMap.containsKey(Vars.TEMPLAR))
             requiredLevelMap.put(Vars.TEMPLAR, 1);
@@ -90,12 +90,13 @@ public class SelectFollower extends SherlockFragmentActivity implements OnRequir
             requiredLevelMap.put(Vars.SCOUNDREL, 1);
         if (!requiredLevelMap.containsKey(Vars.ENCHANTRESS))
             requiredLevelMap.put(Vars.ENCHANTRESS, 1);
-        
+
         Uri data = getIntent().getData();
-        if (data != null) {
+        if (data != null)
+        {
             loadFromUrl = data.toString();
         }
-        
+
         if (getIntent().hasExtra("url"))
         {
             loadFromUrl = getIntent().getStringExtra("url");
@@ -129,38 +130,41 @@ public class SelectFollower extends SherlockFragmentActivity implements OnRequir
         indicator.setOnPageChangeListener(new OnPageChangeListener() {
 
             @Override
-            public void onPageSelected(int position) {
+            public void onPageSelected(int position)
+            {
                 switch (position)
                 {
-                case 0:
-                    if (requiredLevelMap.containsKey(Vars.TEMPLAR))
-                        setRequiredLevel(requiredLevelMap.get(Vars.TEMPLAR));
-                    break;
-                case 1:
-                    if (requiredLevelMap.containsKey(Vars.SCOUNDREL))
-                        setRequiredLevel(requiredLevelMap.get(Vars.SCOUNDREL));
-                    break;
-                case 2:
-                    if (requiredLevelMap.containsKey(Vars.ENCHANTRESS))
-                        setRequiredLevel(requiredLevelMap.get(Vars.ENCHANTRESS));
-                    break;
+                    case 0:
+                        if (requiredLevelMap.containsKey(Vars.TEMPLAR))
+                            setRequiredLevel(requiredLevelMap.get(Vars.TEMPLAR));
+                        break;
+                    case 1:
+                        if (requiredLevelMap.containsKey(Vars.SCOUNDREL))
+                            setRequiredLevel(requiredLevelMap.get(Vars.SCOUNDREL));
+                        break;
+                    case 2:
+                        if (requiredLevelMap.containsKey(Vars.ENCHANTRESS))
+                            setRequiredLevel(requiredLevelMap.get(Vars.ENCHANTRESS));
+                        break;
                 }
-                
-            }
-
-            @Override
-            public void onPageScrolled(int arg0, float arg1, int arg2) {
 
             }
 
             @Override
-            public void onPageScrollStateChanged(int arg0) {
+            public void onPageScrolled(int arg0, float arg1, int arg2)
+            {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int arg0)
+            {
 
             }
         });
 
         mIndicator = indicator;
-        
+
     }
 
     public List<ParcelUuid> getSkillsByClass(String className)
@@ -177,10 +181,10 @@ public class SelectFollower extends SherlockFragmentActivity implements OnRequir
         {
             return enchantressSkills;
         }
-        
+
         return null;
     }
-    
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
@@ -189,7 +193,7 @@ public class SelectFollower extends SherlockFragmentActivity implements OnRequir
         inflater.inflate(R.menu.follower, menu);
         return super.onCreateOptionsMenu(menu);
     }
-    
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
@@ -220,7 +224,7 @@ public class SelectFollower extends SherlockFragmentActivity implements OnRequir
 
             dialog = LoadFollowerDialog.newInstance("Load Saved Build", builds);
             dialog.show(getSupportFragmentManager(), "load");
-            
+
         }
         else if (item.getItemId() == R.id.save)
         {
@@ -239,9 +243,10 @@ public class SelectFollower extends SherlockFragmentActivity implements OnRequir
         }
         return super.onOptionsItemSelected(item);
     }
-    
+
     @Override
-    public void onBackPressed() {
+    public void onBackPressed()
+    {
 
         Intent resultIntent = new Intent();
         resultIntent.putParcelableArrayListExtra(Vars.TEMPLAR, (ArrayList<ParcelUuid>) templarSkills);
@@ -253,61 +258,65 @@ public class SelectFollower extends SherlockFragmentActivity implements OnRequir
         finish();
 
     }
-    
+
     public int getFollowersMaxLevel()
     {
         return Math.max(requiredLevelMap.get(Vars.TEMPLAR), Math.max(requiredLevelMap.get(Vars.SCOUNDREL), requiredLevelMap.get(Vars.ENCHANTRESS)));
     }
-    
 
-    public void delinkifyClassBuild(String url) {
+    public void delinkifyClassBuild(String url)
+    {
 
-        FollowerListFragment templar = (FollowerListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.follower_pager + ":" + "0");
-        FollowerListFragment scoundrel = (FollowerListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.follower_pager + ":" + "1");
-        FollowerListFragment enchantress = (FollowerListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.follower_pager + ":" + "2");
-        
+        FollowerListFragment templar = (FollowerListFragment) getSupportFragmentManager().findFragmentByTag(
+                "android:switcher:" + R.id.follower_pager + ":" + "0");
+        FollowerListFragment scoundrel = (FollowerListFragment) getSupportFragmentManager().findFragmentByTag(
+                "android:switcher:" + R.id.follower_pager + ":" + "1");
+        FollowerListFragment enchantress = (FollowerListFragment) getSupportFragmentManager().findFragmentByTag(
+                "android:switcher:" + R.id.follower_pager + ":" + "2");
+
         String build = url.split("#")[1];
         String templarLink;
         String scoundrelLink;
         String enchantressLink;
-        
+
         String[] followers = build.split("!");
-        
-        switch (followers.length) {
+
+        switch (followers.length)
+        {
             case 1:
                 templarLink = followers[0];
                 templar.setSelectedSkills(templarLink);
                 break;
-    
+
             case 2:
                 templarLink = followers[0];
                 scoundrelLink = followers[1];
-                
+
                 templar.setSelectedSkills(templarLink);
                 scoundrel.setSelectedSkills(scoundrelLink);
                 break;
-    
+
             case 3:
                 templarLink = followers[0];
                 scoundrelLink = followers[1];
                 enchantressLink = followers[2];
-                
+
                 templar.setSelectedSkills(templarLink);
                 scoundrel.setSelectedSkills(scoundrelLink);
                 enchantress.setSelectedSkills(enchantressLink);
                 break;
-    
+
             default:
                 break;
         }
-        
+
         updateData();
     }
-    
+
     public String getFollowersLink()
     {
         StringBuffer followerLink = new StringBuffer("http://us.battle.net/d3/en/calculator/follower#");
-        
+
         FollowerListFragment frag = (FollowerListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.follower_pager + ":" + "0");
         followerLink.append(frag.linkifyClassBuild());
         followerLink.append(D3Application.getInstance().getSkillAttributes().getFollowerSeparator());
@@ -315,70 +324,86 @@ public class SelectFollower extends SherlockFragmentActivity implements OnRequir
         frag = (FollowerListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.follower_pager + ":" + "1");
         followerLink.append(frag.linkifyClassBuild());
         followerLink.append(D3Application.getInstance().getSkillAttributes().getFollowerSeparator());
-        
+
         frag = (FollowerListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.follower_pager + ":" + "2");
         followerLink.append(frag.linkifyClassBuild());
-        
+
         return followerLink.toString();
     }
 
-    public void updateData() {
+    public void updateData()
+    {
         mIndicator.notifyDataSetChanged();
         mAdapter.notifyDataSetChanged();
     }
 
-    public void setRequiredLevel(int level) {
+    public void setRequiredLevel(int level)
+    {
         requiredLevel.setText(Replacer.replace("Required Level: " + level, "\\d+", Vars.DIABLO_GREEN));
     }
 
-    public List<ParcelUuid> getTemplarSkills() {
+    public List<ParcelUuid> getTemplarSkills()
+    {
         return templarSkills;
     }
 
-    public void setTemplarSkills(List<ParcelUuid> templarSkills) {
+    public void setTemplarSkills(List<ParcelUuid> templarSkills)
+    {
         this.templarSkills = templarSkills;
     }
 
-    public List<ParcelUuid> getScoundrelSkills() {
+    public List<ParcelUuid> getScoundrelSkills()
+    {
         return scoundrelSkills;
     }
 
-    public void setScoundrelSkills(List<ParcelUuid> scoundrelSkills) {
+    public void setScoundrelSkills(List<ParcelUuid> scoundrelSkills)
+    {
         this.scoundrelSkills = scoundrelSkills;
     }
 
-    public List<ParcelUuid> getEnchantressSkills() {
+    public List<ParcelUuid> getEnchantressSkills()
+    {
         return enchantressSkills;
     }
 
-    public void setEnchantressSkills(List<ParcelUuid> enchantressSkills) {
+    public void setEnchantressSkills(List<ParcelUuid> enchantressSkills)
+    {
         this.enchantressSkills = enchantressSkills;
     }
 
     @Override
-    public void OnRequiredLevelUpdate(String name, int level) {
+    public void OnRequiredLevelUpdate(String name, int level)
+    {
         requiredLevelMap.put(name, level);
         setRequiredLevel(level);
 
     }
-    
+
     public void doPositiveClick(boolean clearAll)
     {
-        
+
         if (!clearAll)
         {
-            FollowerListFragment frag = (FollowerListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.follower_pager + ":" + mPager.getCurrentItem());
+            FollowerListFragment frag = (FollowerListFragment) getSupportFragmentManager().findFragmentByTag(
+                    "android:switcher:" + R.id.follower_pager + ":" + mPager.getCurrentItem());
             frag.clear();
         }
         else
         {
-            FollowerListFragment frag1 = (FollowerListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.follower_pager + ":" + "0");
-            FollowerListFragment frag2 = (FollowerListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.follower_pager + ":" + "1");
-            FollowerListFragment frag3 = (FollowerListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.follower_pager + ":" + "2");
-            
-            if (frag1 != null) frag1.clear();
-            if (frag2 != null) frag2.clear();
-            if (frag3 != null) frag3.clear();
+            FollowerListFragment frag1 = (FollowerListFragment) getSupportFragmentManager().findFragmentByTag(
+                    "android:switcher:" + R.id.follower_pager + ":" + "0");
+            FollowerListFragment frag2 = (FollowerListFragment) getSupportFragmentManager().findFragmentByTag(
+                    "android:switcher:" + R.id.follower_pager + ":" + "1");
+            FollowerListFragment frag3 = (FollowerListFragment) getSupportFragmentManager().findFragmentByTag(
+                    "android:switcher:" + R.id.follower_pager + ":" + "2");
+
+            if (frag1 != null)
+                frag1.clear();
+            if (frag2 != null)
+                frag2.clear();
+            if (frag3 != null)
+                frag3.clear();
         }
     }
 
@@ -386,7 +411,7 @@ public class SelectFollower extends SherlockFragmentActivity implements OnRequir
     {
 
     }
-    
+
     public void doSaveFollowerPositiveClick(String input)
     {
         String value = input;
@@ -406,37 +431,37 @@ public class SelectFollower extends SherlockFragmentActivity implements OnRequir
             valEdit.commit();
         }
     }
-    
+
     public void doSaveFollowerNegativeClick()
     {
-        
+
     }
-    
 
     @Override
-    public void OnLoadFragmentComplete(String follower) {
+    public void OnLoadFragmentComplete(String follower)
+    {
         loadedFragmentsCount++;
-        
+
         if (loadedFragmentsCount == 3)
         {
             int item = 0;
-            
+
             if (selectedFollower == null || selectedFollower.equals(""))
                 selectedFollower = Vars.TEMPLAR;
-            
+
             if (selectedFollower.equals(Vars.TEMPLAR))
                 item = 0;
             else if (selectedFollower.equals(Vars.SCOUNDREL))
                 item = 1;
             else if (selectedFollower.equals(Vars.ENCHANTRESS))
                 item = 2;
-            
+
             ((TitlePageIndicator) mIndicator).setCurrentItem(item);
-            
+
             if (loadFromUrl != null)
                 delinkifyClassBuild(loadFromUrl);
         }
-        
+
     }
 
     public static class MyAlertDialogFragment extends DialogFragment
@@ -459,17 +484,15 @@ public class SelectFollower extends SherlockFragmentActivity implements OnRequir
 
             int title = getArguments().getInt("title");
             final boolean clearAll = getArguments().getBoolean("clearAll");
-            
-            return new AlertDialog.Builder(getActivity()).setTitle(title).setPositiveButton(R.string.alert_dialog_ok, new DialogInterface.OnClickListener()
-            {
+
+            return new AlertDialog.Builder(getActivity()).setTitle(title).setPositiveButton(R.string.alert_dialog_ok, new DialogInterface.OnClickListener() {
 
                 public void onClick(DialogInterface dialog, int whichButton)
                 {
 
                     ((SelectFollower) getActivity()).doPositiveClick(clearAll);
                 }
-            }).setNegativeButton(R.string.alert_dialog_cancel, new DialogInterface.OnClickListener()
-            {
+            }).setNegativeButton(R.string.alert_dialog_cancel, new DialogInterface.OnClickListener() {
 
                 public void onClick(DialogInterface dialog, int whichButton)
                 {
@@ -479,12 +502,12 @@ public class SelectFollower extends SherlockFragmentActivity implements OnRequir
             }).create();
         }
     }
-    
+
     public static class SaveFollowerDialogFragment extends DialogFragment
     {
         public static SaveFollowerDialogFragment newInstance(String title, String message)
         {
-            
+
             SaveFollowerDialogFragment frag = new SaveFollowerDialogFragment();
             Bundle args = new Bundle();
             args.putString("title", title);
@@ -492,14 +515,14 @@ public class SelectFollower extends SherlockFragmentActivity implements OnRequir
             frag.setArguments(args);
             return frag;
         }
-        
+
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState)
         {
-            
+
             String title = getArguments().getString("title");
             String message = getArguments().getString("message");
-          
+
             final EditText input = new EditText(getActivity());
 
             //@formatter:off

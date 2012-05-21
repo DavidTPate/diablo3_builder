@@ -11,8 +11,11 @@ import android.support.v4.app.ListFragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
+import com.wemakestuff.d3builder.R;
 import com.wemakestuff.d3builder.model.D3Application;
 import com.wemakestuff.d3builder.model.Follower;
 import com.wemakestuff.d3builder.model.Skill;
@@ -25,28 +28,29 @@ import com.wemakestuff.d3builder.string.Vars;
 public class FollowerListFragment extends ListFragment
 {
 
-    private String                          selectedFollower;
-    private OnLoadFragmentCompleteListener  loadFragmentCompleteListener;
-    private OnRequiredLevelUpdateListener   requiredLevelListener;
-    private OnSkillUpdateListener           skillUpdateListener;
-    private ArrayList<Item>                 items = new ArrayList<Item>();
+    private String                         selectedFollower;
+    private OnLoadFragmentCompleteListener loadFragmentCompleteListener;
+    private OnRequiredLevelUpdateListener  requiredLevelListener;
+    private OnSkillUpdateListener          skillUpdateListener;
+    private ArrayList<Item>                items = new ArrayList<Item>();
 
     public interface OnRequiredLevelUpdateListener
     {
         void OnRequiredLevelUpdate(String name, int level);
     }
-    
+
     public interface OnSkillUpdateListener
     {
         void OnSkillUpdate(String name, List<ParcelUuid> skills);
     }
-    
+
     public interface OnLoadFragmentCompleteListener
     {
         void OnLoadFragmentComplete(String follower);
     }
 
-    public static FollowerListFragment newInstance(String selectedFollower, Context c) {
+    public static FollowerListFragment newInstance(String selectedFollower, Context c)
+    {
 
         FollowerListFragment fragment = new FollowerListFragment();
 
@@ -55,104 +59,135 @@ public class FollowerListFragment extends ListFragment
     }
 
     @Override
-    public void onAttach(Activity activity) {
+    public void onAttach(Activity activity)
+    {
         super.onAttach(activity);
-        
-        try {
+
+        try
+        {
             requiredLevelListener = (OnRequiredLevelUpdateListener) activity;
-        } catch (ClassCastException e) {
+        }
+        catch (ClassCastException e)
+        {
             throw new ClassCastException(activity.toString() + " must implement OnRequiredLevelUpdate(int level)");
         }
-        
-        try {
+
+        try
+        {
             loadFragmentCompleteListener = (OnLoadFragmentCompleteListener) activity;
-        } catch (ClassCastException e) {
+        }
+        catch (ClassCastException e)
+        {
             throw new ClassCastException(activity.toString() + " must implement OnLoadFragmentCompleteListener(String follower)");
         }
-        
-        try {
+
+        try
+        {
             skillUpdateListener = (OnSkillUpdateListener) activity;
-        } catch (ClassCastException e) {
+        }
+        catch (ClassCastException e)
+        {
             throw new ClassCastException(activity.toString() + " must implement skillUpdateListener(String name, List<ParcelUuid> Skills)");
         }
     }
 
-    public String getSelectedFollower() {
+    public String getSelectedFollower()
+    {
         return selectedFollower;
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState)
+    {
 
         super.onCreate(savedInstanceState);
 
-        if (savedInstanceState != null) {
+        if (savedInstanceState != null)
+        {
             selectedFollower = savedInstanceState.getString("selectedFollower");
         }
 
         setRetainInstance(true);
         populateSkillListAdapter(false);
-        
+
     }
-    
+
     @Override
-    public void onResume() {
+    public void onResume()
+    {
         super.onResume();
         requiredLevelListener.OnRequiredLevelUpdate(selectedFollower, getMaxLevel());
         loadFragmentCompleteListener.OnLoadFragmentComplete(selectedFollower);
     }
 
     @Override
-    public void onPause() {
+    public void onPause()
+    {
         super.onPause();
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(Bundle outState)
+    {
         super.onSaveInstanceState(outState);
         outState.putString("selectedFollower", selectedFollower);
     }
 
     @Override
-    public void onListItemClick(ListView l, View v, int position, long id) {
+    public void onListItemClick(ListView l, View v, int position, long id)
+    {
         super.onListItemClick(l, v, position, id);
         SelectFollower sf = (SelectFollower) getActivity();
         EntrySkillAdapter skillAdapter = (EntrySkillAdapter) l.getAdapter();
         Item item = (Item) l.getItemAtPosition(position);
         EntryFollowerSkill pairedSkill = null;
 
-        if (item instanceof EntryFollowerSkill) {
+        if (item instanceof EntryFollowerSkill)
+        {
             Follower follower = D3Application.getInstance().getFollowerByName(selectedFollower);
             EntryFollowerSkill e = (EntryFollowerSkill) item;
 
             pairedSkill = getPairedFollowerSkill(skillAdapter, pairedSkill, follower, e);
 
-            if (e.isChecked()) {
+            if (e.isChecked())
+            {
                 e.setIsChecked(false);
-            } else {
+            }
+            else
+            {
                 e.setIsChecked(true);
                 pairedSkill.setIsChecked(false);
             }
 
+            skillAdapter.notifyDataSetChanged();
+            
         }
 
-        if (selectedFollower.equals(Vars.TEMPLAR)) {
+        if (selectedFollower.equals(Vars.TEMPLAR))
+        {
             sf.setTemplarSkills(getSelectedSkills());
-        } else if (selectedFollower.equals(Vars.SCOUNDREL)) {
+        }
+        else if (selectedFollower.equals(Vars.SCOUNDREL))
+        {
             sf.setScoundrelSkills(getSelectedSkills());
-        } else if (selectedFollower.equals(Vars.ENCHANTRESS)) {
+        }
+        else if (selectedFollower.equals(Vars.ENCHANTRESS))
+        {
             sf.setEnchantressSkills(getSelectedSkills());
         }
 
         requiredLevelListener.OnRequiredLevelUpdate(selectedFollower, getMaxLevel());
     }
 
-    public List<ParcelUuid> getSelectedSkills() {
+    public List<ParcelUuid> getSelectedSkills()
+    {
         List<ParcelUuid> skills = new ArrayList<ParcelUuid>();
         ArrayList<Item> items = ((EntrySkillAdapter) getListAdapter()).getItems();
 
-        for (Item i : items) {
-            if (i instanceof EntryFollowerSkill) {
+        for (Item i : items)
+        {
+            if (i instanceof EntryFollowerSkill)
+            {
                 EntryFollowerSkill e = (EntryFollowerSkill) i;
                 if (e.isChecked())
                     skills.add(new ParcelUuid(e.getSkill().getUuid()));
@@ -162,19 +197,23 @@ public class FollowerListFragment extends ListFragment
         return skills;
     }
 
-    private EntryFollowerSkill getPairedFollowerSkill(EntrySkillAdapter skillAdapter, EntryFollowerSkill pairedSkill, Follower follower, EntryFollowerSkill e) {
-        for (Skill s : follower.getSkillsByRequiredLevel(e.getSkill().getRequiredLevel())) {
-            if (!s.getUuid().equals(e.getSkill().getUuid())) {
+    private EntryFollowerSkill getPairedFollowerSkill(EntrySkillAdapter skillAdapter, EntryFollowerSkill pairedSkill, Follower follower, EntryFollowerSkill e)
+    {
+        for (Skill s : follower.getSkillsByRequiredLevel(e.getSkill().getRequiredLevel()))
+        {
+            if (!s.getUuid().equals(e.getSkill().getUuid()))
+            {
                 pairedSkill = (EntryFollowerSkill) skillAdapter.getFollowerSkillByUUID(s.getUuid());
             }
 
         }
         return pairedSkill;
     }
-
-    private void populateSkillListAdapter(boolean clear) {
+    
+    private void populateSkillListAdapter(boolean clear)
+    {
         LayoutInflater l = LayoutInflater.from(getActivity());
-        
+
         items = new ArrayList<Item>();
         SelectFollower f = (SelectFollower) getActivity();
         List<ParcelUuid> selectedSkills = f.getSkillsByClass(selectedFollower);
@@ -182,16 +221,18 @@ public class FollowerListFragment extends ListFragment
         Follower follower = D3Application.getInstance().getFollowerByName(selectedFollower);
         List<Integer> requiredLevels = follower.getRequiredLevels();
 
-        for (Integer i : requiredLevels) {
+        for (Integer i : requiredLevels)
+        {
             items.add(new SectionItem(l, "Level " + i));
             List<Skill> skillsByLevel = follower.getSkillsByRequiredLevel(i.intValue());
 
-            for (Skill s : skillsByLevel) {
+            for (Skill s : skillsByLevel)
+            {
                 if (clear)
                     items.add(new EntryFollowerSkill(l, s, selectedFollower, false));
                 else
                     items.add(new EntryFollowerSkill(l, s, selectedFollower, selectedSkills.contains(new ParcelUuid(s.getUuid()))));
-                    
+
             }
 
         }
@@ -199,19 +240,22 @@ public class FollowerListFragment extends ListFragment
         setListAdapter(new EntrySkillAdapter(getActivity(), items));
     }
 
-    public int getMaxLevel() {
+    public int getMaxLevel()
+    {
         return ((EntrySkillAdapter) getListAdapter()).getFollowerMaxLevel(selectedFollower);
     }
 
-    public void clear() {
+    public void clear()
+    {
         clearSelectedSkills();
         populateSkillListAdapter(true);
         requiredLevelListener.OnRequiredLevelUpdate(selectedFollower, 1);
     }
-    
+
     public void clearSelectedSkills()
     {
-        for (int i = 0; i < items.size(); i++) {
+        for (int i = 0; i < items.size(); i++)
+        {
             Item item = items.get(i);
             if (item instanceof EntryFollowerSkill)
             {
@@ -219,17 +263,17 @@ public class FollowerListFragment extends ListFragment
                 s1.setIsChecked(false);
             }
         }
-        
+
         List<ParcelUuid> blank = new ArrayList<ParcelUuid>();
         skillUpdateListener.OnSkillUpdate(Vars.TEMPLAR, blank);
         skillUpdateListener.OnSkillUpdate(Vars.SCOUNDREL, blank);
         skillUpdateListener.OnSkillUpdate(Vars.ENCHANTRESS, blank);
     }
-    
+
     public void setSelectedSkills(String followerLink)
     {
         ArrayList<Item> items = ((EntrySkillAdapter) getListAdapter()).getItems();
-        
+
         if (followerLink.length() > 4)
         {
             Log.e("Follower URL too Long!", followerLink);
@@ -237,7 +281,8 @@ public class FollowerListFragment extends ListFragment
         }
 
         int charIndex = 0;
-        for (int i = 0; i < items.size(); i++) {
+        for (int i = 0; i < items.size(); i++)
+        {
             Item item = items.get(i);
             //@formatter:off
             if (item instanceof EntryFollowerSkill)

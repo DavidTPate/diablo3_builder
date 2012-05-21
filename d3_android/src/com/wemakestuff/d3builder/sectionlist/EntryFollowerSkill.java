@@ -20,6 +20,7 @@ public class EntryFollowerSkill implements Item
     private boolean              isChecked;
     private ImageView            checkmark;
     private final LayoutInflater inflater;
+    ViewHolder holder;
 
     public EntryFollowerSkill(LayoutInflater inflater, Skill skill, String followerName, boolean isChecked)
     {
@@ -38,10 +39,10 @@ public class EntryFollowerSkill implements Item
     public void setIsChecked(boolean isChecked)
     {
         this.isChecked = isChecked;
-        if (checkmark != null)
-        {
-            checkmark.setVisibility(isChecked ? View.VISIBLE : View.GONE);
-        }
+//        if (holder != null && holder.checkmark != null)
+//        {
+//            holder.checkmark.setVisibility(isChecked ? View.VISIBLE : View.GONE);
+//        }
     }
 
     public boolean isChecked()
@@ -73,7 +74,6 @@ public class EntryFollowerSkill implements Item
 
     public View getView(View convertView)
     {
-        ViewHolder holder;
         View view;
         if (convertView == null)
         {
@@ -127,7 +127,7 @@ public class EntryFollowerSkill implements Item
             holder.skillDescription.setVisibility(View.VISIBLE);
         }
 
-        checkmark.setVisibility(isChecked ? View.VISIBLE : View.GONE);
+        holder.checkmark.setVisibility(isChecked ? View.VISIBLE : View.GONE);
 
         return view;
     }
