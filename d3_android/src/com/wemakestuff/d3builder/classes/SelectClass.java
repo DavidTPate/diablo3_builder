@@ -1,34 +1,33 @@
 
 package com.wemakestuff.d3builder.classes;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.support.v4.view.ViewPager.OnPageChangeListener;
-import android.util.Log;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.actionbarsherlock.view.ActionMode;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.google.ads.AdView;
 import com.viewpagerindicator.TitlePageIndicator;
 import com.viewpagerindicator.TitlePageIndicator.IndicatorStyle;
-import com.wemakestuff.d3builder.ClassListFragment;
 import com.wemakestuff.d3builder.R;
-import com.wemakestuff.d3builder.classes.listener.OnClassFragmentLoadListener;
-import com.wemakestuff.d3builder.classes.listener.OnLoadBuildListener;
+import com.wemakestuff.d3builder.classes.interfaces.OnClassFragmentLoadedInterface;
+import com.wemakestuff.d3builder.followers.FollowerListFragment.OnRequiredLevelUpdateListener;
 import com.wemakestuff.d3builder.global.Funcs;
-import com.wemakestuff.d3builder.model.ClassBuild;
+import com.wemakestuff.d3builder.string.Replacer;
+import com.wemakestuff.d3builder.string.Vars;
 
-public class SelectClass extends SherlockFragmentActivity
+
+
+public class SelectClass extends SherlockFragmentActivity implements OnRequiredLevelUpdateListener, OnClassFragmentLoadedInterface
 {
-
+    private TextView requiredLevel;
+    private ClassFragmentAdapter mAdapter;
     private ViewPager mPager;
-    private Dialog               dialog;
+    private TitlePageIndicator mIndicator;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
@@ -40,128 +39,104 @@ public class SelectClass extends SherlockFragmentActivity
     }
 
     @Override
+    public void OnRequiredLevelUpdate(String name, int level)
+    {
+
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState)
     {
 
         super.onCreate(savedInstanceState);
-
-        String loadFromUrl = getIntent().getData() != null ? getIntent().getData().toString() : "";
-
         setContentView(R.layout.select_skill);
 
-        TextView requiredLevel = (TextView) findViewById(R.id.required_level);
-
-        OnClassFragmentLoadListener classFragListener = new OnClassFragmentLoadListener()
-        {
-
-            @Override
-            public void onClassFragmentLoaded(ClassListFragment frag)
-            {
-
-                // TODO: Handle fragment loading.
-            }
-
-        };
-
-        ClassFragmentAdapter mAdapter = new ClassFragmentAdapter(getSupportFragmentManager(), classFragListener);
+        requiredLevel = (TextView) findViewById(R.id.required_level);
+        setRequiredLevel(1);
+        
+        mAdapter = new ClassFragmentAdapter(getSupportFragmentManager());
 
         mPager = (ViewPager) findViewById(R.id.pager);
+        mPager.setOffscreenPageLimit(5);
         mPager.setAdapter(mAdapter);
 
-        TitlePageIndicator indicator = (TitlePageIndicator) findViewById(R.id.select_skill_indicator);
-        indicator.setViewPager(mPager);
-        indicator.setFooterIndicatorStyle(IndicatorStyle.Triangle);
+        mIndicator = (TitlePageIndicator) findViewById(R.id.select_skill_indicator);
+        mIndicator.setViewPager(mPager);
+        mIndicator.setFooterIndicatorStyle(IndicatorStyle.Triangle);
+        
+        Funcs.getNewAd((AdView) this.findViewById(R.id.adView));
+    }
+    
+    public void setRequiredLevel(int level)
+    {
+        if (requiredLevel != null)
+        requiredLevel.setText(Replacer.replace("Required Level: " + level, "\\d+", Vars.DIABLO_GREEN));
+    }
 
-        OnPageChangeListener pageListener = new OnPageChangeListener()
+    public final class ActionModeEditListItem implements ActionMode.Callback
+    {
+
+        int    position;
+        String title;
+
+        public ActionModeEditListItem(int position, String title)
         {
 
-            @Override
-            public void onPageScrollStateChanged(int arg0)
+            this.position = position;
+            this.title = title;
+        }
+
+        @Override
+        public boolean onCreateActionMode(ActionMode mode, Menu menu)
+        {
+
+            mode.setTitle(title);
+            //@formatter:off
+            menu.add("Delete")
+                .setIcon(R.drawable.ic_menu_delete)
+                .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+
+            //@formatter:on
+            return true;
+        }
+
+        @Override
+        public boolean onPrepareActionMode(ActionMode mode, Menu menu)
+        {
+
+            return false;
+        }
+
+        @Override
+        public boolean onActionItemClicked(ActionMode mode, MenuItem item)
+        {
+
+            ClassListFragment frag = (ClassListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mPager.getCurrentItem());
+
+            if (frag != null)
             {
-
-                return;
+                //TODO:
+                //frag.clearListItem(position);
+                mode.finish();
             }
+            return true;
+        }
 
-            @Override
-            public void onPageScrolled(int arg0, float arg1, int arg2)
-            {
+        @Override
+        public void onDestroyActionMode(ActionMode mode)
+        {
 
-                return;
-            }
-
-            @Override
-            public void onPageSelected(int position)
-            {
-
-                ClassListFragment frag = (ClassListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mPager.getCurrentItem());
-            }
-
-        };
-        indicator.setOnPageChangeListener(pageListener);
-
-        Funcs.getNewAd((AdView) this.findViewById(R.id.adView));
+        }
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item)
+    public void onClassFragmentLoaded(ClassListFragment fragment)
     {
 
-        if (item.getItemId() == R.id.share)
-        {
-            ClassListFragment frag = (ClassListFragment) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.pager + ":" + mPager.getCurrentItem());
-            String subject = getString(R.string.Check_Out_My) + " " + frag.getSelectedClass() + " " + getString(R.string.Build);
-            Funcs.shareBuild(this, subject, subject + ": " + frag.linkifyClassBuild(getString(R.string.EN_Build_URL)));
-
-        }
-        else if (item.getItemId() == R.id.load)
-        {
-            ClassBuildAdapter aAdapter = new ClassBuildAdapter(Funcs.getClassAvailableBuilds(this), this);
-            
-            OnLoadBuildListener loadListener = new OnLoadBuildListener()
-            {
-
-                @Override
-                public void onLoadBuild(ClassBuild build)
-                {
-
-                    // TODO Auto-generated method stub
-                    
-                }
-
-                @Override
-                public void onShareBuild(ClassBuild build)
-                {
-
-                    // TODO Auto-generated method stub
-                    
-                }
-
-                @Override
-                public void onDeleteBuild(ClassBuild build)
-                {
-
-                    // TODO Auto-generated method stub
-                    
-                }
-                
-            };
-            aAdapter.setOnLoadBuildListener(loadListener);
-            
-            ListView buildList = new ListView(this);
-            buildList.setAdapter(aAdapter);
-            
-            dialog = new AlertDialog.Builder(this).setTitle(getString(R.string.Load_Build)).setView(buildList).create();
-            dialog.show();
-            
-        }
-        else if (item.getItemId() == R.id.save)
-        {
-
-        }
-        else if (item.getItemId() == R.id.clear)
-        {
-
-        }
-        return false;
+        // TODO Auto-generated method stub
+        
     }
+
 }

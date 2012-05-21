@@ -161,19 +161,16 @@ public class ClassListFragment extends ListFragment
                     // the URL
                     if (existingName.equals(Vars.TEMPLAR))
                     {
-                        Log.i("FollowerUrl", followerUrl);
                         templarSkills = new ArrayList<ParcelUuid>();
                         updateFollowerData(templarSkills, scoundrelSkills, enchantressSkills, clearClassFromUrl(Vars.TEMPLAR));
                     }
                     else if (existingName.equals(Vars.SCOUNDREL))
                     {
-                        Log.i("FollowerUrl", followerUrl);
                         scoundrelSkills = new ArrayList<ParcelUuid>();
                         updateFollowerData(templarSkills, scoundrelSkills, enchantressSkills, clearClassFromUrl(Vars.SCOUNDREL));
                     }
                     else if (existingName.equals(Vars.ENCHANTRESS))
                     {
-                        Log.i("FollowerUrl", followerUrl);
                         enchantressSkills = new ArrayList<ParcelUuid>();
                         updateFollowerData(templarSkills, scoundrelSkills, enchantressSkills, clearClassFromUrl(Vars.ENCHANTRESS));
                     }
@@ -236,8 +233,6 @@ public class ClassListFragment extends ListFragment
         returnVal.append(scoundrelLink);
         returnVal.append(D3Application.getInstance().getSkillAttributes().getFollowerSeparator());
         returnVal.append(enchantressLink);
-
-        Log.i("clearClassFromurl", returnVal.toString());
 
         return returnVal.toString();
 
