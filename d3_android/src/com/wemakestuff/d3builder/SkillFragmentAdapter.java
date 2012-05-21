@@ -19,7 +19,6 @@ class SkillFragmentAdapter extends FragmentPagerAdapter implements TitleProvider
 	private String skillType;
 	private String selectedClass;
 	private int maxLevel = 60;
-	private OnClickListener listener;
 	private List<ParcelUuid> excludeSkills;
 	int GET_SKILL = -1;
 
@@ -38,7 +37,6 @@ class SkillFragmentAdapter extends FragmentPagerAdapter implements TitleProvider
 	public Fragment getItem(int position) {
 	    String s = skillTypes[position % skillTypes.length];
 	    SkillListFragment skillList = SkillListFragment.newInstance(s, context, s, selectedClass, maxLevel, excludeSkills);
-	    skillList.setOnListItemClickListener(listener);
 		return skillList;
 	}
 	
@@ -65,8 +63,4 @@ class SkillFragmentAdapter extends FragmentPagerAdapter implements TitleProvider
         return skillTypes[position % skillTypes.length];
     }
     
-    public void setOnListItemClickListener(OnClickListener listener)
-    {
-    	this.listener = listener;
-    }
 }

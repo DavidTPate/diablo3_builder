@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.ParcelUuid;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ListView;
 
@@ -172,6 +173,8 @@ public class FollowerListFragment extends ListFragment
     }
 
     private void populateSkillListAdapter(boolean clear) {
+        LayoutInflater l = LayoutInflater.from(getActivity());
+        
         items = new ArrayList<Item>();
         SelectFollower f = (SelectFollower) getActivity();
         List<ParcelUuid> selectedSkills = f.getSkillsByClass(selectedFollower);
@@ -180,14 +183,14 @@ public class FollowerListFragment extends ListFragment
         List<Integer> requiredLevels = follower.getRequiredLevels();
 
         for (Integer i : requiredLevels) {
-            items.add(new SectionItem("Level " + i));
+            items.add(new SectionItem(l, "Level " + i));
             List<Skill> skillsByLevel = follower.getSkillsByRequiredLevel(i.intValue());
 
             for (Skill s : skillsByLevel) {
                 if (clear)
-                    items.add(new EntryFollowerSkill(s, selectedFollower, false));
+                    items.add(new EntryFollowerSkill(l, s, selectedFollower, false));
                 else
-                    items.add(new EntryFollowerSkill(s, selectedFollower, selectedSkills.contains(new ParcelUuid(s.getUuid()))));
+                    items.add(new EntryFollowerSkill(l, s, selectedFollower, selectedSkills.contains(new ParcelUuid(s.getUuid()))));
                     
             }
 

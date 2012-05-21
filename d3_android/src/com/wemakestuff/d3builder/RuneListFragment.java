@@ -7,6 +7,7 @@ import java.util.UUID;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ListView;
@@ -49,6 +50,7 @@ public class RuneListFragment extends ListFragment
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
+        LayoutInflater l = LayoutInflater.from(getActivity());
         
         if (savedInstanceState != null)
         {
@@ -76,7 +78,7 @@ public class RuneListFragment extends ListFragment
 
         for (Rune s : D3Application.getInstance().getClassByName(selectedClass).getActiveSkillByUUID(skillUUID).getRunes())
         {
-            items.add(new EntryRune(s, skillName, skillUUID));
+            items.add(new EntryRune(l, s, skillName, skillUUID));
         }
         EntrySkillAdapter adapter = new EntrySkillAdapter(getActivity(), items);
 

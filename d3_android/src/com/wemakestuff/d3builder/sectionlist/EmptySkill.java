@@ -1,25 +1,26 @@
 package com.wemakestuff.d3builder.sectionlist;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.wemakestuff.d3builder.R;
+import com.wemakestuff.d3builder.sectionlist.EntrySkillAdapter.RowType;
 
 public class EmptySkill implements Item
 {
-    private final String title;
-    private final int    level;
-    private final String skillType;
-    private TextView     emptyItemTitle;
-    private TextView     emptySkillType;
+    private final String         title;
+    private final int            level;
+    private final String         skillType;
+    private final LayoutInflater inflater;
 
-    public EmptySkill(String title, int level, String skillType)
+    public EmptySkill(LayoutInflater inflater, String title, int level, String skillType)
     {
         this.title = title;
         this.level = level;
         this.skillType = skillType;
+        this.inflater = inflater;
     }
 
     public String getTitle()
@@ -38,25 +39,45 @@ public class EmptySkill implements Item
     }
 
     @Override
-    public int getViewResource()
+    public int getViewType()
     {
-        return R.layout.list_item_empty;
+        return RowType.EMPTY_SKILL.ordinal();
     }
 
     @Override
-    public View inflate(View v, Item i)
+    public View getView(View convertView)
     {
+        ViewHolder holder;
+        View view;
+        if (convertView == null)
+        {
+            ViewGroup v = (ViewGroup) inflater.inflate(R.layout.list_item_empty, null);
+            holder = new ViewHolder((TextView) v.findViewById(R.id.list_empty_title), (TextView) v.findViewById(R.id.list_empty_skill_type));
+            v.setTag(holder);
+            view = v;
+        }
+        else
+        {
+            view = convertView;
+            holder = (ViewHolder) convertView.getTag();
+        }
 
-        EmptySkill e = (EmptySkill) i;
+        holder.emptyItemTitle.setText(title);
+        holder.emptySkillType.setText(skillType);
 
-        emptyItemTitle = (TextView) v.findViewById(R.id.list_empty_title);
-        emptySkillType = (TextView) v.findViewById(R.id.list_empty_skill_type);
+        return view;
+    }
 
-        // Is this a terrible hack?! I think so...
-        emptyItemTitle.setText(e.getTitle());
-        emptySkillType.setText(e.getSkillType());
+    private static class ViewHolder
+    {
+        final TextView emptyItemTitle;
+        final TextView emptySkillType;
 
-        return v;
+        private ViewHolder(TextView emptyItemTitle, TextView emptySkillType)
+        {
+            this.emptyItemTitle = emptyItemTitle;
+            this.emptySkillType = emptySkillType;
+        }
     }
 
 }

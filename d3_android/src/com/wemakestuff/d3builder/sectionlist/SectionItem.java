@@ -1,19 +1,23 @@
 package com.wemakestuff.d3builder.sectionlist;
 
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.wemakestuff.d3builder.R;
+import com.wemakestuff.d3builder.sectionlist.EntrySkillAdapter.RowType;
 
 public class SectionItem implements Item
 {
 
-    private String   title;
-    private TextView sectionView;
+    private final String   title;
+    private final LayoutInflater inflater;
 
-    public SectionItem(String title)
+    public SectionItem(LayoutInflater inflater, String title)
     {
         this.title = title;
+        this.inflater = inflater;
     }
 
     public String getTitle()
@@ -22,25 +26,46 @@ public class SectionItem implements Item
     }
 
     @Override
-    public int getViewResource()
+    public int getViewType()
     {
-        return R.layout.list_item_section;
+        return RowType.SECTION_ITEM.ordinal();
     }
 
     @Override
-    public View inflate(View v, Item i)
+    public View getView(View convertView)
     {
+        ViewHolder holder;
+        View view;
+        if (convertView == null)
+        {
+            ViewGroup v = (ViewGroup) inflater.inflate(R.layout.list_item_section, null);
+            holder = new ViewHolder((TextView) v.findViewById(R.id.list_item_section_text));
+            v.setTag(holder);
+            view = v;
+        }
+        else
+        {
+            view = convertView;
+            holder = (ViewHolder) convertView.getTag();
+        }
 
-        SectionItem si = (SectionItem) i;
+        holder.sectionView.setText(title);
 
-        v.setOnClickListener(null);
-        v.setOnLongClickListener(null);
-        v.setLongClickable(false);
+        view.setOnClickListener(null);
+        view.setOnLongClickListener(null);
+        view.setLongClickable(false);
+        
+        return view;
+    }
 
-        sectionView = (TextView) v.findViewById(R.id.list_item_section_text);
-        sectionView.setText(si.getTitle());
+    private static class ViewHolder
+    {
+        final TextView sectionView;
 
-        return v;
+        private ViewHolder(TextView sectionView)
+        {
+            this.sectionView = sectionView;
+        }
     }
 
 }

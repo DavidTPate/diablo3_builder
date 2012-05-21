@@ -1,6 +1,7 @@
 package com.wemakestuff.d3builder.sectionlist;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -17,65 +18,74 @@ import com.wemakestuff.d3builder.model.Skill;
 
 public class EntrySkillAdapter extends ArrayAdapter<Item>
 {
+    public enum RowType {
+        SECTION_ITEM,
+        EMPTY_FOLLOWER,
+        EMPTY_FOLLOWER_SKILL,
+        EMPTY_RUNE,
+        ENTRY_RUNE,
+        EMPTY_SKILL,
+        ENTRY_SKILL
+    }
 
-    private ArrayList<Item> items;
-    private LayoutInflater inflater;
-    
-    public EntrySkillAdapter(Context context, ArrayList<Item> items) {
+    private ArrayList<Item>                items;
+
+    public EntrySkillAdapter(Context context, ArrayList<Item> items)
+    {
         super(context, 0, items);
         this.items = items;
-        this.inflater = LayoutInflater.from(context);
+    }
+    
+    @Override
+    public int getViewTypeCount()
+    {
+        return RowType.values().length;
+        
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        View v = convertView;
-        Item i = items.get(position);
-        
-        Log.i("Postion - " + i, "View Type =" + getItemViewType(position));
-        if (i == null)
-        {
-            Log.e("List item " + position + " was null", "Not inflating view");
-            return v;
-        }
-
-        v = inflater.inflate(i.getViewResource(), null);
-        v = i.inflate(v, i);
-        
-        return v;
+    public int getItemViewType(int position)
+    {
+        return items.get(position).getViewType();
     }
-    
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent)
+    {
+        return items.get(position).getView(convertView);
+    }
+
     public List<ParcelUuid> getCurrentSkills()
     {
         List<ParcelUuid> currentSkills = new ArrayList<ParcelUuid>();
-        
+
         for (Item i : items)
         {
             if (i instanceof EntrySkill)
                 currentSkills.add(new ParcelUuid(((EntrySkill) i).getSkill().getUuid()));
         }
-        
+
         return currentSkills;
     }
-    
+
     public Item getFollowerSkillByUUID(UUID uuid)
     {
         for (Item i : items)
         {
             if (i instanceof EntryFollowerSkill)
                 if (((EntryFollowerSkill) i).getSkill().getUuid().equals(uuid))
-                        return i;
+                    return i;
         }
-        
+
         return null;
     }
-    
+
     public void setList(ArrayList<Item> items)
     {
-    	this.items = items;
-    	notifyDataSetChanged();
+        this.items = items;
+        notifyDataSetChanged();
     }
-    
+
     public List<Item> getFollowers()
     {
         List<Item> ret = new ArrayList<Item>();
@@ -85,10 +95,10 @@ public class EntrySkillAdapter extends ArrayAdapter<Item>
                 ret.add(i);
 
         }
-        
+
         return ret;
     }
-    
+
     public Item getFollowerByName(String name)
     {
         for (Item i : items)
@@ -101,20 +111,20 @@ public class EntrySkillAdapter extends ArrayAdapter<Item>
             }
 
         }
-        
+
         return null;
     }
-    
+
     public ArrayList<Item> getItems()
     {
-    	return this.items;
+        return this.items;
     }
 
     public int getFollowerMaxLevel(String followerName)
     {
         int requiredLevel = 1;
         List<Skill> followerSkills = D3Application.getInstance().getFollowerByName(followerName).getSkills();
-        
+
         for (Item i : items)
         {
             if (i instanceof EntryFollowerSkill)
@@ -126,21 +136,21 @@ public class EntrySkillAdapter extends ArrayAdapter<Item>
                 {
                     int tempLevel = s.getRequiredLevel();
                     boolean isChecked = efs.isChecked();
-                    
+
                     if (tempLevel > requiredLevel && isChecked)
                         requiredLevel = tempLevel;
                 }
             }
-            
+
         }
-        
+
         return requiredLevel;
     }
-    
-    public int getMaxLevel(boolean isFollower) 
+
+    public int getMaxLevel(boolean isFollower)
     {
         int requiredLevel = 1;
-        
+
         for (Item i : items)
         {
             if (isFollower)
@@ -149,7 +159,7 @@ public class EntrySkillAdapter extends ArrayAdapter<Item>
                 {
                     int tempLevel = ((EntryFollowerSkill) i).getSkill().getRequiredLevel();
                     boolean isChecked = ((EntryFollowerSkill) i).isChecked();
-                    
+
                     if (tempLevel > requiredLevel && isChecked)
                         requiredLevel = tempLevel;
                 }
@@ -159,22 +169,22 @@ public class EntrySkillAdapter extends ArrayAdapter<Item>
                 if (i instanceof EntrySkill)
                 {
                     int tempLevel = ((EntrySkill) i).getSkill().getRequiredLevel();
-                    
+
                     if (tempLevel > requiredLevel)
                         requiredLevel = tempLevel;
-                    
+
                 }
                 else if (i instanceof EntryRune)
                 {
                     int tempLevel = ((EntryRune) i).getRune().getRequiredLevel();
-                    
+
                     if (tempLevel > requiredLevel)
                         requiredLevel = tempLevel;
                 }
             }
-            
+
         }
-        
+
         return requiredLevel;
     }
 

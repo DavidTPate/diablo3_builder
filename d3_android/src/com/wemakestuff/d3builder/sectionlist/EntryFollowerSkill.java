@@ -1,35 +1,33 @@
 package com.wemakestuff.d3builder.sectionlist;
 
-import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.wemakestuff.d3builder.R;
 import com.wemakestuff.d3builder.model.Skill;
+import com.wemakestuff.d3builder.sectionlist.EntrySkillAdapter.RowType;
 import com.wemakestuff.d3builder.string.Replacer;
 import com.wemakestuff.d3builder.string.Vars;
 
 public class EntryFollowerSkill implements Item
 {
 
-    private final Skill  skill;
-    private final String followerName;
-    private boolean      isChecked;
-    private ImageView    checkmark;
-    private ImageView    skillIcon;
-    private TextView     skillName;
-    private TextView     unlockedAt;
-    private TextView     skillCooldown;
-    private TextView     skillDescription;
+    private final Skill          skill;
+    private final String         followerName;
+    private boolean              isChecked;
+    private ImageView            checkmark;
+    private final LayoutInflater inflater;
 
-    public EntryFollowerSkill(Skill skill, String followerName, boolean isChecked)
+    public EntryFollowerSkill(LayoutInflater inflater, Skill skill, String followerName, boolean isChecked)
     {
         this.skill = skill;
         this.followerName = followerName;
         this.isChecked = isChecked;
+        this.inflater = inflater;
+
     }
 
     public Skill getSkill()
@@ -51,58 +49,93 @@ public class EntryFollowerSkill implements Item
         return isChecked;
     }
 
-    @Override
-    public int getViewResource()
+    private static class ViewHolder
     {
-        return R.layout.list_item_follower_skill;
+        final ImageView checkmark;
+        final ImageView skillIcon;
+        final TextView  skillName;
+        final TextView  unlockedAt;
+        final TextView  skillCooldown;
+        final TextView  skillDescription;
+
+        public ViewHolder(ImageView checkmark, ImageView skillIcon, TextView skillName, TextView unlockedAt, TextView skillCooldown, TextView skillDescription)
+        {
+            super();
+            this.checkmark = checkmark;
+            this.skillIcon = skillIcon;
+            this.skillName = skillName;
+            this.unlockedAt = unlockedAt;
+            this.skillCooldown = skillCooldown;
+            this.skillDescription = skillDescription;
+        }
+
     }
 
-    @Override
-    public View inflate(View v, Item i)
+    public View getView(View convertView)
     {
+        ViewHolder holder;
+        View view;
+        if (convertView == null)
+        {
+            ViewGroup v = (ViewGroup) inflater.inflate(R.layout.list_item_follower_skill, null);
 
-        Skill s = ((EntryFollowerSkill) i).getSkill();
-
-        checkmark = (ImageView) v.findViewById(R.id.follower_checkmark);
-        skillIcon = (ImageView) v.findViewById(R.id.follower_skill_icon);
-        skillName = (TextView) v.findViewById(R.id.follower_skill_title);
-        unlockedAt = (TextView) v.findViewById(R.id.follower_skill_unlocked_at);
-        skillCooldown = (TextView) v.findViewById(R.id.follower_skill_cooldown);
-        skillDescription = (TextView) v.findViewById(R.id.follower_skill_description);
+            //@formatter:off
+            holder = new ViewHolder((ImageView) v.findViewById(R.id.follower_checkmark)
+                                  , (ImageView) v.findViewById(R.id.follower_skill_icon)
+                                  ,  (TextView) v.findViewById(R.id.follower_skill_title)
+                                  ,  (TextView) v.findViewById(R.id.follower_skill_unlocked_at)
+                                  ,  (TextView) v.findViewById(R.id.follower_skill_cooldown)
+                                  ,  (TextView) v.findViewById(R.id.follower_skill_description));
+            
+            //@formatter:on
+            v.setTag(holder);
+            view = v;
+        }
+        else
+        {
+            view = convertView;
+            holder = (ViewHolder) convertView.getTag();
+        }
 
         // Is this a terrible hack?! I think so...
-        String icon = followerName.toLowerCase() + "_" + s.getName().replace(" ", "").toLowerCase();
-        int skillImage = v.getContext().getResources().getIdentifier("drawable/" + icon, null, v.getContext().getPackageName());
+        String icon = followerName.toLowerCase() + "_" + skill.getName().replace(" ", "").toLowerCase();
+        int skillImage = view.getContext().getResources().getIdentifier("drawable/" + icon, null, view.getContext().getPackageName());
 
-        skillIcon.setImageResource(skillImage);
-        skillName.setText(s.getName());
-        unlockedAt.setText("Unlocked at level: " + s.getRequiredLevel());
+        holder.skillIcon.setImageResource(skillImage);
+        holder.skillName.setText(skill.getName());
+        holder.unlockedAt.setText("Unlocked at level: " + skill.getRequiredLevel());
 
-        if (s.getCooldownText() == null || s.getCooldownText().equals(""))
+        if (skill.getCooldownText() == null || skill.getCooldownText().equals(""))
         {
-            skillCooldown.setText(Replacer.replace(s.getCooldownText(), "\\d+%?", Vars.DIABLO_GREEN));
-            skillCooldown.setVisibility(View.GONE);
+            holder.skillCooldown.setText(Replacer.replace(skill.getCooldownText(), "\\d+%?", Vars.DIABLO_GREEN));
+            holder.skillCooldown.setVisibility(View.GONE);
         }
         else
         {
-            skillCooldown.setText(Replacer.replace(v.getContext().getString(R.string.Cooldown) + " " + s.getCooldownText(), "\\d+%?", Vars.DIABLO_GREEN));
-            skillCooldown.setVisibility(View.VISIBLE);
+            holder.skillCooldown.setText(Replacer.replace(view.getContext().getString(R.string.Cooldown) + " " + skill.getCooldownText(), "\\d+%?",
+                    Vars.DIABLO_GREEN));
+            holder.skillCooldown.setVisibility(View.VISIBLE);
         }
 
-        if (s.getDescription() == null || s.getDescription().equals(""))
+        if (skill.getDescription() == null || skill.getDescription().equals(""))
         {
-            skillDescription.setVisibility(View.GONE);
+            holder.skillDescription.setVisibility(View.GONE);
         }
         else
         {
-            skillDescription.setText(Replacer.replace(s.getDescription().trim(), "\\d+%?", Vars.DIABLO_GREEN));
-            skillDescription.setVisibility(View.VISIBLE);
+            holder.skillDescription.setText(Replacer.replace(skill.getDescription().trim(), "\\d+%?", Vars.DIABLO_GREEN));
+            holder.skillDescription.setVisibility(View.VISIBLE);
         }
 
         checkmark.setVisibility(isChecked ? View.VISIBLE : View.GONE);
 
-        v.setTag(s.getUuid());
-        return v;
+        return view;
+    }
+
+    @Override
+    public int getViewType()
+    {
+        return RowType.EMPTY_FOLLOWER_SKILL.ordinal();
     }
 
 }

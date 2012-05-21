@@ -1,32 +1,27 @@
 package com.wemakestuff.d3builder.sectionlist;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.wemakestuff.d3builder.R;
 import com.wemakestuff.d3builder.model.Skill;
+import com.wemakestuff.d3builder.sectionlist.EntrySkillAdapter.RowType;
 import com.wemakestuff.d3builder.string.Replacer;
 import com.wemakestuff.d3builder.string.Vars;
 
 public class EntrySkill implements Item
 {
 
-    private final Skill skill;
-    private ImageView skillIcon;
-    private TextView skillName;
-    private TextView skillCost;
-    private TextView skillGenerates;
-    private TextView skillCooldown;
-    private TextView skillRequiredLevel;
-    private TextView skillDescription;
+    private final Skill          skill;
+    private final LayoutInflater inflater;
 
-
-    public EntrySkill(Skill skill)
+    public EntrySkill(LayoutInflater inflater, Skill skill)
     {
         this.skill = skill;
+        this.inflater = inflater;
     }
 
     public Skill getSkill()
@@ -35,85 +30,122 @@ public class EntrySkill implements Item
     }
 
     @Override
-    public View inflate(View v, Item i)
+    public int getViewType()
     {
-
-        Skill s = ((EntrySkill) i).getSkill();
-
-        skillIcon = (ImageView) v.findViewById(R.id.list_skill_icon);
-        skillName = (TextView) v.findViewById(R.id.list_skill_title);
-        skillCost = (TextView) v.findViewById(R.id.list_skill_cost_text);
-        skillGenerates = (TextView) v.findViewById(R.id.list_skill_generates);
-        skillCooldown = (TextView) v.findViewById(R.id.list_skill_cooldown);
-        skillRequiredLevel = (TextView) v.findViewById(R.id.list_skill_unlocked_at);
-        skillDescription = (TextView) v.findViewById(R.id.list_skill_description);
-
-        // Is this a terrible hack?! I think so...
-        int skillImage = v.getContext().getResources().getIdentifier("drawable/" + s.getIcon(), null, v.getContext().getPackageName());
-
-        //@formatter:off
-                skillIcon         .setImageResource(skillImage);
-                skillName         .setText(s.getName());
-
-                if (s.getCostText() == null || s.getCostText().equals(""))
-                {
-                    skillCost.setVisibility(View.GONE);
-                }
-                else
-                {
-                    skillCost.setText(Replacer.replace(v.getContext().getString(R.string.Cost) + " " + s.getCostText(), "\\d+%?", Vars.DIABLO_GREEN));
-                    skillCost.setVisibility(View.VISIBLE);
-                }
-
-                if (s.getGenerateText() == null || s.getGenerateText().equals(""))
-                {
-                    skillGenerates.setVisibility(View.GONE);
-                }
-                else
-                {
-                    skillGenerates.setText(Replacer.replace(v.getContext().getString(R.string.Generate) + " " + s.getGenerateText(), "\\d+%?", Vars.DIABLO_GREEN));
-                    skillGenerates.setVisibility(View.VISIBLE);
-                }
-
-                if (s.getCooldownText() == null || s.getCooldownText().equals(""))
-                {
-                    skillCooldown.setText(Replacer.replace(s.getCooldownText(), "\\d+%?", Vars.DIABLO_GREEN));
-                    skillCooldown.setVisibility(View.GONE);
-                }
-                else
-                {
-                    skillCooldown.setText(Replacer.replace(v.getContext().getString(R.string.Cooldown) + " " + s.getCooldownText(), "\\d+%?", Vars.DIABLO_GREEN));
-                    skillCooldown.setVisibility(View.VISIBLE);
-                }
-
-                if (s.getRequiredLevel() == 0)
-                {
-                    skillRequiredLevel.setVisibility(View.GONE);
-                }
-                else
-                {
-                    skillRequiredLevel.setText(Replacer.replace(v.getContext().getString(R.string.Unlocked_at_level) + " " + String.valueOf(s.getRequiredLevel()), "\\d+%?", Vars.DIABLO_GREEN));
-                    skillRequiredLevel.setVisibility(View.VISIBLE);
-                }
-
-                if (s.getDescription() == null || s.getDescription().equals(""))
-                {
-                    skillDescription.setVisibility(View.GONE);
-                }
-                else
-                {
-                    skillDescription.setText(Replacer.replace(s.getDescription().trim(), "\\d+%?", Vars.DIABLO_GREEN));
-                    skillDescription.setVisibility(View.VISIBLE);
-                }   
-                
-                v.setTag(s.getUuid());
-        return v;
+        return RowType.ENTRY_SKILL.ordinal();
     }
 
     @Override
-    public int getViewResource()
+    public View getView(View convertView)
     {
-        return R.layout.list_item_skill;
+        ViewHolder holder;
+        View view;
+        if (convertView == null)
+        {
+            ViewGroup v = (ViewGroup) inflater.inflate(R.layout.list_item_skill, null);
+
+            //@formatter:off
+            holder = new ViewHolder((ImageView) v.findViewById(R.id.list_skill_icon)
+                                  , (TextView) v.findViewById(R.id.list_skill_title)
+                                  , (TextView) v.findViewById(R.id.list_skill_cost_text)
+                                  , (TextView) v.findViewById(R.id.list_skill_generates)
+                                  , (TextView) v.findViewById(R.id.list_skill_cooldown)
+                                  , (TextView) v.findViewById(R.id.list_skill_unlocked_at)
+                                  , (TextView) v.findViewById(R.id.list_skill_description));
+            //@formatter:on
+            v.setTag(holder);
+            view = v;
+        }
+        else
+        {
+            view = convertView;
+            holder = (ViewHolder) convertView.getTag();
+        }
+
+        int skillImage = view.getContext().getResources().getIdentifier("drawable/" + skill.getIcon(), null, view.getContext().getPackageName());
+
+        holder.skillIcon.setImageResource(skillImage);
+        holder.skillName.setText(skill.getName());
+
+        if (skill.getCostText() == null || skill.getCostText().equals(""))
+        {
+            holder.skillCost.setVisibility(View.GONE);
+        }
+        else
+        {
+            holder.skillCost.setText(Replacer.replace(view.getContext().getString(R.string.Cost) + " " + skill.getCostText(), "\\d+%?", Vars.DIABLO_GREEN));
+            holder.skillCost.setVisibility(View.VISIBLE);
+        }
+
+        if (skill.getGenerateText() == null || skill.getGenerateText().equals(""))
+        {
+            holder.skillGenerates.setVisibility(View.GONE);
+        }
+        else
+        {
+            holder.skillGenerates.setText(Replacer.replace(view.getContext().getString(R.string.Generate) + " " + skill.getGenerateText(), "\\d+%?",
+                    Vars.DIABLO_GREEN));
+            holder.skillGenerates.setVisibility(View.VISIBLE);
+        }
+
+        if (skill.getCooldownText() == null || skill.getCooldownText().equals(""))
+        {
+            holder.skillCooldown.setText(Replacer.replace(skill.getCooldownText(), "\\d+%?", Vars.DIABLO_GREEN));
+            holder.skillCooldown.setVisibility(View.GONE);
+        }
+        else
+        {
+            holder.skillCooldown.setText(Replacer.replace(view.getContext().getString(R.string.Cooldown) + " " + skill.getCooldownText(), "\\d+%?",
+                    Vars.DIABLO_GREEN));
+            holder.skillCooldown.setVisibility(View.VISIBLE);
+        }
+
+        if (skill.getRequiredLevel() == 0)
+        {
+            holder.skillRequiredLevel.setVisibility(View.GONE);
+        }
+        else
+        {
+            holder.skillRequiredLevel.setText(Replacer.replace(
+                    view.getContext().getString(R.string.Unlocked_at_level) + " " + String.valueOf(skill.getRequiredLevel()), "\\d+%?", Vars.DIABLO_GREEN));
+            holder.skillRequiredLevel.setVisibility(View.VISIBLE);
+        }
+
+        if (skill.getDescription() == null || skill.getDescription().equals(""))
+        {
+            holder.skillDescription.setVisibility(View.GONE);
+        }
+        else
+        {
+            holder.skillDescription.setText(Replacer.replace(skill.getDescription().trim(), "\\d+%?", Vars.DIABLO_GREEN));
+            holder.skillDescription.setVisibility(View.VISIBLE);
+        }
+
+        return view;
     }
-	
+
+    private static class ViewHolder
+    {
+        final ImageView skillIcon;
+        final TextView  skillName;
+        final TextView  skillCost;
+        final TextView  skillGenerates;
+        final TextView  skillCooldown;
+        final TextView  skillRequiredLevel;
+        final TextView  skillDescription;
+
+        public ViewHolder(ImageView skillIcon, TextView skillName, TextView skillCost, TextView skillGenerates, TextView skillCooldown,
+                TextView skillRequiredLevel, TextView skillDescription)
+        {
+            super();
+            this.skillIcon = skillIcon;
+            this.skillName = skillName;
+            this.skillCost = skillCost;
+            this.skillGenerates = skillGenerates;
+            this.skillCooldown = skillCooldown;
+            this.skillRequiredLevel = skillRequiredLevel;
+            this.skillDescription = skillDescription;
+        }
+    }
+
 }

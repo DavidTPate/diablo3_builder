@@ -20,6 +20,7 @@ import android.support.v4.app.ListFragment;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemLongClickListener;
@@ -124,6 +125,7 @@ public class ClassListFragment extends ListFragment
     public void clearListItem(int position)
     {
 
+        LayoutInflater l = LayoutInflater.from(getActivity());
         Item i = items.get(position);
 
         if (i instanceof EntrySkill)
@@ -131,7 +133,7 @@ public class ClassListFragment extends ListFragment
             // If this is a skill, check if the next item in the list is a rune,
             // if so we need to remove that too.
             String type = ((EntrySkill) i).getSkill().getType();
-            items.set(position, new EmptySkill("Choose Skill", 1, type));
+            items.set(position, new EmptySkill(l, "Choose Skill", 1, type));
             if (items.size() > (position + 1))
             {
                 Item i2 = items.get(position + 1);
@@ -144,7 +146,7 @@ public class ClassListFragment extends ListFragment
         }
         else if (i instanceof EntryRune)
         {
-            items.set(position, new EmptyRune("Choose Rune", 1, "Rune", null));
+            items.set(position, new EmptyRune(l, "Choose Rune", 1, "Rune", null));
         }
         else if (i instanceof EmptyFollower)
         {
@@ -160,7 +162,7 @@ public class ClassListFragment extends ListFragment
             {
                 if (f.getName().equalsIgnoreCase(existingName))
                 {
-                    items.set(position, new EmptyFollower(f.getName(), f.getShortDescription(), f.getIcon(), f.getUuid(), ""));
+                    items.set(position, new EmptyFollower(l, f.getName(), f.getShortDescription(), f.getIcon(), f.getUuid(), ""));
 
                     // Clear the skills, update the list, remove the skills from
                     // the URL
@@ -429,42 +431,44 @@ public class ClassListFragment extends ListFragment
     private EntrySkillAdapter getSkillListAdapter(boolean includeRunes)
     {
 
+        LayoutInflater l = LayoutInflater.from(getActivity());
+        
         items = new ArrayList<Item>();
         String[] skillTypes = D3Application.getInstance().getClassAttributesByName(selectedClass).getSkillTypes();
 
-        items.add(new SectionItem("Left Click - Primary"));
-        items.add(new EmptySkill("Choose Skill", 1, skillTypes[0]));
+        items.add(new SectionItem(l, "Left Click - Primary"));
+        items.add(new EmptySkill(l, "Choose Skill", 1, skillTypes[0]));
         if (includeRunes)
-            items.add(new EmptyRune("Choose Rune", 1, "Rune", null));
+            items.add(new EmptyRune(l, "Choose Rune", 1, "Rune", null));
 
-        items.add(new SectionItem("Right Click - Secondary"));
-        items.add(new EmptySkill("Choose Skill", 2, skillTypes[1]));
+        items.add(new SectionItem(l, "Right Click - Secondary"));
+        items.add(new EmptySkill(l, "Choose Skill", 2, skillTypes[1]));
         if (includeRunes)
-            items.add(new EmptyRune("Choose Rune", 1, "Rune", null));
+            items.add(new EmptyRune(l, "Choose Rune", 1, "Rune", null));
 
-        items.add(new SectionItem("Action Bar Skills"));
-        items.add(new EmptySkill("Choose Skill", 4, skillTypes[2]));
+        items.add(new SectionItem(l, "Action Bar Skills"));
+        items.add(new EmptySkill(l, "Choose Skill", 4, skillTypes[2]));
         if (includeRunes)
-            items.add(new EmptyRune("Choose Rune", 1, "Rune", null));
-        items.add(new EmptySkill("Choose Skill", 9, skillTypes[3]));
+            items.add(new EmptyRune(l, "Choose Rune", 1, "Rune", null));
+        items.add(new EmptySkill(l, "Choose Skill", 9, skillTypes[3]));
         if (includeRunes)
-            items.add(new EmptyRune("Choose Rune", 1, "Rune", null));
-        items.add(new EmptySkill("Choose Skill", 14, skillTypes[4]));
+            items.add(new EmptyRune(l, "Choose Rune", 1, "Rune", null));
+        items.add(new EmptySkill(l, "Choose Skill", 14, skillTypes[4]));
         if (includeRunes)
-            items.add(new EmptyRune("Choose Rune", 1, "Rune", null));
-        items.add(new EmptySkill("Choose Skill", 19, skillTypes[5]));
+            items.add(new EmptyRune(l, "Choose Rune", 1, "Rune", null));
+        items.add(new EmptySkill(l, "Choose Skill", 19, skillTypes[5]));
         if (includeRunes)
-            items.add(new EmptyRune("Choose Rune", 1, "Rune", null));
+            items.add(new EmptyRune(l, "Choose Rune", 1, "Rune", null));
 
-        items.add(new SectionItem("Passive Skills"));
-        items.add(new EmptySkill("Choose Skill", 10, "Passive"));
-        items.add(new EmptySkill("Choose Skill", 20, "Passive"));
-        items.add(new EmptySkill("Choose Skill", 30, "Passive"));
+        items.add(new SectionItem(l, "Passive Skills"));
+        items.add(new EmptySkill(l, "Choose Skill", 10, "Passive"));
+        items.add(new EmptySkill(l, "Choose Skill", 20, "Passive"));
+        items.add(new EmptySkill(l, "Choose Skill", 30, "Passive"));
 
-        items.add(new SectionItem("Followers"));
+        items.add(new SectionItem(l, "Followers"));
         for (Follower f : D3Application.getInstance().getFollowers())
         {
-            items.add(new EmptyFollower(f.getName(), f.getShortDescription(), f.getIcon(), f.getUuid(), ""));
+            items.add(new EmptyFollower(l, f.getName(), f.getShortDescription(), f.getIcon(), f.getUuid(), ""));
         }
 
         listAdapter = new EntrySkillAdapter(getActivity(), items);
@@ -535,6 +539,7 @@ public class ClassListFragment extends ListFragment
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data)
     {
+        LayoutInflater l = LayoutInflater.from(getActivity());
 
         if (requestCode == NEW_FOLLOWER)
         {
@@ -592,10 +597,10 @@ public class ClassListFragment extends ListFragment
                 if (skillUUID != null && index >= 0 && D3Application.getInstance().getClassByName(selectedClass).containsActiveSkillByUUID(UUID.fromString(skillUUID)))
                 {
                     Skill s = D3Application.getInstance().getClassByName(selectedClass).getActiveSkillByUUID(UUID.fromString(skillUUID));
-                    items.set(index, new EntrySkill(s));
+                    items.set(index, new EntrySkill(l, s));
                     if (requestCode == GET_SKILL)
                     {
-                        items.add(index + 1, new EmptyRune("Choose Rune", 1, s.getName(), s.getUuid()));
+                        items.add(index + 1, new EmptyRune(l, "Choose Rune", 1, s.getName(), s.getUuid()));
                     }
                     else if (requestCode == REPLACE_SKILL)
                     {
@@ -606,12 +611,12 @@ public class ClassListFragment extends ListFragment
                             EntryRune e = (EntryRune) item;
                             if (!e.getSkillUUID().equals(s.getUuid()))
                             {
-                                items.set(index + 1, new EmptyRune("Choose Rune", 1, s.getName(), s.getUuid()));
+                                items.set(index + 1, new EmptyRune(l, "Choose Rune", 1, s.getName(), s.getUuid()));
                             }
                         }
                         else
                         {
-                            items.set(index + 1, new EmptyRune("Choose Rune", 1, s.getName(), s.getUuid()));
+                            items.set(index + 1, new EmptyRune(l, "Choose Rune", 1, s.getName(), s.getUuid()));
                         }
                     }
                     listAdapter.notifyDataSetChanged();
@@ -621,7 +626,7 @@ public class ClassListFragment extends ListFragment
                 else if (skillUUID != null && index >= 0 && D3Application.getInstance().getClassByName(selectedClass).containsPassiveSkillByUUID(UUID.fromString(skillUUID)))
                 {
                     Skill s = D3Application.getInstance().getClassByName(selectedClass).getPassiveSkillByUUID(UUID.fromString(skillUUID));
-                    items.set(index, new EntrySkill(s));
+                    items.set(index, new EntrySkill(l, s));
                     listAdapter.notifyDataSetChanged();
                     requiredLevelListener.OnRequiredLevelUpdate(selectedClass, getMaxLevel());
                 }
@@ -667,7 +672,7 @@ public class ClassListFragment extends ListFragment
                     if (skillUUID != null && index >= 0 && D3Application.getInstance().getClassByName(selectedClass).getActiveSkillByUUID(UUID.fromString(skillUUID)).containsRuneByUUID(UUID.fromString(runeUUID)))
                     {
                         Rune s = D3Application.getInstance().getClassByName(selectedClass).getActiveSkillByUUID(UUID.fromString(skillUUID)).getRuneByUUID(UUID.fromString(runeUUID));
-                        items.set(index, new EntryRune(s, D3Application.getInstance().getClassByName(selectedClass).getActiveSkillByUUID(UUID.fromString(skillUUID)).getName(), UUID.fromString(skillUUID)));
+                        items.set(index, new EntryRune(l, s, D3Application.getInstance().getClassByName(selectedClass).getActiveSkillByUUID(UUID.fromString(skillUUID)).getName(), UUID.fromString(skillUUID)));
                         listAdapter.setList(items);
                         //((SelectClass) getActivity()).setRequiredLevel(listAdapter.getMaxLevel(false));
                     }
@@ -900,7 +905,7 @@ public class ClassListFragment extends ListFragment
 
     public void delinkifyClassBuild(String url)
     {
-
+        LayoutInflater l = LayoutInflater.from(getActivity());
         Pattern p = Pattern.compile("^http://.*/calculator/(.*)#([a-zA-Z\\.]*)!?([a-zA-Z\\.]*)!?([a-zA-Z\\.]*)$");
         Matcher m = p.matcher(url);
 
@@ -992,12 +997,12 @@ public class ClassListFragment extends ListFragment
                 if (activeVal.charAt(activeIndex) != skillAttrbs.getMissingValue().charAt(0))
                 {
                     Skill s = activeSkills.get(skillMapping.indexOf(String.valueOf(activeVal.charAt(activeIndex))));
-                    tempItems.add(listIndex, new EntrySkill(s));
+                    tempItems.add(listIndex, new EntrySkill(l, s));
                     listIndex++;
                 }
                 else
                 {
-                    tempItems.add(new EmptySkill("Choose Skill", 1, skillTypes[activeIndex]));
+                    tempItems.add(new EmptySkill(l, "Choose Skill", 1, skillTypes[activeIndex]));
                     listIndex++;
                 }
             }
@@ -1006,12 +1011,12 @@ public class ClassListFragment extends ListFragment
                 if (passiveVal.charAt(passiveIndex) != skillAttrbs.getMissingValue().charAt(0))
                 {
                     Skill s = passiveSkills.get(skillMapping.indexOf(String.valueOf(passiveVal.charAt(passiveIndex))));
-                    tempItems.add(listIndex, new EntrySkill(s));
+                    tempItems.add(listIndex, new EntrySkill(l, s));
                     listIndex++;
                 }
                 else
                 {
-                    tempItems.add(new EmptySkill("Choose Skill", 1, "Passive"));
+                    tempItems.add(new EmptySkill(l, "Choose Skill", 1, "Passive"));
                     listIndex++;
                 }
                 passiveIndex++;
@@ -1023,13 +1028,13 @@ public class ClassListFragment extends ListFragment
                     Skill s = activeSkills.get(skillMapping.indexOf(String.valueOf(activeVal.charAt(activeIndex))));
                     if (runeVal.charAt(activeIndex) == skillAttrbs.getMissingValue().charAt(0))
                     {
-                        tempItems.add(listIndex, new EmptyRune("Choose Rune", 1, s.getName(), s.getUuid()));
+                        tempItems.add(listIndex, new EmptyRune(l, "Choose Rune", 1, s.getName(), s.getUuid()));
 
                     }
                     else
                     {
                         Rune r = s.getRunes().get(skillMapping.indexOf(String.valueOf(runeVal.charAt(activeIndex))));
-                        tempItems.add(listIndex, new EntryRune(r, s.getName(), s.getUuid()));
+                        tempItems.add(listIndex, new EntryRune(l, r, s.getName(), s.getUuid()));
                     }
                     listIndex++;
                 }

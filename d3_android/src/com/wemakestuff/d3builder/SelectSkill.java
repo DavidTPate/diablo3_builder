@@ -2,6 +2,7 @@ package com.wemakestuff.d3builder;
 
 
 import java.util.List;
+import java.util.UUID;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,17 +18,19 @@ import com.google.ads.AdView;
 import com.viewpagerindicator.PageIndicator;
 import com.viewpagerindicator.TitlePageIndicator;
 import com.viewpagerindicator.TitlePageIndicator.IndicatorStyle;
+import com.wemakestuff.d3builder.SkillListFragment.OnSkillSelectedListener;
 import com.wemakestuff.d3builder.string.Replacer;
 import com.wemakestuff.d3builder.string.Vars;
 
-public class SelectSkill extends SherlockFragmentActivity
+public class SelectSkill extends SherlockFragmentActivity implements OnSkillSelectedListener
 {
     SkillFragmentAdapter mAdapter;
     ViewPager mPager;
     PageIndicator mIndicator;
-    int index;
-    int requiredLevel = 1;
-    int maxLevel = 60;
+    private int index;
+    private int requiredLevel = 1;
+    private int maxLevel = 60;
+    private UUID selectedSkill;
 
     /** Called when the activity is first created. */
     @Override
@@ -74,27 +77,11 @@ public class SelectSkill extends SherlockFragmentActivity
         {
             skills = b.getParcelableArrayList("UUIDs");
         }
-        
-        OnClickListener itemClickListener = new OnClickListener()
-        {
-
-			@Override
-			public void onClick(View v) {
-				
-				Intent intent = getIntent();
-				intent.putExtra("Skill_UUID", v.getTag().toString());
-				intent.putExtra("Index", index);
-				setResult(RESULT_OK, intent);
-				finish();
-			}
-        	
-        };
 
         TextView requiredLevelText = (TextView) findViewById(R.id.required_level);
         requiredLevelText.setText(Replacer.replace("Required Level: " + requiredLevel, "\\d+", Vars.DIABLO_GREEN));
         
         mAdapter = new SkillFragmentAdapter(getSupportFragmentManager(), SelectSkill.this, skillType, selectedClass, maxLevel, skills);
-        mAdapter.setOnListItemClickListener(itemClickListener);
         
         mPager = (ViewPager) findViewById(R.id.pager);
         mPager.setAdapter(mAdapter);
@@ -105,6 +92,18 @@ public class SelectSkill extends SherlockFragmentActivity
         mIndicator = indicator;
 
         mPager.setCurrentItem(mAdapter.getItemPosition(skillType));
+    }
+
+    @Override
+    public void OnSkillSelected(UUID skill)
+    {
+        this.selectedSkill = skill;
+        Intent intent = getIntent();
+        intent.putExtra("Skill_UUID", selectedSkill.toString());
+        intent.putExtra("Index", index);
+        setResult(RESULT_OK, intent);
+        finish();
+        
     }
 
 }
