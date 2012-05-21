@@ -63,7 +63,7 @@ public class SelectClass extends SherlockFragmentActivity
 
         };
 
-        ClassFragmentAdapter mAdapter = new ClassFragmentAdapter(getSupportFragmentManager(), SelectClass.this, classFragListener);
+        ClassFragmentAdapter mAdapter = new ClassFragmentAdapter(getSupportFragmentManager(), classFragListener);
 
         mPager = (ViewPager) findViewById(R.id.pager);
         mPager.setAdapter(mAdapter);

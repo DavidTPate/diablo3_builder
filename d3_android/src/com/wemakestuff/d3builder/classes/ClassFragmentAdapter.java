@@ -8,7 +8,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.viewpagerindicator.TitleProvider;
-import com.wemakestuff.d3builder.ClassListFragment;
+import com.wemakestuff.d3builder.classes.ClassListFragment;
 import com.wemakestuff.d3builder.OnLoadFragmentsCompleteListener;
 import com.wemakestuff.d3builder.classes.listener.OnClassFragmentLoadListener;
 import com.wemakestuff.d3builder.model.Class;
@@ -17,12 +17,10 @@ import com.wemakestuff.d3builder.model.D3Application;
 public class ClassFragmentAdapter extends FragmentPagerAdapter implements TitleProvider
 {
     private List<Class> classes;
-    private Context context;
     public OnClassFragmentLoadListener listener;
 
-    public ClassFragmentAdapter(FragmentManager fm, Context context, OnClassFragmentLoadListener listener) {
+    public ClassFragmentAdapter(FragmentManager fm, OnClassFragmentLoadListener listener) {
         super(fm);
-        this.context = context;
         this.classes = D3Application.getInstance().getClasses();
         this.listener = listener;
     }
@@ -34,7 +32,7 @@ public class ClassFragmentAdapter extends FragmentPagerAdapter implements TitleP
 
     @Override
     public Fragment getItem(int position) {
-        ClassListFragment classList = ClassListFragment.newInstance(classes.get(position).getName(), context, null);
+        ClassListFragment classList = ClassListFragment.newInstance(classes.get(position).getName(), null, null);
         return classList;
         
     }
