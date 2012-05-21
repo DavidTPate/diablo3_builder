@@ -32,7 +32,6 @@ public class EntrySkillAdapter extends ArrayAdapter<Item>
         View v = convertView;
         Item i = items.get(position);
         
-        Log.i("Postion - " + i, "View Type =" + getItemViewType(position));
         if (i == null)
         {
             Log.e("List item " + position + " was null", "Not inflating view");
