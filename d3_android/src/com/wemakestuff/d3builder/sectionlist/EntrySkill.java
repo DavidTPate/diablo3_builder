@@ -1,5 +1,6 @@
 package com.wemakestuff.d3builder.sectionlist;
 
+import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import com.wemakestuff.d3builder.model.Skill;
 import com.wemakestuff.d3builder.sectionlist.EntrySkillAdapter.RowType;
 import com.wemakestuff.d3builder.string.Replacer;
 import com.wemakestuff.d3builder.string.Vars;
+import com.wemakestuff.d3builder.util.Util;
 
 public class EntrySkill implements Item
 {
@@ -61,10 +63,10 @@ public class EntrySkill implements Item
             view = convertView;
             holder = (ViewHolder) convertView.getTag();
         }
+        
+        final int iconImg = Util.findImageResource(skill.getIcon());
+        loadIconAsync(holder, iconImg);
 
-        int skillImage = view.getContext().getResources().getIdentifier("drawable/" + skill.getIcon(), null, view.getContext().getPackageName());
-
-        holder.skillIcon.setImageResource(skillImage);
         holder.skillName.setText(skill.getName());
 
         if (skill.getCostText() == null || skill.getCostText().equals(""))
@@ -122,6 +124,27 @@ public class EntrySkill implements Item
         }
 
         return view;
+    }
+
+    private void loadIconAsync(ViewHolder holder, final int iconImg)
+    {
+        AsyncTask loadImage = new AsyncTask<ViewHolder, Void, Integer>() {
+            private ViewHolder v;
+
+            @Override
+            protected Integer doInBackground(ViewHolder... params)
+            {
+                v = params[0];
+                return iconImg;
+            }
+
+            protected void onPostExecute(Integer result)
+            {
+                super.onPostExecute(result);
+                v.skillIcon.setImageResource(iconImg);
+            }
+
+        }.execute(holder);
     }
 
     private static class ViewHolder

@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import android.os.AsyncTask;
 import android.os.ParcelUuid;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +19,7 @@ import com.wemakestuff.d3builder.model.Skill;
 import com.wemakestuff.d3builder.sectionlist.EntrySkillAdapter.RowType;
 import com.wemakestuff.d3builder.string.Replacer;
 import com.wemakestuff.d3builder.string.Vars;
+import com.wemakestuff.d3builder.util.Util;
 
 public class EmptyFollower implements Item
 {
@@ -29,7 +30,7 @@ public class EmptyFollower implements Item
     private String               url;
     private List<ParcelUuid>     skills = new ArrayList<ParcelUuid>(); ;
     private final LayoutInflater inflater;
-    
+
     public EmptyFollower(LayoutInflater inflater, String name, String shortDescription, String icon, UUID followerUUID, String url)
     {
         this.name = name;
@@ -130,7 +131,7 @@ public class EmptyFollower implements Item
         holder.emptyFollowerSkill2Description.setVisibility(View.GONE);
         holder.emptyFollowerSkill3Description.setVisibility(View.GONE);
         holder.emptyFollowerSkill4Description.setVisibility(View.GONE);
-        
+
         int index = 0;
         for (ParcelUuid u : skills)
         {
@@ -177,12 +178,8 @@ public class EmptyFollower implements Item
             index++;
         }
 
-        if (list.size() > 0)
-            holder.emptyFollowerSkills.setVisibility(View.VISIBLE);
-        else
-            holder.emptyFollowerSkills.setVisibility(View.GONE);
-        
-        
+        holder.emptyFollowerSkills.setVisibility(View.VISIBLE);
+
         return holder;
     }
 
@@ -202,17 +199,17 @@ public class EmptyFollower implements Item
             ViewGroup v = (ViewGroup) inflater.inflate(R.layout.list_item_empty_follower, null);
             //@formatter:off
             holder = new ViewHolder((LinearLayout) v.findViewById(R.id.empty_follower_skills)
-                                  , (TextView) v.findViewById(R.id.empty_follower_skill_1)
-                                  , (TextView) v.findViewById(R.id.empty_follower_skill_2)
-                                  , (TextView) v.findViewById(R.id.empty_follower_skill_3)
-                                  , (TextView) v.findViewById(R.id.empty_follower_skill_4)
-                                  , (TextView) v.findViewById(R.id.empty_follower_skill_1_description)
-                                  , (TextView) v.findViewById(R.id.empty_follower_skill_2_description)
-                                  , (TextView) v.findViewById(R.id.empty_follower_skill_3_description)
-                                  , (TextView) v.findViewById(R.id.empty_follower_skill_4_description)
-                                  , (ImageView) v.findViewById (R.id.empty_follower_icon)
-                                  , (TextView) v.findViewById(R.id.empty_follower_name)
-                                  , (TextView) v.findViewById(R.id.empty_follower_description));
+                    , (TextView) v.findViewById(R.id.empty_follower_skill_1)
+                    , (TextView) v.findViewById(R.id.empty_follower_skill_2)
+                    , (TextView) v.findViewById(R.id.empty_follower_skill_3)
+                    , (TextView) v.findViewById(R.id.empty_follower_skill_4)
+                    , (TextView) v.findViewById(R.id.empty_follower_skill_1_description)
+                    , (TextView) v.findViewById(R.id.empty_follower_skill_2_description)
+                    , (TextView) v.findViewById(R.id.empty_follower_skill_3_description)
+                    , (TextView) v.findViewById(R.id.empty_follower_skill_4_description)
+                    , (ImageView) v.findViewById (R.id.empty_follower_icon)
+                    , (TextView) v.findViewById(R.id.empty_follower_name)
+                    , (TextView) v.findViewById(R.id.empty_follower_description));
             //@formatter:on
             v.setTag(holder);
             view = v;
@@ -223,19 +220,39 @@ public class EmptyFollower implements Item
             holder = (ViewHolder) convertView.getTag();
         }
 
-        int iconImage = view.getContext().getResources().getIdentifier("drawable/" + iconName, null, view.getContext().getPackageName());
         holder.emptyItemName.setText(name);
         holder.emptyFollowerDescription.setText(description);
-        holder.icon.setImageResource(iconImage);
 
-        holder = setSkills(holder, skills);
-        
+        final int iconImg = Util.findImageResource(iconName);
+        loadIconAsync(holder, iconImg);
+
         if (skills != null && skills.size() > 0)
-            holder.emptyFollowerSkills.setVisibility(View.VISIBLE);
+            holder = setSkills(holder, skills);
         else
             holder.emptyFollowerSkills.setVisibility(View.GONE);
-        
+
         return view;
+    }
+
+    private void loadIconAsync(ViewHolder holder, final int iconImg)
+    {
+        AsyncTask loadImage = new AsyncTask<ViewHolder, Void, Integer>() {
+            private ViewHolder v;
+
+            @Override
+            protected Integer doInBackground(ViewHolder... params)
+            {
+                v = params[0];
+                return iconImg;
+            }
+
+            protected void onPostExecute(Integer result)
+            {
+                super.onPostExecute(result);
+                v.icon.setImageResource(iconImg);
+            }
+
+        }.execute(holder);
     }
 
 }

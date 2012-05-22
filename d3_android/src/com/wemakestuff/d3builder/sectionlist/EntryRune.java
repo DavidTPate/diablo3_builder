@@ -2,6 +2,7 @@ package com.wemakestuff.d3builder.sectionlist;
 
 import java.util.UUID;
 
+import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import com.wemakestuff.d3builder.model.Rune;
 import com.wemakestuff.d3builder.sectionlist.EntrySkillAdapter.RowType;
 import com.wemakestuff.d3builder.string.Replacer;
 import com.wemakestuff.d3builder.string.Vars;
+import com.wemakestuff.d3builder.util.Util;
 
 public class EntryRune implements Item
 {
@@ -75,17 +77,37 @@ public class EntryRune implements Item
             holder = (ViewHolder) convertView.getTag();
         }
 
-        int runeImage = view.getContext().getResources().getIdentifier("drawable/" + rune.getIcon(), null, view.getContext().getPackageName());
 
-        holder.runeIcon.setBackgroundResource(runeImage);
+        final int iconImg = Util.findImageResource(rune.getIcon());
+        loadIconAsync(holder, iconImg);
+        
         holder.runeTitle.setText(getRune().getName());
         holder.runeUnlockedAt
                 .setText(Replacer.replace(view.getContext().getString(R.string.Unlocked_at_level) + " " + rune.getRequiredLevel(), "\\d+%?", Vars.DIABLO_GREEN));
         holder.runeDescription.setText(Replacer.replace(rune.getDescription().trim(), "\\d+%?", Vars.DIABLO_GREEN));
 
-        //view.setTag(rune.getUuid());
-
         return view;
+    }
+
+    private void loadIconAsync(ViewHolder holder, final int iconImg)
+    {
+        AsyncTask loadImage = new AsyncTask<ViewHolder, Void, Integer>() {
+            private ViewHolder v;
+
+            @Override
+            protected Integer doInBackground(ViewHolder... params)
+            {
+                v = params[0];
+                return iconImg;
+            }
+
+            protected void onPostExecute(Integer result)
+            {
+                super.onPostExecute(result);
+                v.runeIcon.setImageResource(iconImg);
+            }
+
+        }.execute(holder);
     }
 
     private static class ViewHolder {
