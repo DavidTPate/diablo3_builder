@@ -10,7 +10,6 @@ import android.content.SharedPreferences;
 
 import com.google.ads.AdRequest;
 import com.google.ads.AdView;
-import com.wemakestuff.d3builder.classes.ClassBuildAdapter;
 import com.wemakestuff.d3builder.model.ClassBuild;
 
 public class Funcs

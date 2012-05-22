@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -16,8 +15,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.wemakestuff.d3builder.model.ClassBuild;
-import com.wemakestuff.d3builder.string.Replacer;
-import com.wemakestuff.d3builder.string.Vars;
 
 public class FollowerBuildAdapter extends BaseAdapter
 {

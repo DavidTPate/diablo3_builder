@@ -2,4 +2,5 @@
 <resources>
     <color name="accent_1">#ff29549f</color>
     <color name="diablo_gold">#D49E43</color>
+    <color name="diablo_green">#01F301</color>
 </resources>

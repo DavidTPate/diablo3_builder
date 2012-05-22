@@ -6,8 +6,6 @@ import java.util.UUID;
 
 import android.content.Context;
 import android.os.ParcelUuid;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -19,7 +17,6 @@ import com.wemakestuff.d3builder.sectionlist.EntryFollowerSkill;
 import com.wemakestuff.d3builder.sectionlist.EntryRune;
 import com.wemakestuff.d3builder.sectionlist.EntrySkill;
 import com.wemakestuff.d3builder.sectionlist.Item;
-import com.wemakestuff.d3builder.sectionlist.EntrySkillAdapter.RowType;
 
 public class ItemAdapter extends ArrayAdapter<Item>
 {

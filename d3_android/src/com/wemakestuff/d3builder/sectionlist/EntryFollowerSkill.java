@@ -10,7 +10,7 @@ import com.wemakestuff.d3builder.R;
 import com.wemakestuff.d3builder.model.Skill;
 import com.wemakestuff.d3builder.sectionlist.EntrySkillAdapter.RowType;
 import com.wemakestuff.d3builder.string.Replacer;
-import com.wemakestuff.d3builder.string.Vars;
+import com.wemakestuff.d3builder.string.Replacer.D3Color;
 
 public class EntryFollowerSkill implements Item
 {
@@ -107,13 +107,13 @@ public class EntryFollowerSkill implements Item
 
         if (skill.getCooldownText() == null || skill.getCooldownText().equals(""))
         {
-            holder.skillCooldown.setText(Replacer.replace(skill.getCooldownText(), "\\d+%?", Vars.DIABLO_GREEN));
+            holder.skillCooldown.setText(Replacer.replace(skill.getCooldownText(), "\\d+%?", D3Color.DIABLO_GREEN));
             holder.skillCooldown.setVisibility(View.GONE);
         }
         else
         {
             holder.skillCooldown.setText(Replacer.replace(view.getContext().getString(R.string.Cooldown) + " " + skill.getCooldownText(), "\\d+%?",
-                    Vars.DIABLO_GREEN));
+                    D3Color.DIABLO_GREEN));
             holder.skillCooldown.setVisibility(View.VISIBLE);
         }
 
@@ -123,7 +123,7 @@ public class EntryFollowerSkill implements Item
         }
         else
         {
-            holder.skillDescription.setText(Replacer.replace(skill.getDescription().trim(), "\\d+%?", Vars.DIABLO_GREEN));
+            holder.skillDescription.setText(Replacer.replace(skill.getDescription().trim(), "\\d+%?", D3Color.DIABLO_GREEN));
             holder.skillDescription.setVisibility(View.VISIBLE);
         }
 

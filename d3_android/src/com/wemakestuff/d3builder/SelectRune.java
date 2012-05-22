@@ -17,7 +17,7 @@ import com.viewpagerindicator.TitlePageIndicator;
 import com.viewpagerindicator.TitlePageIndicator.IndicatorStyle;
 import com.wemakestuff.d3builder.RuneListFragment.OnRuneSelectedListener;
 import com.wemakestuff.d3builder.string.Replacer;
-import com.wemakestuff.d3builder.string.Vars;
+import com.wemakestuff.d3builder.string.Replacer.D3Color;
 
 public class SelectRune extends SherlockFragmentActivity implements OnRuneSelectedListener {
 	RuneFragmentAdapter mAdapter;
@@ -85,7 +85,7 @@ public class SelectRune extends SherlockFragmentActivity implements OnRuneSelect
 		};
 		
 		TextView requiredLevelText = (TextView) findViewById(R.id.required_level);
-        requiredLevelText.setText(Replacer.replace("Required Level: " + requiredLevel, "\\d+", Vars.DIABLO_GREEN));
+        requiredLevelText.setText(Replacer.replace("Required Level: " + requiredLevel, "\\d+", D3Color.DIABLO_GREEN));
 
 		mAdapter = new RuneFragmentAdapter(getSupportFragmentManager(),
 				SelectRune.this, skillName, skillUUID, selectedClass,

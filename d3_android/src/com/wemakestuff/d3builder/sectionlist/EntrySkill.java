@@ -11,7 +11,7 @@ import com.wemakestuff.d3builder.R;
 import com.wemakestuff.d3builder.model.Skill;
 import com.wemakestuff.d3builder.sectionlist.EntrySkillAdapter.RowType;
 import com.wemakestuff.d3builder.string.Replacer;
-import com.wemakestuff.d3builder.string.Vars;
+import com.wemakestuff.d3builder.string.Replacer.D3Color;
 import com.wemakestuff.d3builder.util.Util;
 
 public class EntrySkill implements Item
@@ -75,7 +75,7 @@ public class EntrySkill implements Item
         }
         else
         {
-            holder.skillCost.setText(Replacer.replace(view.getContext().getString(R.string.Cost) + " " + skill.getCostText(), "\\d+%?", Vars.DIABLO_GREEN));
+            holder.skillCost.setText(Replacer.replace(view.getContext().getString(R.string.Cost) + " " + skill.getCostText(), "\\d+%?", D3Color.DIABLO_GREEN));
             holder.skillCost.setVisibility(View.VISIBLE);
         }
 
@@ -86,19 +86,19 @@ public class EntrySkill implements Item
         else
         {
             holder.skillGenerates.setText(Replacer.replace(view.getContext().getString(R.string.Generate) + " " + skill.getGenerateText(), "\\d+%?",
-                    Vars.DIABLO_GREEN));
+                    D3Color.DIABLO_GREEN));
             holder.skillGenerates.setVisibility(View.VISIBLE);
         }
 
         if (skill.getCooldownText() == null || skill.getCooldownText().equals(""))
         {
-            holder.skillCooldown.setText(Replacer.replace(skill.getCooldownText(), "\\d+%?", Vars.DIABLO_GREEN));
+            holder.skillCooldown.setText(Replacer.replace(skill.getCooldownText(), "\\d+%?", D3Color.DIABLO_GREEN));
             holder.skillCooldown.setVisibility(View.GONE);
         }
         else
         {
             holder.skillCooldown.setText(Replacer.replace(view.getContext().getString(R.string.Cooldown) + " " + skill.getCooldownText(), "\\d+%?",
-                    Vars.DIABLO_GREEN));
+                    D3Color.DIABLO_GREEN));
             holder.skillCooldown.setVisibility(View.VISIBLE);
         }
 
@@ -109,7 +109,7 @@ public class EntrySkill implements Item
         else
         {
             holder.skillRequiredLevel.setText(Replacer.replace(
-                    view.getContext().getString(R.string.Unlocked_at_level) + " " + String.valueOf(skill.getRequiredLevel()), "\\d+%?", Vars.DIABLO_GREEN));
+                    view.getContext().getString(R.string.Unlocked_at_level) + " " + String.valueOf(skill.getRequiredLevel()), "\\d+%?", D3Color.DIABLO_GREEN));
             holder.skillRequiredLevel.setVisibility(View.VISIBLE);
         }
 
@@ -119,7 +119,7 @@ public class EntrySkill implements Item
         }
         else
         {
-            holder.skillDescription.setText(Replacer.replace(skill.getDescription().trim(), "\\d+%?", Vars.DIABLO_GREEN));
+            holder.skillDescription.setText(Replacer.replace(skill.getDescription().trim(), "\\d+%?", D3Color.DIABLO_GREEN));
             holder.skillDescription.setVisibility(View.VISIBLE);
         }
 

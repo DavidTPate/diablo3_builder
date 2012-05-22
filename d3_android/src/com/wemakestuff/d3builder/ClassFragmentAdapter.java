@@ -8,10 +8,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.viewpagerindicator.TitleProvider;
-import com.wemakestuff.d3builder.followers.FollowerListFragment;
 import com.wemakestuff.d3builder.model.Class;
 import com.wemakestuff.d3builder.model.D3Application;
-import com.wemakestuff.d3builder.model.Follower;
 
 public class ClassFragmentAdapter extends FragmentPagerAdapter implements TitleProvider
 {

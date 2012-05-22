@@ -18,7 +18,7 @@ import com.wemakestuff.d3builder.model.D3Application;
 import com.wemakestuff.d3builder.model.Skill;
 import com.wemakestuff.d3builder.sectionlist.EntrySkillAdapter.RowType;
 import com.wemakestuff.d3builder.string.Replacer;
-import com.wemakestuff.d3builder.string.Vars;
+import com.wemakestuff.d3builder.string.Replacer.D3Color;
 import com.wemakestuff.d3builder.util.Util;
 
 public class EmptyFollower implements Item
@@ -144,8 +144,8 @@ public class EmptyFollower implements Item
 
             if (index == 0)
             {
-                holder.emptyFollowerSkill1.setText(Replacer.replace("Level " + s.getRequiredLevel() + ": " + s.getName(), ".+", Vars.DIABLO_GOLD));
-                holder.emptyFollowerSkill1Description.setText(Replacer.replace(s.getDescription().trim(), "\\d+%?", Vars.DIABLO_GREEN));
+                holder.emptyFollowerSkill1.setText(Replacer.replace("Level " + s.getRequiredLevel() + ": " + s.getName(), ".+", D3Color.DIABLO_GOLD));
+                holder.emptyFollowerSkill1Description.setText(Replacer.replace(s.getDescription().trim(), "\\d+%?", D3Color.DIABLO_GREEN));
 
                 holder.emptyFollowerSkill1.setVisibility(View.VISIBLE);
                 holder.emptyFollowerSkill1Description.setVisibility(View.VISIBLE);
@@ -153,24 +153,24 @@ public class EmptyFollower implements Item
             }
             else if (index == 1)
             {
-                holder.emptyFollowerSkill2.setText(Replacer.replace("Level " + s.getRequiredLevel() + ": " + s.getName(), ".+", Vars.DIABLO_GOLD));
-                holder.emptyFollowerSkill2Description.setText(Replacer.replace(s.getDescription().trim(), "\\d+%?", Vars.DIABLO_GREEN));
+                holder.emptyFollowerSkill2.setText(Replacer.replace("Level " + s.getRequiredLevel() + ": " + s.getName(), ".+", D3Color.DIABLO_GOLD));
+                holder.emptyFollowerSkill2Description.setText(Replacer.replace(s.getDescription().trim(), "\\d+%?", D3Color.DIABLO_GREEN));
 
                 holder.emptyFollowerSkill2.setVisibility(View.VISIBLE);
                 holder.emptyFollowerSkill2Description.setVisibility(View.VISIBLE);
             }
             else if (index == 2)
             {
-                holder.emptyFollowerSkill3.setText(Replacer.replace("Level " + s.getRequiredLevel() + ": " + s.getName(), ".+", Vars.DIABLO_GOLD));
-                holder.emptyFollowerSkill3Description.setText(Replacer.replace(s.getDescription().trim(), "\\d+%?", Vars.DIABLO_GREEN));
+                holder.emptyFollowerSkill3.setText(Replacer.replace("Level " + s.getRequiredLevel() + ": " + s.getName(), ".+", D3Color.DIABLO_GOLD));
+                holder.emptyFollowerSkill3Description.setText(Replacer.replace(s.getDescription().trim(), "\\d+%?", D3Color.DIABLO_GREEN));
 
                 holder.emptyFollowerSkill3.setVisibility(View.VISIBLE);
                 holder.emptyFollowerSkill3Description.setVisibility(View.VISIBLE);
             }
             else if (index == 3)
             {
-                holder.emptyFollowerSkill4.setText(Replacer.replace("Level " + s.getRequiredLevel() + ": " + s.getName(), ".+", Vars.DIABLO_GOLD));
-                holder.emptyFollowerSkill4Description.setText(Replacer.replace(s.getDescription().trim(), "\\d+%?", Vars.DIABLO_GREEN));
+                holder.emptyFollowerSkill4.setText(Replacer.replace("Level " + s.getRequiredLevel() + ": " + s.getName(), ".+", D3Color.DIABLO_GOLD));
+                holder.emptyFollowerSkill4Description.setText(Replacer.replace(s.getDescription().trim(), "\\d+%?", D3Color.DIABLO_GREEN));
 
                 holder.emptyFollowerSkill4.setVisibility(View.VISIBLE);
                 holder.emptyFollowerSkill4Description.setVisibility(View.VISIBLE);

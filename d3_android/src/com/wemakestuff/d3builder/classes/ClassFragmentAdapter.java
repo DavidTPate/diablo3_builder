@@ -8,8 +8,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.viewpagerindicator.TitleProvider;
-import com.wemakestuff.d3builder.ClassListFragment;
-import com.wemakestuff.d3builder.classes.interfaces.OnClassFragmentLoadedInterface;
 import com.wemakestuff.d3builder.model.Class;
 import com.wemakestuff.d3builder.model.D3Application;
 

@@ -13,7 +13,7 @@ import com.wemakestuff.d3builder.R;
 import com.wemakestuff.d3builder.model.Rune;
 import com.wemakestuff.d3builder.sectionlist.EntrySkillAdapter.RowType;
 import com.wemakestuff.d3builder.string.Replacer;
-import com.wemakestuff.d3builder.string.Vars;
+import com.wemakestuff.d3builder.string.Replacer.D3Color;
 import com.wemakestuff.d3builder.util.Util;
 
 public class EntryRune implements Item
@@ -83,8 +83,8 @@ public class EntryRune implements Item
         
         holder.runeTitle.setText(getRune().getName());
         holder.runeUnlockedAt
-                .setText(Replacer.replace(view.getContext().getString(R.string.Unlocked_at_level) + " " + rune.getRequiredLevel(), "\\d+%?", Vars.DIABLO_GREEN));
-        holder.runeDescription.setText(Replacer.replace(rune.getDescription().trim(), "\\d+%?", Vars.DIABLO_GREEN));
+                .setText(Replacer.replace(view.getContext().getString(R.string.Unlocked_at_level) + " " + rune.getRequiredLevel(), "\\d+%?", D3Color.DIABLO_GREEN));
+        holder.runeDescription.setText(Replacer.replace(rune.getDescription().trim(), "\\d+%?", D3Color.DIABLO_GREEN));
 
         return view;
     }

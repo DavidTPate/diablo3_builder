@@ -37,7 +37,7 @@ import com.wemakestuff.d3builder.followers.FollowerListFragment.OnRequiredLevelU
 import com.wemakestuff.d3builder.followers.SelectFollower;
 import com.wemakestuff.d3builder.model.ClassBuild;
 import com.wemakestuff.d3builder.string.Replacer;
-import com.wemakestuff.d3builder.string.Vars;
+import com.wemakestuff.d3builder.string.Replacer.D3Color;
 
 public class SelectClass extends SherlockFragmentActivity implements OnRequiredLevelUpdateListener
 {
@@ -471,7 +471,7 @@ public class SelectClass extends SherlockFragmentActivity implements OnRequiredL
 
     public void setRequiredLevel(int level)
     {
-        requiredLevel.setText(Replacer.replace("Required Level: " + level, "\\d+", Vars.DIABLO_GREEN));
+        requiredLevel.setText(Replacer.replace("Required Level: " + level, "\\d+", D3Color.DIABLO_GREEN));
     }
 
     @Override

@@ -8,8 +8,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.ParcelUuid;
 import android.support.v4.view.ViewPager;
-import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
@@ -20,7 +18,7 @@ import com.viewpagerindicator.TitlePageIndicator;
 import com.viewpagerindicator.TitlePageIndicator.IndicatorStyle;
 import com.wemakestuff.d3builder.SkillListFragment.OnSkillSelectedListener;
 import com.wemakestuff.d3builder.string.Replacer;
-import com.wemakestuff.d3builder.string.Vars;
+import com.wemakestuff.d3builder.string.Replacer.D3Color;
 
 public class SelectSkill extends SherlockFragmentActivity implements OnSkillSelectedListener
 {
@@ -79,7 +77,7 @@ public class SelectSkill extends SherlockFragmentActivity implements OnSkillSele
         }
 
         TextView requiredLevelText = (TextView) findViewById(R.id.required_level);
-        requiredLevelText.setText(Replacer.replace("Required Level: " + requiredLevel, "\\d+", Vars.DIABLO_GREEN));
+        requiredLevelText.setText(Replacer.replace("Required Level: " + requiredLevel, "\\d+", D3Color.DIABLO_GREEN));
         
         mAdapter = new SkillFragmentAdapter(getSupportFragmentManager(), SelectSkill.this, skillType, selectedClass, maxLevel, skills);
         

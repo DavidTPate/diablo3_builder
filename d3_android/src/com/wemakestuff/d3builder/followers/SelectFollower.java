@@ -17,7 +17,6 @@ import android.os.ParcelUuid;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
-import android.util.Log;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -42,6 +41,7 @@ import com.wemakestuff.d3builder.followers.FollowerListFragment.OnSkillUpdateLis
 import com.wemakestuff.d3builder.model.ClassBuild;
 import com.wemakestuff.d3builder.model.D3Application;
 import com.wemakestuff.d3builder.string.Replacer;
+import com.wemakestuff.d3builder.string.Replacer.D3Color;
 import com.wemakestuff.d3builder.string.Vars;
 
 public class SelectFollower extends SherlockFragmentActivity implements OnRequiredLevelUpdateListener, OnLoadFragmentCompleteListener,
@@ -339,7 +339,7 @@ public class SelectFollower extends SherlockFragmentActivity implements OnRequir
 
     public void setRequiredLevel(int level)
     {
-        requiredLevel.setText(Replacer.replace("Required Level: " + level, "\\d+", Vars.DIABLO_GREEN));
+        requiredLevel.setText(Replacer.replace("Required Level: " + level, "\\d+", D3Color.DIABLO_GREEN));
     }
 
     public List<ParcelUuid> getTemplarSkills()
