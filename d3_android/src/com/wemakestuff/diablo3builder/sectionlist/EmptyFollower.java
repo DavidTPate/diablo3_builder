@@ -134,6 +134,15 @@ public class EmptyFollower implements Item
         skillDescriptions.add(holder.emptyFollowerSkill2Description);
         skillDescriptions.add(holder.emptyFollowerSkill3Description);
         skillDescriptions.add(holder.emptyFollowerSkill4Description);
+        
+        holder.emptyFollowerSkill1.setVisibility(View.GONE);
+        holder.emptyFollowerSkill2.setVisibility(View.GONE);
+        holder.emptyFollowerSkill3.setVisibility(View.GONE);
+        holder.emptyFollowerSkill4.setVisibility(View.GONE);
+        holder.emptyFollowerSkill1Description.setVisibility(View.GONE);
+        holder.emptyFollowerSkill2Description.setVisibility(View.GONE);
+        holder.emptyFollowerSkill3Description.setVisibility(View.GONE);
+        holder.emptyFollowerSkill4Description.setVisibility(View.GONE);
 
         int index = 0;
         for (ParcelUuid u : skills)
