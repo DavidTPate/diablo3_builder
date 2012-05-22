@@ -26,6 +26,8 @@
         android:layout_marginLeft="15dp"
         android:layout_toRightOf="@id/list_skill_icon"
         android:fadingEdge="horizontal"
+        android:ellipsize="none"
+        android:singleLine="false"
         android:text="Wrath of the Beserker"
         android:textAppearance="?android:attr/textAppearanceMedium" />
     
@@ -35,9 +37,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/list_skill_title"
         android:layout_alignLeft="@id/list_skill_title"
-        android:ellipsize="marquee"
+        android:ellipsize="none"
         android:fadingEdge="horizontal"
-        android:singleLine="true"
+        android:singleLine="false"
         android:text="Unlocked at level: 3"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -47,9 +49,9 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@id/list_skill_unlocked_at"
         android:layout_below="@id/list_skill_unlocked_at"
-        android:ellipsize="marquee"
+        android:ellipsize="none"
         android:fadingEdge="horizontal"
-        android:singleLine="true"
+        android:singleLine="false"
         android:text="Cost: 10 mana"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -59,9 +61,9 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@id/list_skill_cost_text"
         android:layout_below="@id/list_skill_cost_text"
-        android:ellipsize="marquee"
+        android:ellipsize="none"
         android:fadingEdge="horizontal"
-        android:singleLine="true"
+        android:singleLine="false"
         android:text="Generate: 5 Fury per attack"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -71,9 +73,9 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@id/list_skill_generates"
         android:layout_below="@id/list_skill_generates"
-        android:ellipsize="marquee"
+        android:ellipsize="none"
         android:fadingEdge="horizontal"
-        android:singleLine="true"
+        android:singleLine="false"
         android:text="Cooldown: 25 secs"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 

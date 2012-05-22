@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         ads:adSize="BANNER"
-        ads:adUnitId="a14fadcf33a641a"
+        ads:adUnitId="a14fbbef515f0e2"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"  />
 

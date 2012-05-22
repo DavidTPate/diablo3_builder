@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         ads:adSize="BANNER"
-        ads:adUnitId="a14fadcf33a641a"
+        ads:adUnitId="a14fbbef515f0e2"
         ads:loadAdOnCreate="true"
         ads:testDevices="TEST_EMULATOR, E85A995C749AE015AA4EE195878C0982, BDD7A55C1502190E502F14CBFDF9ABC7" />
 

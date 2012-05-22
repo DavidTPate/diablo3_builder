@@ -1,3 +1,4 @@
+
 package com.wemakestuff.diablo3builder.sectionlist;
 
 import android.os.AsyncTask;
@@ -22,24 +23,28 @@ public class EntrySkill implements Item
 
     public EntrySkill(LayoutInflater inflater, Skill skill)
     {
+
         this.skill = skill;
         this.inflater = inflater;
     }
 
     public Skill getSkill()
     {
+
         return skill;
     }
 
     @Override
     public int getViewType()
     {
+
         return RowType.ENTRY_SKILL.ordinal();
     }
 
     @Override
     public View getView(View convertView)
     {
+
         ViewHolder holder;
         View view;
         if (convertView == null)
@@ -63,7 +68,7 @@ public class EntrySkill implements Item
             view = convertView;
             holder = (ViewHolder) convertView.getTag();
         }
-        
+
         final int iconImg = Util.findImageResource(skill.getIcon());
         loadIconAsync(holder, iconImg);
 
@@ -75,7 +80,8 @@ public class EntrySkill implements Item
         }
         else
         {
-            holder.skillCost.setText(view.getContext().getString(R.string.Cost) + " " + skill.getCostText());
+            if (convertView == null)
+                holder.skillCost.setText(view.getContext().getString(R.string.Cost) + " " + skill.getCostText());
             loadTextAsync(holder, holder.skillCost, view.getContext().getString(R.string.Cost) + " " + skill.getCostText(), "\\d+%?", D3Color.DIABLO_GREEN);
         }
 
@@ -85,7 +91,8 @@ public class EntrySkill implements Item
         }
         else
         {
-            holder.skillGenerates.setText(view.getContext().getString(R.string.Generate) + " " + skill.getGenerateText());
+            if (convertView == null)
+                holder.skillGenerates.setText(view.getContext().getString(R.string.Generate) + " " + skill.getGenerateText());
             loadTextAsync(holder, holder.skillGenerates, view.getContext().getString(R.string.Generate) + " " + skill.getGenerateText(), "\\d+%?", D3Color.DIABLO_GREEN);
         }
 
@@ -95,7 +102,8 @@ public class EntrySkill implements Item
         }
         else
         {
-            holder.skillCooldown.setText(view.getContext().getString(R.string.Cooldown) + " " + skill.getCooldownText());
+            if (convertView == null)
+                holder.skillCooldown.setText(view.getContext().getString(R.string.Cooldown) + " " + skill.getCooldownText());
             loadTextAsync(holder, holder.skillCooldown, view.getContext().getString(R.string.Cooldown) + " " + skill.getCooldownText(), "\\d+%?", D3Color.DIABLO_GREEN);
         }
 
@@ -105,7 +113,8 @@ public class EntrySkill implements Item
         }
         else
         {
-            holder.skillRequiredLevel.setText(view.getContext().getString(R.string.Unlocked_at_level) + " " + String.valueOf(skill.getRequiredLevel()));
+            if (convertView == null)
+                holder.skillRequiredLevel.setText(view.getContext().getString(R.string.Unlocked_at_level) + " " + String.valueOf(skill.getRequiredLevel()));
             loadTextAsync(holder, holder.skillRequiredLevel, view.getContext().getString(R.string.Unlocked_at_level) + " " + String.valueOf(skill.getRequiredLevel()), "\\d+%?", D3Color.DIABLO_GREEN);
         }
 
@@ -115,7 +124,8 @@ public class EntrySkill implements Item
         }
         else
         {
-            holder.skillDescription.setText(skill.getDescription().trim());
+            if (convertView == null)
+                holder.skillDescription.setText(skill.getDescription().trim());
             loadTextAsync(holder, holder.skillDescription, skill.getDescription().trim(), "\\d+%?", D3Color.DIABLO_GREEN);
         }
 
@@ -124,39 +134,49 @@ public class EntrySkill implements Item
 
     private void loadIconAsync(ViewHolder holder, final int iconImg)
     {
-        AsyncTask loadImage = new AsyncTask<ViewHolder, Void, Integer>() {
+
+        AsyncTask loadImage = new AsyncTask<ViewHolder, Void, Integer>()
+        {
+
             private ViewHolder v;
 
             @Override
             protected Integer doInBackground(ViewHolder... params)
             {
+
                 v = params[0];
                 return iconImg;
             }
 
             protected void onPostExecute(Integer result)
             {
+
                 super.onPostExecute(result);
                 v.skillIcon.setImageResource(iconImg);
             }
 
         }.execute(holder);
     }
-    
+
     private void loadTextAsync(ViewHolder holder, final TextView textView, final CharSequence text, final String regEx, final D3Color color)
     {
-        AsyncTask<ViewHolder, Void, CharSequence> loadText = new AsyncTask<ViewHolder, Void, CharSequence>() {
+
+        AsyncTask<ViewHolder, Void, CharSequence> loadText = new AsyncTask<ViewHolder, Void, CharSequence>()
+        {
+
             private ViewHolder v;
 
             @Override
             protected CharSequence doInBackground(ViewHolder... params)
             {
+
                 v = params[0];
                 return Replacer.replace(text, regEx, color);
             }
 
             protected void onPostExecute(CharSequence result)
             {
+
                 super.onPostExecute(result);
                 textView.setText(result);
                 textView.setVisibility(View.VISIBLE);
@@ -167,6 +187,7 @@ public class EntrySkill implements Item
 
     private static class ViewHolder
     {
+
         final ImageView skillIcon;
         final TextView  skillName;
         final TextView  skillCost;
@@ -175,9 +196,9 @@ public class EntrySkill implements Item
         final TextView  skillRequiredLevel;
         final TextView  skillDescription;
 
-        public ViewHolder(ImageView skillIcon, TextView skillName, TextView skillCost, TextView skillGenerates, TextView skillCooldown,
-                TextView skillRequiredLevel, TextView skillDescription)
+        public ViewHolder(ImageView skillIcon, TextView skillName, TextView skillCost, TextView skillGenerates, TextView skillCooldown, TextView skillRequiredLevel, TextView skillDescription)
         {
+
             super();
             this.skillIcon = skillIcon;
             this.skillName = skillName;

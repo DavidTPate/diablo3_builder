@@ -1,3 +1,4 @@
+
 package com.wemakestuff.diablo3builder.sectionlist;
 
 import android.os.AsyncTask;
@@ -22,10 +23,11 @@ public class EntryFollowerSkill implements Item
     private boolean              isChecked;
     private ImageView            checkmark;
     private final LayoutInflater inflater;
-    ViewHolder holder;
+    ViewHolder                   holder;
 
     public EntryFollowerSkill(LayoutInflater inflater, Skill skill, String followerName, boolean isChecked)
     {
+
         this.skill = skill;
         this.followerName = followerName;
         this.isChecked = isChecked;
@@ -35,25 +37,29 @@ public class EntryFollowerSkill implements Item
 
     public Skill getSkill()
     {
+
         return skill;
     }
 
     public void setIsChecked(boolean isChecked)
     {
+
         this.isChecked = isChecked;
-//        if (holder != null && holder.checkmark != null)
-//        {
-//            holder.checkmark.setVisibility(isChecked ? View.VISIBLE : View.GONE);
-//        }
+        // if (holder != null && holder.checkmark != null)
+        // {
+        // holder.checkmark.setVisibility(isChecked ? View.VISIBLE : View.GONE);
+        // }
     }
 
     public boolean isChecked()
     {
+
         return isChecked;
     }
 
     private static class ViewHolder
     {
+
         final ImageView checkmark;
         final ImageView skillIcon;
         final TextView  skillName;
@@ -63,6 +69,7 @@ public class EntryFollowerSkill implements Item
 
         public ViewHolder(ImageView checkmark, ImageView skillIcon, TextView skillName, TextView unlockedAt, TextView skillCooldown, TextView skillDescription)
         {
+
             super();
             this.checkmark = checkmark;
             this.skillIcon = skillIcon;
@@ -76,6 +83,7 @@ public class EntryFollowerSkill implements Item
 
     public View getView(View convertView)
     {
+
         View view;
         if (convertView == null)
         {
@@ -104,7 +112,7 @@ public class EntryFollowerSkill implements Item
         int skillImage = Util.findImageResource(icon);
 
         final int iconImg = skillImage;
-        
+
         loadIconAsync(holder, iconImg);
         holder.skillIcon.setImageResource(skillImage);
         holder.skillName.setText(skill.getName());
@@ -116,7 +124,8 @@ public class EntryFollowerSkill implements Item
         }
         else
         {
-            holder.skillCooldown.setText(view.getContext().getString(R.string.Cooldown) + " " + skill.getCooldownText());
+            if (convertView == null)
+                holder.skillCooldown.setText(view.getContext().getString(R.string.Cooldown) + " " + skill.getCooldownText());
             loadTextAsync(holder, holder.skillCooldown, view.getContext().getString(R.string.Cooldown) + " " + skill.getCooldownText(), "\\d+%?", D3Color.DIABLO_GREEN);
         }
 
@@ -126,8 +135,9 @@ public class EntryFollowerSkill implements Item
         }
         else
         {
-            holder.skillCooldown.setText(skill.getDescription().trim());
-            loadTextAsync(holder, holder.skillCooldown, skill.getDescription().trim(), "\\d+%?", D3Color.DIABLO_GREEN);
+            if (convertView == null)
+                holder.skillDescription.setText(skill.getDescription().trim());
+            loadTextAsync(holder, holder.skillDescription, skill.getDescription().trim(), "\\d+%?", D3Color.DIABLO_GREEN);
         }
 
         holder.checkmark.setVisibility(isChecked ? View.VISIBLE : View.GONE);
@@ -138,44 +148,55 @@ public class EntryFollowerSkill implements Item
     @Override
     public int getViewType()
     {
+
         return RowType.EMPTY_FOLLOWER_SKILL.ordinal();
     }
-    
+
     private void loadIconAsync(ViewHolder holder, final int iconImg)
     {
-        AsyncTask<ViewHolder, Void, Integer> loadImage = new AsyncTask<ViewHolder, Void, Integer>() {
+
+        AsyncTask<ViewHolder, Void, Integer> loadImage = new AsyncTask<ViewHolder, Void, Integer>()
+        {
+
             private ViewHolder v;
 
             @Override
             protected Integer doInBackground(ViewHolder... params)
             {
+
                 v = params[0];
                 return iconImg;
             }
 
             protected void onPostExecute(Integer result)
             {
+
                 super.onPostExecute(result);
                 v.skillIcon.setImageResource(iconImg);
             }
 
         }.execute(holder);
     }
-    
+
     private void loadTextAsync(ViewHolder holder, final TextView textView, final CharSequence text, final String regEx, final D3Color color)
     {
-        AsyncTask<ViewHolder, Void, CharSequence> loadText = new AsyncTask<ViewHolder, Void, CharSequence>() {
+
+        AsyncTask<ViewHolder, Void, CharSequence> loadText = new AsyncTask<ViewHolder, Void, CharSequence>()
+        {
+
             private ViewHolder v;
 
             @Override
             protected CharSequence doInBackground(ViewHolder... params)
             {
+
                 v = params[0];
                 return Replacer.replace(text, regEx, color);
             }
 
             protected void onPostExecute(CharSequence result)
             {
+
                 super.onPostExecute(result);
                 textView.setText(result);
                 textView.setVisibility(View.VISIBLE);
