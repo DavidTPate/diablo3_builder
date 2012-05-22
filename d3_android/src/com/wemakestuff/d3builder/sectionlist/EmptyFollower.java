@@ -123,57 +123,26 @@ public class EmptyFollower implements Item
     {
         this.skills = list;
 
-        holder.emptyFollowerSkill1.setVisibility(View.GONE);
-        holder.emptyFollowerSkill2.setVisibility(View.GONE);
-        holder.emptyFollowerSkill3.setVisibility(View.GONE);
-        holder.emptyFollowerSkill4.setVisibility(View.GONE);
-        holder.emptyFollowerSkill1Description.setVisibility(View.GONE);
-        holder.emptyFollowerSkill2Description.setVisibility(View.GONE);
-        holder.emptyFollowerSkill3Description.setVisibility(View.GONE);
-        holder.emptyFollowerSkill4Description.setVisibility(View.GONE);
+        List<TextView> skillTitles = new ArrayList<TextView>();
+        List<TextView> skillDescriptions = new ArrayList<TextView>();
+
+        skillTitles.add(holder.emptyFollowerSkill1);
+        skillTitles.add(holder.emptyFollowerSkill2);
+        skillTitles.add(holder.emptyFollowerSkill3);
+        skillTitles.add(holder.emptyFollowerSkill4);
+        skillDescriptions.add(holder.emptyFollowerSkill1Description);
+        skillDescriptions.add(holder.emptyFollowerSkill2Description);
+        skillDescriptions.add(holder.emptyFollowerSkill3Description);
+        skillDescriptions.add(holder.emptyFollowerSkill4Description);
 
         int index = 0;
         for (ParcelUuid u : skills)
         {
             Skill s = D3Application.getInstance().getFollowerByName(name).getSkillByUUID(u.getUuid());
-
-            if (s == null)
+            if (s != null)
             {
-                continue;
-            }
-
-            if (index == 0)
-            {
-                holder.emptyFollowerSkill1.setText(Replacer.replace("Level " + s.getRequiredLevel() + ": " + s.getName(), ".+", D3Color.DIABLO_GOLD));
-                holder.emptyFollowerSkill1Description.setText(Replacer.replace(s.getDescription().trim(), "\\d+%?", D3Color.DIABLO_GREEN));
-
-                holder.emptyFollowerSkill1.setVisibility(View.VISIBLE);
-                holder.emptyFollowerSkill1Description.setVisibility(View.VISIBLE);
-
-            }
-            else if (index == 1)
-            {
-                holder.emptyFollowerSkill2.setText(Replacer.replace("Level " + s.getRequiredLevel() + ": " + s.getName(), ".+", D3Color.DIABLO_GOLD));
-                holder.emptyFollowerSkill2Description.setText(Replacer.replace(s.getDescription().trim(), "\\d+%?", D3Color.DIABLO_GREEN));
-
-                holder.emptyFollowerSkill2.setVisibility(View.VISIBLE);
-                holder.emptyFollowerSkill2Description.setVisibility(View.VISIBLE);
-            }
-            else if (index == 2)
-            {
-                holder.emptyFollowerSkill3.setText(Replacer.replace("Level " + s.getRequiredLevel() + ": " + s.getName(), ".+", D3Color.DIABLO_GOLD));
-                holder.emptyFollowerSkill3Description.setText(Replacer.replace(s.getDescription().trim(), "\\d+%?", D3Color.DIABLO_GREEN));
-
-                holder.emptyFollowerSkill3.setVisibility(View.VISIBLE);
-                holder.emptyFollowerSkill3Description.setVisibility(View.VISIBLE);
-            }
-            else if (index == 3)
-            {
-                holder.emptyFollowerSkill4.setText(Replacer.replace("Level " + s.getRequiredLevel() + ": " + s.getName(), ".+", D3Color.DIABLO_GOLD));
-                holder.emptyFollowerSkill4Description.setText(Replacer.replace(s.getDescription().trim(), "\\d+%?", D3Color.DIABLO_GREEN));
-
-                holder.emptyFollowerSkill4.setVisibility(View.VISIBLE);
-                holder.emptyFollowerSkill4Description.setVisibility(View.VISIBLE);
+                loadTextAsync(holder, skillTitles.get(index), "Level " + s.getRequiredLevel() + ": " + s.getName(), ".+", D3Color.DIABLO_GOLD);
+                loadTextAsync(holder, skillDescriptions.get(index), s.getDescription().trim(), "\\d+%?", D3Color.DIABLO_GREEN);
             }
             index++;
         }
@@ -236,7 +205,7 @@ public class EmptyFollower implements Item
 
     private void loadIconAsync(ViewHolder holder, final int iconImg)
     {
-        AsyncTask loadImage = new AsyncTask<ViewHolder, Void, Integer>() {
+        AsyncTask<ViewHolder, Void, Integer> loadImage = new AsyncTask<ViewHolder, Void, Integer>() {
             private ViewHolder v;
 
             @Override
@@ -250,6 +219,28 @@ public class EmptyFollower implements Item
             {
                 super.onPostExecute(result);
                 v.icon.setImageResource(iconImg);
+            }
+
+        }.execute(holder);
+    }
+
+    private void loadTextAsync(ViewHolder holder, final TextView textView, final CharSequence text, final String regEx, final D3Color color)
+    {
+        AsyncTask<ViewHolder, Void, CharSequence> loadText = new AsyncTask<ViewHolder, Void, CharSequence>() {
+            private ViewHolder v;
+
+            @Override
+            protected CharSequence doInBackground(ViewHolder... params)
+            {
+                v = params[0];
+                return Replacer.replace(text, regEx, color);
+            }
+
+            protected void onPostExecute(CharSequence result)
+            {
+                super.onPostExecute(result);
+                textView.setText(result);
+                textView.setVisibility(View.VISIBLE);
             }
 
         }.execute(holder);

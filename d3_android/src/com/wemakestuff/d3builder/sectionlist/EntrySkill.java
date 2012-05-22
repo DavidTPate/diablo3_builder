@@ -75,8 +75,7 @@ public class EntrySkill implements Item
         }
         else
         {
-            holder.skillCost.setText(Replacer.replace(view.getContext().getString(R.string.Cost) + " " + skill.getCostText(), "\\d+%?", D3Color.DIABLO_GREEN));
-            holder.skillCost.setVisibility(View.VISIBLE);
+            loadTextAsync(holder, holder.skillCost, view.getContext().getString(R.string.Cost) + " " + skill.getCostText(), "\\d+%?", D3Color.DIABLO_GREEN);
         }
 
         if (skill.getGenerateText() == null || skill.getGenerateText().equals(""))
@@ -85,21 +84,16 @@ public class EntrySkill implements Item
         }
         else
         {
-            holder.skillGenerates.setText(Replacer.replace(view.getContext().getString(R.string.Generate) + " " + skill.getGenerateText(), "\\d+%?",
-                    D3Color.DIABLO_GREEN));
-            holder.skillGenerates.setVisibility(View.VISIBLE);
+            loadTextAsync(holder, holder.skillGenerates, view.getContext().getString(R.string.Generate) + " " + skill.getGenerateText(), "\\d+%?", D3Color.DIABLO_GREEN);
         }
 
         if (skill.getCooldownText() == null || skill.getCooldownText().equals(""))
         {
-            holder.skillCooldown.setText(Replacer.replace(skill.getCooldownText(), "\\d+%?", D3Color.DIABLO_GREEN));
             holder.skillCooldown.setVisibility(View.GONE);
         }
         else
         {
-            holder.skillCooldown.setText(Replacer.replace(view.getContext().getString(R.string.Cooldown) + " " + skill.getCooldownText(), "\\d+%?",
-                    D3Color.DIABLO_GREEN));
-            holder.skillCooldown.setVisibility(View.VISIBLE);
+            loadTextAsync(holder, holder.skillCooldown, view.getContext().getString(R.string.Cooldown) + " " + skill.getCooldownText(), "\\d+%?", D3Color.DIABLO_GREEN);
         }
 
         if (skill.getRequiredLevel() == 0)
@@ -108,9 +102,7 @@ public class EntrySkill implements Item
         }
         else
         {
-            holder.skillRequiredLevel.setText(Replacer.replace(
-                    view.getContext().getString(R.string.Unlocked_at_level) + " " + String.valueOf(skill.getRequiredLevel()), "\\d+%?", D3Color.DIABLO_GREEN));
-            holder.skillRequiredLevel.setVisibility(View.VISIBLE);
+            loadTextAsync(holder, holder.skillRequiredLevel, view.getContext().getString(R.string.Unlocked_at_level) + " " + String.valueOf(skill.getRequiredLevel()), "\\d+%?", D3Color.DIABLO_GREEN);
         }
 
         if (skill.getDescription() == null || skill.getDescription().equals(""))
@@ -119,8 +111,7 @@ public class EntrySkill implements Item
         }
         else
         {
-            holder.skillDescription.setText(Replacer.replace(skill.getDescription().trim(), "\\d+%?", D3Color.DIABLO_GREEN));
-            holder.skillDescription.setVisibility(View.VISIBLE);
+            loadTextAsync(holder, holder.skillDescription, skill.getDescription().trim(), "\\d+%?", D3Color.DIABLO_GREEN);
         }
 
         return view;
@@ -142,6 +133,28 @@ public class EntrySkill implements Item
             {
                 super.onPostExecute(result);
                 v.skillIcon.setImageResource(iconImg);
+            }
+
+        }.execute(holder);
+    }
+    
+    private void loadTextAsync(ViewHolder holder, final TextView textView, final CharSequence text, final String regEx, final D3Color color)
+    {
+        AsyncTask<ViewHolder, Void, CharSequence> loadText = new AsyncTask<ViewHolder, Void, CharSequence>() {
+            private ViewHolder v;
+
+            @Override
+            protected CharSequence doInBackground(ViewHolder... params)
+            {
+                v = params[0];
+                return Replacer.replace(text, regEx, color);
+            }
+
+            protected void onPostExecute(CharSequence result)
+            {
+                super.onPostExecute(result);
+                textView.setText(result);
+                textView.setVisibility(View.VISIBLE);
             }
 
         }.execute(holder);

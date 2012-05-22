@@ -80,11 +80,9 @@ public class EntryRune implements Item
 
         final int iconImg = Util.findImageResource(rune.getIcon());
         loadIconAsync(holder, iconImg);
-        
         holder.runeTitle.setText(getRune().getName());
-        holder.runeUnlockedAt
-                .setText(Replacer.replace(view.getContext().getString(R.string.Unlocked_at_level) + " " + rune.getRequiredLevel(), "\\d+%?", D3Color.DIABLO_GREEN));
-        holder.runeDescription.setText(Replacer.replace(rune.getDescription().trim(), "\\d+%?", D3Color.DIABLO_GREEN));
+        loadTextAsync(holder, holder.runeUnlockedAt, view.getContext().getString(R.string.Unlocked_at_level) + " " + rune.getRequiredLevel(), "\\d+%?", D3Color.DIABLO_GOLD);
+        loadTextAsync(holder, holder.runeDescription, rune.getDescription().trim(), "\\d+%?", D3Color.DIABLO_GREEN);
 
         return view;
     }
@@ -105,6 +103,28 @@ public class EntryRune implements Item
             {
                 super.onPostExecute(result);
                 v.runeIcon.setImageResource(iconImg);
+            }
+
+        }.execute(holder);
+    }
+    
+    private void loadTextAsync(ViewHolder holder, final TextView textView, final CharSequence text, final String regEx, final D3Color color)
+    {
+        AsyncTask<ViewHolder, Void, CharSequence> loadText = new AsyncTask<ViewHolder, Void, CharSequence>() {
+            private ViewHolder v;
+
+            @Override
+            protected CharSequence doInBackground(ViewHolder... params)
+            {
+                v = params[0];
+                return Replacer.replace(text, regEx, color);
+            }
+
+            protected void onPostExecute(CharSequence result)
+            {
+                super.onPostExecute(result);
+                textView.setText(result);
+                textView.setVisibility(View.VISIBLE);
             }
 
         }.execute(holder);

@@ -1,5 +1,6 @@
 package com.wemakestuff.d3builder.sectionlist;
 
+import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import com.wemakestuff.d3builder.model.Skill;
 import com.wemakestuff.d3builder.sectionlist.EntrySkillAdapter.RowType;
 import com.wemakestuff.d3builder.string.Replacer;
 import com.wemakestuff.d3builder.string.Replacer.D3Color;
+import com.wemakestuff.d3builder.util.Util;
 
 public class EntryFollowerSkill implements Item
 {
@@ -99,22 +101,22 @@ public class EntryFollowerSkill implements Item
 
         // Is this a terrible hack?! I think so...
         String icon = followerName.toLowerCase() + "_" + skill.getName().replace(" ", "").toLowerCase();
-        int skillImage = view.getContext().getResources().getIdentifier("drawable/" + icon, null, view.getContext().getPackageName());
+        int skillImage = Util.findImageResource(icon);
 
+        final int iconImg = skillImage;
+        
+        loadIconAsync(holder, iconImg);
         holder.skillIcon.setImageResource(skillImage);
         holder.skillName.setText(skill.getName());
         holder.unlockedAt.setText("Unlocked at level: " + skill.getRequiredLevel());
 
         if (skill.getCooldownText() == null || skill.getCooldownText().equals(""))
         {
-            holder.skillCooldown.setText(Replacer.replace(skill.getCooldownText(), "\\d+%?", D3Color.DIABLO_GREEN));
             holder.skillCooldown.setVisibility(View.GONE);
         }
         else
         {
-            holder.skillCooldown.setText(Replacer.replace(view.getContext().getString(R.string.Cooldown) + " " + skill.getCooldownText(), "\\d+%?",
-                    D3Color.DIABLO_GREEN));
-            holder.skillCooldown.setVisibility(View.VISIBLE);
+            loadTextAsync(holder, holder.skillCooldown, view.getContext().getString(R.string.Cooldown) + " " + skill.getCooldownText(), "\\d+%?", D3Color.DIABLO_GREEN);
         }
 
         if (skill.getDescription() == null || skill.getDescription().equals(""))
@@ -123,8 +125,7 @@ public class EntryFollowerSkill implements Item
         }
         else
         {
-            holder.skillDescription.setText(Replacer.replace(skill.getDescription().trim(), "\\d+%?", D3Color.DIABLO_GREEN));
-            holder.skillDescription.setVisibility(View.VISIBLE);
+            loadTextAsync(holder, holder.skillCooldown, skill.getDescription().trim(), "\\d+%?", D3Color.DIABLO_GREEN);
         }
 
         holder.checkmark.setVisibility(isChecked ? View.VISIBLE : View.GONE);
@@ -136,6 +137,49 @@ public class EntryFollowerSkill implements Item
     public int getViewType()
     {
         return RowType.EMPTY_FOLLOWER_SKILL.ordinal();
+    }
+    
+    private void loadIconAsync(ViewHolder holder, final int iconImg)
+    {
+        AsyncTask<ViewHolder, Void, Integer> loadImage = new AsyncTask<ViewHolder, Void, Integer>() {
+            private ViewHolder v;
+
+            @Override
+            protected Integer doInBackground(ViewHolder... params)
+            {
+                v = params[0];
+                return iconImg;
+            }
+
+            protected void onPostExecute(Integer result)
+            {
+                super.onPostExecute(result);
+                v.skillIcon.setImageResource(iconImg);
+            }
+
+        }.execute(holder);
+    }
+    
+    private void loadTextAsync(ViewHolder holder, final TextView textView, final CharSequence text, final String regEx, final D3Color color)
+    {
+        AsyncTask<ViewHolder, Void, CharSequence> loadText = new AsyncTask<ViewHolder, Void, CharSequence>() {
+            private ViewHolder v;
+
+            @Override
+            protected CharSequence doInBackground(ViewHolder... params)
+            {
+                v = params[0];
+                return Replacer.replace(text, regEx, color);
+            }
+
+            protected void onPostExecute(CharSequence result)
+            {
+                super.onPostExecute(result);
+                textView.setText(result);
+                textView.setVisibility(View.VISIBLE);
+            }
+
+        }.execute(holder);
     }
 
 }
