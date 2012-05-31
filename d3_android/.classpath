@@ -9,6 +9,5 @@
 	</classpathentry>
 	<classpathentry excluding="com/pate/diablo/sectionlist/EntryAdapter.java" kind="src" output="bin/classes" path="src"/>
 	<classpathentry kind="lib" path="D:/Program Files/Android/android-sdks/sources/android-15"/>
-	<classpathentry kind="lib" path="libs/GoogleAdMobAdsSdk-4.3.1.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

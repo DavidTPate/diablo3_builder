@@ -11,8 +11,6 @@ import android.support.v4.view.ViewPager;
 import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.google.ads.AdRequest;
-import com.google.ads.AdView;
 import com.viewpagerindicator.PageIndicator;
 import com.viewpagerindicator.TitlePageIndicator;
 import com.viewpagerindicator.TitlePageIndicator.IndicatorStyle;
@@ -35,14 +33,6 @@ public class SelectSkill extends SherlockFragmentActivity implements OnSkillSele
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.select_skill);
-        
-        AdView adView = (AdView)this.findViewById(R.id.adView);
-        AdRequest newAd = new AdRequest();
-        newAd.addTestDevice("BDD7A55C1502190E502F14CBFDF9ABC7");
-        newAd.addTestDevice("E85A995C749AE015AA4EE195878C0982");
-        newAd.addTestDevice("E9BD79A28E313B2BDFA0CB0AED6C9697");
-        newAd.addTestDevice(AdRequest.TEST_EMULATOR);
-        adView.loadAd(newAd);
         
         Bundle b = getIntent().getExtras();
         

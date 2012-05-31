@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
@@ -15,21 +14,20 @@
         android:id="@+id/follower_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@android:id/list"
         android:layout_below="@id/select_follower_indicator" />
 
     <ListView
         android:id="@android:id/list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/adView"
+        android:layout_below="@id/follower_pager"
         android:paddingBottom="20dp" />
 
     <LinearLayout
         android:id="@+id/follower_required_level_wrapper"
         android:layout_width="fill_parent"
         android:layout_height="20dp"
-        android:layout_above="@+id/adView"
+        android:layout_below="@android:id/list"
         android:layout_centerInParent="true"
         android:background="#22FFFFFF"
         android:orientation="horizontal" >
@@ -41,15 +39,5 @@
             android:gravity="center"
             android:text="Required Level: 1" />
     </LinearLayout>
-
-    <com.google.ads.AdView
-        android:id="@id/adView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"
-        ads:adSize="BANNER"
-        ads:adUnitId="a14fbbef515f0e2"
-        ads:testDevices="TEST_EMULATOR, E85A995C749AE015AA4EE195878C0982, BDD7A55C1502190E502F14CBFDF9ABC7" />
 
 </RelativeLayout>

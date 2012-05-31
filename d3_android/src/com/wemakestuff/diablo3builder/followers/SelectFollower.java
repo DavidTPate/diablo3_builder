@@ -27,8 +27,6 @@ import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
-import com.google.ads.AdRequest;
-import com.google.ads.AdView;
 import com.viewpagerindicator.PageIndicator;
 import com.viewpagerindicator.TitlePageIndicator;
 import com.viewpagerindicator.TitlePageIndicator.IndicatorStyle;
@@ -41,8 +39,8 @@ import com.wemakestuff.diablo3builder.followers.FollowerListFragment.OnSkillUpda
 import com.wemakestuff.diablo3builder.model.ClassBuild;
 import com.wemakestuff.diablo3builder.model.D3Application;
 import com.wemakestuff.diablo3builder.string.Replacer;
-import com.wemakestuff.diablo3builder.string.Vars;
 import com.wemakestuff.diablo3builder.string.Replacer.D3Color;
+import com.wemakestuff.diablo3builder.string.Vars;
 
 public class SelectFollower extends SherlockFragmentActivity implements OnRequiredLevelUpdateListener, OnLoadFragmentCompleteListener,
         OnLoadBuildClickInterface, OnSkillUpdateListener
@@ -107,15 +105,6 @@ public class SelectFollower extends SherlockFragmentActivity implements OnRequir
         requiredLevelWrapper = (LinearLayout) findViewById(R.id.follower_required_level_wrapper);
         requiredLevel = (TextView) findViewById(R.id.follower_required_level);
         setRequiredLevel(1);
-
-        AdView adView = (AdView) this.findViewById(R.id.adView);
-        AdRequest newAd = new AdRequest();
-        newAd.addTestDevice("BDD7A55C1502190E502F14CBFDF9ABC7");
-        newAd.addTestDevice("E85A995C749AE015AA4EE195878C0982");
-        newAd.addTestDevice("E9BD79A28E313B2BDFA0CB0AED6C9697");
-        newAd.addTestDevice(AdRequest.TEST_EMULATOR);
-
-        adView.loadAd(newAd);
 
         mAdapter = new FollowerFragmentAdapter(getSupportFragmentManager(), SelectFollower.this);
 

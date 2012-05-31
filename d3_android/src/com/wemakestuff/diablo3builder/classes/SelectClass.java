@@ -65,8 +65,6 @@ public class SelectClass extends SherlockFragmentActivity implements OnRequiredL
         mIndicator = (TitlePageIndicator) findViewById(R.id.select_skill_indicator);
         mIndicator.setViewPager(mPager);
         mIndicator.setFooterIndicatorStyle(IndicatorStyle.Triangle);
-        
-        Funcs.getNewAd((AdView) this.findViewById(R.id.adView));
     }
     
     public void setRequiredLevel(int level)

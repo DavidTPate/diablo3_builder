@@ -15,17 +15,6 @@ import com.wemakestuff.diablo3builder.model.ClassBuild;
 public class Funcs
 {
 
-    public static void getNewAd(AdView v)
-    {
-
-        AdRequest newAd = new AdRequest();
-        newAd.addTestDevice("BDD7A55C1502190E502F14CBFDF9ABC7");
-        newAd.addTestDevice("E85A995C749AE015AA4EE195878C0982");
-        newAd.addTestDevice("E9BD79A28E313B2BDFA0CB0AED6C9697");
-        newAd.addTestDevice(AdRequest.TEST_EMULATOR);
-        v.loadAd(newAd);
-    }
-
     public static void shareBuild(Context context, String subject, String content)
     {
 
