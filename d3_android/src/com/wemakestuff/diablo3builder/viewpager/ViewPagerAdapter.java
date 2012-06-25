@@ -6,10 +6,8 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.TextView;
-
-import com.viewpagerindicator.TitleProvider;
  
-public class ViewPagerAdapter extends PagerAdapter implements TitleProvider
+public class ViewPagerAdapter extends PagerAdapter
 {
     private static String[] titles = new String[]
     {
@@ -25,7 +23,7 @@ public class ViewPagerAdapter extends PagerAdapter implements TitleProvider
     }
  
     @Override
-    public String getTitle( int position )
+    public String getPageTitle( int position )
     {
         return titles[ position ];
     }
