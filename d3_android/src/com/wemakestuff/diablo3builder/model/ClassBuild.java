@@ -41,7 +41,7 @@ public class ClassBuild implements Parcelable
         this.name = source.readString();
         this.className = source.readString();
         this.url = source.readString();
-        this.uuid = source.readParcelable(ParcelUuid.class.getClassLoader());
+        this.uuid = ((ParcelUuid) source.readParcelable(ParcelUuid.class.getClassLoader())).getUuid();
         this.followersUrl = source.readString();
     }
 
