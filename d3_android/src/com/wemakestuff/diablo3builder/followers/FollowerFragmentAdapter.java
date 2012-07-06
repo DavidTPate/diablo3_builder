@@ -7,11 +7,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.viewpagerindicator.TitleProvider;
 import com.wemakestuff.diablo3builder.model.D3Application;
 import com.wemakestuff.diablo3builder.model.Follower;
 
-public class FollowerFragmentAdapter extends FragmentPagerAdapter implements TitleProvider
+public class FollowerFragmentAdapter extends FragmentPagerAdapter
 {
     private List<Follower> followers;
     private Context context;
@@ -23,7 +22,7 @@ public class FollowerFragmentAdapter extends FragmentPagerAdapter implements Tit
     }
 
     @Override
-    public String getTitle(int position) {
+    public String getPageTitle(int position) {
         return followers.get(position).getName();
     }
 

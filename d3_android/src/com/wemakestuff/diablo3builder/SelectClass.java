@@ -76,6 +76,7 @@ public class SelectClass extends SherlockFragmentActivity implements OnRequiredL
             mMode.finish();
     }
 
+    
     public final class ActionModeEditListItem implements ActionMode.Callback
     {
         int position;

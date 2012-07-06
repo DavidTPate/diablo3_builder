@@ -8,10 +8,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.viewpagerindicator.TitleProvider;
 import com.wemakestuff.diablo3builder.model.D3Application;
 
-class SkillFragmentAdapter extends FragmentPagerAdapter implements TitleProvider {
+class SkillFragmentAdapter extends FragmentPagerAdapter {
 	private String[] skillTypes;
 	private Context context;
 	private int mCount = 0;
@@ -58,7 +57,7 @@ class SkillFragmentAdapter extends FragmentPagerAdapter implements TitleProvider
 	}
 	
     @Override
-    public String getTitle(int position) {
+    public String getPageTitle(int position) {
         return skillTypes[position % skillTypes.length];
     }
     

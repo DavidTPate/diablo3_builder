@@ -8,6 +8,5 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry excluding="com/pate/diablo/sectionlist/EntryAdapter.java" kind="src" output="bin/classes" path="src"/>
-	<classpathentry kind="lib" path="D:/Program Files/Android/android-sdks/sources/android-15"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

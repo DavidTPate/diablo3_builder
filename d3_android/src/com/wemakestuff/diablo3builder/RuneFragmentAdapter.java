@@ -8,9 +8,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.view.View.OnClickListener;
 
-import com.viewpagerindicator.TitleProvider;
-
-class RuneFragmentAdapter extends FragmentPagerAdapter implements TitleProvider {
+class RuneFragmentAdapter extends FragmentPagerAdapter {
 	private String[] runeTypes;
 	private Context context;
 	private int mCount = 0;
@@ -66,7 +64,7 @@ class RuneFragmentAdapter extends FragmentPagerAdapter implements TitleProvider 
 	}
 
 	@Override
-	public String getTitle(int position) {
+	public String getPageTitle(int position) {
 		return runeTypes[position % runeTypes.length];
 	}
 

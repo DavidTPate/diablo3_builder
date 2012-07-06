@@ -7,11 +7,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.viewpagerindicator.TitleProvider;
 import com.wemakestuff.diablo3builder.model.Class;
 import com.wemakestuff.diablo3builder.model.D3Application;
 
-public class ClassFragmentAdapter extends FragmentPagerAdapter implements TitleProvider
+public class ClassFragmentAdapter extends FragmentPagerAdapter
 {
     private List<Class> classes;
     private Context context;
@@ -25,7 +24,7 @@ public class ClassFragmentAdapter extends FragmentPagerAdapter implements TitleP
     }
 
     @Override
-    public String getTitle(int position) {
+    public String getPageTitle(int position) {
         return classes.get(position).getName();
     }
 
