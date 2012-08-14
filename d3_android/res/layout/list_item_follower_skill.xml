@@ -27,7 +27,6 @@
         android:layout_toRightOf="@id/follower_skill_icon"
         android:fadingEdge="horizontal"
         android:layout_marginBottom="4dp"
-        android:text="Heal"
         android:textAppearance="?android:attr/textAppearanceMedium" />
     
     <ImageView
@@ -50,7 +49,6 @@
         android:fadingEdge="horizontal"
         android:singleLine="true"
         android:layout_toLeftOf="@id/follower_checkmark"
-        android:text="Unlocked at level: 5"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
@@ -63,7 +61,6 @@
         android:ellipsize="marquee"
         android:fadingEdge="horizontal"
         android:singleLine="true"
-        android:text="Cooldown: 30 secs"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
@@ -75,7 +72,6 @@
         android:fadingEdge="horizontal"
         android:paddingTop="10dp"
         android:singleLine="false"
-        android:text="Heals you or the templar for 4651 Life."
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
 </RelativeLayout>

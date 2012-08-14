@@ -45,10 +45,7 @@ public class EntryFollowerSkill implements Item
     {
 
         this.isChecked = isChecked;
-        // if (holder != null && holder.checkmark != null)
-        // {
-        // holder.checkmark.setVisibility(isChecked ? View.VISIBLE : View.GONE);
-        // }
+        holder.checkmark.setVisibility(isChecked ? View.VISIBLE : View.INVISIBLE);
     }
 
     public boolean isChecked()
@@ -110,11 +107,7 @@ public class EntryFollowerSkill implements Item
         // Is this a terrible hack?! I think so...
         String icon = followerName.toLowerCase() + "_" + skill.getName().replace(" ", "").toLowerCase();
         int skillImage = Util.findImageResource(icon);
-
-        final int iconImg = skillImage;
-
-        loadIconAsync(holder, iconImg);
-        holder.skillIcon.setImageResource(skillImage);
+        loadIconAsync(holder, skillImage);
         holder.skillName.setText(skill.getName());
         holder.unlockedAt.setText("Unlocked at level: " + skill.getRequiredLevel());
 
@@ -140,7 +133,7 @@ public class EntryFollowerSkill implements Item
             loadTextAsync(holder, holder.skillDescription, skill.getDescription().trim(), "\\d+%?", D3Color.DIABLO_GREEN);
         }
 
-        holder.checkmark.setVisibility(isChecked ? View.VISIBLE : View.GONE);
+        holder.checkmark.setVisibility(isChecked ? View.VISIBLE : View.INVISIBLE);
 
         return view;
     }

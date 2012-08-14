@@ -154,10 +154,7 @@ public class FollowerListFragment extends ListFragment
             {
                 e.setIsChecked(true);
                 pairedSkill.setIsChecked(false);
-            }
-
-            skillAdapter.notifyDataSetChanged();
-            
+            }            
         }
 
         if (selectedFollower.equals(Vars.TEMPLAR))
