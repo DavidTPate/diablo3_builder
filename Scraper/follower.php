@@ -34,6 +34,7 @@ function getFollowers($url)
 			if ($object_class == 'category')
 			{
 				$followers[$count]['name'] = trimReplace($object->nodeValue);
+				$followers[$count]['icon'] = trimReplace(strtolower($object->nodeValue));
 				$count++;
 			}
 		}
